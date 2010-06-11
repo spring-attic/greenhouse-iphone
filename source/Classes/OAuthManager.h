@@ -12,6 +12,8 @@
 
 @interface OAuthManager : NSObject { }
 
+@property (nonatomic, assign, getter=isAuthorized) BOOL authorized;
+
 + (OAuthManager *)sharedInstance;
 
 - (BOOL)isAuthorized;
@@ -24,6 +26,6 @@
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 //- (void)updateStatus:(NSString *)status;
-- (void)updateStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)updateStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 @end

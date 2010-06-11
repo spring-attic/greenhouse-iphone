@@ -9,9 +9,9 @@
 #define OAUTH_CONSUMER_KEY		@"greenhouse-key"
 #define OAUTH_CONSUMER_SECRET	@"s3cr3t"
 #define OAUTH_REALM_VALUE		@"Greenhouse"
-#define OAUTH_REQUEST_TOKEN_URL	@"http://localhost:8080/greenhouse/oauth/request_token"
-#define OAUTH_AUTHORIZE_URL		@"http://localhost:8080/greenhouse/oauth/confirm_access"
-#define OAUTH_ACCESS_TOKEN_URL	@"http://localhost:8080/greenhouse/oauth/access_token"
+#define OAUTH_REQUEST_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/request_token"
+#define OAUTH_AUTHORIZE_URL		@"http://127.0.0.1:8080/greenhouse/oauth/confirm_access"
+#define OAUTH_ACCESS_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/access_token"
 #define OAUTH_CALLBACK_URL		@"x-com-springsource-greenhouse://oauth-response"
 //#define TWITTER_UPDATE_URL		@"http://api.twitter.com/1/statuses/update.json"
 
@@ -30,6 +30,9 @@
 static OAuthManager *sharedInstance = nil;
 
 @implementation OAuthManager
+
+@dynamic authorized;
+
 
 #pragma mark -
 #pragma mark Class methods
@@ -55,7 +58,12 @@ static OAuthManager *sharedInstance = nil;
 
 - (BOOL)isAuthorized
 {
-	return NO;
+	return [[NSUserDefaults standardUserDefaults] boolForKey:@"authorized"];
+}
+
+- (void)setAuthorized:(BOOL)value
+{
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:value] forKey:@"authorized"];
 }
 
 - (void)fetchUnauthorizedRequestToken;
@@ -68,7 +76,7 @@ static OAuthManager *sharedInstance = nil;
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 
 																	  token:nil   // we don't have a Token yet
-																	  realm:OAUTH_REALM_VALUE   // our service provider doesn't specify a realm
+																	  realm:OAUTH_REALM_VALUE
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
@@ -167,7 +175,7 @@ static OAuthManager *sharedInstance = nil;
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 
 																	  token:requestToken
-																	  realm:nil   // our service provider doesn't specify a realm
+																	  realm:OAUTH_REALM_VALUE
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
@@ -197,35 +205,39 @@ static OAuthManager *sharedInstance = nil;
 		[[NSUserDefaults standardUserDefaults] setObject:accessToken.secret forKey:OAUTH_TOKEN_SECRET];
 		[accessToken release];
 		
-		NSMutableDictionary* result = [NSMutableDictionary dictionary];
+		self.authorized = YES;
 		
-		NSArray *pairs = [responseBody componentsSeparatedByString:@"&"];
-		[responseBody release];
+//		NSMutableDictionary* result = [NSMutableDictionary dictionary];
+//		
+//		NSArray *pairs = [responseBody componentsSeparatedByString:@"&"];
+//		[responseBody release];
+//		
+//		for (NSString *pair in pairs) 
+//		{
+//			NSRange firstEqual = [pair rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
+//			
+//			if (firstEqual.location == NSNotFound) 
+//			{
+//				continue;
+//			}
+//			
+//			NSString *key = [pair substringToIndex:firstEqual.location];
+//			NSString *value = [pair substringFromIndex:firstEqual.location+1];
+//			
+//			[result setObject:[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+//					   forKey:[key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//		}
 		
-		for (NSString *pair in pairs) 
-		{
-			NSRange firstEqual = [pair rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
-			
-			if (firstEqual.location == NSNotFound) 
-			{
-				continue;
-			}
-			
-			NSString *key = [pair substringToIndex:firstEqual.location];
-			NSString *value = [pair substringFromIndex:firstEqual.location+1];
-			
-			[result setObject:[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-					   forKey:[key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-		}
-		
-		[[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:USER_ID] forKey:USER_ID];
-		[[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:SCREEN_NAME] forKey:SCREEN_NAME];
+//		[[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:USER_ID] forKey:USER_ID];
+//		[[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:SCREEN_NAME] forKey:SCREEN_NAME];
 	}
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
 	NSLog(@"%@", [error localizedDescription]);
+	
+	self.authorized = NO;
 }
 
 //- (void)updateStatus:(NSString *)status
@@ -270,21 +282,21 @@ static OAuthManager *sharedInstance = nil;
 //	
 //	[request release];
 //}
-
-- (void)updateStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed) 
-	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSLog(@"%@", responseBody);
-		[responseBody release];
-	}
-}
-
-- (void)updateStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-	NSLog(@"%@", [error localizedDescription]);
-}
+//
+//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+//{
+//	if (ticket.didSucceed) 
+//	{
+//		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//		NSLog(@"%@", responseBody);
+//		[responseBody release];
+//	}
+//}
+//
+//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+//{
+//	NSLog(@"%@", [error localizedDescription]);
+//}
 
 
 #pragma mark -
