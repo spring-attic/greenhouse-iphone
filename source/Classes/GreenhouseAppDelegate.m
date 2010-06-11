@@ -8,7 +8,6 @@
 
 #import "GreenhouseAppDelegate.h"
 #import "OAuthManager.h"
-#import "AuthorizeViewController.h"
 
 
 @interface GreenhouseAppDelegate (PrivateCoreDataStack)
@@ -25,17 +24,20 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 
+- (void)showAuthorizedViewController
+{
+	if (_authorizeViewController)
+	{	
+		[_authorizeViewController.view removeFromSuperview];
+		[_authorizeViewController release];
+	}
+	
+	[_window addSubview:_tabBarController.view];
+}
+
 
 #pragma mark -
 #pragma mark UIApplicationDelegate methods
-
-//- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions 
-//{    
-//    [_window addSubview:_tabBarController.view];
-//    [_window makeKeyAndVisible];
-//	
-//    return YES;
-//}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
@@ -45,9 +47,8 @@
 	}
 	else 
 	{
-		AuthorizeViewController *authorizeViewController = [[[AuthorizeViewController alloc] initWithNibName:@"AuthorizeViewController" bundle:nil] retain];
-		[_window addSubview:authorizeViewController.view];
-		[authorizeViewController release];
+		_authorizeViewController = [[[AuthorizeViewController alloc] initWithNibName:@"AuthorizeViewController" bundle:nil] retain];
+		[_window addSubview:_authorizeViewController.view];
 	}
 	
     [_window makeKeyAndVisible];
@@ -55,7 +56,10 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
-	[[OAuthManager sharedInstance] processOauthResponse:url];
+	OAuthManager *mgr = [OAuthManager sharedInstance];
+	mgr.delegate = self;
+	mgr.selector = @selector(showAuthorizedViewController);
+	[mgr processOauthResponse:url];
 	
 	return YES;
 }

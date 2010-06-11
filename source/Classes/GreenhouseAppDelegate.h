@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "AuthorizeViewController.h"
 
 
 @interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
@@ -17,6 +18,7 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
 	UITabBarController *_tabBarController;
     UIWindow *_window;
+	AuthorizeViewController *_authorizeViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

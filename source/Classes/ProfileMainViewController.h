@@ -9,8 +9,15 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ProfileMainViewController : UIViewController {
+@interface ProfileMainViewController : UIViewController 
+{
 
+@private
+	UITextView *_textView;
 }
+
+@property (nonatomic, retain) IBOutlet UITextView *textView;
+
+- (void)showProfileDetails:(NSString *)details;
 
 @end

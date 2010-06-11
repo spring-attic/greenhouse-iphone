@@ -32,6 +32,8 @@ static OAuthManager *sharedInstance = nil;
 @implementation OAuthManager
 
 @dynamic authorized;
+@synthesize delegate;
+@synthesize selector;
 
 
 #pragma mark -
@@ -207,6 +209,11 @@ static OAuthManager *sharedInstance = nil;
 		
 		self.authorized = YES;
 		
+		if ([delegate respondsToSelector:selector])
+		{
+			[delegate performSelector:selector];
+		}
+		
 //		NSMutableDictionary* result = [NSMutableDictionary dictionary];
 //		
 //		NSArray *pairs = [responseBody componentsSeparatedByString:@"&"];
@@ -240,29 +247,29 @@ static OAuthManager *sharedInstance = nil;
 	self.authorized = NO;
 }
 
-//- (void)updateStatus:(NSString *)status
-//{
-//	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-//													secret:OAUTH_CONSUMER_SECRET];
-//	
-//	NSString *oauthToken = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN];
-//	NSString *oauthTokenSecret = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN_SECRET];
-//	
-//	OAToken *accessToken = [[OAToken alloc] initWithKey:oauthToken secret:oauthTokenSecret];
-//	
-//    NSURL *url = [NSURL URLWithString:TWITTER_UPDATE_URL];
-//	
-//    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-//																   consumer:consumer 
-//																	  token:accessToken
-//																	  realm:nil   // our service provider doesn't specify a realm
-//														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-//	
-//	[consumer release];
-//	[accessToken release];
-//	
-//	[request setHTTPMethod:@"POST"];
-//	
+- (void)fetchProfileDetails
+{
+	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+													secret:OAUTH_CONSUMER_SECRET];
+	
+	NSString *oauthToken = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN];
+	NSString *oauthTokenSecret = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN_SECRET];
+	
+	OAToken *accessToken = [[OAToken alloc] initWithKey:oauthToken secret:oauthTokenSecret];
+	
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/people/@self"];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:consumer 
+																	  token:accessToken
+																	  realm:OAUTH_REALM_VALUE
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[consumer release];
+	[accessToken release];
+	
+	[request setHTTPMethod:@"GET"];
+	
 //	OARequestParameter *statusParam = [[OARequestParameter alloc] initWithName:TWITTER_STATUS
 //																		 value:status];
 //	
@@ -270,33 +277,38 @@ static OAuthManager *sharedInstance = nil;
 //	[statusParam release];
 //	
 //	[request setParameters:params];
-//	
-//	NSLog(@"%@", request);
-//	
-//	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-//	
-//	[fetcher fetchDataWithRequest:request
-//						 delegate:self
-//				didFinishSelector:@selector(updateStatusTicket:didFinishWithData:)
-//				  didFailSelector:@selector(updateStatusTicket:didFailWithError:)];
-//	
-//	[request release];
-//}
-//
-//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-//{
-//	if (ticket.didSucceed) 
-//	{
-//		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//		NSLog(@"%@", responseBody);
-//		[responseBody release];
-//	}
-//}
-//
-//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-//{
-//	NSLog(@"%@", [error localizedDescription]);
-//}
+	
+	NSLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(fetchProfileDetails:didFinishWithData:)
+				  didFailSelector:@selector(fetchProfileDetails:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)fetchProfileDetails:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	if (ticket.didSucceed) 
+	{
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSLog(@"%@", responseBody);
+		[responseBody release];
+		
+		if ([delegate respondsToSelector:selector])
+		{
+			[delegate performSelector:selector withObject:responseBody];
+		}
+	}
+}
+
+- (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	NSLog(@"%@", [error localizedDescription]);
+}
 
 
 #pragma mark -

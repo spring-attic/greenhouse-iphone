@@ -10,9 +10,15 @@
 #import "OauthConsumer.h"
 
 
-@interface OAuthManager : NSObject { }
+@interface OAuthManager : NSObject 
+{ 
+	id delegate;
+	SEL selector;
+}
 
 @property (nonatomic, assign, getter=isAuthorized) BOOL authorized;
+@property (nonatomic, assign) id delegate;
+@property (nonatomic, assign) SEL selector;
 
 + (OAuthManager *)sharedInstance;
 
@@ -25,7 +31,7 @@
 - (void)fetchAccessToken:(NSString *)oauthVerifier;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
-//- (void)updateStatus:(NSString *)status;
-//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-//- (void)updateStatusTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)fetchProfileDetails;
+- (void)fetchProfileDetails:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 @end

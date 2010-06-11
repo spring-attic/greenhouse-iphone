@@ -7,56 +7,52 @@
 //
 
 #import "ProfileMainViewController.h"
+#import "OAuthManager.h"
 
 
 @implementation ProfileMainViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize textView = _textView;
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+- (void)showProfileDetails:(NSString *)details
+{
+	_textView.text = details;
 }
-*/
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
+
+#pragma mark -
+#pragma mark UIViewController methods
+
+- (void)viewDidLoad 
+{
     [super viewDidLoad];
+	
+	OAuthManager *mgr = [OAuthManager sharedInstance];
+	mgr.delegate = self;
+	mgr.selector = @selector(showProfileDetails:);
+	[mgr fetchProfileDetails];
 }
-*/
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
+- (void)didReceiveMemoryWarning 
+{
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
-- (void)viewDidUnload {
+- (void)viewDidUnload 
+{
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+	
+	self.textView = nil;
 }
 
 
-- (void)dealloc {
+#pragma mark -
+#pragma mark NSObject methods
+
+- (void)dealloc 
+{
+	[_textView release];
+	
     [super dealloc];
 }
 
