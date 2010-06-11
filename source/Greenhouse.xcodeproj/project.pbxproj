@@ -17,6 +17,7 @@
 		28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
+		81D8B88E11C1A60400E62659 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81D8B88D11C1A60400E62659 /* Settings.bundle */; };
 		81E75EDD11BE048700E6B283 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
 		81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */; };
 		81E75EF911BE0A2200E6B283 /* OAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EF811BE0A2200E6B283 /* OAuthManager.m */; };
@@ -51,6 +52,7 @@
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
+		81D8B88D11C1A60400E62659 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		81E75EDB11BE048700E6B283 /* AuthorizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeViewController.h; sourceTree = "<group>"; };
 		81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeViewController.m; sourceTree = "<group>"; };
 		81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizeViewController.xib; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				8D1107310486CEB800E47090 /* Greenhouse-Info.plist */,
 				81A34A1011BDDBDF00B12131 /* Core Data Files */,
 				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
+				81D8B88D11C1A60400E62659 /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */,
 				81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */,
+				81D8B88E11C1A60400E62659 /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
