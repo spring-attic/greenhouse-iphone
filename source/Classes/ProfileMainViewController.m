@@ -8,15 +8,30 @@
 
 #import "ProfileMainViewController.h"
 #import "OAuthManager.h"
+#import "Person.h"
 
 
 @implementation ProfileMainViewController
 
-@synthesize textView = _textView;
+@synthesize labelId = _labelId;
+@synthesize labelVersion = _labelVersion;
+@synthesize labelFirstName = _labelFirstName;
+@synthesize labelLastName = _labelLastName;
+@synthesize labelEmailAddress = _labelEmailAddress;
 
 - (void)showProfileDetails:(NSString *)details
 {
-	_textView.text = details;
+	NSDictionary *dictionary = [details JSONValue];
+	NSDictionary *personDictionary = [dictionary objectForKey:@"person"];
+	Person *person = [[Person alloc] initWithDictionary:personDictionary];
+	
+	_labelId.text = [NSString stringWithFormat:@"%i", person.personId];
+	_labelVersion.text = [NSString stringWithFormat:@"%i", person.version];
+	_labelFirstName.text = person.firstName;
+	_labelLastName.text = person.lastName;
+	_labelEmailAddress.text = person.emailAddress;
+	
+	[person release];
 }
 
 
@@ -42,7 +57,11 @@
 {
     [super viewDidUnload];
 	
-	self.textView = nil;
+	self.labelId = nil;
+	self.labelVersion = nil;
+	self.labelFirstName = nil;
+	self.labelLastName = nil;
+	self.labelEmailAddress = nil;
 }
 
 
@@ -51,7 +70,11 @@
 
 - (void)dealloc 
 {
-	[_textView release];
+	[_labelId release];
+	[_labelVersion release];
+	[_labelFirstName release];
+	[_labelLastName release];
+	[_labelEmailAddress release];
 	
     [super dealloc];
 }

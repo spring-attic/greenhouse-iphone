@@ -13,10 +13,19 @@
 {
 
 @private
-	UITextView *_textView;
+	UILabel *_labelId;
+	UILabel *_labelVersion;
+	UILabel *_labelFirstName;
+	UILabel *_labelLastName;
+	UILabel *_labelEmailAddress;
 }
 
-@property (nonatomic, retain) IBOutlet UITextView *textView;
+@property (nonatomic, retain) IBOutlet UILabel *labelId;
+@property (nonatomic, retain) IBOutlet UILabel *labelVersion;
+@property (nonatomic, retain) IBOutlet UILabel *labelFirstName;
+@property (nonatomic, retain) IBOutlet UILabel *labelLastName;
+@property (nonatomic, retain) IBOutlet UILabel *labelEmailAddress;
+
 
 - (void)showProfileDetails:(NSString *)details;
 

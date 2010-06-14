@@ -140,7 +140,7 @@
         return _persistentStoreCoordinator;
     }
     
-    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory] stringByAppendingPathComponent: @"Greenhouse.sqlite"]];
+    NSURL *storeUrl = [NSURL fileURLWithPath: [[AppSettings applicationDocumentsDirectory] stringByAppendingPathComponent: @"Greenhouse.sqlite"]];
     
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
@@ -162,18 +162,6 @@
     }    
     
     return _persistentStoreCoordinator;
-}
-
-
-#pragma mark -
-#pragma mark Application's Documents directory
-
-/**
- Returns the path to the application's Documents directory.
- */
-- (NSString *)applicationDocumentsDirectory 
-{
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
 
