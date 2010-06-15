@@ -12,17 +12,23 @@
 
 
 @interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
-{    
+{
+	
+@private
     NSManagedObjectModel *_managedObjectModel;
     NSManagedObjectContext *_managedObjectContext;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
-	UITabBarController *_tabBarController;
     UIWindow *_window;
+	UITabBarController *_tabBarController;
 	AuthorizeViewController *_authorizeViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet AuthorizeViewController *authorizeViewController;
+
+- (void)showAuthorizeViewController;
+- (void)showMainViewController;
 
 @end
 

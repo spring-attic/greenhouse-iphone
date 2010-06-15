@@ -23,16 +23,16 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
+@synthesize authorizeViewController = _authorizeViewController;
 
-- (void)showAuthorizedViewController
+- (void)showAuthorizeViewController
 {
-	if (_authorizeViewController)
-	{	
-		[_authorizeViewController.view removeFromSuperview];
-		[_authorizeViewController release];
-	}
-	
-	[_window addSubview:_tabBarController.view];
+	[_window bringSubviewToFront:_authorizeViewController.view];
+}
+
+- (void)showMainViewController
+{
+	[_window bringSubviewToFront:_tabBarController.view];
 }
 
 
@@ -41,14 +41,16 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application 
 {
+	[_window addSubview:_tabBarController.view];
+	[_window addSubview:_authorizeViewController.view];
+	
 	if ([[OAuthManager sharedInstance] isAuthorized])
 	{
-		[_window addSubview:_tabBarController.view];
+		[_window bringSubviewToFront:_tabBarController.view];
 	}
 	else 
 	{
-		_authorizeViewController = [[[AuthorizeViewController alloc] initWithNibName:@"AuthorizeViewController" bundle:nil] retain];
-		[_window addSubview:_authorizeViewController.view];
+		[_window bringSubviewToFront:_authorizeViewController.view];
 	}
 	
     [_window makeKeyAndVisible];
@@ -173,6 +175,7 @@
     [_managedObjectContext release];
     [_managedObjectModel release];
     [_persistentStoreCoordinator release];
+	[_authorizeViewController release];
     [_tabBarController release];
     [_window release];
 	

@@ -297,7 +297,7 @@ static OAuthManager *sharedInstance = nil;
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSLog(@"%@", responseBody);
 		[responseBody release];
-		
+
 		if ([delegate respondsToSelector:selector])
 		{
 			[delegate performSelector:selector withObject:responseBody];
@@ -308,6 +308,11 @@ static OAuthManager *sharedInstance = nil;
 - (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
 	NSLog(@"%@", [error localizedDescription]);
+	
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	{
+		[appDelegate showAuthorizeViewController];
+	}
 }
 
 
