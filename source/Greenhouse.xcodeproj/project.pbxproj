@@ -16,7 +16,9 @@
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
+		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
+		81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
 		81C38A6E11C679CE00E1659E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */; };
 		81C38A6F11C679CE00E1659E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6511C679CE00E1659E /* NSString+SBJSON.m */; };
 		81C38A7011C679CE00E1659E /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6711C679CE00E1659E /* SBJSON.m */; };
@@ -60,7 +62,10 @@
 		811F5DEF11C6DEFF005BD43E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
+		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
+		8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken_KeychainExtensions.m; sourceTree = "<group>"; };
 		81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
+		81AF1C5C11C7FBF200960E9F /* spring09_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring09_logo.png; sourceTree = "<group>"; };
 		81C38A6111C679CE00E1659E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		81C38A6211C679CE00E1659E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Greenhouse-Info.plist */,
+				81AF1C5B11C7FBB800960E9F /* Images */,
 				81A34A1011BDDBDF00B12131 /* Core Data Files */,
 				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
 				81D8B88D11C1A60400E62659 /* Settings.bundle */,
@@ -215,6 +221,14 @@
 				28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */,
 			);
 			name = "Core Data Files";
+			sourceTree = "<group>";
+		};
+		81AF1C5B11C7FBB800960E9F /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				81AF1C5C11C7FBF200960E9F /* spring09_logo.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 		81C38A6011C679CE00E1659E /* JSON */ = {
@@ -329,6 +343,8 @@
 				81E75F1B11BE0C5800E6B283 /* OASignatureProviding.h */,
 				81E75F1C11BE0C5800E6B283 /* OAToken.h */,
 				81E75F1D11BE0C5800E6B283 /* OAToken.m */,
+				8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */,
+				8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */,
 				81E75F2011BE0C5800E6B283 /* OAuthConsumer.h */,
 			);
 			path = OAuthConsumer;
@@ -396,6 +412,7 @@
 				81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */,
 				81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */,
 				81D8B88E11C1A60400E62659 /* Settings.bundle in Resources */,
+				81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +450,7 @@
 				81C38A7111C679CE00E1659E /* SBJsonBase.m in Sources */,
 				81C38A7211C679CE00E1659E /* SBJsonParser.m in Sources */,
 				81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */,
+				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

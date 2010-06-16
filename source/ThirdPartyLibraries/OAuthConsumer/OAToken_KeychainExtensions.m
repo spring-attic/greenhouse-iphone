@@ -6,9 +6,13 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import <Security/Security.h>
 #import "OAToken_KeychainExtensions.h"
 
+
 @implementation OAToken (OAToken_KeychainExtensions)
+
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 30000 && TARGET_IPHONE_SIMULATOR
 
 - (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
 {
@@ -90,5 +94,58 @@
                                                     );
 	return status;
 }
+
+
+#else
+
+
+- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+{
+	NSDictionary *result;
+	
+	NSArray *keys = [[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrService, kSecAttrLabel, kSecAttrAccount, kSecAttrGeneric, nil];
+	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+	
+	NSArray *objects = [[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, 
+						serviceName, 
+						@"OAuth Access Token",
+						self.key,
+						self.secret,
+						nil];
+	
+	NSDictionary *query = [[NSDictionary alloc] initWithObjects:objects
+														forKeys:keys];
+	
+	OSStatus status = SecItemAdd((CFDictionaryRef)query, (CFTypeRef *)&result);
+	
+	return status;
+}
+
+
+- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+{
+    [super init];
+	NSDictionary *result;
+	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+	
+	NSArray *keys = [[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrService, kSecReturnAttributes, nil];
+	NSArray *objects = [[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, serviceName, kCFBooleanTrue, nil];
+	
+	NSDictionary *query = [[NSDictionary alloc] initWithObjects:objects
+														forKeys:keys];
+	
+	OSStatus status = SecItemCopyMatching((CFDictionaryRef)query, (CFTypeRef *)&result);
+	
+	if (status != noErr) {
+		return nil;
+	}
+	
+	self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
+	self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
+	
+	return self;
+}
+
+#endif
 
 @end
