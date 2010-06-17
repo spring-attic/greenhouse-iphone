@@ -468,6 +468,7 @@
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
 				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
 			name = Debug;
 		};
@@ -480,6 +481,7 @@
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
 				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

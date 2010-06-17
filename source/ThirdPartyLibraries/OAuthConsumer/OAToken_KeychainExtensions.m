@@ -6,8 +6,20 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#define SERVICE_NAME_FORMAT @"%@::OAuth::%@"
+#define KEYCHAIN_LABEL @"OAuth Access Token"
+
 #import <Security/Security.h>
 #import "OAToken_KeychainExtensions.h"
+
+
+@interface OAToken(Private)
+
+- (OSStatus)addKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
+- (NSDictionary *)fetchKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
+- (OSStatus)deleteKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider;
+
+@end
 
 
 @implementation OAToken (OAToken_KeychainExtensions)
@@ -18,7 +30,7 @@
 {
     [super init];
     SecKeychainItemRef item;
-	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
 	OSStatus status = SecKeychainFindGenericPassword(NULL,
 													 strlen([serviceName UTF8String]),
 													 [serviceName UTF8String],
@@ -85,7 +97,7 @@
 {
 	OSStatus status = SecKeychainAddGenericPassword(keychain,                                     
                                                     [name length] + [provider length] + 9, 
-                                                    [[NSString stringWithFormat:@"%@::OAuth::%@", name, provider] UTF8String],
+                                                    [[NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider] UTF8String],
                                                     [self.key length],                        
                                                     [self.key UTF8String],
                                                     [self.secret length],
@@ -100,50 +112,110 @@
 
 
 - (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+{	
+	OSStatus status = [self deleteKeychainUsingAppName:name serviceProviderName:provider];
+	
+	status = [self addKeychainUsingAppName:name serviceProviderName:provider];
+		
+//	if (status == errSecDuplicateItem)
+//	{		
+//		NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
+//							   (id)kSecClassGenericPassword, (id)kSecClass,
+//							   serviceName, kSecAttrService,
+//							   nil];
+//		
+//		NSDictionary *attributesToUpdate = [[NSDictionary alloc] initWithObjectsAndKeys:
+//											self.key, kSecAttrAccount,
+//											self.secret, kSecAttrGeneric,
+//											nil];
+//		
+//		status = SecItemUpdate((CFDictionaryRef)query, (CFDictionaryRef)attributesToUpdate);
+//		
+//		[query release];
+//		[attributesToUpdate release];
+//	}
+		
+	return status;
+}
+
+- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
 {
-	NSDictionary *result;
+    if ((self = [super init]))
+	{		
+		NSDictionary *result = [self fetchKeychainUsingAppName:name serviceProviderName:provider];
+		
+		if (result == nil)
+		{
+			return nil;
+		}
+		
+		self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
+		self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
+	}
 	
-	NSArray *keys = [[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrService, kSecAttrLabel, kSecAttrAccount, kSecAttrGeneric, nil];
-	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
+	return self;
+}
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (OSStatus)addKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider
+{
+	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
 	
-	NSArray *objects = [[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, 
-						serviceName, 
-						@"OAuth Access Token",
-						self.key,
-						self.secret,
-						nil];
+	NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
+						   (id)kSecClassGenericPassword, (id)kSecClass, 
+						   serviceName, kSecAttrService, 
+						   KEYCHAIN_LABEL, kSecAttrLabel, 
+						   self.key, kSecAttrAccount, 
+						   self.secret, kSecAttrGeneric,
+						   nil];
 	
-	NSDictionary *query = [[NSDictionary alloc] initWithObjects:objects
-														forKeys:keys];
+	OSStatus status = SecItemAdd((CFDictionaryRef)query, NULL);
 	
-	OSStatus status = SecItemAdd((CFDictionaryRef)query, (CFTypeRef *)&result);
+	[query release];
 	
 	return status;
 }
 
-
-- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+- (NSDictionary *)fetchKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider
 {
-    [super init];
+	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
+		
+	NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
+						   (id)kSecClassGenericPassword, (id)kSecClass, 
+						   serviceName, kSecAttrService, 
+						   kCFBooleanTrue, kSecReturnAttributes, 
+						   nil];
+	
 	NSDictionary *result;
-	NSString *serviceName = [NSString stringWithFormat:@"%@::OAuth::%@", name, provider];
-	
-	NSArray *keys = [[NSArray alloc] initWithObjects:(NSString *)kSecClass, kSecAttrService, kSecReturnAttributes, nil];
-	NSArray *objects = [[NSArray alloc] initWithObjects:(NSString *)kSecClassGenericPassword, serviceName, kCFBooleanTrue, nil];
-	
-	NSDictionary *query = [[NSDictionary alloc] initWithObjects:objects
-														forKeys:keys];
-	
 	OSStatus status = SecItemCopyMatching((CFDictionaryRef)query, (CFTypeRef *)&result);
 	
-	if (status != noErr) {
+	[query release];
+	
+	if (status != noErr) 
+	{
 		return nil;
 	}
 	
-	self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
-	self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
+	return result;
+}
+
+- (OSStatus)deleteKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider
+{
+	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
 	
-	return self;
+	NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
+						   (id)kSecClassGenericPassword, (id)kSecClass,
+						   serviceName, kSecAttrService,
+						   nil];
+	
+	OSStatus status = SecItemDelete((CFDictionaryRef)query);
+	
+	[query release];
+	
+	return status;
 }
 
 #endif

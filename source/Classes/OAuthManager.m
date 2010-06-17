@@ -198,13 +198,15 @@ static OAuthManager *sharedInstance = nil;
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-	if (ticket.didSucceed) 
+	if (ticket.didSucceed)
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//		NSString *responseBody = @"oauth_token=b6009bf1-bb5d-47b9-b2a5-f809573235b6&oauth_token_secret=bjcS5tKycNdGRqi2dz%2F0eoLiQBrDCtDYzH%2BisFjkFtu8pqQsd1VKhj89okY6bXccqFO4hTJM%2BfD%2FYUsR7qcJwjd35Y3WpVInHELoU2Zx5O0%3D";
 		
 		OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-		[[NSUserDefaults standardUserDefaults] setObject:accessToken.key forKey:OAUTH_TOKEN];
-		[[NSUserDefaults standardUserDefaults] setObject:accessToken.secret forKey:OAUTH_TOKEN_SECRET];
+		[responseBody release];
+		
+		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
 		[accessToken release];
 		
 		self.authorized = YES;
@@ -212,31 +214,7 @@ static OAuthManager *sharedInstance = nil;
 		if ([delegate respondsToSelector:selector])
 		{
 			[delegate performSelector:selector];
-		}
-		
-//		NSMutableDictionary* result = [NSMutableDictionary dictionary];
-//		
-//		NSArray *pairs = [responseBody componentsSeparatedByString:@"&"];
-//		[responseBody release];
-//		
-//		for (NSString *pair in pairs) 
-//		{
-//			NSRange firstEqual = [pair rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"="]];
-//			
-//			if (firstEqual.location == NSNotFound) 
-//			{
-//				continue;
-//			}
-//			
-//			NSString *key = [pair substringToIndex:firstEqual.location];
-//			NSString *value = [pair substringFromIndex:firstEqual.location+1];
-//			
-//			[result setObject:[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
-//					   forKey:[key stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//		}
-		
-//		[[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:USER_ID] forKey:USER_ID];
-//		[[NSUserDefaults standardUserDefaults] setObject:[result objectForKey:SCREEN_NAME] forKey:SCREEN_NAME];
+		}		
 	}
 }
 
@@ -251,11 +229,8 @@ static OAuthManager *sharedInstance = nil;
 {
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
-	
-	NSString *oauthToken = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN];
-	NSString *oauthTokenSecret = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN_SECRET];
-	
-	OAToken *accessToken = [[OAToken alloc] initWithKey:oauthToken secret:oauthTokenSecret];
+		
+	OAToken *accessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
 	
     NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/people/@self"];
 	
@@ -269,15 +244,7 @@ static OAuthManager *sharedInstance = nil;
 	[accessToken release];
 	
 	[request setHTTPMethod:@"GET"];
-	
-//	OARequestParameter *statusParam = [[OARequestParameter alloc] initWithName:TWITTER_STATUS
-//																		 value:status];
-//	
-//	NSArray *params = [NSArray arrayWithObjects:statusParam, nil];
-//	[statusParam release];
-//	
-//	[request setParameters:params];
-	
+		
 	NSLog(@"%@", request);
 	
 	OADataFetcher *fetcher = [[OADataFetcher alloc] init];

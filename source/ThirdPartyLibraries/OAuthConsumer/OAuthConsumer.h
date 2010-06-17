@@ -25,6 +25,7 @@
 
 #import <Foundation/Foundation.h>
 #import "OAToken.h"
+#import "OAToken_KeychainExtensions.h"
 #import "OAConsumer.h"
 #import "OAMutableURLRequest.h"
 #import "NSString+URLEncoding.h"
