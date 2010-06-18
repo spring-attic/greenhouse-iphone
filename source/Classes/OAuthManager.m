@@ -8,21 +8,15 @@
 
 #define OAUTH_CONSUMER_KEY		@"greenhouse-key"
 #define OAUTH_CONSUMER_SECRET	@"s3cr3t"
-#define OAUTH_REALM_VALUE		@"Greenhouse"
+#define OAUTH_REALM				@"Greenhouse"
 #define OAUTH_REQUEST_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/request_token"
 #define OAUTH_AUTHORIZE_URL		@"http://127.0.0.1:8080/greenhouse/oauth/confirm_access"
 #define OAUTH_ACCESS_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/access_token"
 #define OAUTH_CALLBACK_URL		@"x-com-springsource-greenhouse://oauth-response"
-//#define TWITTER_UPDATE_URL		@"http://api.twitter.com/1/statuses/update.json"
-
 #define OAUTH_TOKEN				@"oauth_token"
 #define OAUTH_TOKEN_SECRET		@"oauth_token_secret"
 #define OAUTH_CALLBACK			@"oauth_callback"
 #define OAUTH_VERIFIER			@"oauth_verifier"
-#define USER_ID					@"user_id"
-#define SCREEN_NAME				@"screen_name"
-#define TWITTER_STATUS			@"status"
-
 
 #import "OAuthManager.h"
 
@@ -34,8 +28,6 @@ static OAToken *authorizedAccessToken = nil;
 
 @dynamic authorized;
 @dynamic accessToken;
-@synthesize delegate;
-@synthesize selector;
 
 
 #pragma mark -
@@ -85,7 +77,7 @@ static OAToken *authorizedAccessToken = nil;
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 
 																	  token:nil   // we don't have a Token yet
-																	  realm:OAUTH_REALM_VALUE
+																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
@@ -118,9 +110,6 @@ static OAToken *authorizedAccessToken = nil;
 		
 		[requestToken storeInDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
 		
-//		[[NSUserDefaults standardUserDefaults] setObject:requestToken.key forKey:OAUTH_TOKEN];
-//		[[NSUserDefaults standardUserDefaults] setObject:requestToken.secret forKey:OAUTH_TOKEN_SECRET];
-		
 		[self authorizeRequestToken:requestToken];
 		[requestToken release];
 	}
@@ -146,8 +135,12 @@ static OAToken *authorizedAccessToken = nil;
 	[[UIApplication sharedApplication] openURL:url];
 }
 
-- (void)processOauthResponse:(NSURL *)url
+- (void)processOauthResponse:(NSURL *)url delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
 {
+	delegate = aDelegate;
+	didFinishSelector = finishSelector;
+	didFailSelector = failSelector;
+	
 	NSMutableDictionary* result = [NSMutableDictionary dictionary];
 	
 	NSArray *pairs = [[url query] componentsSeparatedByString:@"&"];
@@ -183,7 +176,7 @@ static OAToken *authorizedAccessToken = nil;
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 
 																	  token:requestToken
-																	  realm:OAUTH_REALM_VALUE
+																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
@@ -215,9 +208,9 @@ static OAToken *authorizedAccessToken = nil;
 		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
 		[accessToken release];
 		
-		if ([delegate respondsToSelector:selector])
+		if ([delegate respondsToSelector:didFinishSelector])
 		{
-			[delegate performSelector:selector];
+			[delegate performSelector:didFinishSelector];
 		}		
 	}
 }
@@ -225,25 +218,31 @@ static OAToken *authorizedAccessToken = nil;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
 	NSLog(@"%@", [error localizedDescription]);
+	
+	if ([delegate respondsToSelector:didFailSelector])
+	{
+		[delegate performSelector:didFailSelector];
+	}	
 }
 
-- (void)fetchProfileDetails
+- (void)fetchProfileDetailsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
 {
+	delegate = aDelegate;
+	didFinishSelector = finishSelector;
+	didFailSelector = failSelector;
+	
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 		
-//	OAToken *accessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
-	
     NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/people/@self"];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 
 																	  token:self.accessToken
-																	  realm:OAUTH_REALM_VALUE
+																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
-//	[accessToken release];
 	
 	[request setHTTPMethod:@"GET"];
 		
@@ -267,9 +266,9 @@ static OAToken *authorizedAccessToken = nil;
 		NSLog(@"%@", responseBody);
 		[responseBody release];
 
-		if ([delegate respondsToSelector:selector])
+		if ([delegate respondsToSelector:didFinishSelector])
 		{
-			[delegate performSelector:selector withObject:responseBody];
+			[delegate performSelector:didFinishSelector withObject:responseBody];
 		}
 	}
 }
@@ -280,7 +279,10 @@ static OAToken *authorizedAccessToken = nil;
 	
 	if ([error code] == NSURLErrorUserCancelledAuthentication)
 	{
-		[appDelegate showAuthorizeViewController];
+		if ([delegate respondsToSelector:didFailSelector])
+		{
+			[delegate performSelector:didFailSelector];
+		}
 	}
 }
 

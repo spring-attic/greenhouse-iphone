@@ -13,13 +13,12 @@
 @interface OAuthManager : NSObject 
 { 
 	id delegate;
-	SEL selector;
+	SEL didFinishSelector;
+	SEL didFailSelector;
 }
 
 @property (nonatomic, assign, readonly) BOOL authorized;
 @property (nonatomic, assign, readonly) OAToken *accessToken;
-@property (nonatomic, assign) id delegate;
-@property (nonatomic, assign) SEL selector;
 
 + (OAuthManager *)sharedInstance;
 
@@ -28,11 +27,11 @@
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)authorizeRequestToken:(OAToken *)requestToken;
-- (void)processOauthResponse:(NSURL *)url;
+- (void)processOauthResponse:(NSURL *)url delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 - (void)fetchAccessToken:(NSString *)oauthVerifier;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
-- (void)fetchProfileDetails;
+- (void)fetchProfileDetailsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 - (void)fetchProfileDetails:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 @end

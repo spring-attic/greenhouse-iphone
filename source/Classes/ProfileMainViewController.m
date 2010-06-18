@@ -41,11 +41,10 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	
-	OAuthManager *mgr = [OAuthManager sharedInstance];
-	mgr.delegate = self;
-	mgr.selector = @selector(showProfileDetails:);
-	[mgr fetchProfileDetails];
+		
+	[[OAuthManager sharedInstance] fetchProfileDetailsWithDelegate:self 
+												 didFinishSelector:@selector(showProfileDetails:) 
+												   didFailSelector:nil];
 }
 
 - (void)didReceiveMemoryWarning 

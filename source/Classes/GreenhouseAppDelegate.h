@@ -19,11 +19,13 @@
     NSManagedObjectContext *_managedObjectContext;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
     UIWindow *_window;
+	UIView *_viewStart;
 	UITabBarController *_tabBarController;
 	AuthorizeViewController *_authorizeViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
+@property (nonatomic, retain) IBOutlet UIView *viewStart;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
 @property (nonatomic, retain) IBOutlet AuthorizeViewController *authorizeViewController;
 

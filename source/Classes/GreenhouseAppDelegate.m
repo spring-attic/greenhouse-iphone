@@ -22,6 +22,7 @@
 @implementation GreenhouseAppDelegate
 
 @synthesize window = _window;
+@synthesize viewStart = _viewStart;
 @synthesize tabBarController = _tabBarController;
 @synthesize authorizeViewController = _authorizeViewController;
 
@@ -39,29 +40,43 @@
 #pragma mark -
 #pragma mark UIApplicationDelegate methods
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[launchOptions description] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
+//	[alert show];
+//	[alert release];		
+	
 	[_window addSubview:_tabBarController.view];
 	[_window addSubview:_authorizeViewController.view];
+	[_window addSubview:_viewStart];
 	
-	if ([[OAuthManager sharedInstance] isAuthorized])
+	if (launchOptions)
 	{
-		[_window bringSubviewToFront:_tabBarController.view];
+		NSURL *url = (NSURL *)[launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
+		
+		if (url)
+		{
+			OAuthManager *mgr = [OAuthManager sharedInstance];
+			[mgr processOauthResponse:url 
+							 delegate:self 
+					didFinishSelector:@selector(showMainViewController)
+					  didFailSelector:@selector(showAuthorizeViewController)];
+		}
+		else
+		{
+			[self showAuthorizeViewController];
+		}
+	}
+	else if ([[OAuthManager sharedInstance] isAuthorized])
+	{
+		[self showMainViewController];
 	}
 	else 
 	{
-		[_window bringSubviewToFront:_authorizeViewController.view];
+		[self showAuthorizeViewController];
 	}
 	
     [_window makeKeyAndVisible];
-}
-
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
-{
-	OAuthManager *mgr = [OAuthManager sharedInstance];
-	mgr.delegate = self;
-	mgr.selector = @selector(showAuthorizedViewController);
-	[mgr processOauthResponse:url];
 	
 	return YES;
 }
@@ -177,6 +192,7 @@
     [_persistentStoreCoordinator release];
 	[_authorizeViewController release];
     [_tabBarController release];
+	[_viewStart release];
     [_window release];
 	
     [super dealloc];
