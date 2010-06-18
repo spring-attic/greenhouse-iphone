@@ -16,7 +16,8 @@
 	SEL selector;
 }
 
-@property (nonatomic, assign, getter=isAuthorized) BOOL authorized;
+@property (nonatomic, assign, readonly) BOOL authorized;
+@property (nonatomic, assign, readonly) OAToken *accessToken;
 @property (nonatomic, assign) id delegate;
 @property (nonatomic, assign) SEL selector;
 

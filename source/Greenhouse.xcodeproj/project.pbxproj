@@ -27,7 +27,6 @@
 		81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6D11C679CE00E1659E /* SBJsonWriter.m */; };
 		81D4A45111C30692000A71C3 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Person.m */; };
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
-		81D8B88E11C1A60400E62659 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81D8B88D11C1A60400E62659 /* Settings.bundle */; };
 		81E75EDD11BE048700E6B283 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
 		81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */; };
 		81E75EF911BE0A2200E6B283 /* OAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EF811BE0A2200E6B283 /* OAuthManager.m */; };
@@ -83,7 +82,6 @@
 		81D4A45011C30692000A71C3 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		81D4A45D11C30945000A71C3 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
-		81D8B88D11C1A60400E62659 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		81E75EDB11BE048700E6B283 /* AuthorizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeViewController.h; sourceTree = "<group>"; };
 		81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeViewController.m; sourceTree = "<group>"; };
 		81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthorizeViewController.xib; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				81AF1C5B11C7FBB800960E9F /* Images */,
 				81A34A1011BDDBDF00B12131 /* Core Data Files */,
 				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
-				81D8B88D11C1A60400E62659 /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -411,7 +408,6 @@
 				28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */,
 				81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */,
 				81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */,
-				81D8B88E11C1A60400E62659 /* Settings.bundle in Resources */,
 				81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

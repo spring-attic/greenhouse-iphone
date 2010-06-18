@@ -110,12 +110,31 @@
 
 #else
 
-
-- (int)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider 
-{	
-	OSStatus status = [self deleteKeychainUsingAppName:name serviceProviderName:provider];
+- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+{
+    if ((self = [super init]))
+	{		
+		NSDictionary *result = [self fetchKeychainUsingAppName:name serviceProviderName:provider];
+		
+		if (result == nil)
+		{
+			return nil;
+		}
+		
+		self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
+		self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
+	}
 	
-	status = [self addKeychainUsingAppName:name serviceProviderName:provider];
+	return self;
+}
+
+- (BOOL)storeInDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+{	
+	[self deleteKeychainUsingAppName:name serviceProviderName:provider];
+	
+	OSStatus status = [self addKeychainUsingAppName:name serviceProviderName:provider];
+	
+	return (status == noErr);
 		
 //	if (status == errSecDuplicateItem)
 //	{		
@@ -134,26 +153,13 @@
 //		[query release];
 //		[attributesToUpdate release];
 //	}
-		
-	return status;
 }
 
-- (id)initWithKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider 
+- (BOOL)removeFromDefaultKeychainWithAppName:(NSString *)name serviceProviderName:(NSString *)provider
 {
-    if ((self = [super init]))
-	{		
-		NSDictionary *result = [self fetchKeychainUsingAppName:name serviceProviderName:provider];
-		
-		if (result == nil)
-		{
-			return nil;
-		}
-		
-		self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
-		self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
-	}
+	OSStatus status = [self deleteKeychainUsingAppName:name serviceProviderName:provider];
 	
-	return self;
+	return (status == noErr);
 }
 
 

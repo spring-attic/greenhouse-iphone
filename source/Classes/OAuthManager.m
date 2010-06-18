@@ -28,10 +28,12 @@
 
 
 static OAuthManager *sharedInstance = nil;
+static OAToken *authorizedAccessToken = nil;
 
 @implementation OAuthManager
 
 @dynamic authorized;
+@dynamic accessToken;
 @synthesize delegate;
 @synthesize selector;
 
@@ -58,14 +60,19 @@ static OAuthManager *sharedInstance = nil;
 #pragma mark -
 #pragma mark Public methods
 
-- (BOOL)isAuthorized
+- (OAToken *)accessToken
 {
-	return [[NSUserDefaults standardUserDefaults] boolForKey:@"authorized"];
+	if (authorizedAccessToken == nil)
+	{
+		authorizedAccessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
+	}
+	
+	return authorizedAccessToken;
 }
 
-- (void)setAuthorized:(BOOL)value
+- (BOOL)isAuthorized
 {
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:value] forKey:@"authorized"];
+	return (self.accessToken != nil);
 }
 
 - (void)fetchUnauthorizedRequestToken;
@@ -109,8 +116,10 @@ static OAuthManager *sharedInstance = nil;
 		OAToken *requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
 		[responseBody release];
 		
-		[[NSUserDefaults standardUserDefaults] setObject:requestToken.key forKey:OAUTH_TOKEN];
-		[[NSUserDefaults standardUserDefaults] setObject:requestToken.secret forKey:OAUTH_TOKEN_SECRET];
+		[requestToken storeInDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
+		
+//		[[NSUserDefaults standardUserDefaults] setObject:requestToken.key forKey:OAUTH_TOKEN];
+//		[[NSUserDefaults standardUserDefaults] setObject:requestToken.secret forKey:OAUTH_TOKEN_SECRET];
 		
 		[self authorizeRequestToken:requestToken];
 		[requestToken release];
@@ -166,11 +175,8 @@ static OAuthManager *sharedInstance = nil;
 {
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
-	
-	NSString *oauthToken = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN];
-	NSString *oauthTokenSecret = (NSString *)[[NSUserDefaults standardUserDefaults] objectForKey:OAUTH_TOKEN_SECRET];
-	
-	OAToken *requestToken = [[OAToken alloc] initWithKey:oauthToken secret:oauthTokenSecret];
+		
+	OAToken *requestToken = [[OAToken alloc] initWithKeychainUsingAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
 	
     NSURL *url = [NSURL URLWithString:OAUTH_ACCESS_TOKEN_URL];
 	
@@ -181,6 +187,7 @@ static OAuthManager *sharedInstance = nil;
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
+	[requestToken removeFromDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
 	[requestToken release];
 	
 	[request setHTTPMethod:@"POST"];
@@ -201,15 +208,12 @@ static OAuthManager *sharedInstance = nil;
 	if (ticket.didSucceed)
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//		NSString *responseBody = @"oauth_token=b6009bf1-bb5d-47b9-b2a5-f809573235b6&oauth_token_secret=bjcS5tKycNdGRqi2dz%2F0eoLiQBrDCtDYzH%2BisFjkFtu8pqQsd1VKhj89okY6bXccqFO4hTJM%2BfD%2FYUsR7qcJwjd35Y3WpVInHELoU2Zx5O0%3D";
 		
 		OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
 		[responseBody release];
 		
 		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
 		[accessToken release];
-		
-		self.authorized = YES;
 		
 		if ([delegate respondsToSelector:selector])
 		{
@@ -221,8 +225,6 @@ static OAuthManager *sharedInstance = nil;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
 	NSLog(@"%@", [error localizedDescription]);
-	
-	self.authorized = NO;
 }
 
 - (void)fetchProfileDetails
@@ -230,18 +232,18 @@ static OAuthManager *sharedInstance = nil;
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 		
-	OAToken *accessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
+//	OAToken *accessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
 	
     NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/people/@self"];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 
-																	  token:accessToken
+																	  token:self.accessToken
 																	  realm:OAUTH_REALM_VALUE
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
-	[accessToken release];
+//	[accessToken release];
 	
 	[request setHTTPMethod:@"GET"];
 		
