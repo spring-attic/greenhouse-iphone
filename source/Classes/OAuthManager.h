@@ -34,4 +34,6 @@
 - (void)fetchProfileDetailsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 - (void)fetchProfileDetails:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)removeAccessToken;
+
 @end

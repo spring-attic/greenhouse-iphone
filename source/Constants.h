@@ -6,4 +6,4 @@
 //  Copyright 2010 VMware. All rights reserved.
 //
 
-#define appDelegate [[UIApplication sharedApplication] (GreenhouseAppDelegate *)delegate]
+#define appDelegate (GreenhouseAppDelegate *)[[UIApplication sharedApplication] delegate]

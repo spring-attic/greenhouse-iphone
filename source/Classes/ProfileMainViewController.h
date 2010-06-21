@@ -26,7 +26,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelLastName;
 @property (nonatomic, retain) IBOutlet UILabel *labelEmailAddress;
 
-
+- (IBAction)actionSignOut:(id)sender;
 - (void)showProfileDetails:(NSString *)details;
 
 @end

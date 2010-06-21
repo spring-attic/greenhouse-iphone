@@ -63,7 +63,7 @@
 					<object class="IBUIImageView" id="432731699">
 						<reference key="NSNextResponder" ref="422692143"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{30, 65}, {260, 70}}</string>
+						<string key="NSFrame">{{30, 40}, {260, 70}}</string>
 						<reference key="NSSuperview" ref="422692143"/>
 						<reference key="IBUIBackgroundColor" ref="194871178"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -76,7 +76,7 @@
 					<object class="IBUILabel" id="634277654">
 						<reference key="NSNextResponder" ref="422692143"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{64, 154}, {191, 29}}</string>
+						<string key="NSFrame">{{64, 129}, {191, 29}}</string>
 						<reference key="NSSuperview" ref="422692143"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -98,13 +98,14 @@
 						<float key="IBUIMinimumFontSize">10</float>
 					</object>
 				</object>
-				<string key="NSFrameSize">{320, 460}</string>
+				<string key="NSFrameSize">{320, 411}</string>
 				<reference key="NSSuperview"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC4yNTA5ODA0MDcgMC41MDE5NjA4MTQgMAA</bytes>
 				</object>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 			<object class="IBUITabBarController" id="930345292">
@@ -131,18 +132,6 @@
 				<object class="NSMutableArray" key="IBUIViewControllers">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<reference ref="418492986"/>
-					<object class="IBUIViewController" id="560260211">
-						<object class="IBUITabBarItem" key="IBUITabBarItem" id="883199114">
-							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							<int key="IBUISystemItemIdentifier">5</int>
-						</object>
-						<reference key="IBUIParentViewController" ref="930345292"/>
-						<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
-							<int key="interfaceOrientation">1</int>
-						</object>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<bool key="IBUIHorizontal">NO</bool>
-					</object>
 					<object class="IBUIViewController" id="276334008">
 						<string key="IBUITitle">Projects</string>
 						<object class="IBUITabBarItem" key="IBUITabBarItem" id="369200483">
@@ -298,7 +287,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="540129745"/>
 							<reference ref="418492986"/>
-							<reference ref="560260211"/>
 							<reference ref="276334008"/>
 							<reference ref="88117355"/>
 							<reference ref="499979241"/>
@@ -318,20 +306,6 @@
 							<reference ref="218460034"/>
 						</object>
 						<reference key="parent" ref="930345292"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">21</int>
-						<reference key="object" ref="560260211"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="883199114"/>
-						</object>
-						<reference key="parent" ref="930345292"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="883199114"/>
-						<reference key="parent" ref="560260211"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">23</int>
@@ -421,8 +395,6 @@
 					<string>2.IBPluginDependency</string>
 					<string>20.CustomClassName</string>
 					<string>20.IBPluginDependency</string>
-					<string>21.IBPluginDependency</string>
-					<string>22.IBPluginDependency</string>
 					<string>23.IBPluginDependency</string>
 					<string>3.CustomClassName</string>
 					<string>3.IBPluginDependency</string>
@@ -438,7 +410,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>UIApplication</string>
 					<string>UIResponder</string>
-					<string>{{825, 572}, {320, 480}}</string>
+					<string>{{1032, 430}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSMutableDictionary">
@@ -453,14 +425,12 @@
 					<string>ProfileMainViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>GreenhouseAppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>AuthorizeViewController</string>
 					<string>{{438, 489}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{829, 626}, {320, 480}}</string>
+					<string>{{886, 503}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -541,6 +511,10 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">ProfileMainViewController</string>
 					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">actionSignOut:</string>
+						<string key="NS.object.0">id</string>
+					</object>
 					<object class="NSMutableDictionary" key="outlets">
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">

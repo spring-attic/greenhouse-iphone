@@ -19,6 +19,12 @@
 @synthesize labelLastName = _labelLastName;
 @synthesize labelEmailAddress = _labelEmailAddress;
 
+- (IBAction)actionSignOut:(id)sender
+{
+	[[OAuthManager sharedInstance] removeAccessToken];
+	[appDelegate showAuthorizeViewController];
+}
+
 - (void)showProfileDetails:(NSString *)details
 {
 	NSDictionary *dictionary = [details JSONValue];

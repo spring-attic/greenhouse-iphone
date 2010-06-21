@@ -67,6 +67,12 @@ static OAToken *authorizedAccessToken = nil;
 	return (self.accessToken != nil);
 }
 
+- (void)removeAccessToken
+{
+	[self.accessToken removeFromDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
+	authorizedAccessToken = nil;
+}
+
 - (void)fetchUnauthorizedRequestToken;
 {
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
