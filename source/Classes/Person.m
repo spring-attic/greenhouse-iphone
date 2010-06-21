@@ -29,8 +29,6 @@
 	{
 		if (dictionary)
 		{
-			// TODO: extract data elements
-			
 			NSNumber *num = (NSNumber *)[dictionary objectForKey:@"id"];
 			self.personId =  [num integerValue];
 			

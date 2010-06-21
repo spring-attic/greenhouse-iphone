@@ -6,8 +6,8 @@
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
-#define OAUTH_CONSUMER_KEY		@"greenhouse-key"
-#define OAUTH_CONSUMER_SECRET	@"s3cr3t"
+#define OAUTH_CONSUMER_KEY		@"a08318eb478a1ee31f69a55276f3af64"
+#define OAUTH_CONSUMER_SECRET	@"80e7f8f7ba724aae9103f297e5fb9bdf"
 #define OAUTH_REALM				@"Greenhouse"
 #define OAUTH_REQUEST_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/request_token"
 #define OAUTH_AUTHORIZE_URL		@"http://127.0.0.1:8080/greenhouse/oauth/confirm_access"
@@ -264,12 +264,13 @@ static OAToken *authorizedAccessToken = nil;
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSLog(@"%@", responseBody);
-		[responseBody release];
 
 		if ([delegate respondsToSelector:didFinishSelector])
 		{
 			[delegate performSelector:didFinishSelector withObject:responseBody];
 		}
+		
+		[responseBody release];
 	}
 }
 
@@ -279,6 +280,8 @@ static OAToken *authorizedAccessToken = nil;
 	
 	if ([error code] == NSURLErrorUserCancelledAuthentication)
 	{
+		//TODO: show sign in screen
+		
 		if ([delegate respondsToSelector:didFailSelector])
 		{
 			[delegate performSelector:didFailSelector];

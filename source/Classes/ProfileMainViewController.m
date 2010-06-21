@@ -22,8 +22,7 @@
 - (void)showProfileDetails:(NSString *)details
 {
 	NSDictionary *dictionary = [details JSONValue];
-	NSDictionary *personDictionary = [dictionary objectForKey:@"person"];
-	Person *person = [[Person alloc] initWithDictionary:personDictionary];
+	Person *person = [[Person alloc] initWithDictionary:dictionary];
 	
 	_labelId.text = [NSString stringWithFormat:@"%i", person.personId];
 	_labelVersion.text = [NSString stringWithFormat:@"%i", person.version];
