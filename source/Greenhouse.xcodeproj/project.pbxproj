@@ -15,6 +15,48 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
+		8104E77211D1619500590E90 /* LogicTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E77111D1619500590E90 /* LogicTestSuite1.m */; };
+		8104E7A611D1646D00590E90 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
+		8104E7A711D1646D00590E90 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
+		8104E7A811D1646D00590E90 /* AuthorizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */; };
+		8104E7A911D1646D00590E90 /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
+		8104E7AA11D1646D00590E90 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
+		8104E7AC11D1646D00590E90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		8104E7AD11D1646D00590E90 /* GreenhouseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* GreenhouseAppDelegate.m */; };
+		8104E7AE11D1646D00590E90 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
+		8104E7AF11D1646D00590E90 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
+		8104E7B011D1646D00590E90 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
+		8104E7B111D1646D00590E90 /* OAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EF811BE0A2200E6B283 /* OAuthManager.m */; };
+		8104E7B211D1646D00590E90 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0311BE0C5800E6B283 /* Base64Transcoder.c */; };
+		8104E7B311D1646D00590E90 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0611BE0C5800E6B283 /* NSMutableURLRequest+Parameters.m */; };
+		8104E7B411D1646D00590E90 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0811BE0C5800E6B283 /* NSString+URLEncoding.m */; };
+		8104E7B511D1646D00590E90 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0A11BE0C5800E6B283 /* NSURL+Base.m */; };
+		8104E7B611D1646D00590E90 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0C11BE0C5800E6B283 /* OAAsynchronousDataFetcher.m */; };
+		8104E7B711D1646D00590E90 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0E11BE0C5800E6B283 /* OAConsumer.m */; };
+		8104E7B811D1646D00590E90 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1011BE0C5800E6B283 /* OADataFetcher.m */; };
+		8104E7B911D1646D00590E90 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1211BE0C5800E6B283 /* OAHMAC_SHA1SignatureProvider.m */; };
+		8104E7BA11D1646D00590E90 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1411BE0C5800E6B283 /* OAMutableURLRequest.m */; };
+		8104E7BB11D1646D00590E90 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1611BE0C5800E6B283 /* OAPlaintextSignatureProvider.m */; };
+		8104E7BC11D1646D00590E90 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1811BE0C5800E6B283 /* OARequestParameter.m */; };
+		8104E7BD11D1646D00590E90 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1A11BE0C5800E6B283 /* OAServiceTicket.m */; };
+		8104E7BE11D1646D00590E90 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1D11BE0C5800E6B283 /* OAToken.m */; };
+		8104E7BF11D1646D00590E90 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Person.m */; };
+		8104E7C011D1646D00590E90 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
+		8104E7C111D1646D00590E90 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */; };
+		8104E7C211D1646D00590E90 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6511C679CE00E1659E /* NSString+SBJSON.m */; };
+		8104E7C311D1646D00590E90 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6711C679CE00E1659E /* SBJSON.m */; };
+		8104E7C411D1646D00590E90 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6911C679CE00E1659E /* SBJsonBase.m */; };
+		8104E7C511D1646D00590E90 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6B11C679CE00E1659E /* SBJsonParser.m */; };
+		8104E7C611D1646D00590E90 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6D11C679CE00E1659E /* SBJsonWriter.m */; };
+		8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
+		8104E7C811D1646D00590E90 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
+		8104E7CA11D1646D00590E90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		8104E7CB11D1646D00590E90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		8104E7CC11D1646D00590E90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		8104E7CD11D1646D00590E90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
+		8104E7CE11D1646D00590E90 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
+		8104E7EC11D1668800590E90 /* GreenhouseTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */; };
+		8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */; };
 		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
@@ -48,6 +90,23 @@
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8104E7D511D1647A00590E90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8104E7A411D1646D00590E90 /* GreenhouseTesting */;
+			remoteInfo = GreenhouseTesting;
+		};
+		8104E7E811D1655700590E90 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8104E7DC11D164AF00590E90 /* GreenhouseTests */;
+			remoteInfo = GreenhouseTests;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* GreenhouseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenhouseAppDelegate.h; sourceTree = "<group>"; };
@@ -60,6 +119,16 @@
 		28A0AAE50D9B0CCF005BE974 /* Greenhouse_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Greenhouse_Prefix.pch; sourceTree = "<group>"; };
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8104E76311D1606400590E90 /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8104E76411D1606400590E90 /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		8104E77011D1619500590E90 /* LogicTestSuite1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogicTestSuite1.h; sourceTree = "<group>"; };
+		8104E77111D1619500590E90 /* LogicTestSuite1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogicTestSuite1.m; sourceTree = "<group>"; };
+		8104E7D211D1646D00590E90 /* Greenhouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greenhouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8104E7D411D1646D00590E90 /* GreenhouseTesting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseTesting-Info.plist"; sourceTree = "<group>"; };
+		8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8104E7DE11D164AF00590E90 /* GreenhouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseTests-Info.plist"; sourceTree = "<group>"; };
+		8104E7F411D167AA00590E90 /* ApplicationTestSuite1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTestSuite1.h; sourceTree = "<group>"; };
+		8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTestSuite1.m; sourceTree = "<group>"; };
 		811F5DEF11C6DEFF005BD43E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8122BCE911D00A9D00315B6F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		8122BCEA11D00A9D00315B6F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -138,6 +207,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8104E76011D1606400590E90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8104E7C911D1646D00590E90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8104E7CA11D1646D00590E90 /* Foundation.framework in Frameworks */,
+				8104E7CB11D1646D00590E90 /* UIKit.framework in Frameworks */,
+				8104E7CC11D1646D00590E90 /* CoreGraphics.framework in Frameworks */,
+				8104E7CD11D1646D00590E90 /* CoreData.framework in Frameworks */,
+				8104E7CE11D1646D00590E90 /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8104E7DA11D164AF00590E90 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -158,6 +253,9 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Greenhouse.app */,
+				8104E76311D1606400590E90 /* LogicTests.octest */,
+				8104E7D211D1646D00590E90 /* Greenhouse.app */,
+				8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,6 +263,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				8104E76D11D1612300590E90 /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -190,6 +289,9 @@
 			isa = PBXGroup;
 			children = (
 				8D1107310486CEB800E47090 /* Greenhouse-Info.plist */,
+				8104E7D411D1646D00590E90 /* GreenhouseTesting-Info.plist */,
+				8104E76411D1606400590E90 /* LogicTests-Info.plist */,
+				8104E7DE11D164AF00590E90 /* GreenhouseTests-Info.plist */,
 				81AF1C5B11C7FBB800960E9F /* Images */,
 				81A34A1011BDDBDF00B12131 /* Core Data Files */,
 				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
@@ -207,6 +309,33 @@
 				81E75F3911BE0D5800E6B283 /* Security.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8104E76D11D1612300590E90 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8104E7F311D1676E00590E90 /* Application Tests */,
+				8104E7F211D1675500590E90 /* Logic Tests */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
+		8104E7F211D1675500590E90 /* Logic Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8104E77011D1619500590E90 /* LogicTestSuite1.h */,
+				8104E77111D1619500590E90 /* LogicTestSuite1.m */,
+			);
+			name = "Logic Tests";
+			sourceTree = "<group>";
+		};
+		8104E7F311D1676E00590E90 /* Application Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8104E7F411D167AA00590E90 /* ApplicationTestSuite1.h */,
+				8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */,
+			);
+			name = "Application Tests";
 			sourceTree = "<group>";
 		};
 		81A34A0F11BDDBCF00B12131 /* Interface Builder Files */ = {
@@ -380,11 +509,66 @@
 			buildRules = (
 			);
 			dependencies = (
+				8104E7D611D1647A00590E90 /* PBXTargetDependency */,
 			);
 			name = Greenhouse;
 			productName = Greenhouse;
 			productReference = 1D6058910D05DD3D006BFB54 /* Greenhouse.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8104E76211D1606400590E90 /* LogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8104E76711D1606500590E90 /* Build configuration list for PBXNativeTarget "LogicTests" */;
+			buildPhases = (
+				8104E75E11D1606400590E90 /* Resources */,
+				8104E75F11D1606400590E90 /* Sources */,
+				8104E76011D1606400590E90 /* Frameworks */,
+				8104E76111D1606400590E90 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogicTests;
+			productName = LogicTests;
+			productReference = 8104E76311D1606400590E90 /* LogicTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8104E7A411D1646D00590E90 /* GreenhouseTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8104E7CF11D1646D00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTesting" */;
+			buildPhases = (
+				8104E7A511D1646D00590E90 /* Resources */,
+				8104E7AB11D1646D00590E90 /* Sources */,
+				8104E7C911D1646D00590E90 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8104E7E911D1655700590E90 /* PBXTargetDependency */,
+			);
+			name = GreenhouseTesting;
+			productName = Greenhouse;
+			productReference = 8104E7D211D1646D00590E90 /* Greenhouse.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8104E7DC11D164AF00590E90 /* GreenhouseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8104E7E111D164AF00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTests" */;
+			buildPhases = (
+				8104E7D811D164AF00590E90 /* Resources */,
+				8104E7D911D164AF00590E90 /* Sources */,
+				8104E7DA11D164AF00590E90 /* Frameworks */,
+				8104E7DB11D164AF00590E90 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GreenhouseTests;
+			productName = GreenhouseTests;
+			productReference = 8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -406,6 +590,9 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Greenhouse */,
+				8104E7A411D1646D00590E90 /* GreenhouseTesting */,
+				8104E76211D1606400590E90 /* LogicTests */,
+				8104E7DC11D164AF00590E90 /* GreenhouseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -423,7 +610,63 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8104E75E11D1606400590E90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8104E7A511D1646D00590E90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8104E7EC11D1668800590E90 /* GreenhouseTests.octest in Resources */,
+				8104E7A611D1646D00590E90 /* MainWindow.xib in Resources */,
+				8104E7A711D1646D00590E90 /* ProfileMainViewController.xib in Resources */,
+				8104E7A811D1646D00590E90 /* AuthorizeViewController.xib in Resources */,
+				8104E7A911D1646D00590E90 /* spring09_logo.png in Resources */,
+				8104E7AA11D1646D00590E90 /* MainViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8104E7D811D164AF00590E90 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8104E76111D1606400590E90 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		8104E7DB11D164AF00590E90 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -462,7 +705,72 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8104E75F11D1606400590E90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8104E77211D1619500590E90 /* LogicTestSuite1.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8104E7AB11D1646D00590E90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8104E7AC11D1646D00590E90 /* main.m in Sources */,
+				8104E7AD11D1646D00590E90 /* GreenhouseAppDelegate.m in Sources */,
+				8104E7AE11D1646D00590E90 /* Greenhouse.xcdatamodeld in Sources */,
+				8104E7AF11D1646D00590E90 /* ProfileMainViewController.m in Sources */,
+				8104E7B011D1646D00590E90 /* AuthorizeViewController.m in Sources */,
+				8104E7B111D1646D00590E90 /* OAuthManager.m in Sources */,
+				8104E7B211D1646D00590E90 /* Base64Transcoder.c in Sources */,
+				8104E7B311D1646D00590E90 /* NSMutableURLRequest+Parameters.m in Sources */,
+				8104E7B411D1646D00590E90 /* NSString+URLEncoding.m in Sources */,
+				8104E7B511D1646D00590E90 /* NSURL+Base.m in Sources */,
+				8104E7B611D1646D00590E90 /* OAAsynchronousDataFetcher.m in Sources */,
+				8104E7B711D1646D00590E90 /* OAConsumer.m in Sources */,
+				8104E7B811D1646D00590E90 /* OADataFetcher.m in Sources */,
+				8104E7B911D1646D00590E90 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				8104E7BA11D1646D00590E90 /* OAMutableURLRequest.m in Sources */,
+				8104E7BB11D1646D00590E90 /* OAPlaintextSignatureProvider.m in Sources */,
+				8104E7BC11D1646D00590E90 /* OARequestParameter.m in Sources */,
+				8104E7BD11D1646D00590E90 /* OAServiceTicket.m in Sources */,
+				8104E7BE11D1646D00590E90 /* OAToken.m in Sources */,
+				8104E7BF11D1646D00590E90 /* Person.m in Sources */,
+				8104E7C011D1646D00590E90 /* AppSettings.m in Sources */,
+				8104E7C111D1646D00590E90 /* NSObject+SBJSON.m in Sources */,
+				8104E7C211D1646D00590E90 /* NSString+SBJSON.m in Sources */,
+				8104E7C311D1646D00590E90 /* SBJSON.m in Sources */,
+				8104E7C411D1646D00590E90 /* SBJsonBase.m in Sources */,
+				8104E7C511D1646D00590E90 /* SBJsonParser.m in Sources */,
+				8104E7C611D1646D00590E90 /* SBJsonWriter.m in Sources */,
+				8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */,
+				8104E7C811D1646D00590E90 /* MainViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8104E7D911D164AF00590E90 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8104E7D611D1647A00590E90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8104E7A411D1646D00590E90 /* GreenhouseTesting */;
+			targetProxy = 8104E7D511D1647A00590E90 /* PBXContainerItemProxy */;
+		};
+		8104E7E911D1655700590E90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8104E7DC11D164AF00590E90 /* GreenhouseTests */;
+			targetProxy = 8104E7E811D1655700590E90 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -494,6 +802,151 @@
 			};
 			name = Release;
 		};
+		8104E76511D1606500590E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		8104E76611D1606500590E90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		8104E7D011D1646D00590E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = Debug;
+		};
+		8104E7D111D1646D00590E90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8104E7DF11D164AF00590E90 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		8104E7E011D164AF00590E90 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -503,6 +956,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
 			};
@@ -516,9 +970,10 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.3;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Release;
 		};
@@ -530,6 +985,33 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8104E76711D1606500590E90 /* Build configuration list for PBXNativeTarget "LogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8104E76511D1606500590E90 /* Debug */,
+				8104E76611D1606500590E90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8104E7CF11D1646D00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8104E7D011D1646D00590E90 /* Debug */,
+				8104E7D111D1646D00590E90 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8104E7E111D164AF00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8104E7DF11D164AF00590E90 /* Debug */,
+				8104E7E011D164AF00590E90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
