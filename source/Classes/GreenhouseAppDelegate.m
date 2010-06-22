@@ -7,6 +7,8 @@
 //
 
 #import "GreenhouseAppDelegate.h"
+#import "MainViewController.h"
+#import "AuthorizeViewController.h"
 #import "OAuthManager.h"
 
 
@@ -23,17 +25,21 @@
 
 @synthesize window = _window;
 @synthesize viewStart = _viewStart;
-@synthesize tabBarController = _tabBarController;
+@synthesize mainViewController = _mainViewController;
 @synthesize authorizeViewController = _authorizeViewController;
 
 - (void)showAuthorizeViewController
-{
+{	
+	_mainViewController.view.hidden = YES;
+	_authorizeViewController.view.hidden = NO;
 	[_window bringSubviewToFront:_authorizeViewController.view];
 }
 
 - (void)showMainViewController
 {
-	[_window bringSubviewToFront:_tabBarController.view];
+	_authorizeViewController.view.hidden = YES;
+	_mainViewController.view.hidden = NO;
+	[_window bringSubviewToFront:_mainViewController.view];
 }
 
 
@@ -42,13 +48,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:[launchOptions description] delegate:nil cancelButtonTitle:@"ok" otherButtonTitles:nil];
-//	[alert show];
-//	[alert release];		
-	
-	[_window addSubview:_tabBarController.view];
 	[_window addSubview:_authorizeViewController.view];
-	[_window addSubview:_viewStart];
+	[_window addSubview:_mainViewController.view];
+    [_window makeKeyAndVisible];
 	
 	if (launchOptions)
 	{
@@ -75,8 +77,6 @@
 	{
 		[self showAuthorizeViewController];
 	}
-	
-    [_window makeKeyAndVisible];
 	
 	return YES;
 }
@@ -191,7 +191,7 @@
     [_managedObjectModel release];
     [_persistentStoreCoordinator release];
 	[_authorizeViewController release];
-    [_tabBarController release];
+    [_mainViewController release];
 	[_viewStart release];
     [_window release];
 	

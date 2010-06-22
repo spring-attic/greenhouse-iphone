@@ -15,6 +15,8 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
+		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
+		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
@@ -59,6 +61,9 @@
 		28AD735F0D9D9599002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		811F5DEF11C6DEFF005BD43E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		8122BCE911D00A9D00315B6F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		8122BCEA11D00A9D00315B6F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		8122BCEC11D00CC300315B6F /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
@@ -206,8 +211,9 @@
 			isa = PBXGroup;
 			children = (
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
-				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
+				8122BCEC11D00CC300315B6F /* MainViewController.xib */,
 				81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */,
+				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
 			);
 			name = "Interface Builder Files";
 			sourceTree = "<group>";
@@ -264,6 +270,8 @@
 				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
 				81E75EDB11BE048700E6B283 /* AuthorizeViewController.h */,
 				81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */,
+				8122BCE911D00A9D00315B6F /* MainViewController.h */,
+				8122BCEA11D00A9D00315B6F /* MainViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -409,6 +417,7 @@
 				81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */,
 				81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */,
 				81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */,
+				8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +456,7 @@
 				81C38A7211C679CE00E1659E /* SBJsonParser.m in Sources */,
 				81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */,
 				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
+				8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

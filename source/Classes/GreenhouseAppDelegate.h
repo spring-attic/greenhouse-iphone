@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "AuthorizeViewController.h"
 
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> 
+@class MainViewController;
+@class AuthorizeViewController;
+
+@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate> 
 {
 	
 @private
@@ -20,13 +22,13 @@
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
     UIWindow *_window;
 	UIView *_viewStart;
-	UITabBarController *_tabBarController;
+	MainViewController *_mainViewController;
 	AuthorizeViewController *_authorizeViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UIView *viewStart;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet MainViewController *mainViewController;
 @property (nonatomic, retain) IBOutlet AuthorizeViewController *authorizeViewController;
 
 - (void)showAuthorizeViewController;

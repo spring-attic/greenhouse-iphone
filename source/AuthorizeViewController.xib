@@ -45,7 +45,7 @@
 					<object class="IBUIButton" id="976727642">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{85, 185}, {150, 37}}</string>
+						<string key="NSFrame">{{85, 222}, {150, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -118,7 +118,6 @@
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MC4yNTA5ODA0MDcgMC41MDE5NjA4MTQgMAA</bytes>
 				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
 		</object>
@@ -207,7 +206,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>AuthorizeViewController</string>
 					<string>UIResponder</string>
-					<string>{{1021, 477}, {320, 480}}</string>
+					<string>{{1186, 315}, {320, 460}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

@@ -49,7 +49,12 @@
 		
 	[[OAuthManager sharedInstance] fetchProfileDetailsWithDelegate:self 
 												 didFinishSelector:@selector(showProfileDetails:) 
-												   didFailSelector:nil];
+												   didFailSelector:@selector(actionSignOut:)];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];	
 }
 
 - (void)didReceiveMemoryWarning 
