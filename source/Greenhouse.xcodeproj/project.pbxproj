@@ -91,18 +91,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8104E7D511D1647A00590E90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8104E7A411D1646D00590E90 /* GreenhouseTesting */;
-			remoteInfo = GreenhouseTesting;
-		};
 		8104E7E811D1655700590E90 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8104E7DC11D164AF00590E90 /* GreenhouseTests */;
+			remoteGlobalIDString = 8104E7DC11D164AF00590E90;
 			remoteInfo = GreenhouseTests;
 		};
 /* End PBXContainerItemProxy section */
@@ -509,7 +502,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8104E7D611D1647A00590E90 /* PBXTargetDependency */,
 			);
 			name = Greenhouse;
 			productName = Greenhouse;
@@ -760,11 +752,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8104E7D611D1647A00590E90 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8104E7A411D1646D00590E90 /* GreenhouseTesting */;
-			targetProxy = 8104E7D511D1647A00590E90 /* PBXContainerItemProxy */;
-		};
 		8104E7E911D1655700590E90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8104E7DC11D164AF00590E90 /* GreenhouseTests */;

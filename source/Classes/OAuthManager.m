@@ -240,7 +240,7 @@ static OAToken *authorizedAccessToken = nil;
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 		
-    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/people/@self"];
+    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/members/@self"];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 

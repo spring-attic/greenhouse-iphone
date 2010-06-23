@@ -30,11 +30,11 @@
 	NSDictionary *dictionary = [details JSONValue];
 	Person *person = [[Person alloc] initWithDictionary:dictionary];
 	
-	_labelId.text = [NSString stringWithFormat:@"%i", person.personId];
-	_labelVersion.text = [NSString stringWithFormat:@"%i", person.version];
+//	_labelId.text = [NSString stringWithFormat:@"%i", person.personId];
+//	_labelVersion.text = [NSString stringWithFormat:@"%i", person.version];
 	_labelFirstName.text = person.firstName;
 	_labelLastName.text = person.lastName;
-	_labelEmailAddress.text = person.emailAddress;
+//	_labelEmailAddress.text = person.emailAddress;
 	
 	[person release];
 }
