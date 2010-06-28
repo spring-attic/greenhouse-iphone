@@ -11,8 +11,6 @@
 
 @implementation Person
 
-@synthesize personId = _personId;
-@synthesize version = _version;
 @synthesize firstName = _firstName;
 @synthesize lastName = _lastName;
 @synthesize emailAddress = _emailAddress;
@@ -29,15 +27,9 @@
 	{
 		if (dictionary)
 		{
-			NSNumber *num = (NSNumber *)[dictionary objectForKey:@"id"];
-			self.personId =  [num integerValue];
-			
-			num = (NSNumber *)[dictionary objectForKey:@"version"];
-			self.version = [num integerValue];
-			
-			self.firstName = (NSString *)[dictionary objectForKey:@"firstName"];
-			self.lastName = (NSString *)[dictionary objectForKey:@"lastName"];
-			self.emailAddress = (NSString *)[dictionary objectForKey:@"emailAddress"];
+			self.firstName = [dictionary stringForKey:@"firstName"];
+			self.lastName = [dictionary stringForKey:@"lastName"];
+			self.emailAddress = [dictionary stringForKey:@"emailAddress"];
 		}
 	}
 	

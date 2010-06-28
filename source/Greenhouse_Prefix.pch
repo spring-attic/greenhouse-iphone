@@ -24,6 +24,9 @@
 	#import "Constants.h"
 	#import "AppSettings.h"
 
+	// Categories
+	#import "NSDictionary+SpringSource.h"
+
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
 #endif

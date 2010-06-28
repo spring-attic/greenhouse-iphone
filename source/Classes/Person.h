@@ -13,15 +13,11 @@
 {
 
 @private
-	NSUInteger _personId;
-	NSUInteger _version;
 	NSString *_firstName;
 	NSString *_lastName;
 	NSString *_emailAddress;
 }
 
-@property (nonatomic, assign) NSUInteger personId;
-@property (nonatomic, assign) NSUInteger version;
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *emailAddress;

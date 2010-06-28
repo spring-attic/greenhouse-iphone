@@ -51,15 +51,15 @@
 #pragma mark -
 #pragma mark UIApplicationDelegate methods
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-	DLog(@"applicationDidBecomeActive");
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application
-{
-	DLog(@"applicationDidEnterBackground");	
-}
+//- (void)applicationDidBecomeActive:(UIApplication *)application
+//{
+//	DLog(@"awake");
+//}
+//
+//- (void)applicationDidEnterBackground:(UIApplication *)application
+//{
+//	DLog(@"sleeping");	
+//}
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {

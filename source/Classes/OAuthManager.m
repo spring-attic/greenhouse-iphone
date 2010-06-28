@@ -253,6 +253,7 @@ static OAToken *authorizedAccessToken = nil;
 	[consumer release];
 	
 	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 		
 	NSLog(@"%@", request);
 	
@@ -288,8 +289,6 @@ static OAToken *authorizedAccessToken = nil;
 	
 	if ([error code] == NSURLErrorUserCancelledAuthentication)
 	{
-		//TODO: show sign in screen
-		
 		if ([delegate respondsToSelector:didFailSelector])
 		{
 			[delegate performSelector:didFailSelector];
