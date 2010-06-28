@@ -15,12 +15,10 @@
 @private
 	UILabel *_labelFirstName;
 	UILabel *_labelLastName;
-	UILabel *_labelEmailAddress;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *labelFirstName;
 @property (nonatomic, retain) IBOutlet UILabel *labelLastName;
-@property (nonatomic, retain) IBOutlet UILabel *labelEmailAddress;
 
 - (IBAction)actionSignOut:(id)sender;
 - (IBAction)actionRefresh:(id)sender;

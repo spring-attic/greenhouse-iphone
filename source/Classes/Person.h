@@ -15,12 +15,10 @@
 @private
 	NSString *_firstName;
 	NSString *_lastName;
-	NSString *_emailAddress;
 }
 
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
-@property (nonatomic, copy) NSString *emailAddress;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

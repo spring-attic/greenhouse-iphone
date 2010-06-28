@@ -15,7 +15,6 @@
 
 @synthesize labelFirstName = _labelFirstName;
 @synthesize labelLastName = _labelLastName;
-@synthesize labelEmailAddress = _labelEmailAddress;
 
 - (IBAction)actionSignOut:(id)sender
 {
@@ -42,7 +41,6 @@
 	
 	_labelFirstName.text = person.firstName;
 	_labelLastName.text = person.lastName;
-	_labelEmailAddress.text = person.emailAddress;
 	
 	[person release];
 }
@@ -69,7 +67,6 @@
 	
 	self.labelFirstName = nil;
 	self.labelLastName = nil;
-	self.labelEmailAddress = nil;
 }
 
 
@@ -80,7 +77,6 @@
 {
 	[_labelFirstName release];
 	[_labelLastName release];
-	[_labelEmailAddress release];
 	
     [super dealloc];
 }

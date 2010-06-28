@@ -13,7 +13,6 @@
 
 @synthesize firstName = _firstName;
 @synthesize lastName = _lastName;
-@synthesize emailAddress = _emailAddress;
 
 
 - (id)init
@@ -29,7 +28,6 @@
 		{
 			self.firstName = [dictionary stringForKey:@"firstName"];
 			self.lastName = [dictionary stringForKey:@"lastName"];
-			self.emailAddress = [dictionary stringForKey:@"emailAddress"];
 		}
 	}
 	
@@ -44,7 +42,6 @@
 {
 	[_firstName release];
 	[_lastName release];
-	[_emailAddress release];
 	
 	[super dealloc];
 }
