@@ -17,6 +17,8 @@
 #define OAUTH_TOKEN_SECRET		@"oauth_token_secret"
 #define OAUTH_CALLBACK			@"oauth_callback"
 #define OAUTH_VERIFIER			@"oauth_verifier"
+#define MEMBER_PROFILE_URL		@"http://127.0.0.1:8080/greenhouse/members/@self"
+
 
 #import "OAuthManager.h"
 
@@ -240,7 +242,7 @@ static OAToken *authorizedAccessToken = nil;
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 		
-    NSURL *url = [NSURL URLWithString:@"http://localhost:8080/greenhouse/members/@self"];
+    NSURL *url = [NSURL URLWithString:MEMBER_PROFILE_URL];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:consumer 

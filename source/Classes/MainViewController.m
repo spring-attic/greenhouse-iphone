@@ -12,6 +12,7 @@
 @implementation MainViewController
 
 @synthesize tabBarController = _tabBarController;
+@synthesize profileMainViewController = _profileMainViewController;
 
 
 #pragma mark -
@@ -51,6 +52,7 @@
     [super viewDidUnload];
 	
 	self.tabBarController = nil;
+	self.profileMainViewController = nil;
 }
 
 
@@ -60,6 +62,7 @@
 - (void)dealloc 
 {
 	[_tabBarController release];
+	[_profileMainViewController release];
 	
     [super dealloc];
 }

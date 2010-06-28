@@ -40,11 +40,40 @@
 	_authorizeViewController.view.hidden = YES;
 	_mainViewController.view.hidden = NO;
 	[_window bringSubviewToFront:_mainViewController.view];
+	
+	if ([_mainViewController.profileMainViewController isViewLoaded])
+	{
+		[_mainViewController.profileMainViewController refreshData];
+	}
 }
 
 
 #pragma mark -
 #pragma mark UIApplicationDelegate methods
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+	DLog(@"applicationDidBecomeActive");
+}
+
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+	DLog(@"applicationDidEnterBackground");	
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+	if (url)
+	{
+		OAuthManager *mgr = [OAuthManager sharedInstance];
+		[mgr processOauthResponse:url 
+						 delegate:self 
+				didFinishSelector:@selector(showMainViewController)
+				  didFailSelector:@selector(showAuthorizeViewController)];
+	}
+
+	return YES;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
