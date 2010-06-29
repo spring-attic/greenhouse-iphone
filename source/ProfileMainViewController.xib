@@ -45,7 +45,7 @@
 					<object class="IBUILabel" id="1016667407">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 173}, {120, 21}}</string>
+						<string key="NSFrame">{{30, 173}, {120, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -80,7 +80,7 @@
 					<object class="IBUILabel" id="85440050">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 202}, {120, 21}}</string>
+						<string key="NSFrame">{{30, 202}, {120, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -128,14 +128,14 @@
 					<object class="IBUILabel" id="473092118">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{64, 109}, {191, 29}}</string>
+						<string key="NSFrame">{{72, 109}, {175, 29}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">The Greenhouse</string>
+						<string key="IBUIText">Member Profile</string>
 						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">24</double>
@@ -197,10 +197,7 @@
 				</object>
 				<string key="NSFrameSize">{320, 411}</string>
 				<reference key="NSSuperview"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">1</int>
-					<bytes key="NSRGB">MC4yNTA5ODA0MDcgMC41MDE5NjA4MTQgMAA</bytes>
-				</object>
+				<reference key="IBUIBackgroundColor" ref="935107600"/>
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -266,14 +263,14 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1016667407"/>
-							<reference ref="85440050"/>
 							<reference ref="1048558540"/>
-							<reference ref="473092118"/>
 							<reference ref="937595474"/>
 							<reference ref="630216920"/>
-							<reference ref="792258707"/>
+							<reference ref="473092118"/>
+							<reference ref="1016667407"/>
+							<reference ref="85440050"/>
 							<reference ref="984004074"/>
+							<reference ref="792258707"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -351,7 +348,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ProfileMainViewController</string>
 					<string>UIResponder</string>
-					<string>{{871, 563}, {320, 480}}</string>
+					<string>{{871, 526}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -437,13 +434,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>labelEmailAddress</string>
 							<string>labelFirstName</string>
 							<string>labelLastName</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UILabel</string>
 							<string>UILabel</string>
 							<string>UILabel</string>
 						</object>
@@ -452,16 +447,11 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>labelEmailAddress</string>
 							<string>labelFirstName</string>
 							<string>labelLastName</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">labelEmailAddress</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">labelFirstName</string>
 								<string key="candidateClassName">UILabel</string>
