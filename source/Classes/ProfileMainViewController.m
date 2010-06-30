@@ -31,7 +31,7 @@
 {
 	[[OAuthManager sharedInstance] fetchProfileDetailsWithDelegate:self 
 												 didFinishSelector:@selector(showProfileDetails:) 
-												   didFailSelector:nil];	
+												   didFailSelector:@selector(showErrorMessage:)];	
 }
 
 - (void)showProfileDetails:(NSString *)details
@@ -43,6 +43,29 @@
 	_labelLastName.text = person.lastName;
 	
 	[person release];
+}
+
+- (void)showErrorMessage:(NSError *)error
+{
+	NSString *message = nil;
+	
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	{
+		message = @"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app.";
+	}
+	else 
+	{
+		message = @"An error occurred while connecting to the server.";
+	}
+
+	
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+													message:message 
+												   delegate:nil 
+										  cancelButtonTitle:@"OK" 
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 

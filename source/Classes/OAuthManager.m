@@ -287,12 +287,9 @@ static OAToken *authorizedAccessToken = nil;
 {
 	NSLog(@"%@", [error localizedDescription]);
 	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	if ([delegate respondsToSelector:didFailSelector]) 
 	{
-		if ([delegate respondsToSelector:didFailSelector])
-		{
-			[delegate performSelector:didFailSelector];
-		}
+		[delegate performSelector:didFailSelector withObject:error];
 	}
 }
 
