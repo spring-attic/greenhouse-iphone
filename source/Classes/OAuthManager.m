@@ -93,7 +93,7 @@ static OAToken *authorizedAccessToken = nil;
 	[request setHTTPMethod:@"POST"];
 	[request setOAuthParameterName:OAUTH_CALLBACK withValue:OAUTH_CALLBACK_URL];
 	
-	NSLog(@"%@", request);
+	DLog(@"%@", request);
 	
 	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
 	
@@ -111,7 +111,7 @@ static OAToken *authorizedAccessToken = nil;
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		
-		NSLog(@"%@", responseBody);
+		DLog(@"%@", responseBody);
 		
 		OAToken *requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
 		[responseBody release];
@@ -125,7 +125,7 @@ static OAToken *authorizedAccessToken = nil;
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	NSLog(@"%@", [error localizedDescription]);
+	DLog(@"%@", [error localizedDescription]);
 }
 
 - (void)authorizeRequestToken:(OAToken *)requestToken;
@@ -138,7 +138,7 @@ static OAToken *authorizedAccessToken = nil;
 	
 	[requestToken release];
 	
-	NSLog(@"%@", urlString);
+	DLog(@"%@", urlString);
 	NSURL *url = [NSURL URLWithString:urlString];
 	[[UIApplication sharedApplication] openURL:url];
 }
@@ -225,7 +225,7 @@ static OAToken *authorizedAccessToken = nil;
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	NSLog(@"%@", [error localizedDescription]);
+	DLog(@"%@", [error localizedDescription]);
 	
 	if ([delegate respondsToSelector:didFailSelector])
 	{
@@ -255,7 +255,7 @@ static OAToken *authorizedAccessToken = nil;
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 		
-	NSLog(@"%@", request);
+	DLog(@"%@", request);
 	
 	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
 	
@@ -272,7 +272,7 @@ static OAToken *authorizedAccessToken = nil;
 	if (ticket.didSucceed) 
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSLog(@"%@", responseBody);
+		DLog(@"%@", responseBody);
 
 		if ([delegate respondsToSelector:didFinishSelector])
 		{
@@ -285,13 +285,74 @@ static OAToken *authorizedAccessToken = nil;
 
 - (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	NSLog(@"%@", [error localizedDescription]);
+	DLog(@"%@", [error localizedDescription]);
 	
 	if ([delegate respondsToSelector:didFailSelector]) 
 	{
 		[delegate performSelector:didFailSelector withObject:error];
 	}
 }
+
+- (void)fetchUpdatesWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
+{
+	delegate = aDelegate;
+	didFinishSelector = finishSelector;
+	didFailSelector = failSelector;
+	
+	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+													secret:OAUTH_CONSUMER_SECRET];
+	
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8080/greenhouse/updates"];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:consumer 
+																	  token:self.accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[consumer release];
+	
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(fetchUpdates:didFinishWithData:)
+				  didFailSelector:@selector(fetchUpdates:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)fetchUpdates:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	if (ticket.didSucceed) 
+	{
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		DLog(@"%@", responseBody);
+		
+		if ([delegate respondsToSelector:didFinishSelector])
+		{
+			[delegate performSelector:didFinishSelector withObject:responseBody];
+		}
+		
+		[responseBody release];
+	}
+}
+
+- (void)fetchUpdates:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([delegate respondsToSelector:didFailSelector]) 
+	{
+		[delegate performSelector:didFailSelector withObject:error];
+	}
+}
+
 
 
 #pragma mark -

@@ -59,6 +59,9 @@
 		8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */; };
 		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
+		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
+		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
+		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+SpringSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */; };
@@ -128,6 +131,11 @@
 		8122BCEA11D00A9D00315B6F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		8122BCEC11D00CC300315B6F /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		8122BEB311D102F300315B6F /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
+		8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesMainViewController.h; sourceTree = "<group>"; };
+		8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesMainViewController.m; sourceTree = "<group>"; };
+		8153C7BC11DD353700F7BDE1 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
+		8153C7BD11DD353700F7BDE1 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
@@ -350,6 +358,7 @@
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8122BCEC11D00CC300315B6F /* MainViewController.xib */,
 				81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */,
+				8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */,
 				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
 			);
 			name = "Interface Builder Files";
@@ -396,6 +405,8 @@
 			children = (
 				81D4A44F11C30692000A71C3 /* Person.h */,
 				81D4A45011C30692000A71C3 /* Person.m */,
+				8153C7BC11DD353700F7BDE1 /* Update.h */,
+				8153C7BD11DD353700F7BDE1 /* Update.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -403,12 +414,14 @@
 		81D4A45211C3083F000A71C3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				815F274F11BDF5A300F83095 /* ProfileMainViewController.h */,
-				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
 				81E75EDB11BE048700E6B283 /* AuthorizeViewController.h */,
 				81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */,
 				8122BCE911D00A9D00315B6F /* MainViewController.h */,
 				8122BCEA11D00A9D00315B6F /* MainViewController.m */,
+				815F274F11BDF5A300F83095 /* ProfileMainViewController.h */,
+				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
+				8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */,
+				8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -612,6 +625,7 @@
 				81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */,
 				81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */,
 				8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */,
+				8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +722,8 @@
 				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
 				8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */,
 				8178A8AD11D9113F0084FA66 /* NSDictionary+SpringSource.m in Sources */,
+				8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */,
+				8153C7BE11DD353700F7BDE1 /* Update.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
