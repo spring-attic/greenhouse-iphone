@@ -353,6 +353,66 @@ static OAToken *authorizedAccessToken = nil;
 	}
 }
 
+- (void)fetchEventsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
+{
+	delegate = aDelegate;
+	didFinishSelector = finishSelector;
+	didFailSelector = failSelector;
+	
+	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+													secret:OAUTH_CONSUMER_SECRET];
+	
+    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8080/greenhouse/events"];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:consumer 
+																	  token:self.accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[consumer release];
+	
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(fetchEvents:didFinishWithData:)
+				  didFailSelector:@selector(fetchEvents:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	if (ticket.didSucceed) 
+	{
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		DLog(@"%@", responseBody);
+		
+		if ([delegate respondsToSelector:didFinishSelector])
+		{
+			[delegate performSelector:didFinishSelector withObject:responseBody];
+		}
+		
+		[responseBody release];
+	}
+}
+
+- (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([delegate respondsToSelector:didFailSelector]) 
+	{
+		[delegate performSelector:didFailSelector withObject:error];
+	}
+}
+
 
 
 #pragma mark -

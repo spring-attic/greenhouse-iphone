@@ -64,6 +64,10 @@
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
+		8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171938D11E668DE007C82B2 /* EventsMainViewController.m */; };
+		8171939011E66910007C82B2 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
+		8171949311E66AD7007C82B2 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171949211E66AD7007C82B2 /* Event.m */; };
+		817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817194A011E66F6D007C82B2 /* EventsMainViewController.xib */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+SpringSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
@@ -140,6 +144,11 @@
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
 		8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken_KeychainExtensions.m; sourceTree = "<group>"; };
+		8171938C11E668DE007C82B2 /* EventsMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsMainViewController.h; sourceTree = "<group>"; };
+		8171938D11E668DE007C82B2 /* EventsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsMainViewController.m; sourceTree = "<group>"; };
+		8171949111E66AD7007C82B2 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		8171949211E66AD7007C82B2 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
+		817194A011E66F6D007C82B2 /* EventsMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsMainViewController.xib; sourceTree = "<group>"; };
 		8178A8AB11D9113F0084FA66 /* NSDictionary+SpringSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SpringSource.h"; sourceTree = "<group>"; };
 		8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SpringSource.m"; sourceTree = "<group>"; };
 		81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
@@ -359,6 +368,7 @@
 				8122BCEC11D00CC300315B6F /* MainViewController.xib */,
 				81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */,
 				8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */,
+				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
 				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
 			);
 			name = "Interface Builder Files";
@@ -407,6 +417,8 @@
 				81D4A45011C30692000A71C3 /* Person.m */,
 				8153C7BC11DD353700F7BDE1 /* Update.h */,
 				8153C7BD11DD353700F7BDE1 /* Update.m */,
+				8171949111E66AD7007C82B2 /* Event.h */,
+				8171949211E66AD7007C82B2 /* Event.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -422,6 +434,8 @@
 				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
 				8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */,
 				8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */,
+				8171938C11E668DE007C82B2 /* EventsMainViewController.h */,
+				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -626,6 +640,7 @@
 				81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */,
 				8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */,
 				8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */,
+				817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +739,8 @@
 				8178A8AD11D9113F0084FA66 /* NSDictionary+SpringSource.m in Sources */,
 				8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */,
 				8153C7BE11DD353700F7BDE1 /* Update.m in Sources */,
+				8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */,
+				8171949311E66AD7007C82B2 /* Event.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -768,6 +785,7 @@
 				8104E7C611D1646D00590E90 /* SBJsonWriter.m in Sources */,
 				8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */,
 				8104E7C811D1646D00590E90 /* MainViewController.m in Sources */,
+				8171939011E66910007C82B2 /* UpdatesMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

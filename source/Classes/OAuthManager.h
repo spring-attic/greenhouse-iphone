@@ -37,6 +37,9 @@
 - (void)fetchUpdatesWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 - (void)fetchUpdates:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchUpdates:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)fetchEventsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
+- (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)removeAccessToken;
 
 @end
