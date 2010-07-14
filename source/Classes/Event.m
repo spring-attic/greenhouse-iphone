@@ -11,8 +11,13 @@
 
 @implementation Event
 
+@synthesize eventId;
 @synthesize title;
 @synthesize description;
+@synthesize startTime;
+@synthesize endTime;
+@synthesize location;
+@synthesize hashtag;
 
 - (id)init
 {
@@ -27,6 +32,11 @@
 		{
 			self.title = [dictionary stringForKey:@"title"];
 			self.description = [dictionary stringForKey:@"description"];
+			self.eventId = [dictionary integerForKey:@"id"];
+			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
+			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
+			self.location = [dictionary stringForKey:@"location"];
+			self.hashtag = [dictionary stringForKey:@"hashtag"];
 		}
 	}
 	

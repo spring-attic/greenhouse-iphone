@@ -59,6 +59,13 @@
 		8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */; };
 		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
+		8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */; };
+		8135A08211ECA4E700F0F2F8 /* EventsNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A08111ECA4E700F0F2F8 /* EventsNavigationViewController.m */; };
+		8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */; };
+		8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */; };
+		8135A0FA11ED236900F0F2F8 /* EventTwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */; };
+		8135A0FD11ED242B00F0F2F8 /* EventTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */; };
+		8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */; };
 		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
 		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
@@ -135,6 +142,17 @@
 		8122BCEA11D00A9D00315B6F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		8122BCEC11D00CC300315B6F /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		8122BEB311D102F300315B6F /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
+		8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailsViewController.h; sourceTree = "<group>"; };
+		8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
+		8135A08011ECA4E700F0F2F8 /* EventsNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventsNavigationViewController.h; sourceTree = "<group>"; };
+		8135A08111ECA4E700F0F2F8 /* EventsNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsNavigationViewController.m; sourceTree = "<group>"; };
+		8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsNavigationViewController.xib; sourceTree = "<group>"; };
+		8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
+		8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTwitterViewController.xib; sourceTree = "<group>"; };
+		8135A0FB11ED242B00F0F2F8 /* EventTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTwitterViewController.h; sourceTree = "<group>"; };
+		8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTwitterViewController.m; sourceTree = "<group>"; };
+		8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
+		8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
 		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
 		8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesMainViewController.h; sourceTree = "<group>"; };
 		8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesMainViewController.m; sourceTree = "<group>"; };
@@ -352,6 +370,34 @@
 			name = "Application Tests";
 			sourceTree = "<group>";
 		};
+		8135A09511ECA64B00F0F2F8 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				8135A08011ECA4E700F0F2F8 /* EventsNavigationViewController.h */,
+				8135A08111ECA4E700F0F2F8 /* EventsNavigationViewController.m */,
+				8171938C11E668DE007C82B2 /* EventsMainViewController.h */,
+				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
+				8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */,
+				8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */,
+				8135A0FB11ED242B00F0F2F8 /* EventTwitterViewController.h */,
+				8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */,
+				8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */,
+				8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		8135A0BE11ECB3E200F0F2F8 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */,
+				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
+				8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */,
+				8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
 		8178A8AA11D910FB0084FA66 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,7 +414,7 @@
 				8122BCEC11D00CC300315B6F /* MainViewController.xib */,
 				81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */,
 				8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */,
-				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
+				8135A0BE11ECB3E200F0F2F8 /* Events */,
 				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
 			);
 			name = "Interface Builder Files";
@@ -434,8 +480,7 @@
 				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
 				8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */,
 				8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */,
-				8171938C11E668DE007C82B2 /* EventsMainViewController.h */,
-				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
+				8135A09511ECA64B00F0F2F8 /* Events */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -641,6 +686,9 @@
 				8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */,
 				8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */,
 				817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */,
+				8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */,
+				8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */,
+				8135A0FA11ED236900F0F2F8 /* EventTwitterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +789,10 @@
 				8153C7BE11DD353700F7BDE1 /* Update.m in Sources */,
 				8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */,
 				8171949311E66AD7007C82B2 /* Event.m in Sources */,
+				8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */,
+				8135A08211ECA4E700F0F2F8 /* EventsNavigationViewController.m in Sources */,
+				8135A0FD11ED242B00F0F2F8 /* EventTwitterViewController.m in Sources */,
+				8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

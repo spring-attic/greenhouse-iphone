@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EventDetailsViewController.h"
 
 
 @interface EventsMainViewController : UIViewController {
@@ -15,6 +16,7 @@
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonRefresh;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewEvents;
+@property (nonatomic, retain) IBOutlet EventDetailsViewController *eventDetailsViewController;
 
 - (IBAction)actionRefresh:(id)sender;
 - (void)refreshData;

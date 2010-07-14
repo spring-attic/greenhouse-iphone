@@ -23,6 +23,7 @@
 @synthesize arrayEvents;
 @synthesize barButtonRefresh;
 @synthesize tableViewEvents;
+@synthesize eventDetailsViewController;
 
 - (IBAction)actionRefresh:(id)sender
 {
@@ -80,6 +81,15 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
+	
+	eventDetailsViewController.event = event;
+	
+	[self.navigationController pushViewController:eventDetailsViewController animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
@@ -93,6 +103,7 @@
 	if (cell == nil)
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
 	Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
@@ -121,6 +132,9 @@
 {
     [super viewDidLoad];
 	
+	self.title = @"Events";
+	
+	self.eventDetailsViewController = [[EventDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	self.arrayEvents = [[NSMutableArray alloc] init];
 	
 	[self refreshData];
@@ -138,6 +152,7 @@
 	self.arrayEvents = nil;
 	self.barButtonRefresh = nil;
 	self.tableViewEvents = nil;
+	self.eventDetailsViewController = nil;
 }
 
 
@@ -149,6 +164,7 @@
 	[arrayEvents release];
 	[barButtonRefresh release];
 	[tableViewEvents release];
+	[eventDetailsViewController release];
 	
     [super dealloc];
 }

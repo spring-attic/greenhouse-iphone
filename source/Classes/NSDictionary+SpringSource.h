@@ -12,5 +12,8 @@
 @interface NSDictionary (NSDictionary_SpringSource)
 
 - (NSString *)stringForKey:(id)aKey;
+- (NSInteger)integerForKey:(id)aKey;
+- (double)doubleForKey:(id)aKey;
+- (NSDate *)dateWithMillisecondsSince1970ForKey:(id)aKey;
 
 @end
