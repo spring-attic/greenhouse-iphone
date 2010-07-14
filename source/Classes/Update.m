@@ -26,7 +26,7 @@
 		if (dictionary)
 		{
 			self.text = [dictionary stringForKey:@"text"];
-			self.timestamp = [dictionary stringForKey:@"timestamp"];
+			self.timestamp = [dictionary dateWithMillisecondsSince1970ForKey:@"timestamp"];
 		}
 	}
 	

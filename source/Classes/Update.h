@@ -14,7 +14,7 @@
 }
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, copy) NSString *timestamp;
+@property (nonatomic, retain) NSDate *timestamp;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

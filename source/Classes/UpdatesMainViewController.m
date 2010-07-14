@@ -98,7 +98,7 @@
 	Update *update = (Update *)[arrayUpdates objectAtIndex:indexPath.row];
 	
 	[cell.textLabel setText:update.text];
-	[cell.detailTextLabel setText:update.timestamp];
+	[cell.detailTextLabel setText:[update.timestamp description]];
 	
 	return cell;
 }
