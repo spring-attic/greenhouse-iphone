@@ -40,6 +40,9 @@
 - (void)fetchEventsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 - (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)fetchTweetsWithEventId:(NSInteger)eventId delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
+- (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)removeAccessToken;
 
 @end

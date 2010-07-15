@@ -10,6 +10,10 @@
 #import "Event.h"
 
 
+@class EventSessionsViewController;
+@class EventTwitterViewController;
+
+
 @interface EventDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 
 }
@@ -22,5 +26,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelLocation;
 @property (nonatomic, retain) IBOutlet UILabel *labelHashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
+@property (nonatomic, retain) EventSessionsViewController *eventSessionsViewController;
+@property (nonatomic, retain) EventTwitterViewController *eventTwitterViewController;
 
 @end

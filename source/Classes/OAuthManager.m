@@ -413,6 +413,66 @@ static OAToken *authorizedAccessToken = nil;
 	}
 }
 
+- (void)fetchTweetsWithEventId:(NSInteger)eventId delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
+{
+	delegate = aDelegate;
+	didFinishSelector = finishSelector;
+	didFailSelector = failSelector;
+	
+	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
+													secret:OAUTH_CONSUMER_SECRET];
+	
+	NSString *urlString = [NSString stringWithFormat:@"http://127.0.0.1:8080/greenhouse/events/%i/tweets", eventId];	
+    NSURL *url = [NSURL URLWithString:urlString];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:consumer 
+																	  token:self.accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[consumer release];
+	
+	[request setHTTPMethod:@"GET"];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(fetchTweets:didFinishWithData:)
+				  didFailSelector:@selector(fetchTweets:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	if (ticket.didSucceed) 
+	{
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		DLog(@"%@", responseBody);
+		
+		if ([delegate respondsToSelector:didFinishSelector])
+		{
+			[delegate performSelector:didFinishSelector withObject:responseBody];
+		}
+		
+		[responseBody release];
+	}
+}
+
+- (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([delegate respondsToSelector:didFailSelector]) 
+	{
+		[delegate performSelector:didFailSelector withObject:error];
+	}
+}
 
 
 #pragma mark -

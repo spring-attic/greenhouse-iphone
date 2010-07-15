@@ -15,7 +15,6 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
-		8104E77211D1619500590E90 /* LogicTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E77111D1619500590E90 /* LogicTestSuite1.m */; };
 		8104E7A611D1646D00590E90 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		8104E7A711D1646D00590E90 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		8104E7A811D1646D00590E90 /* AuthorizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */; };
@@ -84,6 +83,10 @@
 		81C38A7111C679CE00E1659E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6911C679CE00E1659E /* SBJsonBase.m */; };
 		81C38A7211C679CE00E1659E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6B11C679CE00E1659E /* SBJsonParser.m */; };
 		81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6D11C679CE00E1659E /* SBJsonWriter.m */; };
+		81CC5FB111EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m */; };
+		81CC5FE811EE74BC002BB755 /* NSDictionary+SpringSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */; };
+		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
+		81CC60B811EF5FA4002BB755 /* EventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */; };
 		81D4A45111C30692000A71C3 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Person.m */; };
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
 		81E75EDD11BE048700E6B283 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
@@ -129,8 +132,6 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8104E76311D1606400590E90 /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8104E76411D1606400590E90 /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
-		8104E77011D1619500590E90 /* LogicTestSuite1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogicTestSuite1.h; sourceTree = "<group>"; };
-		8104E77111D1619500590E90 /* LogicTestSuite1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogicTestSuite1.m; sourceTree = "<group>"; };
 		8104E7D211D1646D00590E90 /* Greenhouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greenhouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8104E7D411D1646D00590E90 /* GreenhouseTesting-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseTesting-Info.plist"; sourceTree = "<group>"; };
 		8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +185,11 @@
 		81C38A6B11C679CE00E1659E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		81C38A6C11C679CE00E1659E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		81C38A6D11C679CE00E1659E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		81CC5FAF11EE6BD1002BB755 /* NSDictionary+SpringSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SpringSourceTest.h"; sourceTree = "<group>"; };
+		81CC5FB011EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SpringSourceTest.m"; sourceTree = "<group>"; };
+		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
+		81CC605611EF41E5002BB755 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
+		81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsViewController.xib; sourceTree = "<group>"; };
 		81D4A44F11C30692000A71C3 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		81D4A45011C30692000A71C3 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
@@ -355,8 +361,8 @@
 		8104E7F211D1675500590E90 /* Logic Tests */ = {
 			isa = PBXGroup;
 			children = (
-				8104E77011D1619500590E90 /* LogicTestSuite1.h */,
-				8104E77111D1619500590E90 /* LogicTestSuite1.m */,
+				81CC5FAF11EE6BD1002BB755 /* NSDictionary+SpringSourceTest.h */,
+				81CC5FB011EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m */,
 			);
 			name = "Logic Tests";
 			sourceTree = "<group>";
@@ -379,10 +385,10 @@
 				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
 				8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */,
 				8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */,
-				8135A0FB11ED242B00F0F2F8 /* EventTwitterViewController.h */,
-				8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */,
 				8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */,
 				8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */,
+				8135A0FB11ED242B00F0F2F8 /* EventTwitterViewController.h */,
+				8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */,
 				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
 				8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */,
+				81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */,
 				8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */,
 			);
 			name = Events;
@@ -465,6 +472,8 @@
 				8153C7BD11DD353700F7BDE1 /* Update.m */,
 				8171949111E66AD7007C82B2 /* Event.h */,
 				8171949211E66AD7007C82B2 /* Event.m */,
+				81CC605511EF41E5002BB755 /* Tweet.h */,
+				81CC605611EF41E5002BB755 /* Tweet.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -689,6 +698,7 @@
 				8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */,
 				8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */,
 				8135A0FA11ED236900F0F2F8 /* EventTwitterViewController.xib in Resources */,
+				81CC60B811EF5FA4002BB755 /* EventSessionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +803,7 @@
 				8135A08211ECA4E700F0F2F8 /* EventsNavigationViewController.m in Sources */,
 				8135A0FD11ED242B00F0F2F8 /* EventTwitterViewController.m in Sources */,
 				8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */,
+				81CC605711EF41E5002BB755 /* Tweet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +811,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8104E77211D1619500590E90 /* LogicTestSuite1.m in Sources */,
+				81CC5FB111EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m in Sources */,
+				81CC5FE811EE74BC002BB755 /* NSDictionary+SpringSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,8 @@
 //
 
 #import "EventDetailsViewController.h"
+#import "EventSessionsViewController.h"
+#import "EventTwitterViewController.h"
 
 
 @interface EventDetailsViewController()
@@ -27,6 +29,8 @@
 @synthesize labelLocation;
 @synthesize labelHashtag;
 @synthesize tableViewMenu;
+@synthesize eventSessionsViewController;
+@synthesize eventTwitterViewController;
 
 
 #pragma mark -
@@ -37,14 +41,16 @@
 	switch (indexPath.row) 
 	{
 		case 0:
-			// show sessions
+			[self.navigationController pushViewController:eventSessionsViewController animated:YES];
 			break;
 		case 1:
-			// show tweets
+			[self.navigationController pushViewController:eventTwitterViewController animated:YES];
 			break;
 		default:
 			break;
 	}
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
@@ -85,22 +91,6 @@
 #pragma mark -
 #pragma mark UIViewController methods
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
@@ -108,16 +98,16 @@
 	self.title = @"Event Details";
 	
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Sessions", @"Tweets", nil];
+	
+	self.eventSessionsViewController = [[EventSessionsViewController alloc] initWithNibName:nil bundle:nil];
+	self.eventTwitterViewController = [[EventTwitterViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	//	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	//	labelStartTime.text = [dateFormatter stringFromDate:event.startTime];
-	//	labelEndTime.text = [dateFormatter stringFromDate:event.endTime];
-	//	[dateFormatter release];	
+	eventTwitterViewController.eventId = event.eventId;
 	
 	labelTitle.text = event.title;
 	labelDescription.text = event.description;
@@ -147,6 +137,8 @@
 	self.labelLocation = nil;
 	self.labelHashtag = nil;
 	self.tableViewMenu = nil;
+	self.eventSessionsViewController = nil;
+	self.eventTwitterViewController = nil;
 }
 
 
@@ -164,6 +156,8 @@
 	[labelLocation release];
 	[labelHashtag release];
 	[tableViewMenu release];
+	[eventSessionsViewController release];
+	[eventTwitterViewController release];
 	
     [super dealloc];
 }

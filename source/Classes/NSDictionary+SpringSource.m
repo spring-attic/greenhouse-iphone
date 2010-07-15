@@ -26,7 +26,6 @@
 		else 
 		{
 			s = [NSString stringWithString:(NSString *)o];
-			DLog(@"%@", s);
 		}
 	}
 	@catch (NSException * e) 
@@ -54,7 +53,6 @@
 		else 
 		{
 			i = [(NSNumber *)o integerValue];
-			DLog(@"%i", i);
 		}
 	}
 	@catch (NSException *e) 
@@ -82,7 +80,6 @@
 		else 
 		{
 			d = [(NSNumber *)o doubleValue];
-			DLog(@"%f", d);
 		}
 	}
 	@catch (NSException *e) 
@@ -103,22 +100,7 @@
 	{
 		double milliseconds = [self doubleForKey:aKey];
 		NSTimeInterval unixDate = (milliseconds * .001);
-		date = [NSDate dateWithTimeIntervalSince1970:unixDate];
-		DLog(@"%@", [date description]);
-				
-//		NSObject *o = [self objectForKey:aKey];
-//		
-//		if (o == nil || o == [NSNull null]) 
-//		{
-//			date = nil;
-//		}
-//		else 
-//		{
-//			double milliseconds = [(NSNumber *)o doubleValue];
-//			NSTimeInterval unixDate = (milliseconds * .001);
-//			date = [NSDate dateWithTimeIntervalSince1970:unixDate];
-//			DLog(@"%@", [date description]);
-//		}		
+		date = [NSDate dateWithTimeIntervalSince1970:unixDate];		
 	}
 	@catch (NSException *e) 
 	{
