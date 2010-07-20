@@ -31,49 +31,30 @@
 
 - (void)refreshData
 {
-	[[OAuthManager sharedInstance] fetchUpdatesWithDelegate:self 
-										  didFinishSelector:@selector(showUpdates:) 
-											didFailSelector:@selector(showErrorMessage:)];	
+	[self fetchJSONDataWithURL:[NSURL URLWithString:UPDATES_URL]];
 }
 
-- (void)showUpdates:(NSString *)details
+- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[arrayUpdates removeAllObjects];
-	
-	NSArray *array = [details JSONValue];
-	DLog(@"%@", array);
-	
-	for (NSDictionary *d in array) 
+	if (ticket.didSucceed)
 	{
-		Update *update = [[Update alloc] initWithDictionary:d];
-		[arrayUpdates addObject:update];
-		[update release];
+		[arrayUpdates removeAllObjects];
+		
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSArray *array = [responseBody JSONValue];
+		[responseBody release];
+		
+		DLog(@"%@", array);
+		
+		for (NSDictionary *d in array) 
+		{
+			Update *update = [[Update alloc] initWithDictionary:d];
+			[arrayUpdates addObject:update];
+			[update release];
+		}
+		
+		[tableViewUpdates reloadData];
 	}
-	
-	[tableViewUpdates reloadData];
-}
-
-- (void)showErrorMessage:(NSError *)error
-{
-	NSString *message = nil;
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		message = @"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app.";
-	}
-	else 
-	{
-		message = @"An error occurred while connecting to the server.";
-	}
-	
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-													message:message 
-												   delegate:nil 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
 }
 
 

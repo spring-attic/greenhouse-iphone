@@ -1,15 +1,15 @@
 //
-//  NSDictionary+SpringSource.m
+//  NSDictionary+Helpers.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 6/28/10.
 //  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "NSDictionary+SpringSource.h"
+#import "NSDictionary+Helpers.h"
 
 
-@implementation NSDictionary (NSDictionary_SpringSource)
+@implementation NSDictionary (NSDictionary_Helpers)
 
 - (NSString *)stringForKey:(id)aKey 
 {		

@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ProfileMainViewController : UIViewController 
+@interface ProfileMainViewController : OAuthViewController 
 {
 
-@private
-	UILabel *_labelFirstName;
-	UILabel *_labelLastName;
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *labelFirstName;
@@ -23,6 +20,5 @@
 - (IBAction)actionSignOut:(id)sender;
 - (IBAction)actionRefresh:(id)sender;
 - (void)refreshData;
-- (void)showProfileDetails:(NSString *)details;
 
 @end

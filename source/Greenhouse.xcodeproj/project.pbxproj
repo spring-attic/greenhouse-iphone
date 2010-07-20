@@ -62,8 +62,8 @@
 		8135A08211ECA4E700F0F2F8 /* EventsNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A08111ECA4E700F0F2F8 /* EventsNavigationViewController.m */; };
 		8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */; };
 		8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */; };
-		8135A0FA11ED236900F0F2F8 /* EventTwitterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */; };
-		8135A0FD11ED242B00F0F2F8 /* EventTwitterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */; };
+		8135A0FA11ED236900F0F2F8 /* EventTweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0F911ED236900F0F2F8 /* EventTweetsViewController.xib */; };
+		8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */; };
 		8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */; };
 		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
 		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
@@ -74,17 +74,18 @@
 		8171939011E66910007C82B2 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8171949311E66AD7007C82B2 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171949211E66AD7007C82B2 /* Event.m */; };
 		817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817194A011E66F6D007C82B2 /* EventsMainViewController.xib */; };
-		8178A8AD11D9113F0084FA66 /* NSDictionary+SpringSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */; };
+		8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
+		81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */; };
 		81C38A6E11C679CE00E1659E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */; };
 		81C38A6F11C679CE00E1659E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6511C679CE00E1659E /* NSString+SBJSON.m */; };
 		81C38A7011C679CE00E1659E /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6711C679CE00E1659E /* SBJSON.m */; };
 		81C38A7111C679CE00E1659E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6911C679CE00E1659E /* SBJsonBase.m */; };
 		81C38A7211C679CE00E1659E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6B11C679CE00E1659E /* SBJsonParser.m */; };
 		81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6D11C679CE00E1659E /* SBJsonWriter.m */; };
-		81CC5FB111EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m */; };
-		81CC5FE811EE74BC002BB755 /* NSDictionary+SpringSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */; };
+		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
+		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
 		81CC60B811EF5FA4002BB755 /* EventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */; };
 		81D4A45111C30692000A71C3 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Person.m */; };
@@ -149,9 +150,9 @@
 		8135A08111ECA4E700F0F2F8 /* EventsNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventsNavigationViewController.m; sourceTree = "<group>"; };
 		8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsNavigationViewController.xib; sourceTree = "<group>"; };
 		8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
-		8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTwitterViewController.xib; sourceTree = "<group>"; };
-		8135A0FB11ED242B00F0F2F8 /* EventTwitterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTwitterViewController.h; sourceTree = "<group>"; };
-		8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTwitterViewController.m; sourceTree = "<group>"; };
+		8135A0F911ED236900F0F2F8 /* EventTweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTweetsViewController.xib; sourceTree = "<group>"; };
+		8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTweetsViewController.h; sourceTree = "<group>"; };
+		8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTweetsViewController.m; sourceTree = "<group>"; };
 		8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
 		8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
 		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
@@ -168,10 +169,12 @@
 		8171949111E66AD7007C82B2 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		8171949211E66AD7007C82B2 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		817194A011E66F6D007C82B2 /* EventsMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsMainViewController.xib; sourceTree = "<group>"; };
-		8178A8AB11D9113F0084FA66 /* NSDictionary+SpringSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SpringSource.h"; sourceTree = "<group>"; };
-		8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SpringSource.m"; sourceTree = "<group>"; };
+		8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
+		8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
 		81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
 		81AF1C5C11C7FBF200960E9F /* spring09_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring09_logo.png; sourceTree = "<group>"; };
+		81B94E4D11F0AD2E003B2117 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
+		81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		81C38A6111C679CE00E1659E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		81C38A6211C679CE00E1659E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
 		81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
@@ -185,8 +188,8 @@
 		81C38A6B11C679CE00E1659E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		81C38A6C11C679CE00E1659E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		81C38A6D11C679CE00E1659E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		81CC5FAF11EE6BD1002BB755 /* NSDictionary+SpringSourceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+SpringSourceTest.h"; sourceTree = "<group>"; };
-		81CC5FB011EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+SpringSourceTest.m"; sourceTree = "<group>"; };
+		81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_HelpersTest.h; sourceTree = "<group>"; };
+		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		81CC605611EF41E5002BB755 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsViewController.xib; sourceTree = "<group>"; };
@@ -280,7 +283,7 @@
 				81D4A45311C30871000A71C3 /* App */,
 				81D4A44E11C3066D000A71C3 /* Models */,
 				81D4A47311C30B52000A71C3 /* Views */,
-				81D4A45211C3083F000A71C3 /* Controllers */,
+				81D4A45211C3083F000A71C3 /* View Controllers */,
 				81E75EF611BE09E700E6B283 /* Services */,
 				81D4A45B11C30904000A71C3 /* Utilities */,
 			);
@@ -361,8 +364,8 @@
 		8104E7F211D1675500590E90 /* Logic Tests */ = {
 			isa = PBXGroup;
 			children = (
-				81CC5FAF11EE6BD1002BB755 /* NSDictionary+SpringSourceTest.h */,
-				81CC5FB011EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m */,
+				81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */,
+				81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */,
 			);
 			name = "Logic Tests";
 			sourceTree = "<group>";
@@ -387,8 +390,8 @@
 				8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */,
 				8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */,
 				8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */,
-				8135A0FB11ED242B00F0F2F8 /* EventTwitterViewController.h */,
-				8135A0FC11ED242B00F0F2F8 /* EventTwitterViewController.m */,
+				8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */,
+				8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -400,7 +403,7 @@
 				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
 				8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */,
 				81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */,
-				8135A0F911ED236900F0F2F8 /* EventTwitterViewController.xib */,
+				8135A0F911ED236900F0F2F8 /* EventTweetsViewController.xib */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -408,8 +411,8 @@
 		8178A8AA11D910FB0084FA66 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				8178A8AB11D9113F0084FA66 /* NSDictionary+SpringSource.h */,
-				8178A8AC11D9113F0084FA66 /* NSDictionary+SpringSource.m */,
+				8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */,
+				8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -441,6 +444,15 @@
 				81AF1C5C11C7FBF200960E9F /* spring09_logo.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		81B94E4C11F0ACEA003B2117 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				81B94E4D11F0AD2E003B2117 /* OAuthViewController.h */,
+				81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		81C38A6011C679CE00E1659E /* JSON */ = {
@@ -478,9 +490,10 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		81D4A45211C3083F000A71C3 /* Controllers */ = {
+		81D4A45211C3083F000A71C3 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				81B94E4C11F0ACEA003B2117 /* Common */,
 				81E75EDB11BE048700E6B283 /* AuthorizeViewController.h */,
 				81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */,
 				8122BCE911D00A9D00315B6F /* MainViewController.h */,
@@ -491,7 +504,7 @@
 				8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */,
 				8135A09511ECA64B00F0F2F8 /* Events */,
 			);
-			name = Controllers;
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 		81D4A45311C30871000A71C3 /* App */ = {
@@ -697,7 +710,7 @@
 				817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */,
 				8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */,
 				8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */,
-				8135A0FA11ED236900F0F2F8 /* EventTwitterViewController.xib in Resources */,
+				8135A0FA11ED236900F0F2F8 /* EventTweetsViewController.xib in Resources */,
 				81CC60B811EF5FA4002BB755 /* EventSessionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -794,16 +807,17 @@
 				81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */,
 				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
 				8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */,
-				8178A8AD11D9113F0084FA66 /* NSDictionary+SpringSource.m in Sources */,
+				8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */,
 				8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */,
 				8153C7BE11DD353700F7BDE1 /* Update.m in Sources */,
 				8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */,
 				8171949311E66AD7007C82B2 /* Event.m in Sources */,
 				8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */,
 				8135A08211ECA4E700F0F2F8 /* EventsNavigationViewController.m in Sources */,
-				8135A0FD11ED242B00F0F2F8 /* EventTwitterViewController.m in Sources */,
+				8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */,
 				8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */,
 				81CC605711EF41E5002BB755 /* Tweet.m in Sources */,
+				81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,8 +825,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81CC5FB111EE6BD1002BB755 /* NSDictionary+SpringSourceTest.m in Sources */,
-				81CC5FE811EE74BC002BB755 /* NSDictionary+SpringSource.m in Sources */,
+				81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */,
+				81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

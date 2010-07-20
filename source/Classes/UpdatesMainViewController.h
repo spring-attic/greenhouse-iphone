@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UpdatesMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface UpdatesMainViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource> 
 {
 
-//@private
-//	UIBarButtonItem *_barButtonRefresh;
-//	UITableView *_tableViewUpdates;
 }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonRefresh;
@@ -22,7 +19,5 @@
 
 - (IBAction)actionRefresh:(id)sender;
 - (void)refreshData;
-- (void)showUpdates:(NSString *)details;
-- (void)showErrorMessage:(NSError *)error;
 
 @end

@@ -6,25 +6,18 @@
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
-#define OAUTH_CONSUMER_KEY		@"a08318eb478a1ee31f69a55276f3af64"
-#define OAUTH_CONSUMER_SECRET	@"80e7f8f7ba724aae9103f297e5fb9bdf"
-#define OAUTH_REALM				@"Greenhouse"
-#define OAUTH_REQUEST_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/request_token"
-#define OAUTH_AUTHORIZE_URL		@"http://127.0.0.1:8080/greenhouse/oauth/confirm_access"
-#define OAUTH_ACCESS_TOKEN_URL	@"http://127.0.0.1:8080/greenhouse/oauth/access_token"
-#define OAUTH_CALLBACK_URL		@"x-com-springsource-greenhouse://oauth-response"
-#define OAUTH_TOKEN				@"oauth_token"
-#define OAUTH_TOKEN_SECRET		@"oauth_token_secret"
-#define OAUTH_CALLBACK			@"oauth_callback"
-#define OAUTH_VERIFIER			@"oauth_verifier"
-#define MEMBER_PROFILE_URL		@"http://127.0.0.1:8080/greenhouse/members/@self"
-
-
 #import "OAuthManager.h"
+
+#define OAUTH_TOKEN					@"oauth_token"
+#define OAUTH_TOKEN_SECRET			@"oauth_token_secret"
+#define OAUTH_CALLBACK				@"oauth_callback"
+#define OAUTH_VERIFIER				@"oauth_verifier"
+#define KEYCHAIN_SERVICE_PROVIDER	@"Greenhouse"
 
 
 static OAuthManager *sharedInstance = nil;
-static OAToken *authorizedAccessToken = nil;
+static OAToken *sharedAccessToken = nil;
+static OAConsumer *sharedConsumer = nil;
 
 @implementation OAuthManager
 
@@ -56,12 +49,22 @@ static OAToken *authorizedAccessToken = nil;
 
 - (OAToken *)accessToken
 {
-	if (authorizedAccessToken == nil)
+	if (sharedAccessToken == nil)
 	{
-		authorizedAccessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
+		sharedAccessToken = [[OAToken alloc] initWithKeychainUsingAppName:@"Greenhouse" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
 	}
 	
-	return authorizedAccessToken;
+	return sharedAccessToken;
+}
+
+- (OAConsumer *)consumer
+{
+	if (sharedConsumer == nil)
+	{
+		sharedConsumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY secret:OAUTH_CONSUMER_SECRET];
+	}
+	
+	return sharedConsumer;
 }
 
 - (BOOL)isAuthorized
@@ -71,8 +74,8 @@ static OAToken *authorizedAccessToken = nil;
 
 - (void)removeAccessToken
 {
-	[self.accessToken removeFromDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
-	authorizedAccessToken = nil;
+	[self.accessToken removeFromDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
+	sharedAccessToken = nil;
 }
 
 - (void)fetchUnauthorizedRequestToken;
@@ -116,7 +119,7 @@ static OAToken *authorizedAccessToken = nil;
 		OAToken *requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
 		[responseBody release];
 		
-		[requestToken storeInDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
+		[requestToken storeInDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
 		
 		[self authorizeRequestToken:requestToken];
 		[requestToken release];
@@ -177,7 +180,7 @@ static OAToken *authorizedAccessToken = nil;
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 		
-	OAToken *requestToken = [[OAToken alloc] initWithKeychainUsingAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
+	OAToken *requestToken = [[OAToken alloc] initWithKeychainUsingAppName:@"GreenhouseRequestToken" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
 	
     NSURL *url = [NSURL URLWithString:OAUTH_ACCESS_TOKEN_URL];
 	
@@ -188,7 +191,7 @@ static OAToken *authorizedAccessToken = nil;
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	[consumer release];
-	[requestToken removeFromDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:@"Greenhouse"];
+	[requestToken removeFromDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
 	[requestToken release];
 	
 	[request setHTTPMethod:@"POST"];
@@ -213,7 +216,7 @@ static OAToken *authorizedAccessToken = nil;
 		OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
 		[responseBody release];
 		
-		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:@"Greenhouse"];
+		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
 		[accessToken release];
 		
 		if ([delegate respondsToSelector:didFinishSelector])
@@ -231,247 +234,6 @@ static OAToken *authorizedAccessToken = nil;
 	{
 		[delegate performSelector:didFailSelector];
 	}	
-}
-
-- (void)fetchProfileDetailsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
-{
-	delegate = aDelegate;
-	didFinishSelector = finishSelector;
-	didFailSelector = failSelector;
-	
-	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-													secret:OAUTH_CONSUMER_SECRET];
-		
-    NSURL *url = [NSURL URLWithString:MEMBER_PROFILE_URL];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:consumer 
-																	  token:self.accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[consumer release];
-	
-	[request setHTTPMethod:@"GET"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-		
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(fetchProfileDetails:didFinishWithData:)
-				  didFailSelector:@selector(fetchProfileDetails:didFailWithError:)];
-	
-	[request release];
-}
-
-- (void)fetchProfileDetails:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed) 
-	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-
-		if ([delegate respondsToSelector:didFinishSelector])
-		{
-			[delegate performSelector:didFinishSelector withObject:responseBody];
-		}
-		
-		[responseBody release];
-	}
-}
-
-- (void)fetchProfileDetails:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([delegate respondsToSelector:didFailSelector]) 
-	{
-		[delegate performSelector:didFailSelector withObject:error];
-	}
-}
-
-- (void)fetchUpdatesWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
-{
-	delegate = aDelegate;
-	didFinishSelector = finishSelector;
-	didFailSelector = failSelector;
-	
-	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-													secret:OAUTH_CONSUMER_SECRET];
-	
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8080/greenhouse/updates"];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:consumer 
-																	  token:self.accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[consumer release];
-	
-	[request setHTTPMethod:@"GET"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(fetchUpdates:didFinishWithData:)
-				  didFailSelector:@selector(fetchUpdates:didFailWithError:)];
-	
-	[request release];
-}
-
-- (void)fetchUpdates:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed) 
-	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		
-		if ([delegate respondsToSelector:didFinishSelector])
-		{
-			[delegate performSelector:didFinishSelector withObject:responseBody];
-		}
-		
-		[responseBody release];
-	}
-}
-
-- (void)fetchUpdates:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([delegate respondsToSelector:didFailSelector]) 
-	{
-		[delegate performSelector:didFailSelector withObject:error];
-	}
-}
-
-- (void)fetchEventsWithDelegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
-{
-	delegate = aDelegate;
-	didFinishSelector = finishSelector;
-	didFailSelector = failSelector;
-	
-	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-													secret:OAUTH_CONSUMER_SECRET];
-	
-    NSURL *url = [NSURL URLWithString:@"http://127.0.0.1:8080/greenhouse/events"];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:consumer 
-																	  token:self.accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[consumer release];
-	
-	[request setHTTPMethod:@"GET"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(fetchEvents:didFinishWithData:)
-				  didFailSelector:@selector(fetchEvents:didFailWithError:)];
-	
-	[request release];
-}
-
-- (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed) 
-	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		
-		if ([delegate respondsToSelector:didFinishSelector])
-		{
-			[delegate performSelector:didFinishSelector withObject:responseBody];
-		}
-		
-		[responseBody release];
-	}
-}
-
-- (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([delegate respondsToSelector:didFailSelector]) 
-	{
-		[delegate performSelector:didFailSelector withObject:error];
-	}
-}
-
-- (void)fetchTweetsWithEventId:(NSInteger)eventId delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
-{
-	delegate = aDelegate;
-	didFinishSelector = finishSelector;
-	didFailSelector = failSelector;
-	
-	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
-													secret:OAUTH_CONSUMER_SECRET];
-	
-	NSString *urlString = [NSString stringWithFormat:@"http://127.0.0.1:8080/greenhouse/events/%i/tweets", eventId];	
-    NSURL *url = [NSURL URLWithString:urlString];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:consumer 
-																	  token:self.accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[consumer release];
-	
-	[request setHTTPMethod:@"GET"];
-	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(fetchTweets:didFinishWithData:)
-				  didFailSelector:@selector(fetchTweets:didFailWithError:)];
-	
-	[request release];
-}
-
-- (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed) 
-	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		
-		if ([delegate respondsToSelector:didFinishSelector])
-		{
-			[delegate performSelector:didFinishSelector withObject:responseBody];
-		}
-		
-		[responseBody release];
-	}
-}
-
-- (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([delegate respondsToSelector:didFailSelector]) 
-	{
-		[delegate performSelector:didFailSelector withObject:error];
-	}
 }
 
 

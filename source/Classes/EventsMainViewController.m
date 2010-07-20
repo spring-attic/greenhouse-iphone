@@ -32,49 +32,30 @@
 
 - (void)refreshData
 {
-	[[OAuthManager sharedInstance] fetchEventsWithDelegate:self 
-										  didFinishSelector:@selector(showEvents:) 
-											didFailSelector:@selector(showErrorMessage:)];	
+	[self fetchJSONDataWithURL:[NSURL URLWithString:EVENTS_URL]];
 }
 
-- (void)showEvents:(NSString *)details
+- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[arrayEvents removeAllObjects];
-	
-	NSArray *array = [details JSONValue];
-	DLog(@"%@", array);
-	
-	for (NSDictionary *d in array) 
+	if (ticket.didSucceed)
 	{
-		Event *event = [[Event alloc] initWithDictionary:d];
-		[arrayEvents addObject:event];
-		[event release];
+		[arrayEvents removeAllObjects];
+		
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSArray *array = [responseBody JSONValue];
+		[responseBody release];
+		
+		DLog(@"%@", array);
+		
+		for (NSDictionary *d in array) 
+		{
+			Event *event = [[Event alloc] initWithDictionary:d];
+			[arrayEvents addObject:event];
+			[event release];
+		}
+		
+		[tableViewEvents reloadData];
 	}
-	
-	[tableViewEvents reloadData];
-}
-
-- (void)showErrorMessage:(NSError *)error
-{
-	NSString *message = nil;
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		message = @"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app.";
-	}
-	else 
-	{
-		message = @"An error occurred while connecting to the server.";
-	}
-	
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-													message:message 
-												   delegate:nil 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
 }
 
 
@@ -136,6 +117,11 @@
 	
 	self.eventDetailsViewController = [[EventDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	self.arrayEvents = [[NSMutableArray alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
 	
 	[self refreshData];
 }

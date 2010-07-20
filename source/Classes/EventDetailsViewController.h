@@ -11,10 +11,11 @@
 
 
 @class EventSessionsViewController;
-@class EventTwitterViewController;
+@class EventTweetsViewController;
 
 
-@interface EventDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface EventDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> 
+{
 
 }
 
@@ -27,6 +28,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelHashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventSessionsViewController *eventSessionsViewController;
-@property (nonatomic, retain) EventTwitterViewController *eventTwitterViewController;
+@property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
 
 @end

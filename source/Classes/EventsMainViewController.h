@@ -10,7 +10,8 @@
 #import "EventDetailsViewController.h"
 
 
-@interface EventsMainViewController : UIViewController {
+@interface EventsMainViewController : OAuthViewController 
+{
 
 }
 
@@ -20,7 +21,5 @@
 
 - (IBAction)actionRefresh:(id)sender;
 - (void)refreshData;
-- (void)showEvents:(NSString *)details;
-- (void)showErrorMessage:(NSError *)error;
 
 @end

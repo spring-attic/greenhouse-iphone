@@ -12,7 +12,8 @@
 @class EventsMainViewController;
 
 
-@interface EventsNavigationViewController : UIViewController <UINavigationControllerDelegate> {
+@interface EventsNavigationViewController : UIViewController <UINavigationControllerDelegate> 
+{
 
 }
 

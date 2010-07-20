@@ -1,5 +1,5 @@
 //
-//  EventTwitterViewController.h
+//  EventTweetsViewController.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/13/10.
@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 
-@interface EventTwitterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface EventTweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource> 
+{
 
 }
 
@@ -17,7 +18,5 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 
 - (void)refreshData;
-- (void)showTweets:(NSString *)details;
-- (void)showErrorMessage:(NSError *)error;
 
 @end

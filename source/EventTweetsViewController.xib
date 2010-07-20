@@ -158,7 +158,7 @@
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>EventTwitterViewController</string>
+					<string>EventTweetsViewController</string>
 					<string>UIResponder</string>
 					<string>{{354, 412}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -187,8 +187,8 @@
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<object class="IBPartialClassDescription">
-					<string key="className">EventTwitterViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="className">EventTweetsViewController</string>
+					<string key="superclassName">OAuthViewController</string>
 					<object class="NSMutableDictionary" key="outlets">
 						<string key="NS.key.0">tableViewTweets</string>
 						<string key="NS.object.0">UITableView</string>
@@ -202,7 +202,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">Classes/EventTwitterViewController.h</string>
+						<string key="minorKey">Classes/EventTweetsViewController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -217,6 +217,14 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">ThirdPartyLibraries/JSON/SBJsonWriter.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">OAuthViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">Classes/OAuthViewController.h</string>
 					</object>
 				</object>
 			</object>

@@ -1,5 +1,5 @@
 //
-//  NSDictionary+SpringSource.h
+//  NSDictionary+Helpers.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 6/28/10.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface NSDictionary (NSDictionary_SpringSource)
+@interface NSDictionary (NSDictionary_Helpers)
 
 - (NSString *)stringForKey:(id)aKey;
 - (NSInteger)integerForKey:(id)aKey;

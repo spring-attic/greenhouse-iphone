@@ -18,6 +18,12 @@
 #pragma mark -
 #pragma mark UITabBarControllerDelegate methods
 
+- (void)tabBarController:(UITabBarController *)tabBarController 
+ didSelectViewController:(UIViewController *)viewController
+{
+	// TODO: determine if this is the right place to notify the child view controller
+}
+
 
 #pragma mark -
 #pragma mark UIViewController methods

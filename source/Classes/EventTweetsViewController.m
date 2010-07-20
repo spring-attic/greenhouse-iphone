@@ -1,24 +1,24 @@
     //
-//  EventTwitterViewController.m
+//  EventTweetsViewController.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/13/10.
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
-#import "EventTwitterViewController.h"
+#import "EventTweetsViewController.h"
 #import "Tweet.h"
 #import "OAuthManager.h"
 
 
-@interface EventTwitterViewController()
+@interface EventTweetsViewController()
 
 @property (nonatomic, retain) NSMutableArray *arrayTweets;
 
 @end
 
 
-@implementation EventTwitterViewController
+@implementation EventTweetsViewController
 
 @synthesize arrayTweets;
 @synthesize eventId;
@@ -26,52 +26,33 @@
 
 - (void)refreshData
 {
-	[[OAuthManager sharedInstance] fetchTweetsWithEventId:eventId
-												 delegate:self 
-										didFinishSelector:@selector(showTweets:) 
-										  didFailSelector:@selector(showErrorMessage:)];
+	NSString *urlString = [NSString stringWithFormat:EVENT_TWEETS_URL, eventId];
+	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 }
 
-- (void)showTweets:(NSString *)details
+- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[arrayTweets removeAllObjects];
-	
-	NSDictionary *dictionary = [details JSONValue];
-	DLog(@"%@", dictionary);
-	
-	NSArray *array = (NSArray *)[dictionary objectForKey:@"tweets"];
-	
-	for (NSDictionary *d in array) 
+	if (ticket.didSucceed)
 	{
-		Tweet *tweet = [[Tweet alloc] initWithDictionary:d];
-		[arrayTweets addObject:tweet];
-		[tweet release];
+		[arrayTweets removeAllObjects];
+		
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSDictionary *dictionary = [responseBody JSONValue];
+		[responseBody release];
+		
+		DLog(@"%@", dictionary);
+		
+		NSArray *array = (NSArray *)[dictionary objectForKey:@"tweets"];
+		
+		for (NSDictionary *d in array) 
+		{
+			Tweet *tweet = [[Tweet alloc] initWithDictionary:d];
+			[arrayTweets addObject:tweet];
+			[tweet release];
+		}
+		
+		[tableViewTweets reloadData];
 	}
-	
-	[tableViewTweets reloadData];
-}
-
-- (void)showErrorMessage:(NSError *)error
-{
-	NSString *message = nil;
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		message = @"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app.";
-	}
-	else 
-	{
-		message = @"An error occurred while connecting to the server.";
-	}
-	
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-													message:message 
-												   delegate:nil 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
 }
 
 

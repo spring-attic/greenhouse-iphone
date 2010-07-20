@@ -8,7 +8,7 @@
 
 #import "EventDetailsViewController.h"
 #import "EventSessionsViewController.h"
-#import "EventTwitterViewController.h"
+#import "EventTweetsViewController.h"
 
 
 @interface EventDetailsViewController()
@@ -30,7 +30,7 @@
 @synthesize labelHashtag;
 @synthesize tableViewMenu;
 @synthesize eventSessionsViewController;
-@synthesize eventTwitterViewController;
+@synthesize eventTweetsViewController;
 
 
 #pragma mark -
@@ -44,7 +44,7 @@
 			[self.navigationController pushViewController:eventSessionsViewController animated:YES];
 			break;
 		case 1:
-			[self.navigationController pushViewController:eventTwitterViewController animated:YES];
+			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
 			break;
 		default:
 			break;
@@ -100,14 +100,14 @@
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Sessions", @"Tweets", nil];
 	
 	self.eventSessionsViewController = [[EventSessionsViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventTwitterViewController = [[EventTwitterViewController alloc] initWithNibName:nil bundle:nil];
+	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	eventTwitterViewController.eventId = event.eventId;
+	eventTweetsViewController.eventId = event.eventId;
 	
 	labelTitle.text = event.title;
 	labelDescription.text = event.description;
@@ -138,7 +138,7 @@
 	self.labelHashtag = nil;
 	self.tableViewMenu = nil;
 	self.eventSessionsViewController = nil;
-	self.eventTwitterViewController = nil;
+	self.eventTweetsViewController = nil;
 }
 
 
@@ -157,7 +157,7 @@
 	[labelHashtag release];
 	[tableViewMenu release];
 	[eventSessionsViewController release];
-	[eventTwitterViewController release];
+	[eventTweetsViewController release];
 	
     [super dealloc];
 }

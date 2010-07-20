@@ -13,8 +13,8 @@
 
 @implementation ProfileMainViewController
 
-@synthesize labelFirstName = _labelFirstName;
-@synthesize labelLastName = _labelLastName;
+@synthesize labelFirstName;
+@synthesize labelLastName;
 
 - (IBAction)actionSignOut:(id)sender
 {
@@ -29,43 +29,26 @@
 
 - (void)refreshData
 {
-	[[OAuthManager sharedInstance] fetchProfileDetailsWithDelegate:self 
-												 didFinishSelector:@selector(showProfileDetails:) 
-												   didFailSelector:@selector(showErrorMessage:)];	
+	[self fetchJSONDataWithURL:[NSURL URLWithString:MEMBER_PROFILE_URL]];
 }
 
-- (void)showProfileDetails:(NSString *)details
+- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	NSDictionary *dictionary = [details JSONValue];
-	Person *person = [[Person alloc] initWithDictionary:dictionary];
-	
-	_labelFirstName.text = person.firstName;
-	_labelLastName.text = person.lastName;
-	
-	[person release];
-}
-
-- (void)showErrorMessage:(NSError *)error
-{
-	NSString *message = nil;
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	if (ticket.didSucceed)
 	{
-		message = @"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app.";
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		NSDictionary *dictionary = [responseBody JSONValue];
+		[responseBody release];
+		
+		DLog(@"%@", dictionary); 
+		
+		Person *person = [[Person alloc] initWithDictionary:dictionary];
+		
+		labelFirstName.text = person.firstName;
+		labelLastName.text = person.lastName;
+		
+		[person release];
 	}
-	else 
-	{
-		message = @"An error occurred while connecting to the server.";
-	}
-
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-													message:message 
-												   delegate:nil 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
 }
 
 
@@ -98,8 +81,8 @@
 
 - (void)dealloc 
 {
-	[_labelFirstName release];
-	[_labelLastName release];
+	[labelFirstName release];
+	[labelLastName release];
 	
     [super dealloc];
 }

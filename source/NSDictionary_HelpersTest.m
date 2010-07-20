@@ -1,12 +1,12 @@
 //
-//  NSDictionary+SpringSourceTest.m
+//  NSDictionary_HelpersTest.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/14/10.
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
-#import "NSDictionary+SpringSourceTest.h"
+#import "NSDictionary_HelpersTest.h"
 
 #define stringValue @"test string"
 #define stringKey @"stringKey"
@@ -18,7 +18,7 @@
 #define millisecondsKey @"dateKey"
 
 
-@implementation NSDictionary_SpringSourceTest
+@implementation NSDictionary_HelpersTest
 
 - (void)setUp
 {

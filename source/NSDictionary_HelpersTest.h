@@ -1,5 +1,5 @@
 //
-//  NSDictionary+SpringSourceTest.h
+//  NSDictionary_HelpersTest.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/14/10.
@@ -9,10 +9,10 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <UIKit/UIKit.h>
-#import "NSDictionary+SpringSource.h"
+#import "NSDictionary+Helpers.h"
 
 
-@interface NSDictionary_SpringSourceTest : SenTestCase 
+@interface NSDictionary_HelpersTest : SenTestCase 
 {
 	NSDictionary *dictionary;
 }

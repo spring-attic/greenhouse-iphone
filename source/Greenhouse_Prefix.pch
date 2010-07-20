@@ -16,6 +16,7 @@
 
 	// Third Party Libraries
 	#import "JSON.h"
+	#import "OauthConsumer.h"
 
 	//Debug Logging
 	#import "DLog.h"
@@ -25,8 +26,9 @@
 	#import "AppSettings.h"
 
 	// Categories
-	#import "NSDictionary+SpringSource.h"
+	#import "NSDictionary+Helpers.h"
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
+	#import "OAuthViewController.h"
 #endif
