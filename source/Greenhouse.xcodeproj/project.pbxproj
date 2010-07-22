@@ -72,6 +72,8 @@
 		8138DD2B11F7A30E00D7A47F /* EventSessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */; };
 		8138DD8F11F8836600D7A47F /* EventDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */; };
 		8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */; };
+		8138DE4811F8D3DA00D7A47F /* GreenTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */; };
+		8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */; };
 		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
 		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
@@ -174,6 +176,10 @@
 		8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDescriptionViewController.xib; sourceTree = "<group>"; };
 		8138DD9211F884D700D7A47F /* EventDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDescriptionViewController.h; sourceTree = "<group>"; };
 		8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDescriptionViewController.m; sourceTree = "<group>"; };
+		8138DE4611F8D3DA00D7A47F /* GreenTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenTabBarController.h; sourceTree = "<group>"; };
+		8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTabBarController.m; sourceTree = "<group>"; };
+		8138DE7011F8D79600D7A47F /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
+		8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
 		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
 		8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesMainViewController.h; sourceTree = "<group>"; };
 		8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesMainViewController.m; sourceTree = "<group>"; };
@@ -438,6 +444,8 @@
 			children = (
 				8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */,
 				8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */,
+				8138DE7011F8D79600D7A47F /* UIColor+CustomColors.h */,
+				8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -559,6 +567,8 @@
 		81D4A47311C30B52000A71C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8138DE4611F8D3DA00D7A47F /* GreenTabBarController.h */,
+				8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -856,6 +866,8 @@
 				8138DC7811F7584800D7A47F /* SessionLeader.m in Sources */,
 				8138DD2911F7A2CA00D7A47F /* EventSessionDetailsViewController.m in Sources */,
 				8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */,
+				8138DE4811F8D3DA00D7A47F /* GreenTabBarController.m in Sources */,
+				8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
