@@ -74,6 +74,7 @@
 		8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */; };
 		8138DE4811F8D3DA00D7A47F /* GreenTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */; };
 		8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */; };
+		8138DEA011F8E2D400D7A47F /* GreenNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE9F11F8E2D400D7A47F /* GreenNavigationController.m */; };
 		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
 		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
@@ -180,6 +181,8 @@
 		8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenTabBarController.m; sourceTree = "<group>"; };
 		8138DE7011F8D79600D7A47F /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		8138DE9E11F8E2D400D7A47F /* GreenNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenNavigationController.h; sourceTree = "<group>"; };
+		8138DE9F11F8E2D400D7A47F /* GreenNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenNavigationController.m; sourceTree = "<group>"; };
 		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
 		8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesMainViewController.h; sourceTree = "<group>"; };
 		8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesMainViewController.m; sourceTree = "<group>"; };
@@ -569,6 +572,8 @@
 			children = (
 				8138DE4611F8D3DA00D7A47F /* GreenTabBarController.h */,
 				8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */,
+				8138DE9E11F8E2D400D7A47F /* GreenNavigationController.h */,
+				8138DE9F11F8E2D400D7A47F /* GreenNavigationController.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -868,6 +873,7 @@
 				8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */,
 				8138DE4811F8D3DA00D7A47F /* GreenTabBarController.m in Sources */,
 				8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */,
+				8138DEA011F8E2D400D7A47F /* GreenNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
