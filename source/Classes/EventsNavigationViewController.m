@@ -60,6 +60,13 @@
 	[self.view addSubview:navigationController.view];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
+	
+	[self.navigationController.visibleViewController viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];

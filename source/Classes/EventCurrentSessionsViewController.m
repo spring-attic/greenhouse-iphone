@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSMutableArray *arrayCurrentSessions;
 @property (nonatomic, retain) NSMutableArray *arrayUpcomingSessions;
 
+- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 
@@ -84,12 +86,29 @@
 	}
 }
 
+- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
+{
+	EventSession *session = nil;
+	
+	if (indexPath.section == 0)
+	{
+		session = (EventSession *)[arrayCurrentSessions objectAtIndex:indexPath.row];
+	}
+	else if (indexPath.section == 1)
+	{
+		session = (EventSession *)[arrayUpcomingSessions objectAtIndex:indexPath.row];	
+	}
+	
+	return session;
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	eventSessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
 	[self.navigationController pushViewController:eventSessionDetailsViewController animated:YES];
 }
 
@@ -114,17 +133,8 @@
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
-	EventSession *session = nil;
-	
-	if (indexPath.section == 0)
-	{
-		session = (EventSession *)[arrayCurrentSessions objectAtIndex:indexPath.row];
-	}
-	else if (indexPath.section == 1)
-	{
-		session = (EventSession *)[arrayUpcomingSessions objectAtIndex:indexPath.row];	
-	}
-	
+	EventSession *session = [self eventSessionForIndexPath:indexPath];
+		
 	if (session)
 	{
 		[cell.textLabel setText:session.title];

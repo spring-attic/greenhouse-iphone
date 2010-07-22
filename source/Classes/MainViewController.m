@@ -11,17 +11,16 @@
 
 @implementation MainViewController
 
-@synthesize tabBarController = _tabBarController;
-@synthesize profileMainViewController = _profileMainViewController;
+@synthesize tabBarController = tabBarController;
 
 
 #pragma mark -
 #pragma mark UITabBarControllerDelegate methods
 
-- (void)tabBarController:(UITabBarController *)tabBarController 
- didSelectViewController:(UIViewController *)viewController
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
 	// TODO: determine if this is the right place to notify the child view controller
+	[viewController viewDidAppear:YES];
 }
 
 
@@ -32,12 +31,12 @@
 {
     [super viewDidLoad];
 	
-	[self.view addSubview:_tabBarController.view];
+	[self.view addSubview:tabBarController.view];
 	
 	// the tabBarController gets confused about where to draw itself
-	CGRect frame = _tabBarController.view.frame;
+	CGRect frame = tabBarController.view.frame;
 	frame.origin.y = -20.0f;
-	_tabBarController.view.frame = frame;
+	tabBarController.view.frame = frame;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,7 +44,7 @@
 	[super viewWillAppear:animated];
 	
 	// pass the event along to the current tab
-	[_tabBarController.selectedViewController viewWillAppear:animated];
+	[tabBarController.selectedViewController viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -58,7 +57,6 @@
     [super viewDidUnload];
 	
 	self.tabBarController = nil;
-	self.profileMainViewController = nil;
 }
 
 
@@ -67,8 +65,7 @@
 
 - (void)dealloc 
 {
-	[_tabBarController release];
-	[_profileMainViewController release];
+	[tabBarController release];
 	
     [super dealloc];
 }

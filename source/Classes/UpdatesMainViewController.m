@@ -103,6 +103,11 @@
     [super viewDidLoad];
 
 	self.arrayUpdates = [[NSMutableArray alloc] init];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+	[super viewDidAppear:animated];
 	
 	[self refreshData];
 }

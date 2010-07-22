@@ -40,11 +40,6 @@
 	_authorizeViewController.view.hidden = YES;
 	_mainViewController.view.hidden = NO;
 	[_window bringSubviewToFront:_mainViewController.view];
-	
-	if ([_mainViewController.profileMainViewController isViewLoaded])
-	{
-		[_mainViewController.profileMainViewController refreshData];
-	}
 }
 
 
