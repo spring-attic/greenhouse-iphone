@@ -18,6 +18,5 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewUpdates;
 
 - (IBAction)actionRefresh:(id)sender;
-- (void)refreshData;
 
 @end

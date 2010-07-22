@@ -6,11 +6,22 @@
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
+// This class is meant to function as an abstract class. See the following link
+// for more information on encouraging overriding of methods in a subclass
+// http://developer.apple.com/mac/library/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/doc/uid/20000050-doesNotRecognizeSelector_
+
+
 #import "OAuthViewController.h"
 #import "OAuthManager.h"
 
 
 @implementation OAuthViewController
+
+- (void)refreshData
+{
+	// throws exception if this method is not overridden by a subclass
+	[self doesNotRecognizeSelector:_cmd];
+}
 
 - (void)fetchJSONDataWithURL:(NSURL *)url
 {	
@@ -38,9 +49,7 @@
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {	
-	// Use the following line to enforce overriding a method in a subclass
-	// http://developer.apple.com/mac/library/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/Reference/Reference.html#//apple_ref/doc/uid/20000050-doesNotRecognizeSelector_
-	
+	// throws exception if this method is not overridden by a subclass
 	[self doesNotRecognizeSelector:_cmd];
 }
 

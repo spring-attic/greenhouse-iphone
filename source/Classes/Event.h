@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WebDataModelObject.h"
 
 
-@interface Event : NSObject {
+@interface Event : WebDataModelObject 
+{
 
 }
 
@@ -20,7 +22,5 @@
 @property (nonatomic, retain) NSDate *endTime;
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *hashtag;
-
-- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

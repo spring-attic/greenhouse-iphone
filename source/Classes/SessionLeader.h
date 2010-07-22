@@ -1,8 +1,8 @@
 //
-//  Person.h
+//  SessionLeader.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/11/10.
+//  Created by Roy Clarkson on 7/21/10.
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 #import "WebDataModelObject.h"
 
 
-@interface Person : WebDataModelObject 
+@interface SessionLeader : WebDataModelObject 
 {
 
 }

@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WebDataModelObject.h"
 
 
-@interface Tweet : NSObject {
+@interface Tweet : WebDataModelObject 
+{
 
 }
 
@@ -21,7 +23,5 @@
 @property (nonatomic, assign) NSInteger userId;
 @property (nonatomic, copy) NSString *languageCode;
 @property (nonatomic, copy) NSString *source;
-
-- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

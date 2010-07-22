@@ -20,6 +20,5 @@
 @property (nonatomic, retain) IBOutlet EventDetailsViewController *eventDetailsViewController;
 
 - (IBAction)actionRefresh:(id)sender;
-- (void)refreshData;
 
 @end

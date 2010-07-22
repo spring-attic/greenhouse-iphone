@@ -11,14 +11,8 @@
 
 @implementation Person
 
-@synthesize firstName = _firstName;
-@synthesize lastName = _lastName;
-
-
-- (id)init
-{
-	return [self initWithDictionary:nil];
-}
+@synthesize firstName;
+@synthesize lastName;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -40,8 +34,8 @@
 
 - (void)dealloc
 {
-	[_firstName release];
-	[_lastName release];
+	[firstName release];
+	[lastName release];
 	
 	[super dealloc];
 }

@@ -7,15 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WebDataModelObject.h"
 
 
-@interface Update : NSObject {
+@interface Update : WebDataModelObject 
+{
 
 }
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, retain) NSDate *timestamp;
-
-- (id)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

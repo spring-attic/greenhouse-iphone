@@ -17,6 +17,4 @@
 @property (nonatomic, assign) NSInteger eventId;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 
-- (void)refreshData;
-
 @end

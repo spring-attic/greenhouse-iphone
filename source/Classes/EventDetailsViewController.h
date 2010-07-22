@@ -10,7 +10,8 @@
 #import "Event.h"
 
 
-@class EventSessionsViewController;
+@class EventDescriptionViewController;
+@class EventCurrentSessionsViewController;
 @class EventTweetsViewController;
 
 
@@ -22,12 +23,12 @@
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UILabel *labelTitle;
 @property (nonatomic, retain) IBOutlet UILabel *labelDescription;
-@property (nonatomic, retain) IBOutlet UILabel *labelStartTime;
-@property (nonatomic, retain) IBOutlet UILabel *labelEndTime;
+@property (nonatomic, retain) IBOutlet UILabel *labelTime;
 @property (nonatomic, retain) IBOutlet UILabel *labelLocation;
 @property (nonatomic, retain) IBOutlet UILabel *labelHashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
-@property (nonatomic, retain) EventSessionsViewController *eventSessionsViewController;
+@property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
+@property (nonatomic, retain) EventCurrentSessionsViewController *eventSessionsViewController;
 @property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
 
 @end

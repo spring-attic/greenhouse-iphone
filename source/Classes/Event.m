@@ -19,11 +19,6 @@
 @synthesize location;
 @synthesize hashtag;
 
-- (id)init
-{
-	return [self initWithDictionary:nil];
-}
-
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
 	if ((self = [super init]))

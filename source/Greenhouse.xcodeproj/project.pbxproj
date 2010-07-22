@@ -64,7 +64,14 @@
 		8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */; };
 		8135A0FA11ED236900F0F2F8 /* EventTweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0F911ED236900F0F2F8 /* EventTweetsViewController.xib */; };
 		8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */; };
-		8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */; };
+		8135A10611ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m */; };
+		8138DC2C11F73EF700D7A47F /* EventSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC2B11F73EF700D7A47F /* EventSession.m */; };
+		8138DC2F11F73FED00D7A47F /* WebDataModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC2E11F73FED00D7A47F /* WebDataModelObject.m */; };
+		8138DC7811F7584800D7A47F /* SessionLeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC7711F7584800D7A47F /* SessionLeader.m */; };
+		8138DD2911F7A2CA00D7A47F /* EventSessionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD2811F7A2CA00D7A47F /* EventSessionDetailsViewController.m */; };
+		8138DD2B11F7A30E00D7A47F /* EventSessionDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */; };
+		8138DD8F11F8836600D7A47F /* EventDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */; };
+		8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */; };
 		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
 		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
@@ -87,7 +94,7 @@
 		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
 		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
-		81CC60B811EF5FA4002BB755 /* EventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */; };
+		81CC60B811EF5FA4002BB755 /* EventCurrentSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */; };
 		81D4A45111C30692000A71C3 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Person.m */; };
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
 		81E75EDD11BE048700E6B283 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
@@ -153,8 +160,20 @@
 		8135A0F911ED236900F0F2F8 /* EventTweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventTweetsViewController.xib; sourceTree = "<group>"; };
 		8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTweetsViewController.h; sourceTree = "<group>"; };
 		8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTweetsViewController.m; sourceTree = "<group>"; };
-		8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
-		8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
+		8135A10411ED5E5300F0F2F8 /* EventCurrentSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCurrentSessionsViewController.h; sourceTree = "<group>"; };
+		8135A10511ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCurrentSessionsViewController.m; sourceTree = "<group>"; };
+		8138DC2A11F73EF700D7A47F /* EventSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSession.h; sourceTree = "<group>"; };
+		8138DC2B11F73EF700D7A47F /* EventSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSession.m; sourceTree = "<group>"; };
+		8138DC2D11F73FED00D7A47F /* WebDataModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDataModelObject.h; sourceTree = "<group>"; };
+		8138DC2E11F73FED00D7A47F /* WebDataModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDataModelObject.m; sourceTree = "<group>"; };
+		8138DC7611F7584800D7A47F /* SessionLeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SessionLeader.h; sourceTree = "<group>"; };
+		8138DC7711F7584800D7A47F /* SessionLeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SessionLeader.m; sourceTree = "<group>"; };
+		8138DD2711F7A2CA00D7A47F /* EventSessionDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionDetailsViewController.h; sourceTree = "<group>"; };
+		8138DD2811F7A2CA00D7A47F /* EventSessionDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionDetailsViewController.m; sourceTree = "<group>"; };
+		8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionDetailsViewController.xib; sourceTree = "<group>"; };
+		8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDescriptionViewController.xib; sourceTree = "<group>"; };
+		8138DD9211F884D700D7A47F /* EventDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDescriptionViewController.h; sourceTree = "<group>"; };
+		8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDescriptionViewController.m; sourceTree = "<group>"; };
 		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
 		8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesMainViewController.h; sourceTree = "<group>"; };
 		8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesMainViewController.m; sourceTree = "<group>"; };
@@ -192,7 +211,7 @@
 		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		81CC605611EF41E5002BB755 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
-		81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsViewController.xib; sourceTree = "<group>"; };
+		81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCurrentSessionsViewController.xib; sourceTree = "<group>"; };
 		81D4A44F11C30692000A71C3 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		81D4A45011C30692000A71C3 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
@@ -388,10 +407,14 @@
 				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
 				8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */,
 				8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */,
-				8135A10411ED5E5300F0F2F8 /* EventSessionsViewController.h */,
-				8135A10511ED5E5300F0F2F8 /* EventSessionsViewController.m */,
+				8135A10411ED5E5300F0F2F8 /* EventCurrentSessionsViewController.h */,
+				8135A10511ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m */,
 				8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */,
 				8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */,
+				8138DD2711F7A2CA00D7A47F /* EventSessionDetailsViewController.h */,
+				8138DD2811F7A2CA00D7A47F /* EventSessionDetailsViewController.m */,
+				8138DD9211F884D700D7A47F /* EventDescriptionViewController.h */,
+				8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -402,8 +425,10 @@
 				8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */,
 				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
 				8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */,
-				81CC60B711EF5FA4002BB755 /* EventSessionsViewController.xib */,
+				8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */,
+				81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */,
 				8135A0F911ED236900F0F2F8 /* EventTweetsViewController.xib */,
+				8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -478,6 +503,8 @@
 		81D4A44E11C3066D000A71C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8138DC2D11F73FED00D7A47F /* WebDataModelObject.h */,
+				8138DC2E11F73FED00D7A47F /* WebDataModelObject.m */,
 				81D4A44F11C30692000A71C3 /* Person.h */,
 				81D4A45011C30692000A71C3 /* Person.m */,
 				8153C7BC11DD353700F7BDE1 /* Update.h */,
@@ -486,6 +513,10 @@
 				8171949211E66AD7007C82B2 /* Event.m */,
 				81CC605511EF41E5002BB755 /* Tweet.h */,
 				81CC605611EF41E5002BB755 /* Tweet.m */,
+				8138DC2A11F73EF700D7A47F /* EventSession.h */,
+				8138DC2B11F73EF700D7A47F /* EventSession.m */,
+				8138DC7611F7584800D7A47F /* SessionLeader.h */,
+				8138DC7711F7584800D7A47F /* SessionLeader.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -711,7 +742,9 @@
 				8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */,
 				8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */,
 				8135A0FA11ED236900F0F2F8 /* EventTweetsViewController.xib in Resources */,
-				81CC60B811EF5FA4002BB755 /* EventSessionsViewController.xib in Resources */,
+				81CC60B811EF5FA4002BB755 /* EventCurrentSessionsViewController.xib in Resources */,
+				8138DD2B11F7A30E00D7A47F /* EventSessionDetailsViewController.xib in Resources */,
+				8138DD8F11F8836600D7A47F /* EventDescriptionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -815,9 +848,14 @@
 				8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */,
 				8135A08211ECA4E700F0F2F8 /* EventsNavigationViewController.m in Sources */,
 				8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */,
-				8135A10611ED5E5300F0F2F8 /* EventSessionsViewController.m in Sources */,
+				8135A10611ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m in Sources */,
 				81CC605711EF41E5002BB755 /* Tweet.m in Sources */,
 				81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */,
+				8138DC2C11F73EF700D7A47F /* EventSession.m in Sources */,
+				8138DC2F11F73FED00D7A47F /* WebDataModelObject.m in Sources */,
+				8138DC7811F7584800D7A47F /* SessionLeader.m in Sources */,
+				8138DD2911F7A2CA00D7A47F /* EventSessionDetailsViewController.m in Sources */,
+				8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

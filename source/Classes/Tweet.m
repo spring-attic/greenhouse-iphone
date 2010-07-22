@@ -21,11 +21,6 @@
 @synthesize source;
 
 
-- (id)init
-{
-	return [self initWithDictionary:nil];
-}
-
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
 
@@ -41,15 +36,6 @@
 			self.userId = [dictionary integerForKey:@"userId"];
 			self.languageCode = [dictionary stringForKey:@"languageCode"];
 			self.source = [dictionary stringForKey:@"source"];
-		}
-		else 
-		{
-			self.text = [NSString string];
-			self.createdAt = [NSDate distantPast];
-			self.fromUser = [NSString string];
-			self.profileImageUrl = [NSString string];
-			self.languageCode = [NSString string];
-			self.source = [NSString string];
 		}
 	}
 	

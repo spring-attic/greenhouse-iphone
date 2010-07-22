@@ -19,6 +19,5 @@
 
 - (IBAction)actionSignOut:(id)sender;
 - (IBAction)actionRefresh:(id)sender;
-- (void)refreshData;
 
 @end

@@ -14,6 +14,7 @@
 
 }
 
+- (void)refreshData;
 - (void)fetchJSONDataWithURL:(NSURL *)url;
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
