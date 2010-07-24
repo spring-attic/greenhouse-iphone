@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
+@class NewTweetViewController;
+
+
 @interface EventTweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource> 
 {
 
@@ -16,5 +19,6 @@
 
 @property (nonatomic, assign) NSInteger eventId;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
+@property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;
 
 @end

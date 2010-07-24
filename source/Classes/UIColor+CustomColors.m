@@ -11,12 +11,12 @@
 
 @implementation UIColor (UIColor_CustomColors)
 
-+ (UIColor *)springDarkGreen
++ (UIColor *)springDarkGreenColor
 {
 	return [UIColor colorWithRed:64.0f / 255.0f green:121.0f / 255.0f blue:45.0f / 255.0f alpha:1.0];
 }
 
-+ (UIColor *)springLightGreen
++ (UIColor *)springLightGreenColor
 {
 	return [UIColor colorWithRed:194.0f / 255.0f green:203.0f / 255.0f blue:38.0f / 255.0f alpha:1.0];
 }

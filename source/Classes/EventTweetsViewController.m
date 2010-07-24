@@ -9,11 +9,14 @@
 #import "EventTweetsViewController.h"
 #import "Tweet.h"
 #import "OAuthManager.h"
+#import "NewTweetViewController.h"
 
 
 @interface EventTweetsViewController()
 
 @property (nonatomic, retain) NSMutableArray *arrayTweets;
+
+- (void)showTwitterForm;
 
 @end
 
@@ -23,6 +26,7 @@
 @synthesize arrayTweets;
 @synthesize eventId;
 @synthesize tableViewTweets;
+@synthesize newTweetViewController;
 
 - (void)refreshData
 {
@@ -55,6 +59,11 @@
 	}
 }
 
+- (void)showTwitterForm
+{
+	[self presentModalViewController:newTweetViewController animated:YES];
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
@@ -63,6 +72,11 @@
 //{
 //	
 //}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 44.0f;
+}
 
 
 #pragma mark -
@@ -82,8 +96,13 @@
 	
 	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
 	
+	NSURL *url =[NSURL URLWithString:tweet.profileImageUrl];
+	NSData *data = [NSData dataWithContentsOfURL:url];
+	UIImage *image = [UIImage imageWithData:data];
+	
 	[cell.textLabel setText:tweet.text];
 	[cell.detailTextLabel setText:tweet.fromUser];
+	[cell.imageView setImage:image];
 	
 	return cell;
 }
@@ -124,7 +143,13 @@
 	
 	self.title = @"Recent Tweets";
 	
+	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
+	
 	self.arrayTweets = [[NSMutableArray alloc] init];
+	
+	UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTwitterForm)];
+	self.navigationItem.rightBarButtonItem = buttonItem;
+	[buttonItem release];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -134,11 +159,9 @@
 	[self refreshData];
 }
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
+- (void)didReceiveMemoryWarning 
+{
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload 
@@ -147,6 +170,7 @@
 
 	self.arrayTweets = nil;
     self.tableViewTweets = nil;
+	self.newTweetViewController = nil;
 }
 
 
@@ -157,6 +181,7 @@
 {
 	[arrayTweets release];
 	[tableViewTweets release];
+	[newTweetViewController release];
 	
     [super dealloc];
 }

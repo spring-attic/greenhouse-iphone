@@ -21,7 +21,7 @@
 	
 	CGRect frame = CGRectMake(0.0f, 0.0f, self.view.bounds.size.width, self.view.bounds.size.height);
 	UIView *viewBackground = [[UIView alloc] initWithFrame:frame];
-	viewBackground.backgroundColor = [UIColor springDarkGreen];
+	viewBackground.backgroundColor = [UIColor springDarkGreenColor];
 	viewBackground.alpha = 0.9f;
 	[self.tabBar insertSubview:viewBackground atIndex:0];
 	[viewBackground release];

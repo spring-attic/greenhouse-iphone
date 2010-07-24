@@ -56,6 +56,10 @@
 		8104E7CE11D1646D00590E90 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		8104E7EC11D1668800590E90 /* GreenhouseTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */; };
 		8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */; };
+		8107AA6211FA032300A59078 /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA6111FA032300A59078 /* TweetTableViewCell.m */; };
+		8107AA8411FA28E100A59078 /* NewTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8107AA8311FA28E100A59078 /* NewTweetViewController.xib */; };
+		8107AA8811FA29B000A59078 /* GreenToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA8711FA29B000A59078 /* GreenToolbar.m */; };
+		8107AA9811FA2BB000A59078 /* NewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA9711FA2BB000A59078 /* NewTweetViewController.m */; };
 		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
 		8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */; };
@@ -149,6 +153,13 @@
 		8104E7DE11D164AF00590E90 /* GreenhouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseTests-Info.plist"; sourceTree = "<group>"; };
 		8104E7F411D167AA00590E90 /* ApplicationTestSuite1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTestSuite1.h; sourceTree = "<group>"; };
 		8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTestSuite1.m; sourceTree = "<group>"; };
+		8107AA6011FA032300A59078 /* TweetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTableViewCell.h; sourceTree = "<group>"; };
+		8107AA6111FA032300A59078 /* TweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableViewCell.m; sourceTree = "<group>"; };
+		8107AA8311FA28E100A59078 /* NewTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTweetViewController.xib; sourceTree = "<group>"; };
+		8107AA8611FA29B000A59078 /* GreenToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenToolbar.h; sourceTree = "<group>"; };
+		8107AA8711FA29B000A59078 /* GreenToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenToolbar.m; sourceTree = "<group>"; };
+		8107AA9611FA2BB000A59078 /* NewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTweetViewController.h; sourceTree = "<group>"; };
+		8107AA9711FA2BB000A59078 /* NewTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTweetViewController.m; sourceTree = "<group>"; };
 		811F5DEF11C6DEFF005BD43E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8122BCE911D00A9D00315B6F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		8122BCEA11D00A9D00315B6F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
@@ -462,6 +473,7 @@
 				8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */,
 				8135A0BE11ECB3E200F0F2F8 /* Events */,
 				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
+				8107AA8311FA28E100A59078 /* NewTweetViewController.xib */,
 			);
 			name = "Interface Builder Files";
 			sourceTree = "<group>";
@@ -545,6 +557,8 @@
 				8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */,
 				8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */,
 				8135A09511ECA64B00F0F2F8 /* Events */,
+				8107AA9611FA2BB000A59078 /* NewTweetViewController.h */,
+				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -574,6 +588,10 @@
 				8138DE4711F8D3DA00D7A47F /* GreenTabBarController.m */,
 				8138DE9E11F8E2D400D7A47F /* GreenNavigationController.h */,
 				8138DE9F11F8E2D400D7A47F /* GreenNavigationController.m */,
+				8107AA8611FA29B000A59078 /* GreenToolbar.h */,
+				8107AA8711FA29B000A59078 /* GreenToolbar.m */,
+				8107AA6011FA032300A59078 /* TweetTableViewCell.h */,
+				8107AA6111FA032300A59078 /* TweetTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -760,6 +778,7 @@
 				81CC60B811EF5FA4002BB755 /* EventCurrentSessionsViewController.xib in Resources */,
 				8138DD2B11F7A30E00D7A47F /* EventSessionDetailsViewController.xib in Resources */,
 				8138DD8F11F8836600D7A47F /* EventDescriptionViewController.xib in Resources */,
+				8107AA8411FA28E100A59078 /* NewTweetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -874,6 +893,9 @@
 				8138DE4811F8D3DA00D7A47F /* GreenTabBarController.m in Sources */,
 				8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */,
 				8138DEA011F8E2D400D7A47F /* GreenNavigationController.m in Sources */,
+				8107AA6211FA032300A59078 /* TweetTableViewCell.m in Sources */,
+				8107AA8811FA29B000A59078 /* GreenToolbar.m in Sources */,
+				8107AA9811FA2BB000A59078 /* NewTweetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

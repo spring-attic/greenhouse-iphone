@@ -19,7 +19,7 @@
 {
 	[super viewDidLoad];
 	
-	self.navigationBar.tintColor = [UIColor springDarkGreen];
+	self.navigationBar.tintColor = [UIColor springDarkGreenColor];
 }
 
 @end

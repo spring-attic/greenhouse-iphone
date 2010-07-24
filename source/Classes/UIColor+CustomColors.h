@@ -11,7 +11,7 @@
 
 @interface UIColor (UIColor_CustomColors)
 
-+ (UIColor *)springDarkGreen;
-+ (UIColor *)springLightGreen;
++ (UIColor *)springDarkGreenColor;
++ (UIColor *)springLightGreenColor;
 
 @end
