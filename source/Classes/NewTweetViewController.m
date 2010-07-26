@@ -9,6 +9,15 @@
 #import "NewTweetViewController.h"
 #import "OAuthManager.h"
 
+#define MAX_TWEET_SIZE 140
+
+
+@interface NewTweetViewController()
+
+- (void)setCount:(NSUInteger)newCount;
+
+@end
+
 
 @implementation NewTweetViewController
 
@@ -16,6 +25,25 @@
 @synthesize barButtonCancel;
 @synthesize barButtonSend;
 @synthesize textViewTweet;
+@synthesize labelCount;
+
+- (void)setCount:(NSUInteger)newCount
+{
+	remainingChars = MAX_TWEET_SIZE - newCount;
+	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
+	labelCount.text = s;
+	[s release];
+	
+	if (remainingChars < 0)
+	{
+		barButtonSend.enabled = NO;
+	}
+	else 
+	{
+		barButtonSend.enabled = YES;
+	}
+
+}
 
 - (IBAction)actionCancel:(id)sender
 {
@@ -34,7 +62,11 @@
 	
 	[url release];
 	
-	NSString *postParams =[[NSString alloc] initWithFormat:@"status=%@", textViewTweet.text];
+	NSString *s = [textViewTweet.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	
+	DLog(@"tweet length: %i", s.length);
+	
+	NSString *postParams =[[NSString alloc] initWithFormat:@"status=%@", s];
 	DLog(@"%@", postParams);
 
 	NSString *escapedPostParams = [[postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
@@ -77,12 +109,13 @@
 	}	
 }
 
+
 #pragma mark -
 #pragma mark UITextViewDelegate methods
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
-	// TODO: limit to 140 characters of input.
+	[self setCount:range.location - range.length];
 	
 	return YES;
 }
@@ -100,7 +133,8 @@
 {
 	[super viewWillAppear:animated];
 	
-	textViewTweet.text = hashtag;	
+	textViewTweet.text = hashtag;
+	[self setCount:[hashtag length]];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -124,6 +158,7 @@
 	self.barButtonCancel = nil;
 	self.barButtonSend = nil;
 	self.textViewTweet = nil;
+	self.labelCount = nil;
 }
 
 
@@ -136,6 +171,7 @@
 	[barButtonCancel release];
 	[barButtonSend release];
 	[textViewTweet release];
+	[labelCount release];
 	
     [super dealloc];
 }
