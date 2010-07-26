@@ -46,7 +46,6 @@
 	[request release];
 }
 
-
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {	
 	// throws exception if this method is not overridden by a subclass

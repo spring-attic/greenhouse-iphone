@@ -24,13 +24,13 @@
 @implementation EventTweetsViewController
 
 @synthesize arrayTweets;
-@synthesize eventId;
+@synthesize event;
 @synthesize tableViewTweets;
 @synthesize newTweetViewController;
 
 - (void)refreshData
 {
-	NSString *urlString = [NSString stringWithFormat:EVENT_TWEETS_URL, eventId];
+	NSString *urlString = [NSString stringWithFormat:EVENT_TWEETS_URL, event.eventId];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 }
 
@@ -61,6 +61,8 @@
 
 - (void)showTwitterForm
 {
+	newTweetViewController.hashtag = event.hashtag;
+	
 	[self presentModalViewController:newTweetViewController animated:YES];
 }
 
@@ -121,22 +123,6 @@
 #pragma mark -
 #pragma mark UIViewController methods
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
@@ -169,6 +155,7 @@
     [super viewDidUnload];
 
 	self.arrayTweets = nil;
+	self.event = nil;
     self.tableViewTweets = nil;
 	self.newTweetViewController = nil;
 }
@@ -180,6 +167,7 @@
 - (void)dealloc 
 {
 	[arrayTweets release];
+	[event release];
 	[tableViewTweets release];
 	[newTweetViewController release];
 	

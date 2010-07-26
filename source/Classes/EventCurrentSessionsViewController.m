@@ -25,14 +25,14 @@
 
 @synthesize arrayCurrentSessions;
 @synthesize arrayUpcomingSessions;
-@synthesize eventId;
+@synthesize event;
 @synthesize eventSessionDetailsViewController;
 @synthesize tableViewSessions;
 
 
 - (void)refreshData
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_CURRENT_SESSIONS_URL, eventId];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_CURRENT_SESSIONS_URL, event.eventId];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 	[urlString release];
 }
@@ -212,6 +212,7 @@
 	
 	self.arrayCurrentSessions = nil;
 	self.arrayUpcomingSessions = nil;
+	self.event = nil;
 	self.eventSessionDetailsViewController = nil;
 	self.tableViewSessions = nil;
 }
@@ -224,6 +225,7 @@
 {
 	[arrayCurrentSessions release];
 	[arrayUpcomingSessions release];
+	[event release];
 	[eventSessionDetailsViewController release];
 	[tableViewSessions release];
 	

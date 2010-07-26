@@ -112,8 +112,8 @@
 	[super viewWillAppear:animated];
 	
 	eventDescriptionViewController.eventDescription = event.description;
-	eventSessionsViewController.eventId = event.eventId;
-	eventTweetsViewController.eventId = event.eventId;
+	eventSessionsViewController.event = event;
+	eventTweetsViewController.event = event;
 	
 	labelTitle.text = event.title;
 //	labelDescription.text = event.description;

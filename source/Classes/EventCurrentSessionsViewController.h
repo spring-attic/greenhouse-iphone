@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 
 @class EventSessionDetailsViewController;
@@ -17,7 +18,7 @@
 
 }
 
-@property (nonatomic, assign) NSInteger eventId;
+@property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSessionDetailsViewController *eventSessionDetailsViewController;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
 

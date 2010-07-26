@@ -42,6 +42,7 @@
 #define EVENTS_URL					[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/"]
 #define EVENT_CURRENT_SESSIONS_URL	[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/currentsessions"]
 #define EVENT_TWEETS_URL			[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/tweets"]
+#define EVENT_TWEET_STATUS_URL		[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/tweet"]
 
 
 #pragma mark -

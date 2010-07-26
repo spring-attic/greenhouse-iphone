@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 
 @class NewTweetViewController;
@@ -17,7 +18,7 @@
 
 }
 
-@property (nonatomic, assign) NSInteger eventId;
+@property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 @property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;
 
