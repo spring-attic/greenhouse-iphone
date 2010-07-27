@@ -100,6 +100,7 @@
 	if (session)
 	{
 		sessionSummaryViewController.session = session;
+		sessionTweetsViewController.event = event;
 		sessionTweetsViewController.session = session;
 		
 		labelTitle.text = session.title;

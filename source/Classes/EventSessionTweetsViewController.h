@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "TweetsViewController.h"
+#import "event.h"
 #import "EventSession.h"
 
 
@@ -16,6 +17,7 @@
 
 }
 
+@property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;
 
 @end

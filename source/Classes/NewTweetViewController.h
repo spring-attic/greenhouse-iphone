@@ -16,6 +16,7 @@
 	NSInteger remainingChars;
 }
 
+@property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCancel;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonSend;

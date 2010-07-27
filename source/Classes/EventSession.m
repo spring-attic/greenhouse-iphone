@@ -7,16 +7,16 @@
 //
 
 #import "EventSession.h"
-#import "SessionLeader.h"
+#import "Person.h"
 
 
 @implementation EventSession
 
-@synthesize sessionId;
+@synthesize code;
 @synthesize title;
-@synthesize summary;
 @synthesize startTime;
 @synthesize endTime;
+@synthesize description;
 @synthesize leaders;
 @synthesize hashtag;
 @dynamic leaderCount;
@@ -28,22 +28,20 @@
 	{
 		if (dictionary)
 		{
-			self.sessionId = [dictionary integerForKey:@"sessionid"];
+			self.code = [dictionary integerForKey:@"code"];
 			self.title = [dictionary stringForKey:@"title"];
-			self.summary = [dictionary stringForKey:@"summary"];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
-			
+			self.description = [dictionary stringForKey:@"summary"];
+
 			self.leaders = [[NSMutableArray alloc] init];
 			NSArray *array = [dictionary objectForKey:@"leaders"];
 			for (NSDictionary *d in array) 
 			{
-				SessionLeader *leader = [[SessionLeader alloc] initWithDictionary:d];
+				Person *leader = [[Person alloc] initWithDictionary:d];
 				[leaders addObject:leader];
 				[leader release];
 			}
-			
-			self.hashtag = [dictionary stringForKey:@"hashtag"];
 		}
 	}
 	
@@ -77,7 +75,7 @@
 - (void)dealloc
 {
 	[title release];
-	[summary release];
+	[description release];
 	[startTime release];
 	[endTime release];
 	[leaders release];

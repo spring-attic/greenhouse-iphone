@@ -11,6 +11,7 @@
 
 @implementation EventSessionTweetsViewController
 
+@synthesize event;
 @synthesize session;
 
 - (void)refreshData
@@ -18,25 +19,22 @@
 	// must make this assignment for parent class to work correctly
 	self.hashtag = session.hashtag;
 	
-	NSString *urlString = [NSString stringWithFormat:SESSION_TWEETS_URL, session.sessionId];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
+	NSString *urlString = [[NSString alloc] initWithFormat:SESSION_TWEETS_URL, event.eventId, session.code];
+	self.tweetUrl = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
+	[self fetchJSONDataWithURL:self.tweetUrl];
 }
 
 
 #pragma mark -
 #pragma mark UIViewController methods
 
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self refreshData];
-}
-
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
 	
+	self.event = nil;
 	self.session = nil;
 }
 
@@ -46,6 +44,7 @@
 
 - (void)dealloc 
 {
+	[event release];
 	[session release];
 	
     [super dealloc];

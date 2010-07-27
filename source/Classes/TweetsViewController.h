@@ -17,6 +17,7 @@
 
 }
 
+@property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 @property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;

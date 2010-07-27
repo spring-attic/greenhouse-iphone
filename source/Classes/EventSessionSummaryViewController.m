@@ -25,7 +25,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	textViewSummary.text = session.summary;
+	textViewSummary.text = session.description;
 }
 
 - (void)didReceiveMemoryWarning 

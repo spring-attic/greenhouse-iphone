@@ -24,6 +24,7 @@
 @implementation TweetsViewController
 
 @synthesize arrayTweets;
+@synthesize tweetUrl;
 @synthesize hashtag;
 @synthesize tableViewTweets;
 @synthesize newTweetViewController;
@@ -60,6 +61,7 @@
 
 - (void)showTwitterForm
 {
+	newTweetViewController.tweetUrl = tweetUrl;
 	newTweetViewController.hashtag = hashtag;
 	
 	[self presentModalViewController:newTweetViewController animated:YES];
@@ -154,6 +156,8 @@
     [super viewDidUnload];
 	
 	self.arrayTweets = nil;
+	self.tweetUrl = nil;
+	self.hashtag = nil;
     self.tableViewTweets = nil;
 	self.newTweetViewController = nil;
 }
@@ -165,6 +169,8 @@
 - (void)dealloc 
 {
 	[arrayTweets release];
+	[tweetUrl release];
+	[hashtag release];
 	[tableViewTweets release];
 	[newTweetViewController release];
 	

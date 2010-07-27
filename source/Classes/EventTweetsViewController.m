@@ -17,21 +17,17 @@
 {
 	// must make this assignment for parent class to work correctly
 	self.hashtag = event.hashtag;
+
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];
+	self.tweetUrl = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
 	
-	NSString *urlString = [NSString stringWithFormat:EVENT_TWEETS_URL, event.eventId];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
+	[self fetchJSONDataWithURL:self.tweetUrl];
 }
 
 
 #pragma mark -
 #pragma mark UIViewController methods
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self refreshData];
-}
 
 - (void)viewDidUnload 
 {

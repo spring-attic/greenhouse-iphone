@@ -122,20 +122,20 @@
 	
 	labelTitle.text = event.title;
 	
-	if ([event.startTime compare:event.endTime] == NSOrderedSame)
+	if ([event.startDate compare:event.endDate] == NSOrderedSame)
 	{
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
-		labelTime.text = [dateFormatter stringFromDate:event.startTime];
+		labelTime.text = [dateFormatter stringFromDate:event.startDate];
 		[dateFormatter release];
 	}
-	else if ([event.startTime compare:event.endTime] == NSOrderedAscending)
+	else if ([event.startDate compare:event.endDate] == NSOrderedAscending)
 	{
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"EEE, MMM d"];		
-		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
+		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startDate];
 		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endDate];
 		[dateFormatter release];
 		
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];

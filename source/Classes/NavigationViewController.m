@@ -45,7 +45,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self.navigationController.visibleViewController viewDidAppear:animated];
+//	[self.navigationController.visibleViewController viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning 

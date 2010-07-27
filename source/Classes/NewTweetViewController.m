@@ -21,6 +21,7 @@
 
 @implementation NewTweetViewController
 
+@synthesize tweetUrl;
 @synthesize hashtag;
 @synthesize barButtonCancel;
 @synthesize barButtonSend;
@@ -52,15 +53,15 @@
 
 - (IBAction)actionSend:(id)sender
 {
-	NSURL *url = [[NSURL alloc] initWithString:EVENT_TWEETS_URL];
+//	NSURL *url = [[NSURL alloc] initWithString:EVENT_TWEETS_URL];
 
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:tweetUrl 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	[url release];
+//	[url release];
 	
 	NSString *s = [textViewTweet.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
@@ -80,7 +81,6 @@
 	
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-//	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
 	[postData release];
@@ -154,6 +154,7 @@
 {
     [super viewDidUnload];
 	
+	self.tweetUrl = nil;
 	self.hashtag = nil;
 	self.barButtonCancel = nil;
 	self.barButtonSend = nil;
@@ -167,6 +168,7 @@
 
 - (void)dealloc 
 {
+	[tweetUrl release];
 	[hashtag release];
 	[barButtonCancel release];
 	[barButtonSend release];

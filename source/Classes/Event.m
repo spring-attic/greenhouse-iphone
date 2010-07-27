@@ -13,11 +13,14 @@
 
 @synthesize eventId;
 @synthesize title;
-@synthesize description;
-@synthesize startTime;
-@synthesize endTime;
+@synthesize startDate;
+@synthesize endDate;
 @synthesize location;
+@synthesize description;
+@synthesize name;
 @synthesize hashtag;
+@synthesize groupName;
+@synthesize groupProfileKey;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -25,13 +28,16 @@
 	{
 		if (dictionary)
 		{
-			self.title = [dictionary stringForKey:@"title"];
-			self.description = [dictionary stringForKey:@"description"];
 			self.eventId = [dictionary integerForKey:@"id"];
-			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
-			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
+			self.title = [dictionary stringForKey:@"title"];
+			self.startDate = [dictionary dateWithMillisecondsSince1970ForKey:@"startDate"];
+			self.endDate = [dictionary dateWithMillisecondsSince1970ForKey:@"endDate"];
 			self.location = [dictionary stringForKey:@"location"];
+			self.description = [dictionary stringForKey:@"description"];
+			self.name = [dictionary stringForKey:@"name"];
 			self.hashtag = [dictionary stringForKey:@"hashtag"];
+			self.groupName = [dictionary stringForKey:@"groupName"];
+			self.groupProfileKey = [dictionary stringForKey:@"groupProfileKey"];
 		}
 	}
 	
@@ -45,7 +51,14 @@
 - (void)dealloc
 {
 	[title release];
+	[startDate release];
+	[endDate release];
+	[location release];
 	[description release];
+	[name release];
+	[hashtag release];
+	[groupName release];
+	[groupProfileKey release];
 	
 	[super dealloc];
 }
