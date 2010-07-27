@@ -96,6 +96,10 @@
 		8171949311E66AD7007C82B2 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171949211E66AD7007C82B2 /* Event.m */; };
 		817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817194A011E66F6D007C82B2 /* EventsMainViewController.xib */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
+		819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E441F11FF1EE300DBC0BB /* EventMapViewController.m */; };
+		819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 819E442111FF1EF400DBC0BB /* EventMapViewController.xib */; };
+		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
+		819E448E11FF2D1000DBC0BB /* EventAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E448D11FF2D1000DBC0BB /* EventAnnotation.m */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
 		81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */; };
@@ -228,6 +232,12 @@
 		817194A011E66F6D007C82B2 /* EventsMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsMainViewController.xib; sourceTree = "<group>"; };
 		8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
 		8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
+		819E441E11FF1EE300DBC0BB /* EventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapViewController.h; sourceTree = "<group>"; };
+		819E441F11FF1EE300DBC0BB /* EventMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventMapViewController.m; sourceTree = "<group>"; };
+		819E442111FF1EF400DBC0BB /* EventMapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventMapViewController.xib; sourceTree = "<group>"; };
+		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		819E448C11FF2D1000DBC0BB /* EventAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventAnnotation.h; sourceTree = "<group>"; };
+		819E448D11FF2D1000DBC0BB /* EventAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAnnotation.m; sourceTree = "<group>"; };
 		81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
 		81AF1C5C11C7FBF200960E9F /* spring09_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring09_logo.png; sourceTree = "<group>"; };
 		81B94E4D11F0AD2E003B2117 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
@@ -301,6 +311,7 @@
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
 				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
 				81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */,
+				819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +416,7 @@
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
 				81E75F3911BE0D5800E6B283 /* Security.framework */,
+				819E443B11FF1FA600DBC0BB /* MapKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -475,6 +487,14 @@
 				81275C2011FE889500FF9A80 /* EventSessionSummaryViewController.m */,
 				81275BEA11FE319600FF9A80 /* EventSessionTweetsViewController.h */,
 				81275BEB11FE319600FF9A80 /* EventSessionTweetsViewController.m */,
+				819E441E11FF1EE300DBC0BB /* EventMapViewController.h */,
+				819E441F11FF1EE300DBC0BB /* EventMapViewController.m */,
+				819E448C11FF2D1000DBC0BB /* EventAnnotation.h */,
+				819E448D11FF2D1000DBC0BB /* EventAnnotation.m */,
+				8107AA9611FA2BB000A59078 /* NewTweetViewController.h */,
+				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
+				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
+				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -486,10 +506,12 @@
 				817194A011E66F6D007C82B2 /* EventsMainViewController.xib */,
 				8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */,
 				8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */,
+				819E442111FF1EF400DBC0BB /* EventMapViewController.xib */,
 				81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */,
-				8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */,
 				8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */,
 				81275C2211FE88BC00FF9A80 /* EventSessionSummaryViewController.xib */,
+				8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */,
+				8107AA8311FA28E100A59078 /* NewTweetViewController.xib */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -514,7 +536,6 @@
 				81275CB611FE9FB200FF9A80 /* Updates */,
 				8135A0BE11ECB3E200F0F2F8 /* Events */,
 				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
-				8107AA8311FA28E100A59078 /* NewTweetViewController.xib */,
 			);
 			name = "Interface Builder Files";
 			sourceTree = "<group>";
@@ -600,10 +621,6 @@
 				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
 				81275CA111FE9DE100FF9A80 /* Updates */,
 				8135A09511ECA64B00F0F2F8 /* Events */,
-				8107AA9611FA2BB000A59078 /* NewTweetViewController.h */,
-				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
-				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
-				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -827,6 +844,7 @@
 				81275C2311FE88BC00FF9A80 /* EventSessionSummaryViewController.xib in Resources */,
 				81275C8811FE996600FF9A80 /* spring.png in Resources */,
 				81275CB811FE9FD600FF9A80 /* UpdatesNavigationViewController.xib in Resources */,
+				819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +966,8 @@
 				81275C2111FE889500FF9A80 /* EventSessionSummaryViewController.m in Sources */,
 				81275CA411FE9DFD00FF9A80 /* UpdatesNavigationViewController.m in Sources */,
 				81275CA911FE9E6B00FF9A80 /* NavigationViewController.m in Sources */,
+				819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */,
+				819E448E11FF2D1000DBC0BB /* EventAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

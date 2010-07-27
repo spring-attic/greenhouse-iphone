@@ -10,6 +10,7 @@
 #import "EventDescriptionViewController.h"
 #import "EventCurrentSessionsViewController.h"
 #import "EventTweetsViewController.h"
+#import "EventMapViewController.h"
 
 
 @interface EventDetailsViewController()
@@ -31,6 +32,7 @@
 @synthesize eventDescriptionViewController;
 @synthesize eventSessionsViewController;
 @synthesize eventTweetsViewController;
+@synthesize eventMapViewController;
 
 
 #pragma mark -
@@ -48,6 +50,9 @@
 			break;
 		case 2:
 			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
+			break;
+		case 3:
+			[self.navigationController pushViewController:eventMapViewController animated:YES];
 			break;
 		default:
 			break;
@@ -99,11 +104,12 @@
 	
 	self.title = @"Event";
 	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Current Sessions", @"Tweets", @"Sessions", nil];
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Current Sessions", @"Tweets", @"Map", nil];
 	
 	self.eventDescriptionViewController = [[EventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventSessionsViewController = [[EventCurrentSessionsViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	self.eventMapViewController = [[EventMapViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -159,6 +165,7 @@
 	self.eventDescriptionViewController = nil;
 	self.eventSessionsViewController = nil;
 	self.eventTweetsViewController = nil;
+	self.eventMapViewController = nil;
 }
 
 
@@ -177,6 +184,7 @@
 	[eventDescriptionViewController release];
 	[eventSessionsViewController release];
 	[eventTweetsViewController release];
+	[eventMapViewController release];
 	
     [super dealloc];
 }

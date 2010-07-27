@@ -13,6 +13,7 @@
 @class EventDescriptionViewController;
 @class EventCurrentSessionsViewController;
 @class EventTweetsViewController;
+@class EventMapViewController;
 
 
 @interface EventDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> 
@@ -29,5 +30,6 @@
 @property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
 @property (nonatomic, retain) EventCurrentSessionsViewController *eventSessionsViewController;
 @property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
+@property (nonatomic, retain) EventMapViewController *eventMapViewController;
 
 @end
