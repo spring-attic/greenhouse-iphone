@@ -7,18 +7,27 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 #import "EventSession.h"
 
 
-@interface EventSessionDetailsViewController : UIViewController 
+@class EventSessionSummaryViewController;
+@class EventSessionTweetsViewController;
+
+
+@interface EventSessionDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
 
 }
 
+@property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;
+@property (nonatomic, retain) NSArray *arrayMenuItems;
 @property (nonatomic, retain) IBOutlet UILabel *labelTitle;
 @property (nonatomic, retain) IBOutlet UILabel *labelLeader;
 @property (nonatomic, retain) IBOutlet UILabel *labelTime;
-@property (nonatomic, retain) IBOutlet UITextView *textViewSummary;
+@property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
+@property (nonatomic, retain) EventSessionSummaryViewController *sessionSummaryViewController;
+@property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
 
 @end

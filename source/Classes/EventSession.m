@@ -12,11 +12,13 @@
 
 @implementation EventSession
 
+@synthesize sessionId;
 @synthesize title;
 @synthesize summary;
 @synthesize startTime;
 @synthesize endTime;
 @synthesize leaders;
+@synthesize hashtag;
 @dynamic leaderCount;
 @dynamic leaderDisplay;
 
@@ -26,6 +28,7 @@
 	{
 		if (dictionary)
 		{
+			self.sessionId = [dictionary integerForKey:@"sessionid"];
 			self.title = [dictionary stringForKey:@"title"];
 			self.summary = [dictionary stringForKey:@"summary"];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
@@ -39,6 +42,8 @@
 				[leaders addObject:leader];
 				[leader release];
 			}
+			
+			self.hashtag = [dictionary stringForKey:@"hashtag"];
 		}
 	}
 	
@@ -76,6 +81,7 @@
 	[startTime release];
 	[endTime release];
 	[leaders release];
+	[hashtag release];
 	
 	[super dealloc];
 }

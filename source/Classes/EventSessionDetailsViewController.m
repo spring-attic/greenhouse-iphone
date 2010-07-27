@@ -7,15 +7,75 @@
 //
 
 #import "EventSessionDetailsViewController.h"
+#import "EventSessionSummaryViewController.h"
+#import "EventSessionTweetsViewController.h"
 
 
 @implementation EventSessionDetailsViewController
 
+@synthesize event;
 @synthesize session;
+@synthesize arrayMenuItems;
 @synthesize labelTitle;
 @synthesize labelLeader;
 @synthesize labelTime;
-@synthesize textViewSummary;
+@synthesize tableViewMenu;
+@synthesize sessionSummaryViewController;
+@synthesize sessionTweetsViewController;
+
+
+#pragma mark -
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	switch (indexPath.row) 
+	{
+		case 0:
+			[self.navigationController pushViewController:sessionSummaryViewController animated:YES];
+			break;
+		case 1:
+			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
+			break;
+		default:
+			break;
+	}
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource methods
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *cellIdent = @"menuCell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
+	
+	if (cell == nil)
+	{
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+	
+	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
+	
+	[cell.textLabel setText:s];
+	
+	return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	if (arrayMenuItems)
+	{
+		return [arrayMenuItems count];
+	}
+	
+	return 0;
+}
 
 
 #pragma mark -
@@ -25,7 +85,12 @@
 {
     [super viewDidLoad];
 	
-	self.title = @"Session Details";
+	self.title = @"Session";
+	
+	self.sessionSummaryViewController = [[EventSessionSummaryViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Summary", @"Tweets", nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -34,6 +99,9 @@
 	
 	if (session)
 	{
+		sessionSummaryViewController.session = session;
+		sessionTweetsViewController.session = session;
+		
 		labelTitle.text = session.title;
 		labelLeader.text = session.leaderDisplay;
 
@@ -46,8 +114,6 @@
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
 		labelTime.text = formattedTime;
 		[formattedTime release];
-		
-		textViewSummary.text = session.summary;
 	}
 }
 
@@ -60,11 +126,15 @@
 {
     [super viewDidUnload];
 	
+	self.event = nil;
 	self.session = nil;
+	self.arrayMenuItems = nil;
 	self.labelTitle = nil;
 	self.labelLeader = nil;
 	self.labelTime = nil;
-	self.textViewSummary = nil;
+	self.tableViewMenu = nil;
+	self.sessionSummaryViewController = nil;
+	self.sessionTweetsViewController = nil;
 }
 
 
@@ -73,11 +143,15 @@
 
 - (void)dealloc 
 {
+	[event release];
 	[session release];
+	[arrayMenuItems release];
 	[labelTitle release];
 	[labelLeader release];
 	[labelTime release];
-	[textViewSummary release];
+	[tableViewMenu release];
+	[sessionSummaryViewController release];
+	[sessionTweetsViewController release];
 	
     [super dealloc];
 }

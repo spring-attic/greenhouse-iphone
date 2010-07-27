@@ -15,11 +15,13 @@
 
 }
 
+@property (nonatomic, assign) NSInteger sessionId;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *summary;
 @property (nonatomic, retain) NSDate *startTime;
 @property (nonatomic, retain) NSDate *endTime;
 @property (nonatomic, retain) NSMutableArray *leaders;
+@property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, assign, readonly) NSInteger leaderCount;
 @property (nonatomic, copy, readonly) NSString *leaderDisplay;
 

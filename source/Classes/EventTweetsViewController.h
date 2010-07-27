@@ -7,19 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TweetsViewController.h"
 #import "Event.h"
 
 
-@class NewTweetViewController;
-
-
-@interface EventTweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource> 
+@interface EventTweetsViewController : TweetsViewController 
 {
 
 }
 
 @property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
-@property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;
 
 @end

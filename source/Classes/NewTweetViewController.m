@@ -52,7 +52,7 @@
 
 - (IBAction)actionSend:(id)sender
 {
-	NSURL *url = [[NSURL alloc] initWithString:EVENT_TWEET_STATUS_URL];
+	NSURL *url = [[NSURL alloc] initWithString:EVENT_TWEETS_URL];
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer

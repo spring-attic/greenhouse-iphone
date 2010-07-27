@@ -25,7 +25,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelDescription;
 @property (nonatomic, retain) IBOutlet UILabel *labelTime;
 @property (nonatomic, retain) IBOutlet UILabel *labelLocation;
-@property (nonatomic, retain) IBOutlet UILabel *labelHashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
 @property (nonatomic, retain) EventCurrentSessionsViewController *eventSessionsViewController;

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 
 @interface EventDescriptionViewController : UIViewController 
@@ -14,7 +15,7 @@
 
 }
 
-@property (nonatomic, copy) NSString *eventDescription;
+@property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UITextView *textView;
 
 @end

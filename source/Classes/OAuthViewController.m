@@ -56,38 +56,50 @@
 {
 	DLog(@"%@", [error localizedDescription]);
 	
-	NSString *message = nil;
-	
 	if ([error code] == NSURLErrorUserCancelledAuthentication)
 	{
-		message = @"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app.";
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
+													   delegate:self 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:@"Sign Out", nil];
+		[alert show];
+		[alert release];		
 	}
 	else 
 	{
-		message = @"An error occurred while connecting to the server.";
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"An error occurred while connecting to the server." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];		
 	}
-	
-	
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-													message:message 
-												   delegate:nil 
-										  cancelButtonTitle:@"OK" 
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1)
+	{
+		// sign out
+		[[OAuthManager sharedInstance] removeAccessToken];
+		[appDelegate showAuthorizeViewController];
+	}
 }
 
 
 #pragma mark -
 #pragma mark UIViewController methods
 
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 }
-*/
 
 - (void)didReceiveMemoryWarning 
 {

@@ -27,7 +27,6 @@
 @synthesize labelDescription;
 @synthesize labelTime;
 @synthesize labelLocation;
-@synthesize labelHashtag;
 @synthesize tableViewMenu;
 @synthesize eventDescriptionViewController;
 @synthesize eventSessionsViewController;
@@ -98,25 +97,24 @@
 {
     [super viewDidLoad];
 	
-	self.title = @"Event Details";
+	self.title = @"Event";
 	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Current Sessions", @"Recent Tweets", @"Sessions", nil];
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Current Sessions", @"Tweets", @"Sessions", nil];
 	
 	self.eventDescriptionViewController = [[EventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventSessionsViewController = [[EventCurrentSessionsViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:nil bundle:nil];
+	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
 	
-	eventDescriptionViewController.eventDescription = event.description;
+	eventDescriptionViewController.event = event;
 	eventSessionsViewController.event = event;
 	eventTweetsViewController.event = event;
 	
 	labelTitle.text = event.title;
-//	labelDescription.text = event.description;
 	
 	if ([event.startTime compare:event.endTime] == NSOrderedSame)
 	{
@@ -140,7 +138,6 @@
 	}
 
 	labelLocation.text = event.location;
-	labelHashtag.text = event.hashtag;
 }
 
 - (void)didReceiveMemoryWarning 
@@ -158,7 +155,6 @@
 	self.labelDescription = nil;
 	self.labelTime = nil;
 	self.labelLocation = nil;
-	self.labelHashtag = nil;
 	self.tableViewMenu = nil;
 	self.eventDescriptionViewController = nil;
 	self.eventSessionsViewController = nil;
@@ -177,7 +173,6 @@
 	[labelDescription release];
 	[labelTime release];
 	[labelLocation release];
-	[labelHashtag release];
 	[tableViewMenu release];
 	[eventDescriptionViewController release];
 	[eventSessionsViewController release];

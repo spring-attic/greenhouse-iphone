@@ -80,6 +80,10 @@
 								<reference key="IBUIToolbar" ref="132456662"/>
 							</object>
 						</object>
+						<object class="NSColor" key="IBUITintColor">
+							<int key="NSColorSpace">2</int>
+							<bytes key="NSRGB">MC4yNTQ5MDE5NzU0IDAuNDgyMzUyOTcyIDAuMTcyNTQ5MDI0MgA</bytes>
+						</object>
 					</object>
 					<object class="IBUITextView" id="774872596">
 						<reference key="NSNextResponder" ref="191373211"/>
@@ -309,7 +313,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>NewTweetViewController</string>
 					<string>UIResponder</string>
-					<string>{{556, 500}, {320, 480}}</string>
+					<string>{{542, 441}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

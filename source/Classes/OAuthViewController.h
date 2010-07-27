@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface OAuthViewController : UIViewController 
+@interface OAuthViewController : UIViewController <UIAlertViewDelegate>
 {
 
 }

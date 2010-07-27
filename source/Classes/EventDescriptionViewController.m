@@ -11,41 +11,27 @@
 
 @implementation EventDescriptionViewController
 
-@synthesize eventDescription;
+@synthesize event;
 @synthesize textView;
 
 
 #pragma mark -
 #pragma mark UIViewController methods
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
-}
-*/
-
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
 	
 	self.title = @"Description";
+
+	textView.editable = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
-	textView.text = eventDescription;
+
+	textView.text = event.description;
 }
 
 - (void)didReceiveMemoryWarning 
@@ -57,7 +43,7 @@
 {
     [super viewDidUnload];
 	
-	self.eventDescription = nil;
+	self.event = nil;
 	self.textView = nil;
 }
 
@@ -67,7 +53,7 @@
 
 - (void)dealloc 
 {
-	[eventDescription release];
+	[event release];
 	[textView release];
 	
     [super dealloc];

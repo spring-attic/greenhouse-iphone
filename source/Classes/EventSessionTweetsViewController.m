@@ -1,24 +1,24 @@
     //
-//  EventTweetsViewController.m
+//  EventSessionTweetsViewController.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 7/13/10.
-//  Copyright 2010 VMware, Inc. All rights reserved.
+//  Created by Roy Clarkson on 7/26/10.
+//  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "EventTweetsViewController.h"
+#import "EventSessionTweetsViewController.h"
 
 
-@implementation EventTweetsViewController
+@implementation EventSessionTweetsViewController
 
-@synthesize event;
+@synthesize session;
 
 - (void)refreshData
 {
 	// must make this assignment for parent class to work correctly
-	self.hashtag = event.hashtag;
+	self.hashtag = session.hashtag;
 	
-	NSString *urlString = [NSString stringWithFormat:EVENT_TWEETS_URL, event.eventId];
+	NSString *urlString = [NSString stringWithFormat:SESSION_TWEETS_URL, session.sessionId];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 }
 
@@ -36,8 +36,8 @@
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
-
-	self.event = nil;
+	
+	self.session = nil;
 }
 
 
@@ -46,7 +46,7 @@
 
 - (void)dealloc 
 {
-	[event release];
+	[session release];
 	
     [super dealloc];
 }

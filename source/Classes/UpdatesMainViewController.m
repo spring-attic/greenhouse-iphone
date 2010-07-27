@@ -79,7 +79,11 @@
 	Update *update = (Update *)[arrayUpdates objectAtIndex:indexPath.row];
 	
 	[cell.textLabel setText:update.text];
-	[cell.detailTextLabel setText:[update.timestamp description]];
+	
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"YYYY-MM-dd h:mm:ss a"];
+	[cell.detailTextLabel setText:[dateFormatter stringFromDate:update.timestamp]];
+	[dateFormatter release];
 	
 	return cell;
 }
@@ -101,6 +105,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	
+	self.title = @"Updates";
 
 	self.arrayUpdates = [[NSMutableArray alloc] init];
 }
