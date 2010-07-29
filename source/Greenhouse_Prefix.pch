@@ -28,6 +28,7 @@
 	// Categories
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
+	#import "UINavigationBar+CustomStyle.h"
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
