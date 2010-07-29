@@ -8,7 +8,7 @@
 
 #import "EventDetailsViewController.h"
 #import "EventDescriptionViewController.h"
-#import "EventCurrentSessionsViewController.h"
+#import "EventSessionsMenuViewController.h"
 #import "EventTweetsViewController.h"
 #import "EventMapViewController.h"
 
@@ -30,7 +30,7 @@
 @synthesize labelLocation;
 @synthesize tableViewMenu;
 @synthesize eventDescriptionViewController;
-@synthesize eventSessionsViewController;
+@synthesize eventSessionsMenuViewController;
 @synthesize eventTweetsViewController;
 @synthesize eventMapViewController;
 
@@ -41,25 +41,26 @@
 - (void)refreshView
 {
 	eventDescriptionViewController.event = event;
-	eventSessionsViewController.event = event;
+	eventSessionsMenuViewController.event = event;
 	eventTweetsViewController.event = event;
+	eventMapViewController.event = event;
 	
 	labelTitle.text = event.title;
 	
-	if ([event.startDate compare:event.endDate] == NSOrderedSame)
+	if ([event.startTime compare:event.endTime] == NSOrderedSame)
 	{
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
-		labelTime.text = [dateFormatter stringFromDate:event.startDate];
+		labelTime.text = [dateFormatter stringFromDate:event.startTime];
 		[dateFormatter release];
 	}
-	else if ([event.startDate compare:event.endDate] == NSOrderedAscending)
+	else if ([event.startTime compare:event.endTime] == NSOrderedAscending)
 	{
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"EEE, MMM d"];		
-		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startDate];
+		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
 		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endDate];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];
 		[dateFormatter release];
 		
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
@@ -87,7 +88,7 @@
 			[self.navigationController pushViewController:eventDescriptionViewController animated:YES];
 			break;
 		case 1:
-			[self.navigationController pushViewController:eventSessionsViewController animated:YES];
+			[self.navigationController pushViewController:eventSessionsMenuViewController animated:YES];
 			break;
 		case 2:
 			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
@@ -145,10 +146,10 @@
 	
 	self.title = @"Event";
 	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Current Sessions", @"Tweets", @"Map", nil];
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Sessions", @"Tweets", @"Map", nil];
 	
 	self.eventDescriptionViewController = [[EventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventSessionsViewController = [[EventCurrentSessionsViewController alloc] initWithNibName:nil bundle:nil];
+	self.eventSessionsMenuViewController = [[EventSessionsMenuViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	self.eventMapViewController = [[EventMapViewController alloc] initWithNibName:nil bundle:nil];
 }
@@ -170,7 +171,7 @@
 	self.labelLocation = nil;
 	self.tableViewMenu = nil;
 	self.eventDescriptionViewController = nil;
-	self.eventSessionsViewController = nil;
+	self.eventSessionsMenuViewController = nil;
 	self.eventTweetsViewController = nil;
 	self.eventMapViewController = nil;
 }
@@ -189,7 +190,7 @@
 	[labelLocation release];
 	[tableViewMenu release];
 	[eventDescriptionViewController release];
-	[eventSessionsViewController release];
+	[eventSessionsMenuViewController release];
 	[eventTweetsViewController release];
 	[eventMapViewController release];
 	

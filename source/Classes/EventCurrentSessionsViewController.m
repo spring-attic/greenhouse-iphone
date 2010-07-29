@@ -48,7 +48,6 @@
 		for (NSDictionary *d in array) 
 		{
 			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			[session setHashtagWithEventHashtag:event.hashtag];
 			
 			NSDate *now = [NSDate date];
 			
@@ -197,7 +196,7 @@
 {
     [super viewDidLoad];
 	
-	self.title = @"Sessions";
+	self.title = @"Current";
 	
 	self.eventSessionDetailsViewController = [[EventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	

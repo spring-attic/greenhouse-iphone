@@ -12,7 +12,7 @@
 
 @implementation EventSession
 
-@synthesize code;
+@synthesize number;
 @synthesize title;
 @synthesize startTime;
 @synthesize endTime;
@@ -28,11 +28,12 @@
 	{
 		if (dictionary)
 		{
-			self.code = [dictionary integerForKey:@"code"];
+			self.number = [dictionary integerForKey:@"number"];
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
 			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
+			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 
 			self.leaders = [[NSMutableArray alloc] init];
 			NSArray *array = [dictionary objectForKey:@"leaders"];
@@ -66,11 +67,6 @@
 	}
 	
 	return @"";
-}
-
-- (void)setHashtagWithEventHashtag:(NSString *)eventHashtag
-{
-	self.hashtag = [[NSString alloc] initWithFormat:@"%@-%i", eventHashtag, self.code];
 }
 
 

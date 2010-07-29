@@ -13,8 +13,8 @@
 
 @synthesize eventId;
 @synthesize title;
-@synthesize startDate;
-@synthesize endDate;
+@synthesize startTime;
+@synthesize endTime;
 @synthesize location;
 @synthesize description;
 @synthesize name;
@@ -30,8 +30,8 @@
 		{
 			self.eventId = [dictionary integerForKey:@"id"];
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
-			self.startDate = [dictionary dateWithMillisecondsSince1970ForKey:@"startDate"];
-			self.endDate = [dictionary dateWithMillisecondsSince1970ForKey:@"endDate"];
+			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
+			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
 			self.location = [dictionary stringByReplacingPercentEscapesForKey:@"location" usingEncoding:NSUTF8StringEncoding];
 			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
 			self.name = [dictionary stringByReplacingPercentEscapesForKey:@"name" usingEncoding:NSUTF8StringEncoding];
@@ -51,8 +51,8 @@
 - (void)dealloc
 {
 	[title release];
-	[startDate release];
-	[endDate release];
+	[startTime release];
+	[endTime release];
 	[location release];
 	[description release];
 	[name release];

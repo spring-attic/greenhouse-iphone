@@ -11,7 +11,7 @@
 
 
 @class EventDescriptionViewController;
-@class EventCurrentSessionsViewController;
+@class EventSessionsMenuViewController;
 @class EventTweetsViewController;
 @class EventMapViewController;
 
@@ -28,7 +28,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelLocation;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
-@property (nonatomic, retain) EventCurrentSessionsViewController *eventSessionsViewController;
+@property (nonatomic, retain) EventSessionsMenuViewController *eventSessionsMenuViewController;
 @property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
 @property (nonatomic, retain) EventMapViewController *eventMapViewController;
 

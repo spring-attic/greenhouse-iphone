@@ -15,7 +15,7 @@
 
 }
 
-@property (nonatomic, assign) NSInteger code;
+@property (nonatomic, assign) NSInteger number;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) NSDate *startTime;
 @property (nonatomic, retain) NSDate *endTime;
@@ -24,7 +24,5 @@
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, assign, readonly) NSInteger leaderCount;
 @property (nonatomic, copy, readonly) NSString *leaderDisplay;
-
-- (void)setHashtagWithEventHashtag:(NSString *)eventHashtag;
 
 @end

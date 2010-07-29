@@ -32,7 +32,7 @@
 	// See Google for details of the geocoding API
 	// http://code.google.com/apis/maps/documentation/geocoding/#GeocodingRequests
 	
-    NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps/api/geocode/json?address=Chicago,+IL&sensor=true", event.location];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps/api/geocode/json?address=%@&sensor=true", event.location];
 	NSString *escapedUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	[urlString release];
 	
