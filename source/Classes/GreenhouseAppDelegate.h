@@ -20,16 +20,12 @@
     NSManagedObjectModel *_managedObjectModel;
     NSManagedObjectContext *_managedObjectContext;
     NSPersistentStoreCoordinator *_persistentStoreCoordinator;
-    UIWindow *_window;
-	UIView *_viewStart;
-	MainViewController *_mainViewController;
-	AuthorizeViewController *_authorizeViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UIView *viewStart;
-@property (nonatomic, retain) IBOutlet MainViewController *mainViewController;
-@property (nonatomic, retain) IBOutlet AuthorizeViewController *authorizeViewController;
+@property (nonatomic, retain) MainViewController *mainViewController;
+@property (nonatomic, retain) AuthorizeViewController *authorizeViewController;
 
 - (void)showAuthorizeViewController;
 - (void)showMainViewController;

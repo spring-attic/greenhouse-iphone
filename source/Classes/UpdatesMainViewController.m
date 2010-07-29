@@ -50,6 +50,8 @@
 		
 		[tableViewUpdates reloadData];
 	}
+	
+	self.fetchingData = NO;
 }
 
 
@@ -62,7 +64,10 @@
 
 - (void)fetchData
 {
-	[self fetchJSONDataWithURL:[NSURL URLWithString:UPDATES_URL]];
+	if (!self.fetchingData)
+	{
+		[self fetchJSONDataWithURL:[NSURL URLWithString:UPDATES_URL]];
+	}
 }
 
 

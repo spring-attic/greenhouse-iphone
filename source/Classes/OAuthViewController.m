@@ -17,8 +17,12 @@
 
 @implementation OAuthViewController
 
+@synthesize fetchingData;
+
 - (void)fetchJSONDataWithURL:(NSURL *)url
 {	
+	fetchingData = YES;
+	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken

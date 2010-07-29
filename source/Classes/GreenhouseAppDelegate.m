@@ -23,23 +23,43 @@
 
 @implementation GreenhouseAppDelegate
 
-@synthesize window = _window;
-@synthesize viewStart = _viewStart;
-@synthesize mainViewController = _mainViewController;
-@synthesize authorizeViewController = _authorizeViewController;
+@synthesize window;
+@synthesize viewStart;
+@synthesize mainViewController;
+@synthesize authorizeViewController;
 
 - (void)showAuthorizeViewController
 {	
-	_mainViewController.view.hidden = YES;
-	_authorizeViewController.view.hidden = NO;
-	[_window bringSubviewToFront:_authorizeViewController.view];
+	if (!authorizeViewController)
+	{
+		self.authorizeViewController = [[AuthorizeViewController alloc] initWithNibName:nil bundle:nil];
+		[window addSubview:authorizeViewController.view];		
+	}
+	
+	if (mainViewController)
+	{
+		mainViewController.view.hidden = YES;
+	}
+	
+	authorizeViewController.view.hidden = NO;
+	[window bringSubviewToFront:authorizeViewController.view];
 }
 
 - (void)showMainViewController
 {
-	_authorizeViewController.view.hidden = YES;
-	_mainViewController.view.hidden = NO;
-	[_window bringSubviewToFront:_mainViewController.view];
+	if (!mainViewController)
+	{
+		self.mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+		[window addSubview:mainViewController.view];
+	}
+	
+	if (authorizeViewController)
+	{
+		authorizeViewController.view.hidden = YES;		
+	}
+
+	mainViewController.view.hidden = NO;
+	[window bringSubviewToFront:mainViewController.view];
 }
 
 
@@ -53,7 +73,7 @@
 //
 //- (void)applicationDidEnterBackground:(UIApplication *)application
 //{
-//	DLog(@"sleeping");	
+//	DLog(@"sleeping");
 //}
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
@@ -72,10 +92,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[_window addSubview:_authorizeViewController.view];
-	[_window addSubview:_mainViewController.view];
-    [_window makeKeyAndVisible];
-	
 	if (launchOptions)
 	{
 		NSURL *url = (NSURL *)[launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
@@ -101,6 +117,8 @@
 	{
 		[self showAuthorizeViewController];
 	}
+	
+    [window makeKeyAndVisible];
 	
 	return YES;
 }
@@ -135,7 +153,7 @@
  Returns the managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
-- (NSManagedObjectContext *) managedObjectContext 
+- (NSManagedObjectContext *)managedObjectContext 
 {    
     if (_managedObjectContext != nil) 
 	{
@@ -214,10 +232,10 @@
     [_managedObjectContext release];
     [_managedObjectModel release];
     [_persistentStoreCoordinator release];
-	[_authorizeViewController release];
-    [_mainViewController release];
-	[_viewStart release];
-    [_window release];
+	[authorizeViewController release];
+    [mainViewController release];
+	[viewStart release];
+    [window release];
 	
     [super dealloc];
 }

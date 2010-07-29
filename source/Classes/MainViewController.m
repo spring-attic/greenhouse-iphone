@@ -31,11 +31,6 @@
     [super viewDidLoad];
 	
 	[self.view addSubview:tabBarController.view];
-	
-	// the tabBarController gets confused about where to draw itself
-	CGRect frame = tabBarController.view.frame;
-	frame.origin.y = -20.0f;
-	tabBarController.view.frame = frame;
 }
 
 - (void)didReceiveMemoryWarning 

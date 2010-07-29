@@ -47,6 +47,8 @@
 		
 		[tableViewEvents reloadData];
 	}
+	
+	self.fetchingData = NO;
 }
 
 
@@ -60,7 +62,10 @@
 
 - (void)fetchData
 {
-	[self fetchJSONDataWithURL:[NSURL URLWithString:EVENTS_URL]];
+	if (!self.fetchingData)
+	{
+		[self fetchJSONDataWithURL:[NSURL URLWithString:EVENTS_URL]];
+	}
 }
 
 
