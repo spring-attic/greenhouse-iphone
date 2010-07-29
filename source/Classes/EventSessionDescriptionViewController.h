@@ -1,5 +1,5 @@
 //
-//  EventSessionTweetsViewController.h
+//  EventSessionDescriptionViewController.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/26/10.
@@ -7,18 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TweetsViewController.h"
-#import "Event.h"
 #import "EventSession.h"
 
 
-@interface EventSessionTweetsViewController : TweetsViewController <DataViewDelegate>
+@interface EventSessionDescriptionViewController : UIViewController <DataViewDelegate>
 {
 
 }
 
-@property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;
+@property (nonatomic, retain) IBOutlet UITextView *textViewDescription;
 
 - (void)refreshView;
 - (void)fetchData;

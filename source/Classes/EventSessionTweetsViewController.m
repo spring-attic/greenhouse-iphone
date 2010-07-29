@@ -14,7 +14,15 @@
 @synthesize event;
 @synthesize session;
 
-- (void)refreshData
+
+#pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+}
+
+- (void)fetchData
 {
 	// must make this assignment for parent class to work correctly
 	self.hashtag = session.hashtag;

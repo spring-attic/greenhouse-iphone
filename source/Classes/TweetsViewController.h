@@ -12,7 +12,7 @@
 @class NewTweetViewController;
 
 
-@interface TweetsViewController : OAuthViewController  <UITableViewDelegate, UITableViewDataSource>
+@interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource>
 {
 
 }

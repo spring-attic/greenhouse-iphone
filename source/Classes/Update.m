@@ -20,7 +20,7 @@
 	{
 		if (dictionary)
 		{
-			self.text = [dictionary stringForKey:@"text"];
+			self.text = [dictionary stringByReplacingPercentEscapesForKey:@"text" usingEncoding:NSUTF8StringEncoding];
 			self.timestamp = [dictionary dateWithMillisecondsSince1970ForKey:@"timestamp"];
 		}
 	}

@@ -9,12 +9,19 @@
 #import <UIKit/UIKit.h>
 
 
+@protocol DataViewDelegate
+
+- (void)refreshView;
+- (void)fetchData;
+
+@end
+
+
 @interface OAuthViewController : UIViewController <UIAlertViewDelegate>
 {
 
 }
 
-- (void)refreshData;
 - (void)fetchJSONDataWithURL:(NSURL *)url;
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

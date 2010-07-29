@@ -28,7 +28,34 @@
 			s = [NSString stringWithString:(NSString *)o];
 		}
 	}
-	@catch (NSException * e) 
+	@catch (NSException *e) 
+	{
+		s = nil;
+	}
+	@finally 
+	{ 
+		return s;
+	}
+}
+
+- (NSString *)stringByReplacingPercentEscapesForKey:(id)aKey usingEncoding:(NSStringEncoding)encoding
+{		
+	NSString *s;
+	
+	@try 
+	{
+		NSObject *o = [self objectForKey:aKey];
+		
+		if (o == nil || o == [NSNull null]) 
+		{
+			s = nil;
+		}
+		else 
+		{
+			s = [[NSString stringWithString:(NSString *)o] stringByReplacingPercentEscapesUsingEncoding:encoding];
+		}
+	}
+	@catch (NSException *e) 
 	{
 		s = nil;
 	}

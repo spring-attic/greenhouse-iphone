@@ -25,4 +25,6 @@
 @property (nonatomic, assign, readonly) NSInteger leaderCount;
 @property (nonatomic, copy, readonly) NSString *leaderDisplay;
 
+- (void)setHashtagWithEventHashtag:(NSString *)eventHashtag;
+
 @end

@@ -11,12 +11,15 @@
 #import "Event.h"
 
 
-@interface EventMapViewController : UIViewController <MKMapViewDelegate>
+@interface EventMapViewController : UIViewController <DataViewDelegate, MKMapViewDelegate>
 {
 
 }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet MKMapView *mapViewLocation;
+
+- (void)refreshView;
+- (void)fetchData;
 
 @end

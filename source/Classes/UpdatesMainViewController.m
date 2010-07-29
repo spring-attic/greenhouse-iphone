@@ -26,12 +26,7 @@
 
 - (IBAction)actionRefresh:(id)sender
 {
-	[self refreshData];
-}
-
-- (void)refreshData
-{
-	[self fetchJSONDataWithURL:[NSURL URLWithString:UPDATES_URL]];
+	[self fetchData];
 }
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
@@ -55,6 +50,19 @@
 		
 		[tableViewUpdates reloadData];
 	}
+}
+
+
+#pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+}
+
+- (void)fetchData
+{
+	[self fetchJSONDataWithURL:[NSURL URLWithString:UPDATES_URL]];
 }
 
 
@@ -109,13 +117,6 @@
 	self.title = @"Updates";
 
 	self.arrayUpdates = [[NSMutableArray alloc] init];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self refreshData];
 }
 
 - (void)didReceiveMemoryWarning 

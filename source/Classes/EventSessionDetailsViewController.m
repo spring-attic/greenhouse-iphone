@@ -7,7 +7,7 @@
 //
 
 #import "EventSessionDetailsViewController.h"
-#import "EventSessionSummaryViewController.h"
+#import "EventSessionDescriptionViewController.h"
 #import "EventSessionTweetsViewController.h"
 
 
@@ -20,8 +20,39 @@
 @synthesize labelLeader;
 @synthesize labelTime;
 @synthesize tableViewMenu;
-@synthesize sessionSummaryViewController;
+@synthesize sessionDescriptionViewController;
 @synthesize sessionTweetsViewController;
+
+
+#pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+	if (session)
+	{
+		sessionDescriptionViewController.session = session;
+		sessionTweetsViewController.event = event;
+		sessionTweetsViewController.session = session;
+		
+		labelTitle.text = session.title;
+		labelLeader.text = session.leaderDisplay;
+		
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"h:mma"];
+		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
+		[dateFormatter release];
+		
+		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+		labelTime.text = formattedTime;
+		[formattedTime release];
+	}	
+}
+
+- (void)fetchData
+{
+}
 
 
 #pragma mark -
@@ -32,7 +63,7 @@
 	switch (indexPath.row) 
 	{
 		case 0:
-			[self.navigationController pushViewController:sessionSummaryViewController animated:YES];
+			[self.navigationController pushViewController:sessionDescriptionViewController animated:YES];
 			break;
 		case 1:
 			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
@@ -87,35 +118,10 @@
 	
 	self.title = @"Session";
 	
-	self.sessionSummaryViewController = [[EventSessionSummaryViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Summary", @"Tweets", nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	
-	if (session)
-	{
-		sessionSummaryViewController.session = session;
-		sessionTweetsViewController.event = event;
-		sessionTweetsViewController.session = session;
-		
-		labelTitle.text = session.title;
-		labelLeader.text = session.leaderDisplay;
-
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"h:mma"];
-		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
-		[dateFormatter release];
-		
-		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-		[formattedTime release];
-	}
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -134,7 +140,7 @@
 	self.labelLeader = nil;
 	self.labelTime = nil;
 	self.tableViewMenu = nil;
-	self.sessionSummaryViewController = nil;
+	self.sessionDescriptionViewController = nil;
 	self.sessionTweetsViewController = nil;
 }
 
@@ -151,7 +157,7 @@
 	[labelLeader release];
 	[labelTime release];
 	[tableViewMenu release];
-	[sessionSummaryViewController release];
+	[sessionDescriptionViewController release];
 	[sessionTweetsViewController release];
 	
     [super dealloc];

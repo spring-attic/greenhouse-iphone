@@ -13,6 +13,7 @@
 
 @synthesize firstName;
 @synthesize lastName;
+@dynamic displayName;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -20,17 +21,27 @@
 	{
 		if (dictionary)
 		{
-			self.firstName = [dictionary stringForKey:@"firstName"];
-			self.lastName = [dictionary stringForKey:@"lastName"];
+			self.firstName = [dictionary stringByReplacingPercentEscapesForKey:@"firstName" usingEncoding:NSUTF8StringEncoding];
+			self.lastName = [dictionary stringByReplacingPercentEscapesForKey:@"lastName" usingEncoding:NSUTF8StringEncoding];
 		}
 	}
 	
 	return self;
 }
 
+- (NSString *)displayName
+{
+	return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+}
+
 
 #pragma mark -
 #pragma mark NSObject methods
+
+- (NSString *)description
+{
+	return [self displayName];
+}
 
 - (void)dealloc
 {

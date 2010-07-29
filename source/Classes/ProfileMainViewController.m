@@ -24,10 +24,15 @@
 
 - (IBAction)actionRefresh:(id)sender
 {
-	[self refreshData];
+	[self fetchData];
 }
 
-- (void)refreshData
+- (void)refreshView
+{
+	
+}
+
+- (void)fetchData
 {
 	[self fetchJSONDataWithURL:[NSURL URLWithString:MEMBER_PROFILE_URL]];
 }
@@ -64,7 +69,7 @@
 {
 	[super viewDidAppear:animated];
 	
-	[self refreshData];
+	[self fetchData];
 }
 
 - (void)didReceiveMemoryWarning 

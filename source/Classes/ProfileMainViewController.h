@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ProfileMainViewController : OAuthViewController 
+@interface ProfileMainViewController : OAuthViewController <DataViewDelegate> 
 {
 
 }
@@ -19,5 +19,8 @@
 
 - (IBAction)actionSignOut:(id)sender;
 - (IBAction)actionRefresh:(id)sender;
+
+- (void)refreshView;
+- (void)fetchData;
 
 @end

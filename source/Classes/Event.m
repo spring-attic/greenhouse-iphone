@@ -29,14 +29,14 @@
 		if (dictionary)
 		{
 			self.eventId = [dictionary integerForKey:@"id"];
-			self.title = [dictionary stringForKey:@"title"];
+			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
 			self.startDate = [dictionary dateWithMillisecondsSince1970ForKey:@"startDate"];
 			self.endDate = [dictionary dateWithMillisecondsSince1970ForKey:@"endDate"];
-			self.location = [dictionary stringForKey:@"location"];
-			self.description = [dictionary stringForKey:@"description"];
-			self.name = [dictionary stringForKey:@"name"];
-			self.hashtag = [dictionary stringForKey:@"hashtag"];
-			self.groupName = [dictionary stringForKey:@"groupName"];
+			self.location = [dictionary stringByReplacingPercentEscapesForKey:@"location" usingEncoding:NSUTF8StringEncoding];
+			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
+			self.name = [dictionary stringByReplacingPercentEscapesForKey:@"name" usingEncoding:NSUTF8StringEncoding];
+			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
+			self.groupName = [dictionary stringByReplacingPercentEscapesForKey:@"groupName" usingEncoding:NSUTF8StringEncoding];
 			self.groupProfileKey = [dictionary stringForKey:@"groupProfileKey"];
 		}
 	}

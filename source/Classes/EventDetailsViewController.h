@@ -16,7 +16,7 @@
 @class EventMapViewController;
 
 
-@interface EventDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> 
+@interface EventDetailsViewController : UIViewController <DataViewDelegate, UITableViewDataSource, UITableViewDelegate> 
 {
 
 }
@@ -31,5 +31,8 @@
 @property (nonatomic, retain) EventCurrentSessionsViewController *eventSessionsViewController;
 @property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
 @property (nonatomic, retain) EventMapViewController *eventMapViewController;
+
+- (void)refreshView;
+- (void)fetchData;
 
 @end

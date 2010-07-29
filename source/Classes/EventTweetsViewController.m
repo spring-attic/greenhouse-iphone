@@ -13,9 +13,17 @@
 
 @synthesize event;
 
-- (void)refreshData
+
+#pragma mark -
+#pragma mark DataViewDelegate methods
+
+- (void)refreshView
 {
-	// must make this assignment for parent class to work correctly
+}
+
+- (void)fetchData;
+{
+	// must make these assignment for parent class to work correctly
 	self.hashtag = event.hashtag;
 
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];

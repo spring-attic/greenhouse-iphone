@@ -20,14 +20,20 @@
 	   didShowViewController:(UIViewController *)viewController 
 					animated:(BOOL)animated
 {
-	[viewController viewDidAppear:animated];
+	if ([viewController respondsToSelector:@selector(fetchData)])
+	{
+		[viewController performSelector:@selector(fetchData)];
+	}
 }
 
 - (void)navigationController:(UINavigationController *)navigationController 
 	  willShowViewController:(UIViewController *)viewController 
 					animated:(BOOL)animated
 {
-	[viewController viewWillAppear:animated];
+	if ([viewController respondsToSelector:@selector(refreshView)])
+	{
+		[viewController performSelector:@selector(refreshView)];
+	}
 }
 
 
@@ -39,13 +45,6 @@
     [super viewDidLoad];
 	
 	[self.view addSubview:navigationController.view];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-//	[self.navigationController.visibleViewController viewDidAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning 

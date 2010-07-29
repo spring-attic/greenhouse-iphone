@@ -11,11 +11,11 @@
 #import "EventSession.h"
 
 
-@class EventSessionSummaryViewController;
+@class EventSessionDescriptionViewController;
 @class EventSessionTweetsViewController;
 
 
-@interface EventSessionDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface EventSessionDetailsViewController : UIViewController <DataViewDelegate, UITableViewDataSource, UITableViewDelegate>
 {
 
 }
@@ -27,7 +27,10 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelLeader;
 @property (nonatomic, retain) IBOutlet UILabel *labelTime;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
-@property (nonatomic, retain) EventSessionSummaryViewController *sessionSummaryViewController;
+@property (nonatomic, retain) EventSessionDescriptionViewController *sessionDescriptionViewController;
 @property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
+
+- (void)refreshView;
+- (void)fetchData;
 
 @end

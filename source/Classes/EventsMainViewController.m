@@ -25,15 +25,6 @@
 @synthesize tableViewEvents;
 @synthesize eventDetailsViewController;
 
-- (IBAction)actionRefresh:(id)sender
-{
-	[self refreshData];
-}
-
-- (void)refreshData
-{
-	[self fetchJSONDataWithURL:[NSURL URLWithString:EVENTS_URL]];
-}
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
@@ -56,6 +47,20 @@
 		
 		[tableViewEvents reloadData];
 	}
+}
+
+
+#pragma mark -
+#pragma mark DataViewDelegate methods
+
+- (void)refreshView
+{
+	
+}
+
+- (void)fetchData
+{
+	[self fetchJSONDataWithURL:[NSURL URLWithString:EVENTS_URL]];
 }
 
 
@@ -117,13 +122,6 @@
 	
 	self.eventDetailsViewController = [[EventDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	self.arrayEvents = [[NSMutableArray alloc] init];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self refreshData];
 }
 
 - (void)didReceiveMemoryWarning 

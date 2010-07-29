@@ -13,7 +13,7 @@
 @class EventSessionDetailsViewController;
 
 
-@interface EventCurrentSessionsViewController : OAuthViewController<UITableViewDelegate, UITableViewDataSource> 
+@interface EventCurrentSessionsViewController : OAuthViewController<DataViewDelegate, UITableViewDelegate, UITableViewDataSource> 
 {
 
 }
@@ -21,5 +21,8 @@
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSessionDetailsViewController *eventSessionDetailsViewController;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
+
+- (void)refreshView;
+- (void)fetchData;
 
 @end

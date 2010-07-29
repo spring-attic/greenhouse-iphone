@@ -12,6 +12,7 @@
 @interface NSDictionary (NSDictionary_Helpers)
 
 - (NSString *)stringForKey:(id)aKey;
+- (NSString *)stringByReplacingPercentEscapesForKey:(id)aKey usingEncoding:(NSStringEncoding)encoding;
 - (NSInteger)integerForKey:(id)aKey;
 - (double)doubleForKey:(id)aKey;
 - (NSDate *)dateWithMillisecondsSince1970ForKey:(id)aKey;

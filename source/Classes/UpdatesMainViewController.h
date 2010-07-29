@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface UpdatesMainViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource> 
+@interface UpdatesMainViewController : OAuthViewController <DataViewDelegate, UITableViewDelegate, UITableViewDataSource> 
 {
 
 }
@@ -18,5 +18,8 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewUpdates;
 
 - (IBAction)actionRefresh:(id)sender;
+
+- (void)refreshView;
+- (void)fetchData;
 
 @end

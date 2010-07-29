@@ -17,12 +17,6 @@
 
 @implementation OAuthViewController
 
-- (void)refreshData
-{
-	// throws exception if this method is not overridden by a subclass
-	[self doesNotRecognizeSelector:_cmd];
-}
-
 - (void)fetchJSONDataWithURL:(NSURL *)url
 {	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 

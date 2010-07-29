@@ -30,13 +30,6 @@
 @synthesize tableViewSessions;
 
 
-- (void)refreshData
-{
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_CURRENT_SESSIONS_URL, event.eventId];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
-	[urlString release];
-}
-
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	if (ticket.didSucceed)
@@ -55,6 +48,7 @@
 		for (NSDictionary *d in array) 
 		{
 			EventSession *session = [[EventSession alloc] initWithDictionary:d];
+			[session setHashtagWithEventHashtag:event.hashtag];
 			
 			NSDate *now = [NSDate date];
 			
@@ -104,10 +98,27 @@
 
 
 #pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+	
+}
+
+- (void)fetchData
+{
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_CURRENT_SESSIONS_URL, event.eventId];
+	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
+	[urlString release];	
+}
+
+
+#pragma mark -
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	eventSessionDetailsViewController.event = event;
 	eventSessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
 	[self.navigationController pushViewController:eventSessionDetailsViewController animated:YES];
 }
@@ -192,13 +203,6 @@
 	
 	self.arrayCurrentSessions = [[NSMutableArray alloc] init];
 	self.arrayUpcomingSessions = [[NSMutableArray alloc] init];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self refreshData];
 }
 
 - (void)didReceiveMemoryWarning 

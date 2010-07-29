@@ -29,11 +29,6 @@
 @synthesize tableViewTweets;
 @synthesize newTweetViewController;
 
-- (void)refreshData
-{
-	// override in subclass
-}
-
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	if (ticket.didSucceed)
@@ -131,19 +126,11 @@
 	self.title = @"Tweets";
 	
 	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
-	
 	self.arrayTweets = [[NSMutableArray alloc] init];
 	
 	UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTwitterForm)];
 	self.navigationItem.rightBarButtonItem = buttonItem;
 	[buttonItem release];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];
-	
-	[self refreshData];
 }
 
 - (void)didReceiveMemoryWarning 

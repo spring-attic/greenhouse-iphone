@@ -1,18 +1,18 @@
     //
-//  EventDescriptionViewController.m
+//  EventSessionDescriptionViewController.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 7/22/10.
-//  Copyright 2010 VMware, Inc. All rights reserved.
+//  Created by Roy Clarkson on 7/26/10.
+//  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "EventDescriptionViewController.h"
+#import "EventSessionDescriptionViewController.h"
 
 
-@implementation EventDescriptionViewController
+@implementation EventSessionDescriptionViewController
 
-@synthesize event;
-@synthesize textView;
+@synthesize session;
+@synthesize textViewDescription;
 
 
 #pragma mark -
@@ -20,14 +20,12 @@
 
 - (void)refreshView
 {
-	textView.text = event.description;
+	textViewDescription.text = session.description;
 }
 
 - (void)fetchData
 {
-	
 }
-
 
 #pragma mark -
 #pragma mark UIViewController methods
@@ -37,8 +35,8 @@
     [super viewDidLoad];
 	
 	self.title = @"Description";
-
-	textView.editable = NO;
+	
+	textViewDescription.editable = NO;
 }
 
 - (void)didReceiveMemoryWarning 
@@ -50,8 +48,8 @@
 {
     [super viewDidUnload];
 	
-	self.event = nil;
-	self.textView = nil;
+	self.session = nil;
+	self.textViewDescription = nil;
 }
 
 
@@ -60,8 +58,8 @@
 
 - (void)dealloc 
 {
-	[event release];
-	[textView release];
+	[session release];
+	[textViewDescription release];
 	
     [super dealloc];
 }

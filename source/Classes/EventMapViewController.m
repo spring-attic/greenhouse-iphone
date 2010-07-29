@@ -14,7 +14,8 @@
 
 @property (nonatomic, retain) EventAnnotation *eventAnnotation;
 
-- (CLLocationCoordinate2D)eventCoordinate;
+- (NSString *)fetchGeocodeResults;
+- (CLLocationCoordinate2D)parseGeocodeResponse:(NSString *)responseBody;
 
 @end
 
@@ -26,11 +27,11 @@
 @synthesize mapViewLocation;
 
 
-- (CLLocationCoordinate2D)eventCoordinate;
+- (NSString *)fetchGeocodeResults
 {
 	// See Google for details of the geocoding API
 	// http://code.google.com/apis/maps/documentation/geocoding/#GeocodingRequests
-
+	
     NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps/api/geocode/json?address=Chicago,+IL&sensor=true", event.location];
 	NSString *escapedUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	[urlString release];
@@ -38,12 +39,17 @@
 	DLog(@"%@", escapedUrlString);
 	
 	NSURL *url = [[NSURL alloc] initWithString:escapedUrlString];
-    NSString *responsBody = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+    NSString *responseBody = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
 	[url release];
 	
-	DLog(@"%@", responsBody);
+	DLog(@"%@", responseBody);
 	
-	NSDictionary *geocodeResponse = (NSDictionary *)[responsBody JSONValue];
+	return responseBody;
+}
+
+- (CLLocationCoordinate2D)parseGeocodeResponse:(NSString *)responseBody
+{
+	NSDictionary *geocodeResponse = (NSDictionary *)[responseBody JSONValue];
 	
 	NSString *status = [geocodeResponse stringForKey:@"status"];
 	NSArray *results = (NSArray *)[geocodeResponse objectForKey:@"results"];
@@ -64,14 +70,49 @@
 			longitude = [location doubleForKey:@"lng"];
 		}
 	}
-		
-    CLLocationCoordinate2D coordinate;
-    coordinate.latitude = latitude;
-    coordinate.longitude = longitude;
 	
-    return coordinate;
+	CLLocationCoordinate2D coordinate;
+	coordinate.latitude = latitude;
+	coordinate.longitude = longitude;
+	
+	return coordinate;
 }
 
+
+#pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+	NSString *responseBody = [self fetchGeocodeResults];
+	CLLocationCoordinate2D coordinate = [self parseGeocodeResponse:responseBody];
+	
+	MKCoordinateSpan span;
+	span.latitudeDelta = 0.2f;
+	span.longitudeDelta = 0.2f;
+
+	MKCoordinateRegion region;
+	region.span = span;
+	region.center = coordinate;
+	
+	if(eventAnnotation != nil) 
+	{
+		[mapViewLocation removeAnnotation:eventAnnotation];
+		self.eventAnnotation = nil;
+	}
+	
+	self.eventAnnotation = [[EventAnnotation alloc] init];
+	eventAnnotation.coordinate = coordinate;
+	
+	[mapViewLocation addAnnotation:eventAnnotation];
+	[mapViewLocation setRegion:region animated:YES];
+	[mapViewLocation regionThatFits:region];	
+}
+
+- (void)fetchData
+{
+	
+}
 
 #pragma mark -
 #pragma mark MKMapViewDelegate methods
@@ -103,33 +144,6 @@
     [super viewDidLoad];
 	
 	self.title = @"Map";
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	
-	MKCoordinateRegion region;
-	MKCoordinateSpan span;
-	span.latitudeDelta = 0.2f;
-	span.longitudeDelta = 0.2f;
-	
-	CLLocationCoordinate2D coordinate = [self eventCoordinate];
-	region.span = span;
-	region.center = coordinate;
-	
-	if(eventAnnotation != nil) 
-	{
-		[mapViewLocation removeAnnotation:eventAnnotation];
-		self.eventAnnotation = nil;
-	}
-	
-	self.eventAnnotation = [[EventAnnotation alloc] init];
-	eventAnnotation.coordinate = coordinate;
-	
-	[mapViewLocation addAnnotation:eventAnnotation];
-	[mapViewLocation setRegion:region animated:YES];
-	[mapViewLocation regionThatFits:region];	
 }
 
 - (void)didReceiveMemoryWarning 

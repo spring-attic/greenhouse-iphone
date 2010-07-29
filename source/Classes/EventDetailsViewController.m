@@ -36,6 +36,47 @@
 
 
 #pragma mark -
+#pragma mark DataViewDelegate methods
+
+- (void)refreshView
+{
+	eventDescriptionViewController.event = event;
+	eventSessionsViewController.event = event;
+	eventTweetsViewController.event = event;
+	
+	labelTitle.text = event.title;
+	
+	if ([event.startDate compare:event.endDate] == NSOrderedSame)
+	{
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
+		labelTime.text = [dateFormatter stringFromDate:event.startDate];
+		[dateFormatter release];
+	}
+	else if ([event.startDate compare:event.endDate] == NSOrderedAscending)
+	{
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"EEE, MMM d"];		
+		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startDate];
+		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endDate];
+		[dateFormatter release];
+		
+		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+		labelTime.text = formattedTime;
+		[formattedTime release];
+	}
+	
+	labelLocation.text = event.location;
+}
+
+- (void)fetchData
+{
+	
+}
+
+
+#pragma mark -
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,40 +151,6 @@
 	self.eventSessionsViewController = [[EventCurrentSessionsViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	self.eventMapViewController = [[EventMapViewController alloc] initWithNibName:nil bundle:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	[super viewWillAppear:animated];
-	
-	eventDescriptionViewController.event = event;
-	eventSessionsViewController.event = event;
-	eventTweetsViewController.event = event;
-	
-	labelTitle.text = event.title;
-	
-	if ([event.startDate compare:event.endDate] == NSOrderedSame)
-	{
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
-		labelTime.text = [dateFormatter stringFromDate:event.startDate];
-		[dateFormatter release];
-	}
-	else if ([event.startDate compare:event.endDate] == NSOrderedAscending)
-	{
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"EEE, MMM d"];		
-		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startDate];
-		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endDate];
-		[dateFormatter release];
-		
-		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-		[formattedTime release];
-	}
-
-	labelLocation.text = event.location;
 }
 
 - (void)didReceiveMemoryWarning 

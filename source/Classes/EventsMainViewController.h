@@ -10,7 +10,7 @@
 #import "EventDetailsViewController.h"
 
 
-@interface EventsMainViewController : OAuthViewController 
+@interface EventsMainViewController : OAuthViewController <DataViewDelegate>
 {
 
 }
@@ -19,6 +19,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewEvents;
 @property (nonatomic, retain) IBOutlet EventDetailsViewController *eventDetailsViewController;
 
-- (IBAction)actionRefresh:(id)sender;
+- (void)refreshView;
+- (void)fetchData;
 
 @end
