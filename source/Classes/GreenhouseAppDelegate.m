@@ -30,36 +30,26 @@
 
 - (void)showAuthorizeViewController
 {	
-	if (!authorizeViewController)
-	{
-		self.authorizeViewController = [[AuthorizeViewController alloc] initWithNibName:nil bundle:nil];
-		[window addSubview:authorizeViewController.view];		
-	}
-	
 	if (mainViewController)
 	{
-		mainViewController.view.hidden = YES;
+		[mainViewController.view removeFromSuperview];
+		[mainViewController release];
 	}
 	
-	authorizeViewController.view.hidden = NO;
-	[window bringSubviewToFront:authorizeViewController.view];
+	self.authorizeViewController = [[AuthorizeViewController alloc] initWithNibName:nil bundle:nil];
+	[window addSubview:authorizeViewController.view];		
 }
 
 - (void)showMainViewController
 {
-	if (!mainViewController)
-	{
-		self.mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
-		[window addSubview:mainViewController.view];
-	}
-	
 	if (authorizeViewController)
 	{
-		authorizeViewController.view.hidden = YES;		
+		[authorizeViewController.view removeFromSuperview];
+		[authorizeViewController release];
 	}
 
-	mainViewController.view.hidden = NO;
-	[window bringSubviewToFront:mainViewController.view];
+	self.mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+	[window addSubview:mainViewController.view];
 }
 
 
