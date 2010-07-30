@@ -100,7 +100,7 @@
 	Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
 	
 	[cell.textLabel setText:event.title];
-	[cell.detailTextLabel setText:event.description];
+	[cell.detailTextLabel setText:event.groupName];
 	
 	return cell;
 }
@@ -123,7 +123,7 @@
 {
     [super viewDidLoad];
 	
-	self.title = @"Events";
+	self.title = @"Upcoming Events";
 	
 	self.eventDetailsViewController = [[EventDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	self.arrayEvents = [[NSMutableArray alloc] init];

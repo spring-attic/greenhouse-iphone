@@ -26,7 +26,7 @@
 @synthesize arrayCurrentSessions;
 @synthesize arrayUpcomingSessions;
 @synthesize event;
-@synthesize eventSessionDetailsViewController;
+@synthesize sessionDetailsViewController;
 @synthesize tableViewSessions;
 
 
@@ -117,9 +117,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	eventSessionDetailsViewController.event = event;
-	eventSessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
-	[self.navigationController pushViewController:eventSessionDetailsViewController animated:YES];
+	sessionDetailsViewController.event = event;
+	sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
+	[self.navigationController pushViewController:sessionDetailsViewController animated:YES];
 }
 
 
@@ -198,7 +198,7 @@
 	
 	self.title = @"Current";
 	
-	self.eventSessionDetailsViewController = [[EventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionDetailsViewController = [[EventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	
 	self.arrayCurrentSessions = [[NSMutableArray alloc] init];
 	self.arrayUpcomingSessions = [[NSMutableArray alloc] init];
@@ -216,7 +216,7 @@
 	self.arrayCurrentSessions = nil;
 	self.arrayUpcomingSessions = nil;
 	self.event = nil;
-	self.eventSessionDetailsViewController = nil;
+	self.sessionDetailsViewController = nil;
 	self.tableViewSessions = nil;
 }
 
@@ -229,7 +229,7 @@
 	[arrayCurrentSessions release];
 	[arrayUpcomingSessions release];
 	[event release];
-	[eventSessionDetailsViewController release];
+	[sessionDetailsViewController release];
 	[tableViewSessions release];
 	
     [super dealloc];

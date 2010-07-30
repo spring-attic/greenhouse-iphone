@@ -11,6 +11,7 @@
 
 
 @class EventSessionsCurrentViewController;
+@class EventSessionsViewController;
 
 
 @interface EventSessionsMenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -21,5 +22,6 @@
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventSessionsCurrentViewController *sessionsCurrentViewController;
+@property (nonatomic, retain) EventSessionsViewController *sessionsViewController;
 
 @end

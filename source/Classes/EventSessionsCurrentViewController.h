@@ -19,7 +19,7 @@
 }
 
 @property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) EventSessionDetailsViewController *eventSessionDetailsViewController;
+@property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
 
 - (void)refreshView;

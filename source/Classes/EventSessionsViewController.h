@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Event.h"
 
 
-@interface EventSessionsViewController : OAuthViewController 
+@class EventSessionDetailsViewController;
+
+@interface EventSessionsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource>
 {
 
 }
+
+@property (nonatomic, retain) Event *event;
+@property (nonatomic, retain) NSDate *eventDate;
+@property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
+@property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
 
 @end

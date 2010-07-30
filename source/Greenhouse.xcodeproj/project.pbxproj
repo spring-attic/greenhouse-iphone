@@ -132,6 +132,7 @@
 		81F79FD91201FB2600743FFF /* EventSessionsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F79FD81201FB2600743FFF /* EventSessionsMenuViewController.m */; };
 		81F79FDB1202097300743FFF /* EventSessionsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */; };
 		81F7A11E12030D2D00743FFF /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F7A11D12030D2D00743FFF /* EventSessionsViewController.m */; };
+		81F7A1A41203541100743FFF /* EventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F7A1A31203541100743FFF /* EventSessionsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -297,6 +298,7 @@
 		81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsMenuViewController.xib; sourceTree = "<group>"; };
 		81F7A11C12030D2D00743FFF /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
 		81F7A11D12030D2D00743FFF /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
+		81F7A1A31203541100743FFF /* EventSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsViewController.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Greenhouse-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -510,6 +512,7 @@
 				819E442111FF1EF400DBC0BB /* EventMapViewController.xib */,
 				81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */,
 				81CC60B711EF5FA4002BB755 /* EventSessionsCurrentViewController.xib */,
+				81F7A1A31203541100743FFF /* EventSessionsViewController.xib */,
 				8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */,
 				81275C2211FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib */,
 				8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */,
@@ -844,6 +847,7 @@
 				81275CB811FE9FD600FF9A80 /* UpdatesNavigationViewController.xib in Resources */,
 				819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */,
 				81F79FDB1202097300743FFF /* EventSessionsMenuViewController.xib in Resources */,
+				81F7A1A41203541100743FFF /* EventSessionsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

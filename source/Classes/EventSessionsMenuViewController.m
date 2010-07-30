@@ -8,12 +8,13 @@
 
 #import "EventSessionsMenuViewController.h"
 #import "EventSessionsCurrentViewController.h"
+#import "EventSessionsViewController.h"
 
 
 @interface EventSessionsMenuViewController()
 
 @property (nonatomic, retain) NSArray *arrayMenuItems;
-@property (nonatomic, retain) NSMutableArray *arrayEventDays;
+@property (nonatomic, retain) NSMutableArray *arrayEventDates;
 
 @end
 
@@ -21,10 +22,11 @@
 @implementation EventSessionsMenuViewController
 
 @synthesize arrayMenuItems;
-@synthesize arrayEventDays;
+@synthesize arrayEventDates;
 @synthesize event;
 @synthesize tableViewMenu;
 @synthesize sessionsCurrentViewController;
+@synthesize sessionsViewController;
 
 
 #pragma mark -
@@ -33,22 +35,17 @@
 - (void)refreshView
 {	
 	sessionsCurrentViewController.event = event;
+	sessionsViewController.event = event;
 	
-	[arrayEventDays removeAllObjects];
+	[arrayEventDates removeAllObjects];
 	
 	NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
 	
 	while ([eventDate compare:event.endTime] != NSOrderedDescending)
 	{
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
-		NSString *s = [dateFormatter stringFromDate:eventDate];
-		[dateFormatter release];
+		[arrayEventDates addObject:eventDate];
 		
-		[arrayEventDays addObject:s];
-		
-		NSTimeInterval ti = (60 * 60 * 24);
-		eventDate = [eventDate dateByAddingTimeInterval:ti];
+		eventDate = [eventDate dateByAddingTimeInterval:86400];
 	}
 	
 	[tableViewMenu reloadData];
@@ -67,27 +64,28 @@
 {
 	if (indexPath.section == 0 && indexPath.row == 0)
 	{
-		[self.navigationController pushViewController:sessionsCurrentViewController animated:YES];
+		switch (indexPath.row) 
+		{
+			case 0:
+				[self.navigationController pushViewController:sessionsCurrentViewController animated:YES];
+				break;
+			case 1:
+				// favorites
+				break;
+			case 2:
+				// conference favorites
+				break;
+			default:
+				break;
+		}
 	}
-	
-//	switch (indexPath.row) 
-//	{
-//		case 0:
-//			[self.navigationController pushViewController:eventDescriptionViewController animated:YES];
-//			break;
-//		case 1:
-//			[self.navigationController pushViewController:eventSessionsViewController animated:YES];
-//			break;
-//		case 2:
-//			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
-//			break;
-//		case 3:
-//			[self.navigationController pushViewController:eventMapViewController animated:YES];
-//			break;
-//		default:
-//			break;
-//	}
-	
+	else if (indexPath.section == 1)
+	{
+		NSDate *date = (NSDate *)[arrayEventDates objectAtIndex:indexPath.row];
+		sessionsViewController.eventDate = date;
+		[self.navigationController pushViewController:sessionsViewController animated:YES];
+	}
+		
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -120,8 +118,14 @@
 			s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
 			break;
 		case 1:
-			s = (NSString *)[arrayEventDays objectAtIndex:indexPath.row];
+		{
+			NSDate *eventDate = (NSDate *)[arrayEventDates objectAtIndex:indexPath.row];
+			NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+			[dateFormatter setDateFormat:@"EEEE"];
+			s = [dateFormatter stringFromDate:eventDate];
+			[dateFormatter release];
 			break;
+		}
 		default:
 			s = @"";
 			break;
@@ -140,7 +144,7 @@
 			return [arrayMenuItems count];
 			break;
 		case 1:
-			return [arrayEventDays count];
+			return [arrayEventDates count];
 			break;
 		default:
 			return 0;
@@ -176,9 +180,10 @@
 	self.title = @"Sessions";
 	
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Current", @"My Favorites", @"Conference Favorites", nil];
-	self.arrayEventDays = [[NSMutableArray alloc] init];
+	self.arrayEventDates = [[NSMutableArray alloc] init];
 	
 	self.sessionsCurrentViewController = [[EventSessionsCurrentViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionsViewController = [[EventSessionsViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -191,7 +196,7 @@
     [super viewDidUnload];
 	
 	self.arrayMenuItems = nil;
-	self.arrayEventDays = nil;
+	self.arrayEventDates = nil;
 	self.event = nil;
 	self.tableViewMenu = nil;
 	self.sessionsCurrentViewController = nil;
@@ -204,7 +209,7 @@
 - (void)dealloc 
 {
 	[arrayMenuItems release];
-	[arrayEventDays release];
+	[arrayEventDates release];
 	[event release];
 	[tableViewMenu release];
 	[sessionsCurrentViewController release];
