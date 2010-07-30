@@ -7,7 +7,7 @@
 //
 
 #import "EventSessionsMenuViewController.h"
-#import "EventCurrentSessionsViewController.h"
+#import "EventSessionsCurrentViewController.h"
 
 
 @interface EventSessionsMenuViewController()
@@ -24,7 +24,7 @@
 @synthesize arrayEventDays;
 @synthesize event;
 @synthesize tableViewMenu;
-@synthesize currentSessionsViewController;
+@synthesize sessionsCurrentViewController;
 
 
 #pragma mark -
@@ -32,7 +32,7 @@
 
 - (void)refreshView
 {	
-	currentSessionsViewController.event = event;
+	sessionsCurrentViewController.event = event;
 	
 	[arrayEventDays removeAllObjects];
 	
@@ -67,7 +67,7 @@
 {
 	if (indexPath.section == 0 && indexPath.row == 0)
 	{
-		[self.navigationController pushViewController:currentSessionsViewController animated:YES];
+		[self.navigationController pushViewController:sessionsCurrentViewController animated:YES];
 	}
 	
 //	switch (indexPath.row) 
@@ -178,7 +178,7 @@
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Current", @"My Favorites", @"Conference Favorites", nil];
 	self.arrayEventDays = [[NSMutableArray alloc] init];
 	
-	self.currentSessionsViewController = [[EventCurrentSessionsViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionsCurrentViewController = [[EventSessionsCurrentViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -194,7 +194,7 @@
 	self.arrayEventDays = nil;
 	self.event = nil;
 	self.tableViewMenu = nil;
-	self.currentSessionsViewController = nil;
+	self.sessionsCurrentViewController = nil;
 }
 
 
@@ -207,7 +207,7 @@
 	[arrayEventDays release];
 	[event release];
 	[tableViewMenu release];
-	[currentSessionsViewController release];
+	[sessionsCurrentViewController release];
 	
     [super dealloc];
 }

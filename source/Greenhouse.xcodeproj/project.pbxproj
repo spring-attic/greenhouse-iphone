@@ -73,7 +73,7 @@
 		8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */; };
 		8135A0FA11ED236900F0F2F8 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */; };
 		8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */; };
-		8135A10611ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m */; };
+		8135A10611ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m */; };
 		8138DC2C11F73EF700D7A47F /* EventSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC2B11F73EF700D7A47F /* EventSession.m */; };
 		8138DC2F11F73FED00D7A47F /* WebDataModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC2E11F73FED00D7A47F /* WebDataModelObject.m */; };
 		8138DD2911F7A2CA00D7A47F /* EventSessionDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD2811F7A2CA00D7A47F /* EventSessionDetailsViewController.m */; };
@@ -108,7 +108,7 @@
 		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
 		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
-		81CC60B811EF5FA4002BB755 /* EventCurrentSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */; };
+		81CC60B811EF5FA4002BB755 /* EventSessionsCurrentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81CC60B711EF5FA4002BB755 /* EventSessionsCurrentViewController.xib */; };
 		81D4A45111C30692000A71C3 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Person.m */; };
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
 		81E75EDD11BE048700E6B283 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
@@ -131,6 +131,7 @@
 		81F79F461201E47800743FFF /* UINavigationBar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F79F451201E47800743FFF /* UINavigationBar+CustomStyle.m */; };
 		81F79FD91201FB2600743FFF /* EventSessionsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F79FD81201FB2600743FFF /* EventSessionsMenuViewController.m */; };
 		81F79FDB1202097300743FFF /* EventSessionsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */; };
+		81F7A11E12030D2D00743FFF /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F7A11D12030D2D00743FFF /* EventSessionsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -191,8 +192,8 @@
 		8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
 		8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTweetsViewController.h; sourceTree = "<group>"; };
 		8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTweetsViewController.m; sourceTree = "<group>"; };
-		8135A10411ED5E5300F0F2F8 /* EventCurrentSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventCurrentSessionsViewController.h; sourceTree = "<group>"; };
-		8135A10511ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventCurrentSessionsViewController.m; sourceTree = "<group>"; };
+		8135A10411ED5E5300F0F2F8 /* EventSessionsCurrentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsCurrentViewController.h; sourceTree = "<group>"; };
+		8135A10511ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsCurrentViewController.m; sourceTree = "<group>"; };
 		8138DC2A11F73EF700D7A47F /* EventSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSession.h; sourceTree = "<group>"; };
 		8138DC2B11F73EF700D7A47F /* EventSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSession.m; sourceTree = "<group>"; };
 		8138DC2D11F73FED00D7A47F /* WebDataModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDataModelObject.h; sourceTree = "<group>"; };
@@ -250,7 +251,7 @@
 		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		81CC605611EF41E5002BB755 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
-		81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCurrentSessionsViewController.xib; sourceTree = "<group>"; };
+		81CC60B711EF5FA4002BB755 /* EventSessionsCurrentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsCurrentViewController.xib; sourceTree = "<group>"; };
 		81D4A44F11C30692000A71C3 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		81D4A45011C30692000A71C3 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
@@ -294,6 +295,8 @@
 		81F79FD71201FB2600743FFF /* EventSessionsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsMenuViewController.h; sourceTree = "<group>"; };
 		81F79FD81201FB2600743FFF /* EventSessionsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsMenuViewController.m; sourceTree = "<group>"; };
 		81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsMenuViewController.xib; sourceTree = "<group>"; };
+		81F7A11C12030D2D00743FFF /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
+		81F7A11D12030D2D00743FFF /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Greenhouse-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -473,8 +476,10 @@
 				8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */,
 				81F79FD71201FB2600743FFF /* EventSessionsMenuViewController.h */,
 				81F79FD81201FB2600743FFF /* EventSessionsMenuViewController.m */,
-				8135A10411ED5E5300F0F2F8 /* EventCurrentSessionsViewController.h */,
-				8135A10511ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m */,
+				8135A10411ED5E5300F0F2F8 /* EventSessionsCurrentViewController.h */,
+				8135A10511ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m */,
+				81F7A11C12030D2D00743FFF /* EventSessionsViewController.h */,
+				81F7A11D12030D2D00743FFF /* EventSessionsViewController.m */,
 				8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */,
 				8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */,
 				8138DD2711F7A2CA00D7A47F /* EventSessionDetailsViewController.h */,
@@ -504,7 +509,7 @@
 				8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */,
 				819E442111FF1EF400DBC0BB /* EventMapViewController.xib */,
 				81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */,
-				81CC60B711EF5FA4002BB755 /* EventCurrentSessionsViewController.xib */,
+				81CC60B711EF5FA4002BB755 /* EventSessionsCurrentViewController.xib */,
 				8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */,
 				81275C2211FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib */,
 				8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */,
@@ -830,7 +835,7 @@
 				8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */,
 				8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */,
 				8135A0FA11ED236900F0F2F8 /* TweetsViewController.xib in Resources */,
-				81CC60B811EF5FA4002BB755 /* EventCurrentSessionsViewController.xib in Resources */,
+				81CC60B811EF5FA4002BB755 /* EventSessionsCurrentViewController.xib in Resources */,
 				8138DD2B11F7A30E00D7A47F /* EventSessionDetailsViewController.xib in Resources */,
 				8138DD8F11F8836600D7A47F /* EventDescriptionViewController.xib in Resources */,
 				8107AA8411FA28E100A59078 /* NewTweetViewController.xib in Resources */,
@@ -941,7 +946,7 @@
 				8171949311E66AD7007C82B2 /* Event.m in Sources */,
 				8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */,
 				8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */,
-				8135A10611ED5E5300F0F2F8 /* EventCurrentSessionsViewController.m in Sources */,
+				8135A10611ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m in Sources */,
 				81CC605711EF41E5002BB755 /* Tweet.m in Sources */,
 				81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */,
 				8138DC2C11F73EF700D7A47F /* EventSession.m in Sources */,
@@ -960,6 +965,7 @@
 				819E448E11FF2D1000DBC0BB /* EventAnnotation.m in Sources */,
 				81F79F461201E47800743FFF /* UINavigationBar+CustomStyle.m in Sources */,
 				81F79FD91201FB2600743FFF /* EventSessionsMenuViewController.m in Sources */,
+				81F7A11E12030D2D00743FFF /* EventSessionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

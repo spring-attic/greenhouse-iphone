@@ -13,7 +13,7 @@
 @class EventSessionDetailsViewController;
 
 
-@interface EventCurrentSessionsViewController : OAuthViewController<DataViewDelegate, UITableViewDelegate, UITableViewDataSource> 
+@interface EventSessionsCurrentViewController : OAuthViewController<DataViewDelegate, UITableViewDelegate, UITableViewDataSource> 
 {
 
 }

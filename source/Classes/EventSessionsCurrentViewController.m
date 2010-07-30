@@ -6,12 +6,12 @@
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
-#import "EventCurrentSessionsViewController.h"
+#import "EventSessionsCurrentViewController.h"
 #import "EventSessionDetailsViewController.h"
 #import "EventSession.h"
 
 
-@interface EventCurrentSessionsViewController()
+@interface EventSessionsCurrentViewController()
 
 @property (nonatomic, retain) NSMutableArray *arrayCurrentSessions;
 @property (nonatomic, retain) NSMutableArray *arrayUpcomingSessions;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation EventCurrentSessionsViewController
+@implementation EventSessionsCurrentViewController
 
 @synthesize arrayCurrentSessions;
 @synthesize arrayUpcomingSessions;

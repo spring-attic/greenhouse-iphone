@@ -10,7 +10,7 @@
 #import "Event.h"
 
 
-@class EventCurrentSessionsViewController;
+@class EventSessionsCurrentViewController;
 
 
 @interface EventSessionsMenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -20,6 +20,6 @@
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
-@property (nonatomic, retain) EventCurrentSessionsViewController *currentSessionsViewController;
+@property (nonatomic, retain) EventSessionsCurrentViewController *sessionsCurrentViewController;
 
 @end
