@@ -35,7 +35,7 @@
 			self.endTime = [dictionary localDateWithMillisecondsSince1970ForKey:@"endTime"];
 			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
-			self.isFavorite = NO;
+			self.isFavorite = [dictionary boolForKey:@"favorite"];
 
 			self.leaders = [[NSMutableArray alloc] init];
 			NSArray *array = [dictionary objectForKey:@"leaders"];

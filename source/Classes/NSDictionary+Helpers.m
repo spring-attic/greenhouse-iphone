@@ -30,6 +30,7 @@
 	}
 	@catch (NSException *e) 
 	{
+		DLog(@"%@", [e reason]);
 		s = nil;
 	}
 	@finally 
@@ -57,6 +58,7 @@
 	}
 	@catch (NSException *e) 
 	{
+		DLog(@"%@", [e reason]);
 		s = nil;
 	}
 	@finally 
@@ -84,6 +86,7 @@
 	}
 	@catch (NSException *e) 
 	{
+		DLog(@"%@", [e reason]);
 		i = 0;
 	}
 	@finally 
@@ -111,11 +114,40 @@
 	}
 	@catch (NSException *e) 
 	{
+		DLog(@"%@", [e reason]);
 		d = 0.0f;
 	}
 	@finally 
 	{ 
 		return d;
+	}
+}
+
+- (BOOL)boolForKey:(id)aKey
+{
+	BOOL b;
+	
+	@try 
+	{
+		NSObject *o = [self objectForKey:aKey];
+		
+		if (o == nil || o == [NSNull null])
+		{
+			b = NO;
+		}
+		else 
+		{
+			b = [(NSNumber *)o boolValue];
+		}
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+		b = NO;
+	}
+	@finally 
+	{
+		return b;
 	}
 }
 
@@ -131,6 +163,7 @@
 	}
 	@catch (NSException *e) 
 	{
+		DLog(@"%@", [e reason]);
 		date = nil;
 	}
 	@finally 
