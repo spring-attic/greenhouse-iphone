@@ -139,5 +139,16 @@
 	}
 }
 
+- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey
+{
+	NSDate *date = [self dateWithMillisecondsSince1970ForKey:aKey];
+	
+	NSInteger UTCOffset = [[NSTimeZone timeZoneWithAbbreviation:@"UTC"] secondsFromGMTForDate:date];
+	NSInteger LocalOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:date];
+	NSTimeInterval interval = UTCOffset - LocalOffset;
+	
+	return [NSDate dateWithTimeInterval:interval sinceDate:date];
+}
+
 
 @end

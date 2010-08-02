@@ -30,8 +30,8 @@
 		{
 			self.number = [dictionary integerForKey:@"number"];
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
-			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
-			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
+			self.startTime = [dictionary localDateWithMillisecondsSince1970ForKey:@"startTime"];
+			self.endTime = [dictionary localDateWithMillisecondsSince1970ForKey:@"endTime"];
 			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 

@@ -21,7 +21,7 @@
 		if (dictionary)
 		{
 			self.text = [dictionary stringByReplacingPercentEscapesForKey:@"text" usingEncoding:NSUTF8StringEncoding];
-			self.timestamp = [dictionary dateWithMillisecondsSince1970ForKey:@"timestamp"];
+			self.timestamp = [dictionary localDateWithMillisecondsSince1970ForKey:@"timestamp"];
 		}
 	}
 	

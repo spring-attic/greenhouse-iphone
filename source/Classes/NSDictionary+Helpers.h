@@ -16,5 +16,6 @@
 - (NSInteger)integerForKey:(id)aKey;
 - (double)doubleForKey:(id)aKey;
 - (NSDate *)dateWithMillisecondsSince1970ForKey:(id)aKey;
+- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey;
 
 @end
