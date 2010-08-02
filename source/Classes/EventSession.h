@@ -22,6 +22,7 @@
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, retain) NSMutableArray *leaders;
 @property (nonatomic, copy) NSString *hashtag;
+@property (nonatomic, assign) BOOL isFavorite;
 @property (nonatomic, assign, readonly) NSInteger leaderCount;
 @property (nonatomic, copy, readonly) NSString *leaderDisplay;
 

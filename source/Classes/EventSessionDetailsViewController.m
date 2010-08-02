@@ -9,6 +9,16 @@
 #import "EventSessionDetailsViewController.h"
 #import "EventSessionDescriptionViewController.h"
 #import "EventSessionTweetsViewController.h"
+#import "OAuthManager.h"
+
+
+@interface EventSessionDetailsViewController()
+
+- (void)markSessionAsFavorite;
+- (void)putRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)putRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+
+@end
 
 
 @implementation EventSessionDetailsViewController
@@ -22,6 +32,68 @@
 @synthesize tableViewMenu;
 @synthesize sessionDescriptionViewController;
 @synthesize sessionTweetsViewController;
+
+
+- (void)markSessionAsFavorite
+{	
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, event.eventId, session.number];
+	NSURL *url = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:[OAuthManager sharedInstance].consumer
+																	  token:[OAuthManager sharedInstance].accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[url release];
+	
+	[request setHTTPMethod:@"PUT"];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(putRequest:didFinishWithData:)
+				  didFailSelector:@selector(putRequest:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)putRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	DLog(@"%@", responseBody);
+	[responseBody release];
+}
+
+- (void)putRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
+													   delegate:self 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:@"Sign Out", nil];
+		[alert show];
+		[alert release];		
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"An error occurred while connecting to the server." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];		
+	}
+}
 
 
 #pragma mark -
@@ -68,11 +140,16 @@
 		case 1:
 			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
 			break;
+		case 2:
+			session.isFavorite = !session.isFavorite;
+			[tableView reloadData];
+			[self markSessionAsFavorite];
+			break;
 		default:
 			break;
 	}
 	
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 
@@ -89,6 +166,11 @@
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+	
+	if (indexPath.row == 2)
+	{
+		cell.accessoryType = session.isFavorite ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
 	}
 	
 	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
@@ -121,7 +203,7 @@
 	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", nil];
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
 }
 
 - (void)didReceiveMemoryWarning 
