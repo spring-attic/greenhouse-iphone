@@ -9,6 +9,7 @@
 #import "EventSessionsMenuViewController.h"
 #import "EventSessionsCurrentViewController.h"
 #import "EventSessionsFavoritesViewController.h"
+#import "EventSessionsConferenceFavoritesViewController.h"
 #import "EventSessionsByDayViewController.h"
 
 
@@ -28,6 +29,7 @@
 @synthesize tableViewMenu;
 @synthesize sessionsCurrentViewController;
 @synthesize sessionsFavoritesViewController;
+@synthesize conferenceFavoritesViewController;
 @synthesize sessionsByDayViewController;
 
 
@@ -74,7 +76,8 @@
 				[self.navigationController pushViewController:sessionsFavoritesViewController animated:YES];
 				break;
 			case 2:
-				// conference favorites
+				conferenceFavoritesViewController.event = event;
+				[self.navigationController pushViewController:conferenceFavoritesViewController animated:YES];
 				break;
 			default:
 				break;
@@ -186,6 +189,7 @@
 	
 	self.sessionsCurrentViewController = [[EventSessionsCurrentViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 	self.sessionsFavoritesViewController = [[EventSessionsFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+	self.conferenceFavoritesViewController = [[EventSessionsConferenceFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 	self.sessionsByDayViewController = [[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 }
 
@@ -204,6 +208,7 @@
 	self.tableViewMenu = nil;
 	self.sessionsCurrentViewController = nil;
 	self.sessionsFavoritesViewController = nil;
+	self.conferenceFavoritesViewController = nil;
 	self.sessionsByDayViewController = nil;
 }
 
@@ -219,6 +224,7 @@
 	[tableViewMenu release];
 	[sessionsCurrentViewController release];
 	[sessionsFavoritesViewController release];
+	[conferenceFavoritesViewController release];
 	[sessionsByDayViewController release];
 	
     [super dealloc];

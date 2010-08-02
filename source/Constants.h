@@ -42,6 +42,7 @@
 #define EVENTS_URL								[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/"]
 #define EVENT_SESSIONS_CURRENT_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/today"]
 #define EVENT_SESSIONS_FAVORITES_URL			[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/favorites"]
+#define EVENT_SESSIONS_CONFERENCE_FAVORITES_URL	[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/favorites"]
 #define EVENT_SESSIONS_FAVORITE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/favorite"]
 #define EVENT_SESSIONS_BY_DAY_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%@"]
 #define EVENT_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/tweets"]

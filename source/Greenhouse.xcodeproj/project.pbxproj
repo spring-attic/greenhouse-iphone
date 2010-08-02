@@ -93,6 +93,7 @@
 		817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817194A011E66F6D007C82B2 /* EventsMainViewController.xib */; };
 		8174930C12070884008A9E61 /* EventSessionsFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8174930B12070884008A9E61 /* EventSessionsFavoritesViewController.m */; };
 		817493791207162B008A9E61 /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817493781207162B008A9E61 /* EventSessionsViewController.m */; };
+		8174941A12074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8174941912074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.m */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E441F11FF1EE300DBC0BB /* EventMapViewController.m */; };
 		819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 819E442111FF1EF400DBC0BB /* EventMapViewController.xib */; };
@@ -228,6 +229,8 @@
 		8174930B12070884008A9E61 /* EventSessionsFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsFavoritesViewController.m; sourceTree = "<group>"; };
 		817493771207162B008A9E61 /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
 		817493781207162B008A9E61 /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
+		8174941812074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsConferenceFavoritesViewController.h; sourceTree = "<group>"; };
+		8174941912074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsConferenceFavoritesViewController.m; sourceTree = "<group>"; };
 		8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
 		8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
 		819E441E11FF1EE300DBC0BB /* EventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapViewController.h; sourceTree = "<group>"; };
@@ -487,6 +490,8 @@
 				8135A10511ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m */,
 				8174930A12070884008A9E61 /* EventSessionsFavoritesViewController.h */,
 				8174930B12070884008A9E61 /* EventSessionsFavoritesViewController.m */,
+				8174941812074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.h */,
+				8174941912074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.m */,
 				81F7A11C12030D2D00743FFF /* EventSessionsByDayViewController.h */,
 				81F7A11D12030D2D00743FFF /* EventSessionsByDayViewController.m */,
 				8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */,
@@ -986,6 +991,7 @@
 				81F7A11E12030D2D00743FFF /* EventSessionsByDayViewController.m in Sources */,
 				8174930C12070884008A9E61 /* EventSessionsFavoritesViewController.m in Sources */,
 				817493791207162B008A9E61 /* EventSessionsViewController.m in Sources */,
+				8174941A12074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
