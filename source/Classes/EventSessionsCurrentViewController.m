@@ -7,34 +7,24 @@
 //
 
 #import "EventSessionsCurrentViewController.h"
-#import "EventSessionDetailsViewController.h"
-#import "EventSession.h"
 
 
 @interface EventSessionsCurrentViewController()
 
-@property (nonatomic, retain) NSMutableArray *arrayCurrentSessions;
 @property (nonatomic, retain) NSMutableArray *arrayUpcomingSessions;
-
-- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 
 @implementation EventSessionsCurrentViewController
 
-@synthesize arrayCurrentSessions;
 @synthesize arrayUpcomingSessions;
-@synthesize event;
-@synthesize sessionDetailsViewController;
-@synthesize tableViewSessions;
-
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	if (ticket.didSucceed)
 	{
-		[arrayCurrentSessions removeAllObjects];
+		[self.arraySessions removeAllObjects];
 		[arrayUpcomingSessions removeAllObjects];
 				
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -55,7 +45,7 @@
 				[now compare:session.endTime] == NSOrderedAscending)
 			{
 				// find the sessions that are happening now
-				[arrayCurrentSessions addObject:session];
+				[self.arraySessions addObject:session];
 			}
 			else if ([now compare:session.startTime] == NSOrderedAscending)
 			{
@@ -75,7 +65,7 @@
 			[session release];
 		}
 				
-		[tableViewSessions reloadData];
+		[self.tableViewSessions reloadData];
 	}
 }
 
@@ -85,7 +75,7 @@
 	
 	if (indexPath.section == 0)
 	{
-		session = (EventSession *)[arrayCurrentSessions objectAtIndex:indexPath.row];
+		session = (EventSession *)[self.arraySessions objectAtIndex:indexPath.row];
 	}
 	else if (indexPath.section == 1)
 	{
@@ -106,7 +96,7 @@
 
 - (void)fetchData
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CURRENT_URL, event.eventId];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CURRENT_URL, self.event.eventId];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 	[urlString release];	
 }
@@ -117,9 +107,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	sessionDetailsViewController.event = event;
-	sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
-	[self.navigationController pushViewController:sessionDetailsViewController animated:YES];
+	self.sessionDetailsViewController.event = self.event;
+	self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
+	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
 }
 
 
@@ -159,7 +149,7 @@
 	switch (section) 
 	{
 		case 0:
-			return [arrayCurrentSessions count];
+			return [self.arraySessions count];
 			break;
 		case 1:
 			return [arrayUpcomingSessions count];
@@ -198,9 +188,6 @@
 	
 	self.title = @"Current";
 	
-	self.sessionDetailsViewController = [[EventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
-	
-	self.arrayCurrentSessions = [[NSMutableArray alloc] init];
 	self.arrayUpcomingSessions = [[NSMutableArray alloc] init];
 }
 
@@ -213,11 +200,7 @@
 {
     [super viewDidUnload];
 	
-	self.arrayCurrentSessions = nil;
 	self.arrayUpcomingSessions = nil;
-	self.event = nil;
-	self.sessionDetailsViewController = nil;
-	self.tableViewSessions = nil;
 }
 
 
@@ -226,11 +209,7 @@
 
 - (void)dealloc 
 {
-	[arrayCurrentSessions release];
 	[arrayUpcomingSessions release];
-	[event release];
-	[sessionDetailsViewController release];
-	[tableViewSessions release];
 	
     [super dealloc];
 }

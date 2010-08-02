@@ -7,29 +7,19 @@
 //
 
 #import "EventSessionsByDayViewController.h"
-#import "EventSession.h"
-#import "EventSessionDetailsViewController.h"
 
 
 @interface EventSessionsByDayViewController()
 
-@property (nonatomic, retain) NSMutableArray *arraySessions;
 @property (nonatomic, retain) NSMutableArray *arrayTimes;
-
-- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 
 @implementation EventSessionsByDayViewController
 
-@synthesize arraySessions;
 @synthesize arrayTimes;
-@synthesize event;
 @synthesize eventDate;
-@synthesize tableViewSessions;
-@synthesize sessionDetailsViewController;
-
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
@@ -52,7 +42,7 @@
 			if ([sessionTime compare:session.startTime] == NSOrderedAscending)
 			{
 				arrayBlock = [[NSMutableArray alloc] init];
-				[arraySessions addObject:arrayBlock];
+				[self.arraySessions addObject:arrayBlock];
 				[arrayBlock release];
 				
 				[arrayBlock addObject:session];
@@ -65,13 +55,13 @@
 			sessionTime = session.startTime;
 			
 			NSDate *date = [session.startTime copyWithZone:NULL];
-			[arrayTimes addObject:date];
+			[self.arrayTimes addObject:date];
 			[date release];
 			
 			[session release];
 		}
 		
-		[tableViewSessions reloadData];
+		[self.tableViewSessions reloadData];
 	}
 }
 
@@ -81,7 +71,7 @@
 	
 	@try 
 	{
-		NSArray *array = (NSArray *)[arraySessions objectAtIndex:indexPath.section];
+		NSArray *array = (NSArray *)[self.arraySessions objectAtIndex:indexPath.section];
 		session = (EventSession *)[array objectAtIndex:indexPath.row];
 	}
 	@catch (NSException * e) 
@@ -102,7 +92,7 @@
 - (void)refreshView
 {
 	// clear out any existing data
-	[arraySessions removeAllObjects];
+	[self.arraySessions removeAllObjects];
 	[arrayTimes removeAllObjects];
 	
 	// set the title of the view to the schedule day
@@ -120,7 +110,7 @@
 	[dateFormatter setDateFormat:@"YYYY-MM-d"];
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
 	[dateFormatter release];
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, event.eventId, dateString];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, self.event.eventId, dateString];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 	[urlString release];	
 }
@@ -131,9 +121,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	sessionDetailsViewController.event = event;
-	sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
-	[self.navigationController pushViewController:sessionDetailsViewController animated:YES];
+	self.sessionDetailsViewController.event = self.event;
+	self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
+	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
 }
 
 
@@ -174,7 +164,7 @@
 	
 	@try 
 	{
-		NSArray *array = (NSArray *)[arraySessions objectAtIndex:section];
+		NSArray *array = (NSArray *)[self.arraySessions objectAtIndex:section];
 		rowCount = [array count];
 	}
 	@catch (NSException * e) 
@@ -221,10 +211,7 @@
     [super viewDidLoad];
 	
 	self.title = @"Schedule";
-	
-	self.sessionDetailsViewController = [[EventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
-	
-	self.arraySessions = [[NSMutableArray alloc] init];
+
 	self.arrayTimes = [[NSMutableArray alloc] init];
 }
 
@@ -237,12 +224,8 @@
 {
     [super viewDidUnload];
 	
-	self.arraySessions = nil;
 	self.arrayTimes = nil;
-	self.event = nil;
 	self.eventDate = nil;
-	self.tableViewSessions = nil;
-	self.sessionDetailsViewController = nil;
 }
 
 
@@ -251,12 +234,8 @@
 
 - (void)dealloc 
 {
-	[arraySessions release];
 	[arrayTimes release];
-	[event release];
 	[eventDate release];
-	[tableViewSessions release];
-	[sessionDetailsViewController release];
 	
     [super dealloc];
 }

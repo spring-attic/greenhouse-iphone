@@ -7,19 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Event.h"
+#import "EventSessionsViewController.h"
 
 
-@class EventSessionDetailsViewController;
-
-
-@interface EventSessionsFavoritesViewController : OAuthViewController 
+@interface EventSessionsFavoritesViewController : EventSessionsViewController 
 {
 
 }
-
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
-@property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
 
 @end

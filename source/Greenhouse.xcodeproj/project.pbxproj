@@ -92,6 +92,7 @@
 		8171949311E66AD7007C82B2 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171949211E66AD7007C82B2 /* Event.m */; };
 		817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817194A011E66F6D007C82B2 /* EventsMainViewController.xib */; };
 		8174930C12070884008A9E61 /* EventSessionsFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8174930B12070884008A9E61 /* EventSessionsFavoritesViewController.m */; };
+		817493791207162B008A9E61 /* EventSessionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817493781207162B008A9E61 /* EventSessionsViewController.m */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E441F11FF1EE300DBC0BB /* EventMapViewController.m */; };
 		819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 819E442111FF1EF400DBC0BB /* EventMapViewController.xib */; };
@@ -225,6 +226,8 @@
 		817194A011E66F6D007C82B2 /* EventsMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsMainViewController.xib; sourceTree = "<group>"; };
 		8174930A12070884008A9E61 /* EventSessionsFavoritesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsFavoritesViewController.h; sourceTree = "<group>"; };
 		8174930B12070884008A9E61 /* EventSessionsFavoritesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsFavoritesViewController.m; sourceTree = "<group>"; };
+		817493771207162B008A9E61 /* EventSessionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsViewController.h; sourceTree = "<group>"; };
+		817493781207162B008A9E61 /* EventSessionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsViewController.m; sourceTree = "<group>"; };
 		8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
 		8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
 		819E441E11FF1EE300DBC0BB /* EventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapViewController.h; sourceTree = "<group>"; };
@@ -471,6 +474,7 @@
 		8135A09511ECA64B00F0F2F8 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				8174937A1207165C008A9E61 /* Common */,
 				8171938C11E668DE007C82B2 /* EventsMainViewController.h */,
 				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
 				8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */,
@@ -497,10 +501,6 @@
 				819E441F11FF1EE300DBC0BB /* EventMapViewController.m */,
 				819E448C11FF2D1000DBC0BB /* EventAnnotation.h */,
 				819E448D11FF2D1000DBC0BB /* EventAnnotation.m */,
-				8107AA9611FA2BB000A59078 /* NewTweetViewController.h */,
-				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
-				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
-				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -521,6 +521,19 @@
 				8107AA8311FA28E100A59078 /* NewTweetViewController.xib */,
 			);
 			name = Events;
+			sourceTree = "<group>";
+		};
+		8174937A1207165C008A9E61 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				817493771207162B008A9E61 /* EventSessionsViewController.h */,
+				817493781207162B008A9E61 /* EventSessionsViewController.m */,
+				8107AA9611FA2BB000A59078 /* NewTweetViewController.h */,
+				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
+				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
+				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		8178A8AA11D910FB0084FA66 /* Categories */ = {
@@ -972,6 +985,7 @@
 				81F79FD91201FB2600743FFF /* EventSessionsMenuViewController.m in Sources */,
 				81F7A11E12030D2D00743FFF /* EventSessionsByDayViewController.m in Sources */,
 				8174930C12070884008A9E61 /* EventSessionsFavoritesViewController.m in Sources */,
+				817493791207162B008A9E61 /* EventSessionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
