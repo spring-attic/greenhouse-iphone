@@ -106,7 +106,7 @@
 
 - (void)fetchData
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_CURRENT_SESSIONS_URL, event.eventId];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CURRENT_URL, event.eventId];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 	[urlString release];	
 }

@@ -39,7 +39,7 @@
 		labelLeader.text = session.leaderDisplay;
 		
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"h:mma"];
+		[dateFormatter setDateFormat:@"h:mm a"];
 		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
 		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
 		[dateFormatter release];

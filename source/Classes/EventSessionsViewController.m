@@ -14,6 +14,7 @@
 @interface EventSessionsViewController()
 
 @property (nonatomic, retain) NSMutableArray *arraySessions;
+@property (nonatomic, retain) NSMutableArray *arrayTimes;
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
 
@@ -23,6 +24,7 @@
 @implementation EventSessionsViewController
 
 @synthesize arraySessions;
+@synthesize arrayTimes;
 @synthesize event;
 @synthesize eventDate;
 @synthesize tableViewSessions;
@@ -33,18 +35,39 @@
 {
 	if (ticket.didSucceed)
 	{
-		[arraySessions removeAllObjects];
-
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *array = [responseBody JSONValue];
 		[responseBody release];
 		
 		DLog(@"%@", array);
 		
+		NSMutableArray *arrayBlock = nil;
+		NSDate *sessionTime = [NSDate distantPast];
+		
 		for (NSDictionary *d in array) 
 		{
 			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			[arraySessions addObject:session];
+			
+			// for each time block create an array to hold the sessions for that block
+			if ([sessionTime compare:session.startTime] == NSOrderedAscending)
+			{
+				arrayBlock = [[NSMutableArray alloc] init];
+				[arraySessions addObject:arrayBlock];
+				[arrayBlock release];
+				
+				[arrayBlock addObject:session];
+			}
+			else if ([sessionTime compare:session.startTime] == NSOrderedSame)
+			{
+				[arrayBlock addObject:session];
+			}
+			
+			sessionTime = session.startTime;
+			
+			NSDate *date = [session.startTime copyWithZone:NULL];
+			[arrayTimes addObject:date];
+			[date release];
+			
 			[session release];
 		}
 		
@@ -54,7 +77,22 @@
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
-	return (EventSession *)[arraySessions objectAtIndex:indexPath.row];
+	EventSession *session = nil;
+	
+	@try 
+	{
+		NSArray *array = (NSArray *)[arraySessions objectAtIndex:indexPath.section];
+		session = (EventSession *)[array objectAtIndex:indexPath.row];
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+		session = nil;
+	}
+	@finally 
+	{
+		return session;
+	}
 }
 
 
@@ -63,22 +101,26 @@
 
 - (void)refreshView
 {
+	// clear out any existing data
+	[arraySessions removeAllObjects];
+	[arrayTimes removeAllObjects];
+	
+	// set the title of the view to the schedule day
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"EEEE"];
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
 	[dateFormatter release];
-	
 	self.title = dateString;
 }
 
 - (void)fetchData
 {
+	// request the sessions for the selected day
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"YYYY-MM-d"];
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
 	[dateFormatter release];
-	
-	NSString *urlString = [[NSString alloc] initWithFormat:@"http://127.0.0.1:8080/greenhouse/events/%i/sessions/%@", event.eventId, dateString];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, event.eventId, dateString];
 	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
 	[urlString release];	
 }
@@ -98,10 +140,10 @@
 #pragma mark -
 #pragma mark UITableViewDataSource methods
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//	return 1;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [arrayTimes count];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -128,13 +170,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return [arraySessions count];
+	NSInteger rowCount = 0;
+	
+	@try 
+	{
+		NSArray *array = (NSArray *)[arraySessions objectAtIndex:section];
+		rowCount = [array count];
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+		rowCount = 0;
+	}
+	@finally 
+	{
+		return rowCount;
+	}
 }
 
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-//{
-//
-//}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSString *s = nil;
+	
+	@try 
+	{
+		NSDate *sessionTime = (NSDate *)[arrayTimes objectAtIndex:section];
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"h:mm a"];
+		NSString *dateString = [dateFormatter stringFromDate:sessionTime];
+		[dateFormatter release];
+		s = dateString;		
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+		s = nil;
+	}
+	@finally 
+	{
+		return s;
+	}
+}
 
 
 #pragma mark -
@@ -149,6 +225,7 @@
 	self.sessionDetailsViewController = [[EventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	
 	self.arraySessions = [[NSMutableArray alloc] init];
+	self.arrayTimes = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -161,6 +238,7 @@
     [super viewDidUnload];
 	
 	self.arraySessions = nil;
+	self.arrayTimes = nil;
 	self.event = nil;
 	self.eventDate = nil;
 	self.tableViewSessions = nil;
@@ -174,6 +252,7 @@
 - (void)dealloc 
 {
 	[arraySessions release];
+	[arrayTimes release];
 	[event release];
 	[eventDate release];
 	[tableViewSessions release];
