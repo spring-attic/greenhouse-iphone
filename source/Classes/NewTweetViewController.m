@@ -53,15 +53,11 @@
 
 - (IBAction)actionSend:(id)sender
 {
-//	NSURL *url = [[NSURL alloc] initWithString:EVENT_TWEETS_URL];
-
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:tweetUrl 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-//	[url release];
 	
 	NSString *s = [textViewTweet.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	

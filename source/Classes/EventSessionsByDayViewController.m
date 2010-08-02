@@ -1,17 +1,17 @@
     //
-//  EventSessionsViewController.m
+//  EventSessionsByDayViewController.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/30/10.
 //  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "EventSessionsViewController.h"
+#import "EventSessionsByDayViewController.h"
 #import "EventSession.h"
 #import "EventSessionDetailsViewController.h"
 
 
-@interface EventSessionsViewController()
+@interface EventSessionsByDayViewController()
 
 @property (nonatomic, retain) NSMutableArray *arraySessions;
 @property (nonatomic, retain) NSMutableArray *arrayTimes;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation EventSessionsViewController
+@implementation EventSessionsByDayViewController
 
 @synthesize arraySessions;
 @synthesize arrayTimes;

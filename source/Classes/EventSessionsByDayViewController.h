@@ -1,5 +1,5 @@
 //
-//  EventSessionsViewController.h
+//  EventSessionsByDayViewController.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 7/30/10.
@@ -12,7 +12,7 @@
 
 @class EventSessionDetailsViewController;
 
-@interface EventSessionsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource>
+@interface EventSessionsByDayViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource>
 {
 
 }

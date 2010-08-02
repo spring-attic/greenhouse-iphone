@@ -8,7 +8,8 @@
 
 #import "EventSessionsMenuViewController.h"
 #import "EventSessionsCurrentViewController.h"
-#import "EventSessionsViewController.h"
+#import "EventSessionsFavoritesViewController.h"
+#import "EventSessionsByDayViewController.h"
 
 
 @interface EventSessionsMenuViewController()
@@ -26,17 +27,15 @@
 @synthesize event;
 @synthesize tableViewMenu;
 @synthesize sessionsCurrentViewController;
-@synthesize sessionsViewController;
+@synthesize sessionsFavoritesViewController;
+@synthesize sessionsByDayViewController;
 
 
 #pragma mark -
 #pragma mark DataViewDelegate methods
 
 - (void)refreshView
-{	
-	sessionsCurrentViewController.event = event;
-	sessionsViewController.event = event;
-	
+{
 	[arrayEventDates removeAllObjects];
 	
 	NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
@@ -62,15 +61,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.section == 0 && indexPath.row == 0)
+	if (indexPath.section == 0)
 	{
 		switch (indexPath.row) 
 		{
 			case 0:
+				sessionsCurrentViewController.event = event;
 				[self.navigationController pushViewController:sessionsCurrentViewController animated:YES];
 				break;
 			case 1:
-				// favorites
+				sessionsFavoritesViewController.event = event;
+				[self.navigationController pushViewController:sessionsFavoritesViewController animated:YES];
 				break;
 			case 2:
 				// conference favorites
@@ -81,9 +82,10 @@
 	}
 	else if (indexPath.section == 1)
 	{
+		sessionsByDayViewController.event = event;
 		NSDate *date = (NSDate *)[arrayEventDates objectAtIndex:indexPath.row];
-		sessionsViewController.eventDate = date;
-		[self.navigationController pushViewController:sessionsViewController animated:YES];
+		sessionsByDayViewController.eventDate = date;
+		[self.navigationController pushViewController:sessionsByDayViewController animated:YES];
 	}
 		
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -182,8 +184,9 @@
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Current", @"My Favorites", @"Conference Favorites", nil];
 	self.arrayEventDates = [[NSMutableArray alloc] init];
 	
-	self.sessionsCurrentViewController = [[EventSessionsCurrentViewController alloc] initWithNibName:nil bundle:nil];
-	self.sessionsViewController = [[EventSessionsViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionsCurrentViewController = [[EventSessionsCurrentViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+	self.sessionsFavoritesViewController = [[EventSessionsFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+	self.sessionsByDayViewController = [[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -200,6 +203,8 @@
 	self.event = nil;
 	self.tableViewMenu = nil;
 	self.sessionsCurrentViewController = nil;
+	self.sessionsFavoritesViewController = nil;
+	self.sessionsByDayViewController = nil;
 }
 
 
@@ -213,6 +218,8 @@
 	[event release];
 	[tableViewMenu release];
 	[sessionsCurrentViewController release];
+	[sessionsFavoritesViewController release];
+	[sessionsByDayViewController release];
 	
     [super dealloc];
 }
