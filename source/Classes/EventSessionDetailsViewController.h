@@ -13,6 +13,7 @@
 
 @class EventSessionDescriptionViewController;
 @class EventSessionTweetsViewController;
+@class EventSessionRateViewController;
 
 
 @interface EventSessionDetailsViewController : UIViewController <DataViewDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -29,6 +30,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventSessionDescriptionViewController *sessionDescriptionViewController;
 @property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
+@property (nonatomic, retain) EventSessionRateViewController *sessionRateViewController;
 
 - (void)refreshView;
 - (void)fetchData;

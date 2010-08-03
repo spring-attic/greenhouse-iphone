@@ -27,7 +27,7 @@
 	// must make this assignment for parent class to work correctly
 	self.hashtag = [NSString stringWithFormat:@"%@ %@", event.hashtag, session.hashtag];
 	
-	NSString *urlString = [[NSString alloc] initWithFormat:SESSION_TWEETS_URL, event.eventId, session.number];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_TWEETS_URL, event.eventId, session.number];
 	self.tweetUrl = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
 	

@@ -29,6 +29,7 @@
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
 	#import "UINavigationBar+CustomStyle.h"
+	#import "UIToolbar+CustomStyle.h"
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"

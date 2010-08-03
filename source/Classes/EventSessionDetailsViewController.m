@@ -9,6 +9,7 @@
 #import "EventSessionDetailsViewController.h"
 #import "EventSessionDescriptionViewController.h"
 #import "EventSessionTweetsViewController.h"
+#import "EventSessionRateViewController.h"
 #import "OAuthManager.h"
 
 
@@ -32,6 +33,7 @@
 @synthesize tableViewMenu;
 @synthesize sessionDescriptionViewController;
 @synthesize sessionTweetsViewController;
+@synthesize sessionRateViewController;
 
 
 - (void)markSessionAsFavorite
@@ -103,9 +105,9 @@
 {
 	if (session)
 	{
-		sessionDescriptionViewController.session = session;
-		sessionTweetsViewController.event = event;
-		sessionTweetsViewController.session = session;
+		
+
+
 		
 		labelTitle.text = session.title;
 		labelLeader.text = session.leaderDisplay;
@@ -135,15 +137,23 @@
 	switch (indexPath.row) 
 	{
 		case 0:
+			sessionDescriptionViewController.session = session;
 			[self.navigationController pushViewController:sessionDescriptionViewController animated:YES];
 			break;
 		case 1:
+			sessionTweetsViewController.event = event;
+			sessionTweetsViewController.session = session;
 			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
 			break;
 		case 2:
 			session.isFavorite = !session.isFavorite;
 			[tableView reloadData];
 			[self markSessionAsFavorite];
+			break;
+		case 3:
+			sessionRateViewController.event = event;
+			sessionRateViewController.session = session;
+			[self presentModalViewController:sessionRateViewController animated:YES];
 			break;
 		default:
 			break;
@@ -171,6 +181,10 @@
 	if (indexPath.row == 2)
 	{
 		cell.accessoryType = session.isFavorite ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+	}
+	else if (indexPath.row == 3)
+	{
+		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
 	
 	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
@@ -202,8 +216,9 @@
 	
 	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	self.sessionRateViewController = [[EventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
 	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
+	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate the Session", nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -224,6 +239,7 @@
 	self.tableViewMenu = nil;
 	self.sessionDescriptionViewController = nil;
 	self.sessionTweetsViewController = nil;
+	self.sessionRateViewController = nil;
 }
 
 
@@ -241,6 +257,7 @@
 	[tableViewMenu release];
 	[sessionDescriptionViewController release];
 	[sessionTweetsViewController release];
+	[sessionRateViewController release];
 	
     [super dealloc];
 }

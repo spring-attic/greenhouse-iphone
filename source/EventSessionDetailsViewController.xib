@@ -96,7 +96,7 @@
 					<object class="IBUITableView" id="1048964337">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 107}, {320, 132}}</string>
+						<string key="NSFrame">{{0, 107}, {320, 176}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="224497594">
 							<int key="NSColorSpace">10</int>

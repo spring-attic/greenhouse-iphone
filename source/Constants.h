@@ -46,7 +46,8 @@
 #define EVENT_SESSIONS_FAVORITE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/favorite"]
 #define EVENT_SESSIONS_BY_DAY_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%@"]
 #define EVENT_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/tweets"]
-#define SESSION_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/tweets"]
+#define EVENT_SESSION_TWEETS_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/tweets"]
+#define EVENT_SESSION_RATING_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/rating"]
 
 
 #pragma mark -
