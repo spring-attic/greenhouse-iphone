@@ -129,7 +129,7 @@
 	
 	NSString *putLength = [NSString stringWithFormat:@"%d", [putData length]];
 	
-	[request setHTTPMethod:@"PUT"];
+	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:putLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:putData];
