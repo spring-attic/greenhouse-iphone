@@ -13,7 +13,7 @@
 
 @interface EventMapViewController : UIViewController <DataViewDelegate, MKMapViewDelegate>
 {
-
+	NSMutableData *receivedData;
 }
 
 @property (nonatomic, retain) Event *event;

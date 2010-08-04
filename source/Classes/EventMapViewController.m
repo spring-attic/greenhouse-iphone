@@ -14,8 +14,7 @@
 
 @property (nonatomic, retain) EventAnnotation *eventAnnotation;
 
-- (NSString *)fetchGeocodeResults;
-- (CLLocationCoordinate2D)parseGeocodeResponse:(NSString *)responseBody;
+- (void)fetchGeocodeResults;
 
 @end
 
@@ -26,30 +25,67 @@
 @synthesize event;
 @synthesize mapViewLocation;
 
-
-- (NSString *)fetchGeocodeResults
+- (void)fetchGeocodeResults
 {
 	// See Google for details of the geocoding API
-	// http://code.google.com/apis/maps/documentation/geocoding/#GeocodingRequests
+	// http://code.google.com/apis/maps/documentation/geocoding/#GeocodingRequests	
 	
-    NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps/api/geocode/json?address=%@&sensor=true", event.location];
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_LOCATION_MAP_URL, event.location];
 	NSString *escapedUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	[urlString release];
 	
 	DLog(@"%@", escapedUrlString);
 	
 	NSURL *url = [[NSURL alloc] initWithString:escapedUrlString];
-    NSString *responseBody = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+	NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url
+													 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+												 timeoutInterval:60.0];
 	[url release];
+
+	NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+	[urlRequest release];
 	
-	DLog(@"%@", responseBody);
-	
-	return responseBody;
+	if (urlConnection) 
+	{
+		receivedData = [[NSMutableData data] retain];
+	} 
+	else 
+	{
+		// Inform the user that the connection failed.
+	}
 }
 
-- (CLLocationCoordinate2D)parseGeocodeResponse:(NSString *)responseBody
+
+#pragma mark -
+#pragma mark NSURLConnection delegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
+    [receivedData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    [receivedData appendData:data];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    [connection release];
+    [receivedData release];
+	
+    DLog(@"Connection failed! Error - %@ %@",
+          [error localizedDescription],
+          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+    DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
+	
+	NSString *responseBody = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
 	NSDictionary *geocodeResponse = (NSDictionary *)[responseBody JSONValue];
+	[responseBody release];
 	
 	NSString *status = [geocodeResponse stringForKey:@"status"];
 	NSArray *results = (NSArray *)[geocodeResponse objectForKey:@"results"];
@@ -74,23 +110,11 @@
 	CLLocationCoordinate2D coordinate;
 	coordinate.latitude = latitude;
 	coordinate.longitude = longitude;
-	
-	return coordinate;
-}
-
-
-#pragma mark -
-#pragma mark DataViewDelegate
-
-- (void)refreshView
-{
-	NSString *responseBody = [self fetchGeocodeResults];
-	CLLocationCoordinate2D coordinate = [self parseGeocodeResponse:responseBody];
-	
+		
 	MKCoordinateSpan span;
 	span.latitudeDelta = 0.2f;
 	span.longitudeDelta = 0.2f;
-
+	
 	MKCoordinateRegion region;
 	region.span = span;
 	region.center = coordinate;
@@ -106,7 +130,20 @@
 	
 	[mapViewLocation addAnnotation:eventAnnotation];
 	[mapViewLocation setRegion:region animated:YES];
-	[mapViewLocation regionThatFits:region];	
+	[mapViewLocation regionThatFits:region];
+	
+    // release the connection, and the data object
+    [connection release];
+    [receivedData release];
+}
+
+
+#pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+	[self fetchGeocodeResults];
 }
 
 - (void)fetchData

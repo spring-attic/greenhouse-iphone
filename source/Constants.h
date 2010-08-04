@@ -48,7 +48,7 @@
 #define EVENT_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/tweets"]
 #define EVENT_SESSION_TWEETS_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/tweets"]
 #define EVENT_SESSION_RATING_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/events/%i/sessions/%i/rating"]
-
+#define EVENT_LOCATION_MAP_URL					@"http://maps.google.com/maps/api/geocode/json?address=%@&sensor=true"
 
 #pragma mark -
 #pragma mark Updates
