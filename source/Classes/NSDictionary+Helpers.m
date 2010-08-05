@@ -159,7 +159,8 @@
 	{
 		double milliseconds = [self doubleForKey:aKey];
 		NSTimeInterval unixDate = (milliseconds * .001);
-		date = [NSDate dateWithTimeIntervalSince1970:unixDate];		
+		date = [NSDate dateWithTimeIntervalSince1970:unixDate];
+		DLog(@"%@", date.description);
 	}
 	@catch (NSException *e) 
 	{
@@ -172,16 +173,20 @@
 	}
 }
 
-- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey
-{
-	NSDate *date = [self dateWithMillisecondsSince1970ForKey:aKey];
-	
-	NSInteger UTCOffset = [[NSTimeZone timeZoneWithAbbreviation:@"UTC"] secondsFromGMTForDate:date];
-	NSInteger LocalOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:date];
-	NSTimeInterval interval = UTCOffset - LocalOffset;
-	
-	return [NSDate dateWithTimeInterval:interval sinceDate:date];
-}
+//- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey
+//{
+//	NSDate *date = [self dateWithMillisecondsSince1970ForKey:aKey];
+//	DLog(@"GMT: %@", date.description);
+//	
+//	NSInteger UTCOffset = [[NSTimeZone timeZoneWithAbbreviation:@"GMT"] secondsFromGMTForDate:date];
+//	NSInteger LocalOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:date];
+//	NSTimeInterval interval = UTCOffset - LocalOffset;
+//	
+//	date = [NSDate dateWithTimeInterval:interval sinceDate:date];
+//	DLog(@"Local: %@", date.description);
+//	
+//	return date;
+//}
 
 
 @end

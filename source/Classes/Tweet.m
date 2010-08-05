@@ -19,6 +19,7 @@
 @synthesize userId;
 @synthesize languageCode;
 @synthesize source;
+@synthesize profileImage;
 
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
@@ -30,7 +31,7 @@
 		{
 			self.tweetId = [dictionary integerForKey:@"id"];
 			self.text = [dictionary stringByReplacingPercentEscapesForKey:@"text" usingEncoding:NSUTF8StringEncoding];
-			self.createdAt = [dictionary localDateWithMillisecondsSince1970ForKey:@"createdAt"];
+			self.createdAt = [dictionary dateWithMillisecondsSince1970ForKey:@"createdAt"];
 			self.fromUser = [dictionary stringByReplacingPercentEscapesForKey:@"fromUser" usingEncoding:NSUTF8StringEncoding];
 			self.profileImageUrl = [dictionary stringForKey:@"profileImageUrl"];
 			self.userId = [dictionary integerForKey:@"userId"];
@@ -54,6 +55,7 @@
 	[profileImageUrl release];
 	[languageCode release];
 	[source release];
+	[profileImageUrl release];
 	
 	[super dealloc];
 }

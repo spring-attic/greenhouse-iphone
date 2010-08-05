@@ -23,5 +23,6 @@
 @property (nonatomic, assign) NSInteger userId;
 @property (nonatomic, copy) NSString *languageCode;
 @property (nonatomic, copy) NSString *source;
+@property (nonatomic, retain) UIImage *profileImage;
 
 @end

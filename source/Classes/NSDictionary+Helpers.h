@@ -17,6 +17,6 @@
 - (double)doubleForKey:(id)aKey;
 - (BOOL)boolForKey:(id)aKey;
 - (NSDate *)dateWithMillisecondsSince1970ForKey:(id)aKey;
-- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey;
+//- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey;
 
 @end

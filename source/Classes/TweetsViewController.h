@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TweetProfileImageDownloader.h"
 
 
 @class NewTweetViewController;
 
 
-@interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetProfileImageDownloaderDelegate>
 {
 
 }
@@ -21,5 +22,8 @@
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 @property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;
+
+- (void)profileImageDidLoad:(NSIndexPath *)indexPath;
+
 
 @end

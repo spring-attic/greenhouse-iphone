@@ -98,6 +98,7 @@
 		8174945012075D69008A9E61 /* EventSessionRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8174944F12075D69008A9E61 /* EventSessionRateViewController.xib */; };
 		817494C61207CE3E008A9E61 /* UIToolbar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 817494C51207CE3E008A9E61 /* UIToolbar+CustomStyle.m */; };
 		81749546120853D2008A9E61 /* GreenToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81749545120853D2008A9E61 /* GreenToolbar.m */; };
+		817496741209FE04008A9E61 /* TweetProfileImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E441F11FF1EE300DBC0BB /* EventMapViewController.m */; };
 		819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 819E442111FF1EF400DBC0BB /* EventMapViewController.xib */; };
@@ -242,6 +243,8 @@
 		817494C51207CE3E008A9E61 /* UIToolbar+CustomStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+CustomStyle.m"; sourceTree = "<group>"; };
 		81749544120853D2008A9E61 /* GreenToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenToolbar.h; sourceTree = "<group>"; };
 		81749545120853D2008A9E61 /* GreenToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenToolbar.m; sourceTree = "<group>"; };
+		817496721209FE04008A9E61 /* TweetProfileImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetProfileImageDownloader.h; sourceTree = "<group>"; };
+		817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetProfileImageDownloader.m; sourceTree = "<group>"; };
 		8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
 		8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
 		819E441E11FF1EE300DBC0BB /* EventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapViewController.h; sourceTree = "<group>"; };
@@ -551,6 +554,8 @@
 				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
 				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
 				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
+				817496721209FE04008A9E61 /* TweetProfileImageDownloader.h */,
+				817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -1014,6 +1019,7 @@
 				8174943B120758CB008A9E61 /* EventSessionRateViewController.m in Sources */,
 				817494C61207CE3E008A9E61 /* UIToolbar+CustomStyle.m in Sources */,
 				81749546120853D2008A9E61 /* GreenToolbar.m in Sources */,
+				817496741209FE04008A9E61 /* TweetProfileImageDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

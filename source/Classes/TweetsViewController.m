@@ -6,6 +6,9 @@
 //  Copyright 2010 VMware. All rights reserved.
 //
 
+// Modeled after Apple's LazyTableImages
+// http://developer.apple.com/iphone/library/samplecode/LazyTableImages/Introduction/Intro.html
+
 #import "TweetsViewController.h"
 #import "Tweet.h"
 #import "OAuthManager.h"
@@ -15,8 +18,10 @@
 @interface TweetsViewController()
 
 @property (nonatomic, retain) NSMutableArray *arrayTweets;
+@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 
 - (void)showTwitterForm;
+- (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -24,6 +29,7 @@
 @implementation TweetsViewController
 
 @synthesize arrayTweets;
+@synthesize imageDownloadsInProgress;
 @synthesize tweetUrl;
 @synthesize hashtag;
 @synthesize tableViewTweets;
@@ -33,7 +39,10 @@
 {
 	if (ticket.didSucceed)
 	{
-		[arrayTweets removeAllObjects];
+		self.imageDownloadsInProgress = nil;
+		self.imageDownloadsInProgress = [NSMutableDictionary dictionary];		
+		self.arrayTweets = nil;
+		self.arrayTweets = [[NSMutableArray alloc] init];
 		
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSDictionary *dictionary = [responseBody JSONValue];
@@ -62,6 +71,71 @@
 	[self presentModalViewController:newTweetViewController animated:YES];
 }
 
+- (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath
+{
+    TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    if (profileImageDownloader == nil) 
+    {
+        profileImageDownloader = [[TweetProfileImageDownloader alloc] init];
+        profileImageDownloader.tweet = tweet;
+        profileImageDownloader.indexPathInTableView = indexPath;
+        profileImageDownloader.delegate = self;
+        [imageDownloadsInProgress setObject:profileImageDownloader forKey:indexPath];
+        [profileImageDownloader startDownload];
+        [profileImageDownloader release];   
+    }
+}
+
+// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+- (void)loadImagesForOnscreenRows
+{
+    if ([self.arrayTweets count] > 0)
+    {
+        NSArray *visiblePaths = [self.tableViewTweets indexPathsForVisibleRows];
+        for (NSIndexPath *indexPath in visiblePaths)
+        {
+            Tweet *tweet = [self.arrayTweets objectAtIndex:indexPath.row];
+            
+            if (!tweet.profileImage) // avoid the app icon download if the app already has an icon
+            {
+                [self startImageDownload:tweet forIndexPath:indexPath];
+            }
+        }
+    }
+}
+
+// called by our ImageDownloader when an icon is ready to be displayed
+- (void)profileImageDidLoad:(NSIndexPath *)indexPath
+{
+    TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+	
+    if (profileImageDownloader != nil)
+    {
+        UITableViewCell *cell = [self.tableViewTweets cellForRowAtIndexPath:profileImageDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        cell.imageView.image = profileImageDownloader.tweet.profileImage;
+    }
+}
+
+
+#pragma mark -
+#pragma mark UIScrollViewDelegate methods
+
+// Load images for all onscreen rows when scrolling is finished
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if (!decelerate)
+	{
+        [self loadImagesForOnscreenRows];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self loadImagesForOnscreenRows];
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
@@ -83,6 +157,26 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *cellIdent = @"tweetCell";
+//	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
+    
+    // add a placeholder cell while waiting on table data
+    int tweetCount = [self.arrayTweets count];
+	
+//	if (tweetCount == 0 && indexPath.row == 0)
+//	{
+//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
+//        if (cell == nil)
+//		{
+//            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+//										   reuseIdentifier:PlaceholderCellIdentifier] autorelease];   
+//            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
+//			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        }
+//		
+//		cell.detailTextLabel.text = @"Loading Tweets…";
+//		
+//		return cell;
+//    }
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
 	
@@ -91,16 +185,31 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
-	
-	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
-	
-	NSURL *url =[NSURL URLWithString:tweet.profileImageUrl];
-	NSData *data = [NSData dataWithContentsOfURL:url];
-	UIImage *image = [UIImage imageWithData:data];
-	
-	[cell.textLabel setText:tweet.text];
-	[cell.detailTextLabel setText:tweet.fromUser];
-	[cell.imageView setImage:image];
+		
+	// Leave cells empty if there's no data yet
+    if (tweetCount > 0)
+	{
+        Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
+		
+		[cell.textLabel setText:tweet.text];
+		[cell.detailTextLabel setText:tweet.fromUser];
+		
+        // Only load cached images; defer new downloads until scrolling ends
+        if (!tweet.profileImage)
+        {
+            if (tableView.dragging == NO && tableView.decelerating == NO)
+            {
+                [self startImageDownload:tweet forIndexPath:indexPath];
+            }
+            // if a download is deferred or in progress, return a placeholder image
+            cell.imageView.image = [UIImage imageNamed:@"spring.png"];
+        }
+        else
+        {
+			[cell.imageView setImage:tweet.profileImage];
+        }
+		
+    }	
 	
 	return cell;
 }
@@ -126,16 +235,21 @@
 	self.title = @"Tweets";
 	
 	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
-	self.arrayTweets = [[NSMutableArray alloc] init];
 	
-	UIBarButtonItem *buttonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(showTwitterForm)];
-	self.navigationItem.rightBarButtonItem = buttonItem;
-	[buttonItem release];
+	UIBarButtonItem *buttonItemCompose = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
+																				target:self 
+																				action:@selector(showTwitterForm)];
+	self.navigationItem.rightBarButtonItem = buttonItemCompose;
+	[buttonItemCompose release];
 }
 
 - (void)didReceiveMemoryWarning 
 {
     [super didReceiveMemoryWarning];
+	
+    // terminate all pending download connections
+    NSArray *allDownloads = [self.imageDownloadsInProgress allValues];
+    [allDownloads makeObjectsPerformSelector:@selector(cancelDownload)];
 }
 
 - (void)viewDidUnload 
