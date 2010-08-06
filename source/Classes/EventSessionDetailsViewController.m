@@ -105,10 +105,6 @@
 {
 	if (session)
 	{
-		
-
-
-		
 		labelTitle.text = session.title;
 		labelLeader.text = session.leaderDisplay;
 		
@@ -121,6 +117,8 @@
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
 		labelTime.text = formattedTime;
 		[formattedTime release];
+		
+		[tableViewMenu reloadData];
 	}	
 }
 
