@@ -46,6 +46,7 @@
 	{
 		[arrayEventDates addObject:eventDate];
 		
+		// calculate the next event day by adding 24 hours
 		eventDate = [eventDate dateByAddingTimeInterval:86400];
 	}
 	

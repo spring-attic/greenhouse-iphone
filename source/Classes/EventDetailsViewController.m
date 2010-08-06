@@ -46,14 +46,36 @@
 	eventMapViewController.event = event;
 	
 	labelTitle.text = event.title;
+
+	NSDate *date = [event.startTime dateByAddingTimeInterval:86400];
 	
-	if ([event.startTime compare:event.endTime] == NSOrderedSame)
+	// if start and end time are exactly the same, just display the date
+	if ([event.startTime compare:event.endTime] == NSOrderedSame || 
+		[event.startTime compare:event.endTime] == NSOrderedDescending)
 	{
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
 		labelTime.text = [dateFormatter stringFromDate:event.startTime];
 		[dateFormatter release];
 	}
+	
+	// If start and end time are same day, show the times for the event
+	else if ([event.startTime compare:event.endTime] == NSOrderedAscending &&
+			 [date compare:event.endTime] == NSOrderedDescending)
+	{
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY, h:mm a"];		
+		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
+		[dateFormatter setDateFormat:@"h:mm a"];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];
+		[dateFormatter release];
+		
+		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+		labelTime.text = formattedTime;
+		[formattedTime release];
+	}
+	
+	// if the times are days apart, display the date range for the event
 	else if ([event.startTime compare:event.endTime] == NSOrderedAscending)
 	{
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
