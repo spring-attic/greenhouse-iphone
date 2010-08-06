@@ -10,6 +10,7 @@
 // http://developer.apple.com/iphone/library/samplecode/LazyTableImages/Introduction/Intro.html
 
 #import "TweetsViewController.h"
+#import "TweetTableViewCell.h"
 #import "Tweet.h"
 #import "OAuthManager.h"
 #import "NewTweetViewController.h"
@@ -145,10 +146,30 @@
 //	
 //}
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	return 44.0f;
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	CGFloat height = 58.0f;
+	
+	@try 
+	{
+		if (arrayTweets)
+		{
+			Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
+			
+			CGSize maxSize = CGSizeMake(tableViewTweets.frame.size.width - 63.0f, 1500.0f);
+			CGSize cellSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
+			height = MAX(cellSize.height + 26.0f, 58.0f);
+		}
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+	}
+	@finally 
+	{
+		return height;
+	}
+}
 
 
 #pragma mark -
@@ -157,42 +178,38 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *cellIdent = @"tweetCell";
-//	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
+	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
     
     // add a placeholder cell while waiting on table data
     int tweetCount = [self.arrayTweets count];
 	
-//	if (tweetCount == 0 && indexPath.row == 0)
-//	{
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
-//        if (cell == nil)
-//		{
-//            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
-//										   reuseIdentifier:PlaceholderCellIdentifier] autorelease];   
-//            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
-//			cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        }
-//		
-//		cell.detailTextLabel.text = @"Loading Tweets…";
-//		
-//		return cell;
-//    }
+	if (tweetCount == 0 && indexPath.row == 0)
+	{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
+		
+        if (cell == nil)
+		{
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PlaceholderCellIdentifier] autorelease];
+            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+		
+		cell.detailTextLabel.text = @"Loading Tweets…";
+		
+		return cell;
+    }
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
+	TweetTableViewCell *cell = (TweetTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdent];
 	
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell = [[[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
 	}
 		
 	// Leave cells empty if there's no data yet
     if (tweetCount > 0)
 	{
         Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
-		
-		[cell.textLabel setText:tweet.text];
-		[cell.detailTextLabel setText:tweet.fromUser];
 		
         // Only load cached images; defer new downloads until scrolling ends
         if (!tweet.profileImage)
@@ -202,13 +219,10 @@
                 [self startImageDownload:tweet forIndexPath:indexPath];
             }
             // if a download is deferred or in progress, return a placeholder image
-            cell.imageView.image = [UIImage imageNamed:@"spring.png"];
+            tweet.profileImage = [UIImage imageNamed:@"t_logo-b.png"];
         }
-        else
-        {
-			[cell.imageView setImage:tweet.profileImage];
-        }
-		
+
+		cell.tweet = tweet;
     }	
 	
 	return cell;
@@ -220,8 +234,10 @@
 	{
 		return [arrayTweets count];
 	}
-	
-	return 0;
+	else 
+	{
+		return 1;
+	}
 }
 
 

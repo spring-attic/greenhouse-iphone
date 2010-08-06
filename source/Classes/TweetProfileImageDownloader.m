@@ -9,7 +9,7 @@
 #import "TweetProfileImageDownloader.h"
 #import "Tweet.h"
 
-#define kAppIconHeight 48
+#define kImageHeight 48
 
 
 @implementation TweetProfileImageDownloader
@@ -68,9 +68,9 @@
 	
     UIImage *image = [[UIImage alloc] initWithData:self.receivedData];
     
-    if (image.size.width != kAppIconHeight && image.size.height != kAppIconHeight)
+    if (image.size.width != kImageHeight && image.size.height != kImageHeight)
 	{
-        CGSize itemSize = CGSizeMake(kAppIconHeight, kAppIconHeight);
+        CGSize itemSize = CGSizeMake(kImageHeight, kImageHeight);
 		UIGraphicsBeginImageContext(itemSize);
 		CGRect imageRect = CGRectMake(0.0, 0.0, itemSize.width, itemSize.height);
 		[image drawInRect:imageRect];

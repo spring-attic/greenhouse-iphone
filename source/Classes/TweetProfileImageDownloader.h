@@ -13,7 +13,11 @@
 @class RootViewController;
 
 
-@protocol TweetProfileImageDownloaderDelegate;
+@protocol TweetProfileImageDownloaderDelegate 
+
+- (void)profileImageDidLoad:(NSIndexPath *)indexPath;
+
+@end
 
 
 @interface TweetProfileImageDownloader : NSObject
@@ -29,12 +33,5 @@
 
 - (void)startDownload;
 - (void)cancelDownload;
-
-@end
-
-
-@protocol TweetProfileImageDownloaderDelegate 
-
-- (void)profileImageDidLoad:(NSIndexPath *)indexPath;
 
 @end
