@@ -35,56 +35,59 @@
 
 - (void)updateRatingButtons:(NSInteger)count
 {
+	UIImage *imageStar = [UIImage imageNamed:@"star.png"];
+	UIImage *imageEmptyStar = [UIImage imageNamed:@"star-empty.png"];
+	
 	switch (count)
 	{
 		case 1:
 			rating = 1;
-			[buttonRating1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating2 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating3 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating4 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating5 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
+			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating2 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating3 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating4 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 2:
 			rating = 2;
-			[buttonRating1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating3 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating4 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating5 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
+			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating3 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating4 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 3:
 			rating = 3;
-			[buttonRating1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating3 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating4 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating5 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
+			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating3 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating4 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 4:
 			rating = 4;
-			[buttonRating1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating3 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating4 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating5 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
+			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating3 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating4 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 5:
 			rating = 5;
-			[buttonRating1 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating2 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating3 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating4 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-			[buttonRating5 setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating3 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating4 setImage:imageStar forState:UIControlStateNormal];
+			[buttonRating5 setImage:imageStar forState:UIControlStateNormal];
 			break;
 		case 0:
 		default:
 			rating = 0;
-			[buttonRating1 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating2 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating3 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating4 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];
-			[buttonRating5 setTitleColor:[UIColor springDarkGreenColor] forState:UIControlStateNormal];			
+			[buttonRating1 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating2 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating3 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating4 setImage:imageEmptyStar forState:UIControlStateNormal];
+			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 	}	
 }

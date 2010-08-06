@@ -19,6 +19,9 @@
 - (void)putRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)putRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
+- (void)updateRatingImages:(double)rating;
+- (void)setRating:(double)rating imageView:(UIImageView *)imageView;
+
 @end
 
 
@@ -30,6 +33,11 @@
 @synthesize labelTitle;
 @synthesize labelLeader;
 @synthesize labelTime;
+@synthesize imageViewRating1;
+@synthesize imageViewRating2;
+@synthesize imageViewRating3;
+@synthesize imageViewRating4;
+@synthesize imageViewRating5;
 @synthesize tableViewMenu;
 @synthesize sessionDescriptionViewController;
 @synthesize sessionTweetsViewController;
@@ -119,8 +127,38 @@
 		[formattedTime release];
 		
 		[tableViewMenu reloadData];
+		
+		[self updateRatingImages:session.rating];
 	}	
 }
+
+- (void)updateRatingImages:(double)rating
+{
+
+	[self setRating:rating imageView:imageViewRating1];
+	[self setRating:rating imageView:imageViewRating2];
+	[self setRating:rating imageView:imageViewRating3];
+	[self setRating:rating imageView:imageViewRating4];
+	[self setRating:rating imageView:imageViewRating5];	
+}
+
+- (void)setRating:(double)rating imageView:(UIImageView *)imageView 
+{
+	NSInteger number = imageView.tag;
+	if (number <= rating)
+	{
+		imageView.image = [UIImage imageNamed:@"star.png"];
+	}
+	else if ((number - 1) < rating && number > rating)
+	{
+		imageView.image = [UIImage imageNamed:@"star-half.png"];
+	}
+	else 
+	{
+		imageView.image = [UIImage imageNamed:@"star-empty.png"];
+	}
+}
+
 
 - (void)fetchData
 {
@@ -234,6 +272,11 @@
 	self.labelTitle = nil;
 	self.labelLeader = nil;
 	self.labelTime = nil;
+	self.imageViewRating1 = nil;
+	self.imageViewRating2 = nil;
+	self.imageViewRating3 = nil;
+	self.imageViewRating4 = nil;
+	self.imageViewRating5 = nil;
 	self.tableViewMenu = nil;
 	self.sessionDescriptionViewController = nil;
 	self.sessionTweetsViewController = nil;
@@ -252,6 +295,11 @@
 	[labelTitle release];
 	[labelLeader release];
 	[labelTime release];
+	[imageViewRating1 release];
+	[imageViewRating2 release];
+	[imageViewRating3 release];
+	[imageViewRating4 release];
+	[imageViewRating5 release];
 	[tableViewMenu release];
 	[sessionDescriptionViewController release];
 	[sessionTweetsViewController release];

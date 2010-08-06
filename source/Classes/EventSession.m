@@ -20,6 +20,7 @@
 @synthesize leaders;
 @synthesize hashtag;
 @synthesize isFavorite;
+@synthesize rating;
 @dynamic leaderCount;
 @dynamic leaderDisplay;
 
@@ -36,6 +37,7 @@
 			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.isFavorite = [dictionary boolForKey:@"favorite"];
+			self.rating = [dictionary doubleForKey:@"rating"];
 
 			self.leaders = [[NSMutableArray alloc] init];
 			NSArray *array = [dictionary objectForKey:@"leaders"];

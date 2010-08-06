@@ -100,6 +100,9 @@
 		81749546120853D2008A9E61 /* GreenToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81749545120853D2008A9E61 /* GreenToolbar.m */; };
 		817496741209FE04008A9E61 /* TweetProfileImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */; };
 		81749882120B8617008A9E61 /* t_logo-b.png in Resources */ = {isa = PBXBuildFile; fileRef = 81749881120B8617008A9E61 /* t_logo-b.png */; };
+		817498AA120BCDB5008A9E61 /* star-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 817498A7120BCDB5008A9E61 /* star-empty.png */; };
+		817498AB120BCDB5008A9E61 /* star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 817498A8120BCDB5008A9E61 /* star-half.png */; };
+		817498AC120BCDB5008A9E61 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 817498A9120BCDB5008A9E61 /* star.png */; };
 		8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E441F11FF1EE300DBC0BB /* EventMapViewController.m */; };
 		819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 819E442111FF1EF400DBC0BB /* EventMapViewController.xib */; };
@@ -247,6 +250,9 @@
 		817496721209FE04008A9E61 /* TweetProfileImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetProfileImageDownloader.h; sourceTree = "<group>"; };
 		817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetProfileImageDownloader.m; sourceTree = "<group>"; };
 		81749881120B8617008A9E61 /* t_logo-b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "t_logo-b.png"; sourceTree = "<group>"; };
+		817498A7120BCDB5008A9E61 /* star-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-empty.png"; sourceTree = "<group>"; };
+		817498A8120BCDB5008A9E61 /* star-half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-half.png"; sourceTree = "<group>"; };
+		817498A9120BCDB5008A9E61 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		8178A8AB11D9113F0084FA66 /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
 		8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
 		819E441E11FF1EE300DBC0BB /* EventMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventMapViewController.h; sourceTree = "<group>"; };
@@ -540,9 +546,9 @@
 				81F7A1A31203541100743FFF /* EventSessionsViewController.xib */,
 				8138DD2A11F7A30E00D7A47F /* EventSessionDetailsViewController.xib */,
 				81275C2211FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib */,
+				8174944F12075D69008A9E61 /* EventSessionRateViewController.xib */,
 				8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */,
 				8107AA8311FA28E100A59078 /* NewTweetViewController.xib */,
-				8174944F12075D69008A9E61 /* EventSessionRateViewController.xib */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -599,6 +605,9 @@
 		81AF1C5B11C7FBB800960E9F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				817498A7120BCDB5008A9E61 /* star-empty.png */,
+				817498A8120BCDB5008A9E61 /* star-half.png */,
+				817498A9120BCDB5008A9E61 /* star.png */,
 				81749881120B8617008A9E61 /* t_logo-b.png */,
 				81275C8711FE996600FF9A80 /* spring.png */,
 				81AF1C5C11C7FBF200960E9F /* spring09_logo.png */,
@@ -895,6 +904,9 @@
 				81F7A1A41203541100743FFF /* EventSessionsViewController.xib in Resources */,
 				8174945012075D69008A9E61 /* EventSessionRateViewController.xib in Resources */,
 				81749882120B8617008A9E61 /* t_logo-b.png in Resources */,
+				817498AA120BCDB5008A9E61 /* star-empty.png in Resources */,
+				817498AB120BCDB5008A9E61 /* star-half.png in Resources */,
+				817498AC120BCDB5008A9E61 /* star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

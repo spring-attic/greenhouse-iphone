@@ -27,6 +27,11 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelTitle;
 @property (nonatomic, retain) IBOutlet UILabel *labelLeader;
 @property (nonatomic, retain) IBOutlet UILabel *labelTime;
+@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating1;
+@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating2;
+@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating3;
+@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating4;
+@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating5;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventSessionDescriptionViewController *sessionDescriptionViewController;
 @property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
