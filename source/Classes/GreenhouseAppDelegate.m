@@ -6,6 +6,7 @@
 //  Copyright VMware, Inc. 2010. All rights reserved.
 //
 
+#import <CoreLocation/CoreLocation.h>
 #import "GreenhouseAppDelegate.h"
 #import "MainViewController.h"
 #import "AuthorizeViewController.h"
@@ -119,6 +120,20 @@
 	}
 	
     [window makeKeyAndVisible];
+	
+    CLLocationManager *manager = [[CLLocationManager alloc] init];
+	
+    if (manager.locationServicesEnabled == NO) 
+	{
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" 
+																		message:@"Greenhouse would like to use your current location but you currently have all location services disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." 
+																	   delegate:nil 
+															  cancelButtonTitle:@"OK" 
+															  otherButtonTitles:nil];
+        [servicesDisabledAlert show];
+        [servicesDisabledAlert release];
+    }
+    [manager release];
 	
 	return YES;
 }

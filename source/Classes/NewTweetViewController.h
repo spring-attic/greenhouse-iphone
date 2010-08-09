@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 
-@interface NewTweetViewController : OAuthViewController <UITextViewDelegate>
+@interface NewTweetViewController : OAuthViewController <UITextViewDelegate, CLLocationManagerDelegate>
 {
 	
 @private
@@ -21,9 +22,15 @@
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCancel;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonSend;
 @property (nonatomic, retain) IBOutlet UITextView *textViewTweet;
-@property (nonatomic, retain) IBOutlet UILabel *labelCount;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonGeotag;
+@property (nonatomic, retain) IBOutlet UISwitch *switchGeotag;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCount;
+@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic, retain) CLLocation *bestEffortLocation;
+
 
 - (IBAction)actionCancel:(id)sender;
 - (IBAction)actionSend:(id)sender;
+- (IBAction)actionGeotag:(id)sender;
 
 @end

@@ -15,6 +15,8 @@
 @interface NewTweetViewController()
 
 - (void)setCount:(NSUInteger)newCount;
+- (void)startUpdatingLocation;
+- (void)stopUpdatingLocation;
 
 @end
 
@@ -26,13 +28,17 @@
 @synthesize barButtonCancel;
 @synthesize barButtonSend;
 @synthesize textViewTweet;
-@synthesize labelCount;
+@synthesize barButtonGeotag;
+@synthesize switchGeotag;
+@synthesize barButtonCount;
+@synthesize locationManager;
+@synthesize bestEffortLocation;
 
 - (void)setCount:(NSUInteger)newCount
 {
 	remainingChars = MAX_TWEET_SIZE - newCount;
 	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
-	labelCount.text = s;
+	barButtonCount.title = s;
 	[s release];
 	
 	if (remainingChars < 0)
@@ -51,6 +57,35 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+- (IBAction)actionGeotag:(id)sender
+{
+	if (self.switchGeotag.on)
+	{
+		[self startUpdatingLocation];
+	}
+	else 
+	{
+		[self stopUpdatingLocation];
+	}
+}
+
+- (void)startUpdatingLocation
+{
+	self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+	locationManager.delegate = self;
+	locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+	[locationManager startUpdatingLocation];
+	
+	// create a timer to stop the locationManager after 45 seconds
+	[self performSelector:@selector(stopUpdatingLocation) withObject:nil afterDelay:45.0];
+}
+
+- (void)stopUpdatingLocation
+{
+	[locationManager stopUpdatingLocation];
+	locationManager.delegate = nil;
+}
+
 - (IBAction)actionSend:(id)sender
 {
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:tweetUrl 
@@ -60,10 +95,18 @@
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
 	NSString *s = [textViewTweet.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	
 	DLog(@"tweet length: %i", s.length);
 	
-	NSString *postParams =[[NSString alloc] initWithFormat:@"status=%@", s];
+	double latitude = 0.0;
+	double longitude = 0.0;
+	
+	if (switchGeotag.on && bestEffortLocation)
+	{
+		latitude = bestEffortLocation.coordinate.latitude;
+		longitude = bestEffortLocation.coordinate.longitude;
+	}
+	
+	NSString *postParams =[[NSString alloc] initWithFormat:@"status=%@&latitude=%f&longitude=%f", s, latitude, longitude];
 	DLog(@"%@", postParams);
 
 	NSString *escapedPostParams = [[postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
@@ -107,13 +150,55 @@
 
 
 #pragma mark -
+#pragma mark CLLocationManagerDelegate methods
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation 
+{
+    NSTimeInterval locationAge = -[newLocation.timestamp timeIntervalSinceNow];
+	
+	// make sure we aren't using an old, cached location
+    if (locationAge > 10.0)
+	{
+		return;
+	}
+	
+    // a negative horizontal accuracy means the location is invalid
+    if (newLocation.horizontalAccuracy < 0)
+	{
+		return;
+	}
+	
+    // test the measurement to see if it is more accurate than the previous measurement
+    if (bestEffortLocation == nil || bestEffortLocation.horizontalAccuracy > newLocation.horizontalAccuracy) 
+	{
+        self.bestEffortLocation = newLocation;
+
+		// stop locating once we get a fix that meets our accuracy requirements
+        if (newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) 
+		{
+			[self stopUpdatingLocation];
+
+            // we can also cancel our previous performSelector:withObject:afterDelay: - it's no longer necessary
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdatingLocation) object:nil];
+        }
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error 
+{
+    if ([error code] != kCLErrorLocationUnknown) 
+	{
+		[self stopUpdatingLocation];
+    }
+}
+
+
+#pragma mark -
 #pragma mark UITextViewDelegate methods
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (void)textViewDidChange:(UITextView *)textView
 {
-	[self setCount:range.location - range.length];
-	
-	return YES;
+	[self setCount:[textView.text length]];
 }
 
 
@@ -131,6 +216,11 @@
 	
 	textViewTweet.text = hashtag;
 	[self setCount:[hashtag length]];
+	
+	if (self.switchGeotag.on)
+	{
+		[self startUpdatingLocation];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -155,7 +245,11 @@
 	self.barButtonCancel = nil;
 	self.barButtonSend = nil;
 	self.textViewTweet = nil;
-	self.labelCount = nil;
+	self.barButtonGeotag = nil;
+	self.switchGeotag = nil;
+	self.barButtonCount = nil;
+	self.locationManager = nil;
+	self.bestEffortLocation = nil;
 }
 
 
@@ -169,7 +263,11 @@
 	[barButtonCancel release];
 	[barButtonSend release];
 	[textViewTweet release];
-	[labelCount release];
+	[barButtonGeotag release];
+	[switchGeotag release];
+	[barButtonCount release];
+	[locationManager release];
+	[bestEffortLocation release];
 	
     [super dealloc];
 }
