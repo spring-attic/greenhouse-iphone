@@ -188,5 +188,24 @@
 //	return date;
 //}
 
+- (NSURL *)urlForKey:(id)aKey
+{
+	NSURL *url;
+	
+	@try 
+	{
+		url = [NSURL URLWithString:[self stringByReplacingPercentEscapesForKey:aKey usingEncoding:NSUTF8StringEncoding]];
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+		url = nil;
+	}
+	@finally 
+	{
+		return url;
+	}
+}
+
 
 @end

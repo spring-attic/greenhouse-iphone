@@ -18,5 +18,6 @@
 - (BOOL)boolForKey:(id)aKey;
 - (NSDate *)dateWithMillisecondsSince1970ForKey:(id)aKey;
 //- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey;
+- (NSURL *)urlForKey:(id)aKey;
 
 @end

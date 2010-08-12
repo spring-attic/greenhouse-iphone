@@ -14,12 +14,10 @@
 
 }
 
-@property (nonatomic, retain) IBOutlet UILabel *labelFirstName;
-@property (nonatomic, retain) IBOutlet UILabel *labelLastName;
+@property (nonatomic, retain) IBOutlet UILabel *labelDisplayName;
+@property (nonatomic, retain) IBOutlet WebImageView *imageViewPicture;
 
 - (IBAction)actionSignOut:(id)sender;
-- (IBAction)actionRefresh:(id)sender;
-
 - (void)refreshView;
 - (void)fetchData;
 

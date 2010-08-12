@@ -8,23 +8,18 @@
 
 #import "ProfileMainViewController.h"
 #import "OAuthManager.h"
-#import "Person.h"
+#import "Profile.h"
 
 
 @implementation ProfileMainViewController
 
-@synthesize labelFirstName;
-@synthesize labelLastName;
+@synthesize labelDisplayName;
+@synthesize imageViewPicture;
 
 - (IBAction)actionSignOut:(id)sender
 {
 	[[OAuthManager sharedInstance] removeAccessToken];
 	[appDelegate showAuthorizeViewController];
-}
-
-- (IBAction)actionRefresh:(id)sender
-{
-	[self fetchData];
 }
 
 - (void)refreshView
@@ -47,12 +42,13 @@
 		
 		DLog(@"%@", dictionary); 
 		
-		Person *person = [[Person alloc] initWithDictionary:dictionary];
+		Profile *profile = [[Profile alloc] initWithDictionary:dictionary];
 		
-		labelFirstName.text = person.firstName;
-		labelLastName.text = person.lastName;
+		labelDisplayName.text = profile.displayName;
+		imageViewPicture.imageUrl = profile.pictureUrl;
+		[imageViewPicture startImageDownload];
 		
-		[person release];
+		[profile release];
 	}
 }
 
@@ -81,8 +77,8 @@
 {
     [super viewDidUnload];
 	
-	self.labelFirstName = nil;
-	self.labelLastName = nil;
+	self.labelDisplayName = nil;
+	self.imageViewPicture = nil;
 }
 
 
@@ -91,8 +87,8 @@
 
 - (void)dealloc 
 {
-	[labelFirstName release];
-	[labelLastName release];
+	[labelDisplayName release];
+	[imageViewPicture release];
 	
     [super dealloc];
 }

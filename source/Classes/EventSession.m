@@ -7,7 +7,7 @@
 //
 
 #import "EventSession.h"
-#import "Person.h"
+#import "EventSessionLeader.h"
 
 
 @implementation EventSession
@@ -43,7 +43,7 @@
 			NSArray *array = [dictionary objectForKey:@"leaders"];
 			for (NSDictionary *d in array) 
 			{
-				Person *leader = [[Person alloc] initWithDictionary:d];
+				EventSessionLeader *leader = [[EventSessionLeader alloc] initWithDictionary:d];
 				[leaders addObject:leader];
 				[leader release];
 			}

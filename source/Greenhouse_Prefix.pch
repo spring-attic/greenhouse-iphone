@@ -28,11 +28,13 @@
 	// Categories
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
+	#import "UITabBar+CustomStyle.h"
 	#import "UINavigationBar+CustomStyle.h"
 	#import "UIToolbar+CustomStyle.h"
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
 	#import "OAuthViewController.h"
+	#import "WebImageView.h"
 
 #endif

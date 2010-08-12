@@ -1,15 +1,15 @@
 //
-//  Person.m
+//  EventSessionLeader.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/11/10.
-//  Copyright 2010 VMware, Inc. All rights reserved.
+//  Created by Roy Clarkson on 8/11/10.
+//  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "Person.h"
+#import "EventSessionLeader.h"
 
 
-@implementation Person
+@implementation EventSessionLeader
 
 @synthesize firstName;
 @synthesize lastName;
@@ -31,7 +31,7 @@
 
 - (NSString *)displayName
 {
-	return [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+	return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
 
 
@@ -40,7 +40,7 @@
 
 - (NSString *)description
 {
-	return [self displayName];
+	return self.displayName;
 }
 
 - (void)dealloc
