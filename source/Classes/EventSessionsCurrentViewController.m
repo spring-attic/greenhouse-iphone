@@ -91,7 +91,9 @@
 
 - (void)refreshView
 {
-	
+	[self.arraySessions removeAllObjects];
+	[arrayUpcomingSessions removeAllObjects];
+	[self.tableViewSessions reloadData];
 }
 
 - (void)fetchData

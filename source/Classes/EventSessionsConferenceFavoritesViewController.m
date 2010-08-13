@@ -59,7 +59,8 @@
 
 - (void)refreshView
 {
-	
+	[self.arraySessions removeAllObjects];
+	[self.tableViewSessions reloadData];
 }
 
 - (void)fetchData

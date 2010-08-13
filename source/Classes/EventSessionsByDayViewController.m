@@ -94,6 +94,7 @@
 	// clear out any existing data
 	[self.arraySessions removeAllObjects];
 	[arrayTimes removeAllObjects];
+	[self.tableViewSessions reloadData];
 	
 	// set the title of the view to the schedule day
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
