@@ -26,6 +26,7 @@
 @property (nonatomic, retain) IBOutlet UITextView *textViewComments;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCancel;
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonSubmit;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCount;
 
 - (IBAction)actionSelectRating:(id)sender;
 - (IBAction)actionCancel:(id)sender;

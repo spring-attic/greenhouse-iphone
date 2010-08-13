@@ -9,6 +9,8 @@
 #import "EventSessionRateViewController.h"
 #import "OAuthManager.h"
 
+#define MAX_MESSAGE_SIZE	500
+
 
 @interface EventSessionRateViewController()
 
@@ -32,6 +34,7 @@
 @synthesize buttonRating4;
 @synthesize buttonRating5;
 @synthesize textViewComments;
+@synthesize barButtonCount;
 
 - (void)updateRatingButtons:(NSInteger)count
 {
@@ -166,11 +169,21 @@
 #pragma mark -
 #pragma mark UITextViewDelegate methods
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+- (void)textViewDidChange:(UITextView *)textView
 {
-//	[self setCount:range.location - range.length];
+	NSInteger remainingChars = MAX_MESSAGE_SIZE - textView.text.length;
+	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
+	barButtonCount.title = s;
+	[s release];
 	
-	return YES;
+	if (remainingChars < 0)
+	{
+		barButtonSubmit.enabled = NO;
+	}
+	else 
+	{
+		barButtonSubmit.enabled = YES;
+	}	
 }
 
 
@@ -217,6 +230,7 @@
 	self.buttonRating4 = nil;
 	self.buttonRating5 = nil;
 	self.textViewComments = nil;
+	self.barButtonCount = nil;
 }
 
 
@@ -235,6 +249,7 @@
 	[buttonRating4 release];
 	[buttonRating5 release];
 	[textViewComments release];
+	[barButtonCount release];
 	
     [super dealloc];
 }
