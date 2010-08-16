@@ -25,5 +25,6 @@
 - (void)refreshView;
 - (void)fetchData;
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)displayLoadingCell;
 
 @end

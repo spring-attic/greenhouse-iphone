@@ -17,10 +17,6 @@
 #pragma mark -
 #pragma mark DataViewDelegate methods
 
-- (void)refreshView
-{
-}
-
 - (void)fetchData;
 {
 	// must make these assignment for parent class to work correctly

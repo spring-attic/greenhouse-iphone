@@ -13,7 +13,7 @@
 @class NewTweetViewController;
 
 
-@interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetProfileImageDownloaderDelegate>
+@interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetProfileImageDownloaderDelegate, DataViewDelegate>
 {
 
 }
@@ -23,7 +23,8 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 @property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;
 
+- (void)refreshView;
+- (void)fetchData;
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath;
-
 
 @end

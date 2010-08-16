@@ -119,6 +119,20 @@
     }
 }
 
+#pragma mark -
+#pragma mark DataViewDelegate methods
+
+- (void)refreshView
+{
+	self.arrayTweets = nil;
+	[tableViewTweets reloadData];
+}
+
+- (void)fetchData
+{
+	
+}
+
 
 #pragma mark -
 #pragma mark UIScrollViewDelegate methods
@@ -143,12 +157,12 @@
 
 //- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//	
+//	TODO: add tweet details
 //}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	CGFloat height = 58.0f;
+	CGFloat height = 44.0f;
 	
 	@try 
 	{

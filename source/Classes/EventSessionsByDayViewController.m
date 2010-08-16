@@ -25,6 +25,9 @@
 {
 	if (ticket.didSucceed)
 	{
+		self.arraySessions = [[NSMutableArray alloc] init];
+		self.arrayTimes = [[NSMutableArray alloc] init];
+		
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *array = [responseBody JSONValue];
 		[responseBody release];
@@ -92,8 +95,8 @@
 - (void)refreshView
 {
 	// clear out any existing data
-	[self.arraySessions removeAllObjects];
-	[arrayTimes removeAllObjects];
+	self.arraySessions = nil;
+	self.arrayTimes = nil;
 	[self.tableViewSessions reloadData];
 	
 	// set the title of the view to the schedule day
@@ -118,64 +121,59 @@
 
 
 #pragma mark -
-#pragma mark UITableViewDelegate methods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	self.sessionDetailsViewController.event = self.event;
-	self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
-	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
-}
-
-
-#pragma mark -
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return [arrayTimes count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	static NSString *cellIdent = @"cell";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
-	
-	if (cell == nil)
-	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	
-	EventSession *session = [self eventSessionForIndexPath:indexPath];
-	
-	if (session)
-	{
-		[cell.textLabel setText:session.title];
-		[cell.detailTextLabel setText:session.leaderDisplay];
-	}
-	
-	return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	NSInteger rowCount = 0;
+	NSInteger numberOfSections;
 	
 	@try 
 	{
-		NSArray *array = (NSArray *)[self.arraySessions objectAtIndex:section];
-		rowCount = [array count];
+		if (arrayTimes)
+		{
+			numberOfSections = [arrayTimes count];
+		}
+		else 
+		{
+			numberOfSections = 1;
+		}
+
 	}
 	@catch (NSException * e) 
 	{
 		DLog(@"%@", [e reason]);
-		rowCount = 0;
+		numberOfSections = 0;
 	}
 	@finally 
 	{
-		return rowCount;
+		return numberOfSections;
+	}
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	NSInteger numberOfRows;
+	
+	@try 
+	{
+		if (self.arraySessions)
+		{
+			NSArray *array = (NSArray *)[self.arraySessions objectAtIndex:section];
+			numberOfRows = [array count];
+		}
+		else 
+		{
+			numberOfRows = 1;
+		}
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+		numberOfRows = 0;
+	}
+	@finally 
+	{
+		return numberOfRows;
 	}
 }
 
@@ -212,8 +210,6 @@
     [super viewDidLoad];
 	
 	self.title = @"Schedule";
-
-	self.arrayTimes = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning 
