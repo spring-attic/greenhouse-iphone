@@ -36,6 +36,8 @@
 
 - (void)startImageDownload
 {
+	DLog(@"%@", imageUrl);
+	
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imageUrl];
     self.urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[request release];
@@ -74,29 +76,14 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
-	
-    UIImage *downloadedImage = [[UIImage alloc] initWithData:self.receivedData];
-    
-    if (downloadedImage.size.width != self.frame.size.width && 
-		downloadedImage.size.height != self.frame.size.height)
-	{
-        CGSize size = CGSizeMake(self.frame.size.width, self.frame.size.height);
-		UIGraphicsBeginImageContext(size);
-		CGRect rect = CGRectMake(0.0, 0.0, size.width, size.height);
-		[downloadedImage drawInRect:rect];
-		self.image = UIGraphicsGetImageFromCurrentImageContext();
-		UIGraphicsEndImageContext();
-    }
-    else
-    {
-        self.image = downloadedImage;
-    }
-    
-    self.receivedData = nil;
-    [downloadedImage release];
-    
     self.urlConnection = nil;
+	
+	DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
+		
+    UIImage *downloadedImage = [[UIImage alloc] initWithData:self.receivedData];
+	self.receivedData = nil;
+	self.image = downloadedImage;
+	[downloadedImage release];    
 }
 
 

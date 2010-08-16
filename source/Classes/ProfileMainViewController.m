@@ -45,7 +45,7 @@
 		Profile *profile = [[Profile alloc] initWithDictionary:dictionary];
 		
 		labelDisplayName.text = profile.displayName;
-		imageViewPicture.imageUrl = profile.pictureUrl;
+		imageViewPicture.imageUrl = profile.largeImageUrl;
 		[imageViewPicture startImageDownload];
 		
 		[profile release];
