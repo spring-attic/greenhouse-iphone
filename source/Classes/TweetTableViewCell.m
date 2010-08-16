@@ -51,7 +51,7 @@
 	self.labelUser.text = aTweet.fromUser;
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"MMM-d h:mm a"];
+	[dateFormatter setDateFormat:@"MMM d h:mm a"];
 	self.labelTime.text = [dateFormatter stringFromDate:aTweet.createdAt];
 	[dateFormatter release];
 	
