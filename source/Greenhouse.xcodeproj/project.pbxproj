@@ -121,6 +121,8 @@
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
 		81D4A45111C30692000A71C3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Profile.m */; };
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
+		81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */; };
+		81DD40B4121B3CAA004BE46A /* TweetDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81DD40B3121B3CAA004BE46A /* TweetDetailsViewController.xib */; };
 		81E61521121329D400451901 /* EventSessionLeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E61520121329D400451901 /* EventSessionLeader.m */; };
 		81E615D41213B7B400451901 /* UITabBar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E615D31213B7B400451901 /* UITabBar+CustomStyle.m */; };
 		81E616011214398700451901 /* WebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E616001214398700451901 /* WebImageView.m */; };
@@ -285,6 +287,9 @@
 		81D4A45011C30692000A71C3 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		81D4A45D11C30945000A71C3 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
+		81DD40B0121B2914004BE46A /* TweetDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
+		81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
+		81DD40B3121B3CAA004BE46A /* TweetDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetDetailsViewController.xib; sourceTree = "<group>"; };
 		81E6151F121329D400451901 /* EventSessionLeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionLeader.h; sourceTree = "<group>"; };
 		81E61520121329D400451901 /* EventSessionLeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionLeader.m; sourceTree = "<group>"; };
 		81E615D21213B7B400451901 /* UITabBar+CustomStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomStyle.h"; sourceTree = "<group>"; };
@@ -556,6 +561,7 @@
 				8174944F12075D69008A9E61 /* EventSessionRateViewController.xib */,
 				8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */,
 				8107AA8311FA28E100A59078 /* NewTweetViewController.xib */,
+				81DD40B3121B3CAA004BE46A /* TweetDetailsViewController.xib */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -569,6 +575,8 @@
 				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
 				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
 				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
+				81DD40B0121B2914004BE46A /* TweetDetailsViewController.h */,
+				81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -916,6 +924,7 @@
 				817498AA120BCDB5008A9E61 /* star-empty.png in Resources */,
 				817498AB120BCDB5008A9E61 /* star-half.png in Resources */,
 				817498AC120BCDB5008A9E61 /* star.png in Resources */,
+				81DD40B4121B3CAA004BE46A /* TweetDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1046,6 +1055,7 @@
 				81E61521121329D400451901 /* EventSessionLeader.m in Sources */,
 				81E615D41213B7B400451901 /* UITabBar+CustomStyle.m in Sources */,
 				81E616011214398700451901 /* WebImageView.m in Sources */,
+				81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1124,6 +1134,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 			};

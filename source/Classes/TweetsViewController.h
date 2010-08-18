@@ -11,6 +11,7 @@
 
 
 @class NewTweetViewController;
+@class TweetDetailsViewController;
 
 
 @interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetProfileImageDownloaderDelegate, DataViewDelegate>
@@ -21,7 +22,8 @@
 @property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
-@property (nonatomic, retain) IBOutlet NewTweetViewController *newTweetViewController;
+@property (nonatomic, retain) NewTweetViewController *newTweetViewController;
+@property (nonatomic, retain) TweetDetailsViewController *tweetDetailsViewController;
 
 - (void)refreshView;
 - (void)fetchData;

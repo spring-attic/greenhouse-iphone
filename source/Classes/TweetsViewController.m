@@ -14,6 +14,7 @@
 #import "Tweet.h"
 #import "OAuthManager.h"
 #import "NewTweetViewController.h"
+#import "TweetDetailsViewController.h"
 
 
 @interface TweetsViewController()
@@ -35,6 +36,7 @@
 @synthesize hashtag;
 @synthesize tableViewTweets;
 @synthesize newTweetViewController;
+@synthesize tweetDetailsViewController;
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
@@ -155,10 +157,12 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	TODO: add tweet details
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
+	tweetDetailsViewController.tweet = tweet;
+	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -265,6 +269,7 @@
 	self.title = @"Tweets";
 	
 	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
+	self.tweetDetailsViewController = [[TweetDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	
 	UIBarButtonItem *buttonItemCompose = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
 																				target:self 
@@ -291,6 +296,7 @@
 	self.hashtag = nil;
     self.tableViewTweets = nil;
 	self.newTweetViewController = nil;
+	self.tweetDetailsViewController = nil;
 }
 
 
@@ -304,6 +310,7 @@
 	[hashtag release];
 	[tableViewTweets release];
 	[newTweetViewController release];
+	[tweetDetailsViewController release];
 	
     [super dealloc];
 }
