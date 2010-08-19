@@ -137,7 +137,9 @@
 }
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{	
+{
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	
 	if (ticket.didSucceed)
 	{
 		[self dismissModalViewControllerAnimated:YES];
@@ -145,7 +147,17 @@
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		DLog(@"%@", responseBody);
 		[responseBody release];
-	}	
+	}
+	else if ([response statusCode] == 412)
+	{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
+															message:@"You have not associated a Twitter account with your Greenhouse profile. Please log in to greenhouse.com to configure your Twitter account." 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
+	}
 }
 
 
