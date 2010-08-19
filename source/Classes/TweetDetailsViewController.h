@@ -10,12 +10,16 @@
 #import "Tweet.h"
 
 
+@class NewTweetViewController;
+
+
 @interface TweetDetailsViewController : UIViewController <DataViewDelegate>
 {
 
 }
 
 @property (nonatomic, retain) Tweet *tweet;
+@property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, retain) IBOutlet UIImageView *imageViewProfile;
 @property (nonatomic, retain) IBOutlet UILabel *labelUser;
 @property (nonatomic, retain) IBOutlet UILabel *labelTime;
@@ -23,6 +27,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonReply;
 @property (nonatomic, retain) IBOutlet UIButton *buttonRetweet;
 @property (nonatomic, retain) IBOutlet UIButton *buttonQuote;
+@property (nonatomic, retain) NewTweetViewController *newTweetViewController;
 
 - (IBAction)actionReply:(id)sender;
 - (IBAction)actionRetweet:(id)sender;

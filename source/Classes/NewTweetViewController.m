@@ -24,7 +24,7 @@
 @implementation NewTweetViewController
 
 @synthesize tweetUrl;
-@synthesize hashtag;
+@synthesize tweetText;
 @synthesize barButtonCancel;
 @synthesize barButtonSend;
 @synthesize textViewTweet;
@@ -214,8 +214,8 @@
 {
 	[super viewWillAppear:animated];
 	
-	textViewTweet.text = hashtag;
-	[self setCount:[hashtag length]];
+	textViewTweet.text = tweetText;
+	[self setCount:[tweetText length]];
 	
 	if (self.switchGeotag.on)
 	{
@@ -241,7 +241,7 @@
     [super viewDidUnload];
 	
 	self.tweetUrl = nil;
-	self.hashtag = nil;
+	self.tweetText = nil;
 	self.barButtonCancel = nil;
 	self.barButtonSend = nil;
 	self.textViewTweet = nil;
@@ -259,7 +259,7 @@
 - (void)dealloc 
 {
 	[tweetUrl release];
-	[hashtag release];
+	[tweetText release];
 	[barButtonCancel release];
 	[barButtonSend release];
 	[textViewTweet release];

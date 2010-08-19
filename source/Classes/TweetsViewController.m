@@ -69,8 +69,7 @@
 - (void)showTwitterForm
 {
 	newTweetViewController.tweetUrl = tweetUrl;
-	newTweetViewController.hashtag = hashtag;
-	
+	newTweetViewController.tweetText = hashtag;
 	[self presentModalViewController:newTweetViewController animated:YES];
 }
 
@@ -89,7 +88,7 @@
     }
 }
 
-// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+// this method is used in case the user scrolled into a set of cells that don't have their profile images yet
 - (void)loadImagesForOnscreenRows
 {
     if ([self.arrayTweets count] > 0)
@@ -99,7 +98,7 @@
         {
             Tweet *tweet = [self.arrayTweets objectAtIndex:indexPath.row];
             
-            if (!tweet.profileImage) // avoid the app icon download if the app already has an icon
+            if (!tweet.profileImage) // avoid the profile image download if it already has an image
             {
                 [self startImageDownload:tweet forIndexPath:indexPath];
             }
@@ -107,7 +106,7 @@
     }
 }
 
-// called by our ImageDownloader when an icon is ready to be displayed
+// called by our ImageDownloader when an image is ready to be displayed
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath
 {
     TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
@@ -161,6 +160,7 @@
 {
 	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
 	tweetDetailsViewController.tweet = tweet;
+	tweetDetailsViewController.tweetUrl = tweetUrl;
 	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
 }
 
@@ -175,8 +175,8 @@
 			Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
 			
 			CGSize maxSize = CGSizeMake(tableViewTweets.frame.size.width - 63.0f, 1500.0f);
-			CGSize cellSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
-			height = MAX(cellSize.height + 26.0f, 58.0f);
+			CGSize textSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
+			height = MAX(textSize.height + 26.0f, 58.0f);
 		}
 	}
 	@catch (NSException * e) 
