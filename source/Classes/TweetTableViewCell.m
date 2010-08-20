@@ -47,7 +47,15 @@
 	[tweet release];
 	tweet = [aTweet retain];
 	
-	self.imageViewProfile.image = aTweet.profileImage;
+	if (aTweet.profileImage)
+	{
+		self.imageViewProfile.image = aTweet.profileImage;
+	}
+	else 
+	{
+		self.imageViewProfile.image = [UIImage imageNamed:@"t_logo-b.png"];
+	}
+
 	self.labelUser.text = aTweet.fromUser;
 	
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

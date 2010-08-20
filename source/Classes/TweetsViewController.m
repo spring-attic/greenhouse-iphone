@@ -76,6 +76,7 @@
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath
 {
     TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+	
     if (profileImageDownloader == nil) 
     {
         profileImageDownloader = [[TweetProfileImageDownloader alloc] init];
@@ -94,6 +95,7 @@
     if ([self.arrayTweets count] > 0)
     {
         NSArray *visiblePaths = [self.tableViewTweets indexPathsForVisibleRows];
+		
         for (NSIndexPath *indexPath in visiblePaths)
         {
             Tweet *tweet = [self.arrayTweets objectAtIndex:indexPath.row];
@@ -236,8 +238,6 @@
             {
                 [self startImageDownload:tweet forIndexPath:indexPath];
             }
-            // if a download is deferred or in progress, return a placeholder image
-            tweet.profileImage = [UIImage imageNamed:@"t_logo-b.png"];
         }
 
 		cell.tweet = tweet;
