@@ -151,7 +151,7 @@
 	else if ([response statusCode] == 412)
 	{
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
-															message:@"You have not associated a Twitter account with your Greenhouse profile. Please log in to greenhouse.com to configure your Twitter account." 
+															message:@"Your account is not connected to Twitter.  Please sign in to greenhouse.springsource.org to connect." 
 														   delegate:nil 
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];

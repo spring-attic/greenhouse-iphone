@@ -15,12 +15,12 @@
 
 }
 
-@property (nonatomic, assign) NSInteger tweetId;
+@property (nonatomic, copy) NSString *tweetId;
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, retain) NSDate *createdAt;
 @property (nonatomic, copy) NSString *fromUser;
 @property (nonatomic, copy) NSString *profileImageUrl;
-@property (nonatomic, assign) NSInteger userId;
+@property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *languageCode;
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, retain) UIImage *profileImage;

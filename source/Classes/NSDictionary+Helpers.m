@@ -25,12 +25,19 @@
 		}
 		else 
 		{
-			s = [NSString stringWithString:(NSString *)o];
+			if ([o isKindOfClass:[NSString class]])
+			{
+				s = (NSString *)o;
+			}			
+			else if ([o isKindOfClass:[NSNumber class]])
+			{
+				s = [(NSNumber *)o stringValue];
+			}
 		}
 	}
 	@catch (NSException *e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		s = nil;
 	}
 	@finally 
@@ -58,7 +65,7 @@
 	}
 	@catch (NSException *e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		s = nil;
 	}
 	@finally 
@@ -86,7 +93,7 @@
 	}
 	@catch (NSException *e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		i = 0;
 	}
 	@finally 
@@ -114,7 +121,7 @@
 	}
 	@catch (NSException *e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		d = 0.0f;
 	}
 	@finally 
@@ -142,7 +149,7 @@
 	}
 	@catch (NSException * e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		b = NO;
 	}
 	@finally 
@@ -164,7 +171,7 @@
 	}
 	@catch (NSException *e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		date = nil;
 	}
 	@finally 
@@ -172,21 +179,6 @@
 		return date;
 	}
 }
-
-//- (NSDate *)localDateWithMillisecondsSince1970ForKey:(id)aKey
-//{
-//	NSDate *date = [self dateWithMillisecondsSince1970ForKey:aKey];
-//	DLog(@"GMT: %@", date.description);
-//	
-//	NSInteger UTCOffset = [[NSTimeZone timeZoneWithAbbreviation:@"GMT"] secondsFromGMTForDate:date];
-//	NSInteger LocalOffset = [[NSTimeZone systemTimeZone] secondsFromGMTForDate:date];
-//	NSTimeInterval interval = UTCOffset - LocalOffset;
-//	
-//	date = [NSDate dateWithTimeInterval:interval sinceDate:date];
-//	DLog(@"Local: %@", date.description);
-//	
-//	return date;
-//}
 
 - (NSURL *)urlForKey:(id)aKey
 {
@@ -198,7 +190,7 @@
 	}
 	@catch (NSException * e) 
 	{
-		DLog(@"%@", [e reason]);
+		DLog(@"Caught %@%@", [e name], [e reason]);
 		url = nil;
 	}
 	@finally 

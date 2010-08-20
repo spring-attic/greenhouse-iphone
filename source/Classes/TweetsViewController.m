@@ -33,6 +33,7 @@
 @synthesize arrayTweets;
 @synthesize imageDownloadsInProgress;
 @synthesize tweetUrl;
+@synthesize retweetUrl;
 @synthesize hashtag;
 @synthesize tableViewTweets;
 @synthesize newTweetViewController;
@@ -163,6 +164,7 @@
 	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
 	tweetDetailsViewController.tweet = tweet;
 	tweetDetailsViewController.tweetUrl = tweetUrl;
+	tweetDetailsViewController.retweetUrl = retweetUrl;
 	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
 }
 
@@ -293,6 +295,7 @@
 	
 	self.arrayTweets = nil;
 	self.tweetUrl = nil;
+	self.retweetUrl = nil;
 	self.hashtag = nil;
     self.tableViewTweets = nil;
 	self.newTweetViewController = nil;
@@ -307,6 +310,7 @@
 {
 	[arrayTweets release];
 	[tweetUrl release];
+	[retweetUrl release];
 	[hashtag release];
 	[tableViewTweets release];
 	[newTweetViewController release];
