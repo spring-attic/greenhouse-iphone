@@ -90,6 +90,31 @@
 	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	CGFloat height = 44.0f;
+	
+	@try 
+	{
+		EventSession *session = [self eventSessionForIndexPath:indexPath];
+		
+		if (session)
+		{
+			CGSize maxSize = CGSizeMake(tableViewSessions.frame.size.width - 40.0f, CGFLOAT_MAX);
+			CGSize textSize = [session.title sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
+			height = MAX(textSize.height + 26.0f, 44.0f);
+		}
+	}
+	@catch (NSException * e) 
+	{
+		DLog(@"%@", [e reason]);
+	}
+	@finally 
+	{
+		return height;
+	}
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDataSource methods
@@ -122,6 +147,9 @@
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		
+		[cell.textLabel setFont:[UIFont boldSystemFontOfSize:16.0f]];
+		[cell.textLabel setNumberOfLines:0];		
 	}
 	
 	EventSession *session = [self eventSessionForIndexPath:indexPath];
@@ -129,7 +157,7 @@
 	if (session)
 	{
 		[cell.textLabel setText:session.title];
-		[cell.detailTextLabel setText:session.leaderDisplay];
+		[cell.detailTextLabel setText:session.leaderDisplay];		
 	}
 	
 	return cell;
