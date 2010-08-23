@@ -59,6 +59,7 @@
 		8107AA6211FA032300A59078 /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA6111FA032300A59078 /* TweetTableViewCell.m */; };
 		8107AA8411FA28E100A59078 /* NewTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8107AA8311FA28E100A59078 /* NewTweetViewController.xib */; };
 		8107AA9811FA2BB000A59078 /* NewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA9711FA2BB000A59078 /* NewTweetViewController.m */; };
+		81137ED71223352E00A45BA2 /* ActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81137ED61223352E00A45BA2 /* ActivityAlertView.m */; };
 		811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
 		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
@@ -185,6 +186,8 @@
 		8107AA8311FA28E100A59078 /* NewTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTweetViewController.xib; sourceTree = "<group>"; };
 		8107AA9611FA2BB000A59078 /* NewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTweetViewController.h; sourceTree = "<group>"; };
 		8107AA9711FA2BB000A59078 /* NewTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTweetViewController.m; sourceTree = "<group>"; };
+		81137ED51223352E00A45BA2 /* ActivityAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityAlertView.h; sourceTree = "<group>"; };
+		81137ED61223352E00A45BA2 /* ActivityAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityAlertView.m; sourceTree = "<group>"; };
 		811BA5CF120C58E40045BB34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		811F5DEF11C6DEFF005BD43E /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8122BCE911D00A9D00315B6F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
@@ -723,6 +726,8 @@
 		81D4A47311C30B52000A71C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				81137ED51223352E00A45BA2 /* ActivityAlertView.h */,
+				81137ED61223352E00A45BA2 /* ActivityAlertView.m */,
 				8107AA6011FA032300A59078 /* TweetTableViewCell.h */,
 				8107AA6111FA032300A59078 /* TweetTableViewCell.m */,
 				81E615FF1214398700451901 /* WebImageView.h */,
@@ -1056,6 +1061,7 @@
 				81E615D41213B7B400451901 /* UITabBar+CustomStyle.m in Sources */,
 				81E616011214398700451901 /* WebImageView.m in Sources */,
 				81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */,
+				81137ED71223352E00A45BA2 /* ActivityAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
