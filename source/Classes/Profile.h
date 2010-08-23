@@ -17,6 +17,8 @@
 
 @property (nonatomic, assign) NSUInteger accountId;
 @property (nonatomic, copy) NSString *displayName;
-@property (nonatomic, retain) NSURL *pictureUrl;
+@property (nonatomic, retain, readonly) NSURL *imageUrl;
+@property (nonatomic, retain, readonly) NSURL *smallImageUrl;
+@property (nonatomic, retain, readonly) NSURL *largeImageUrl;
 
 @end

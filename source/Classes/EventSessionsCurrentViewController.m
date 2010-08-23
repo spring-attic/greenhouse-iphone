@@ -24,8 +24,8 @@
 {
 	if (ticket.didSucceed)
 	{
-		[self.arraySessions removeAllObjects];
-		[arrayUpcomingSessions removeAllObjects];
+		self.arraySessions = [[NSMutableArray alloc] init];
+		self.arrayUpcomingSessions = [[NSMutableArray alloc] init];
 				
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *array = [responseBody JSONValue];
@@ -85,14 +85,22 @@
 	return session;
 }
 
+- (BOOL)displayLoadingCell
+{
+	NSInteger currentCount = [self.arraySessions count];
+	NSInteger upcomingCount = [self.arrayUpcomingSessions count];
+	
+	return (currentCount == 0 && upcomingCount == 0);
+}
+
 
 #pragma mark -
 #pragma mark DataViewDelegate
 
 - (void)refreshView
 {
-	[self.arraySessions removeAllObjects];
-	[arrayUpcomingSessions removeAllObjects];
+	self.arraySessions = nil;
+	self.arrayUpcomingSessions = nil;
 	[self.tableViewSessions reloadData];
 }
 
@@ -105,78 +113,64 @@
 
 
 #pragma mark -
-#pragma mark UITableViewDelegate methods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	self.sessionDetailsViewController.event = self.event;
-	self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
-	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
-}
-
-
-#pragma mark -
 #pragma mark UITableViewDataSource methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 2;
-}
+	if (self.arraySessions && self.arrayUpcomingSessions)
+	{
+		return 2;
+	}
+	else 
+	{
+		return 1;
+	}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	static NSString *cellIdent = @"cell";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
-	
-	if (cell == nil)
-	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	
-	EventSession *session = [self eventSessionForIndexPath:indexPath];
-		
-	if (session)
-	{
-		[cell.textLabel setText:session.title];
-		[cell.detailTextLabel setText:session.leaderDisplay];
-	}
-	
-	return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	switch (section) 
+	if (self.arraySessions && self.arrayUpcomingSessions)
 	{
-		case 0:
-			return [self.arraySessions count];
-			break;
-		case 1:
-			return [arrayUpcomingSessions count];
-			break;
-		default:
-			return 0;
-			break;
+		switch (section) 
+		{
+			case 0:
+				return [self.arraySessions count];
+				break;
+			case 1:
+				return [self.arrayUpcomingSessions count];
+				break;
+			default:
+				return 0;
+				break;
+		}
 	}
-		
-	return 0;
+	else
+	{
+		return 1;
+	}
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	switch (section) 
+	if (self.arraySessions && self.arrayUpcomingSessions)
 	{
-		case 0:
-			return @"Happening Now:";
-			break;
-		case 1:
-			return @"Up Next:";
-			break;
-		default:
-			return @"";
-			break;
+		switch (section) 
+		{
+			case 0:
+				return @"Happening Now:";
+				break;
+			case 1:
+				return @"Up Next:";
+				break;
+			default:
+				return @"";
+				break;
+		}
+	}
+	else
+	{
+		return @"";
 	}
 }
 
@@ -189,8 +183,6 @@
     [super viewDidLoad];
 	
 	self.title = @"Current";
-	
-	self.arrayUpcomingSessions = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning 

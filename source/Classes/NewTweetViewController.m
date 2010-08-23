@@ -24,7 +24,7 @@
 @implementation NewTweetViewController
 
 @synthesize tweetUrl;
-@synthesize hashtag;
+@synthesize tweetText;
 @synthesize barButtonCancel;
 @synthesize barButtonSend;
 @synthesize textViewTweet;
@@ -124,7 +124,9 @@
 }
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{	
+{
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	
 	if (ticket.didSucceed)
 	{
 		[self dismissModalViewControllerAnimated:YES];
@@ -132,7 +134,17 @@
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		DLog(@"%@", responseBody);
 		[responseBody release];
-	}	
+	}
+	else if ([response statusCode] == 412)
+	{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
+															message:@"Your account is not connected to Twitter.  Please sign in to greenhouse.springsource.org to connect." 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
+	}
 }
 
 
@@ -213,8 +225,8 @@
 {
 	[super viewWillAppear:animated];
 	
-	textViewTweet.text = hashtag;
-	[self setCount:[hashtag length]];
+	textViewTweet.text = tweetText;
+	[self setCount:[tweetText length]];
 	
 	if (self.switchGeotag.on)
 	{
@@ -240,7 +252,7 @@
     [super viewDidUnload];
 	
 	self.tweetUrl = nil;
-	self.hashtag = nil;
+	self.tweetText = nil;
 	self.barButtonCancel = nil;
 	self.barButtonSend = nil;
 	self.textViewTweet = nil;
@@ -258,7 +270,7 @@
 - (void)dealloc 
 {
 	[tweetUrl release];
-	[hashtag release];
+	[tweetText release];
 	[barButtonCancel release];
 	[barButtonSend release];
 	[textViewTweet release];

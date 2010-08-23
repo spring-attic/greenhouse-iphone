@@ -105,36 +105,9 @@
 	}
 }
 
-
-#pragma mark -
-#pragma mark DataViewDelegate
-
-- (void)refreshView
-{
-	if (session)
-	{
-		labelTitle.text = session.title;
-		labelLeader.text = session.leaderDisplay;
-		
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"h:mm a"];
-		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
-		[dateFormatter release];
-		
-		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-		[formattedTime release];
-		
-		[tableViewMenu reloadData];
-		
-		[self updateRatingImages:session.rating];
-	}	
-}
-
 - (void)updateRatingImages:(double)rating
 {
-
+	
 	[self setRating:rating imageView:imageViewRating1];
 	[self setRating:rating imageView:imageViewRating2];
 	[self setRating:rating imageView:imageViewRating3];
@@ -159,6 +132,41 @@
 	}
 }
 
+
+#pragma mark -
+#pragma mark DataViewDelegate
+
+- (void)refreshView
+{
+	if (session)
+	{
+		labelTitle.text = session.title;
+		labelLeader.text = session.leaderDisplay;
+		
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"h:mm a"];
+		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
+		[dateFormatter release];
+		
+		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+		labelTime.text = formattedTime;
+		[formattedTime release];
+		
+		if ([session.endTime compare:[NSDate date]] == NSOrderedDescending)
+		{
+			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
+		}
+		else 
+		{
+			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
+		}
+
+		[tableViewMenu reloadData];
+		
+		[self updateRatingImages:session.rating];
+	}	
+}
 
 - (void)fetchData
 {
@@ -253,8 +261,6 @@
 	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	self.sessionRateViewController = [[EventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
-	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
 }
 
 - (void)didReceiveMemoryWarning 

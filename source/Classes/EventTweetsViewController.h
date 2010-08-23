@@ -11,14 +11,11 @@
 #import "Event.h"
 
 
-@interface EventTweetsViewController : TweetsViewController <DataViewDelegate>
+@interface EventTweetsViewController : TweetsViewController
 {
 
 }
 
 @property (nonatomic, retain) Event *event;
-
-- (void)refreshView;
-- (void)fetchData;
 
 @end

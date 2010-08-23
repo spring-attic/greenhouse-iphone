@@ -14,6 +14,7 @@
 #import "Tweet.h"
 #import "OAuthManager.h"
 #import "NewTweetViewController.h"
+#import "TweetDetailsViewController.h"
 
 
 @interface TweetsViewController()
@@ -32,9 +33,11 @@
 @synthesize arrayTweets;
 @synthesize imageDownloadsInProgress;
 @synthesize tweetUrl;
+@synthesize retweetUrl;
 @synthesize hashtag;
 @synthesize tableViewTweets;
 @synthesize newTweetViewController;
+@synthesize tweetDetailsViewController;
 
 - (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
@@ -67,14 +70,14 @@
 - (void)showTwitterForm
 {
 	newTweetViewController.tweetUrl = tweetUrl;
-	newTweetViewController.hashtag = hashtag;
-	
+	newTweetViewController.tweetText = hashtag;
 	[self presentModalViewController:newTweetViewController animated:YES];
 }
 
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath
 {
     TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+	
     if (profileImageDownloader == nil) 
     {
         profileImageDownloader = [[TweetProfileImageDownloader alloc] init];
@@ -87,17 +90,18 @@
     }
 }
 
-// this method is used in case the user scrolled into a set of cells that don't have their app icons yet
+// this method is used in case the user scrolled into a set of cells that don't have their profile images yet
 - (void)loadImagesForOnscreenRows
 {
     if ([self.arrayTweets count] > 0)
     {
         NSArray *visiblePaths = [self.tableViewTweets indexPathsForVisibleRows];
+		
         for (NSIndexPath *indexPath in visiblePaths)
         {
             Tweet *tweet = [self.arrayTweets objectAtIndex:indexPath.row];
             
-            if (!tweet.profileImage) // avoid the app icon download if the app already has an icon
+            if (!tweet.profileImage) // avoid the profile image download if it already has an image
             {
                 [self startImageDownload:tweet forIndexPath:indexPath];
             }
@@ -105,7 +109,7 @@
     }
 }
 
-// called by our ImageDownloader when an icon is ready to be displayed
+// called by our ImageDownloader when an image is ready to be displayed
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath
 {
     TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
@@ -117,6 +121,20 @@
         // Display the newly loaded image
         cell.imageView.image = profileImageDownloader.tweet.profileImage;
     }
+}
+
+#pragma mark -
+#pragma mark DataViewDelegate methods
+
+- (void)refreshView
+{
+	self.arrayTweets = nil;
+	[tableViewTweets reloadData];
+}
+
+- (void)fetchData
+{
+	
 }
 
 
@@ -141,14 +159,18 @@
 #pragma mark -
 #pragma mark UITableViewDelegate methods
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
+	tweetDetailsViewController.tweet = tweet;
+	tweetDetailsViewController.tweetUrl = tweetUrl;
+	tweetDetailsViewController.retweetUrl = retweetUrl;
+	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	CGFloat height = 58.0f;
+	CGFloat height = 44.0f;
 	
 	@try 
 	{
@@ -157,8 +179,8 @@
 			Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
 			
 			CGSize maxSize = CGSizeMake(tableViewTweets.frame.size.width - 63.0f, 1500.0f);
-			CGSize cellSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
-			height = MAX(cellSize.height + 26.0f, 58.0f);
+			CGSize textSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
+			height = MAX(textSize.height + 26.0f, 58.0f);
 		}
 	}
 	@catch (NSException * e) 
@@ -218,8 +240,6 @@
             {
                 [self startImageDownload:tweet forIndexPath:indexPath];
             }
-            // if a download is deferred or in progress, return a placeholder image
-            tweet.profileImage = [UIImage imageNamed:@"t_logo-b.png"];
         }
 
 		cell.tweet = tweet;
@@ -251,6 +271,7 @@
 	self.title = @"Tweets";
 	
 	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
+	self.tweetDetailsViewController = [[TweetDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	
 	UIBarButtonItem *buttonItemCompose = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
 																				target:self 
@@ -274,9 +295,11 @@
 	
 	self.arrayTweets = nil;
 	self.tweetUrl = nil;
+	self.retweetUrl = nil;
 	self.hashtag = nil;
     self.tableViewTweets = nil;
 	self.newTweetViewController = nil;
+	self.tweetDetailsViewController = nil;
 }
 
 
@@ -287,9 +310,11 @@
 {
 	[arrayTweets release];
 	[tweetUrl release];
+	[retweetUrl release];
 	[hashtag release];
 	[tableViewTweets release];
 	[newTweetViewController release];
+	[tweetDetailsViewController release];
 	
     [super dealloc];
 }

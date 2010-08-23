@@ -17,10 +17,6 @@
 #pragma mark -
 #pragma mark DataViewDelegate methods
 
-- (void)refreshView
-{
-}
-
 - (void)fetchData;
 {
 	// must make these assignment for parent class to work correctly
@@ -28,6 +24,10 @@
 
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];
 	self.tweetUrl = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
+	urlString = [[NSString alloc] initWithFormat:EVENT_RETWEET_URL, event.eventId];
+	self.retweetUrl = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
 	
 	[self fetchJSONDataWithURL:self.tweetUrl];

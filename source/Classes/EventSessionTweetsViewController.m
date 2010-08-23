@@ -31,6 +31,10 @@
 	self.tweetUrl = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
 	
+	urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RETWEET_URL, event.eventId, session.number];
+	self.retweetUrl = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
 	[self fetchJSONDataWithURL:self.tweetUrl];
 }
 

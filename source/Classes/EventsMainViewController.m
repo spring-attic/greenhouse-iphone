@@ -30,7 +30,7 @@
 {
 	if (ticket.didSucceed)
 	{
-		[arrayEvents removeAllObjects];
+		self.arrayEvents = [[NSMutableArray alloc] init];
 		
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *array = [responseBody JSONValue];
@@ -57,7 +57,8 @@
 
 - (void)refreshView
 {
-	
+	self.arrayEvents = nil;
+	[tableViewEvents reloadData];
 }
 
 - (void)fetchData
@@ -87,7 +88,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	static NSString *cellIdent = @"updateCell";
+	static NSString *cellIdent = @"cell";
+	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
+    
+    // add a placeholder cell while waiting on table data
+    int count = [self.arrayEvents count];
+	
+	if (count == 0 && indexPath.row == 0)
+	{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:PlaceholderCellIdentifier];
+		
+        if (cell == nil)
+		{
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PlaceholderCellIdentifier] autorelease];
+            cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
+			cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+		
+		cell.detailTextLabel.text = @"Loading Events…";
+		
+		return cell;
+    }	
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
 	
@@ -111,8 +132,10 @@
 	{
 		return [arrayEvents count];
 	}
-	
-	return 0;
+	else 
+	{
+		return 1;
+	}
 }
 
 
@@ -126,7 +149,6 @@
 	self.title = @"Upcoming Events";
 	
 	self.eventDetailsViewController = [[EventDetailsViewController alloc] initWithNibName:nil bundle:nil];
-	self.arrayEvents = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning 
