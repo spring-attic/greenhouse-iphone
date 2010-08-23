@@ -36,19 +36,6 @@
 
 - (void)setCount:(NSUInteger)newCount
 {
-	remainingChars = MAX_TWEET_SIZE - newCount;
-	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
-	barButtonCount.title = s;
-	[s release];
-	
-	if (remainingChars < 0)
-	{
-		barButtonSend.enabled = NO;
-	}
-	else 
-	{
-		barButtonSend.enabled = YES;
-	}
 
 }
 
@@ -198,7 +185,19 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-	[self setCount:[textView.text length]];
+	NSInteger remainingChars = MAX_TWEET_SIZE - textView.text.length;
+	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
+	barButtonCount.title = s;
+	[s release];
+	
+	if (remainingChars < 0)
+	{
+		barButtonSend.enabled = NO;
+	}
+	else 
+	{
+		barButtonSend.enabled = YES;
+	}	
 }
 
 

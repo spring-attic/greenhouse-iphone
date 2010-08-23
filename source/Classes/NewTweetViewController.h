@@ -13,8 +13,6 @@
 @interface NewTweetViewController : OAuthViewController <UITextViewDelegate, CLLocationManagerDelegate>
 {
 	
-@private
-	NSInteger remainingChars;
 }
 
 @property (nonatomic, retain) NSURL *tweetUrl;
