@@ -1130,7 +1130,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1D6058940D05DD3E006BFB54 /* Debug */ = {
+		1D6058940D05DD3E006BFB54 /* Debug [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1144,9 +1144,9 @@
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
-			name = Debug;
+			name = "Debug [localhost]";
 		};
-		1D6058950D05DD3E006BFB54 /* Release */ = {
+		1D6058950D05DD3E006BFB54 /* Release [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1158,9 +1158,9 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release [localhost]";
 		};
-		8104E76511D1606500590E90 /* Debug */ = {
+		8104E76511D1606500590E90 /* Debug [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1187,9 +1187,9 @@
 				PRODUCT_NAME = LogicTests;
 				WRAPPER_EXTENSION = octest;
 			};
-			name = Debug;
+			name = "Debug [localhost]";
 		};
-		8104E76611D1606500590E90 /* Release */ = {
+		8104E76611D1606500590E90 /* Release [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1216,9 +1216,9 @@
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
-			name = Release;
+			name = "Release [localhost]";
 		};
-		8104E7D011D1646D00590E90 /* Debug */ = {
+		8104E7D011D1646D00590E90 /* Debug [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1231,9 +1231,9 @@
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 			};
-			name = Debug;
+			name = "Debug [localhost]";
 		};
-		8104E7D111D1646D00590E90 /* Release */ = {
+		8104E7D111D1646D00590E90 /* Release [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1245,9 +1245,9 @@
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = "Release [localhost]";
 		};
-		8104E7DF11D164AF00590E90 /* Debug */ = {
+		8104E7DF11D164AF00590E90 /* Debug [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1274,9 +1274,9 @@
 				PRODUCT_NAME = GreenhouseTests;
 				WRAPPER_EXTENSION = octest;
 			};
-			name = Debug;
+			name = "Debug [localhost]";
 		};
-		8104E7E011D164AF00590E90 /* Release */ = {
+		8104E7E011D164AF00590E90 /* Release [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1303,37 +1303,465 @@
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
 			};
-			name = Release;
+			name = "Release [localhost]";
 		};
-		C01FCF4F08A954540054247B /* Debug */ = {
+		819CC2F812235EA2005059D1 /* Debug [production] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"PRODUCTION=1",
+					"DEBUG=1",
+				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
 			};
-			name = Debug;
+			name = "Debug [production]";
 		};
-		C01FCF5008A954540054247B /* Release */ = {
+		819CC2F912235EA2005059D1 /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "Greenhouse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = "Debug [production]";
+		};
+		819CC2FA12235EA2005059D1 /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = "Debug [production]";
+		};
+		819CC2FB12235EA2005059D1 /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [production]";
+		};
+		819CC2FC12235EA2005059D1 /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [production]";
+		};
+		819CC2FD12235F1E005059D1 /* Release [production] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
 			};
-			name = Release;
+			name = "Release [production]";
+		};
+		819CC2FE12235F1E005059D1 /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "Greenhouse-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release [production]";
+		};
+		819CC2FF12235F1E005059D1 /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release [production]";
+		};
+		819CC30012235F1E005059D1 /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Release [production]";
+		};
+		819CC30112235F1E005059D1 /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Release [production]";
+		};
+		819CC3061223649E005059D1 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"QA=1",
+					"DEBUG=1",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Debug [qa]";
+		};
+		819CC3071223649E005059D1 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "Greenhouse-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = "Debug [qa]";
+		};
+		819CC3081223649E005059D1 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+			};
+			name = "Debug [qa]";
+		};
+		819CC3091223649E005059D1 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [qa]";
+		};
+		819CC30A1223649E005059D1 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [qa]";
+		};
+		819CC30B122364B0005059D1 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "QA=1";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Release [qa]";
+		};
+		819CC30C122364B0005059D1 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "Greenhouse-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release [qa]";
+		};
+		819CC30D122364B0005059D1 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Release [qa]";
+		};
+		819CC30E122364B0005059D1 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Release [qa]";
+		};
+		819CC30F122364B0005059D1 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Release [qa]";
+		};
+		C01FCF4F08A954540054247B /* Debug [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"LOCALHOST=1",
+					"DEBUG=1",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Debug [localhost]";
+		};
+		C01FCF5008A954540054247B /* Release [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "LOCALHOST=1";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.0;
+			};
+			name = "Release [localhost]";
 		};
 /* End XCBuildConfiguration section */
 
@@ -1341,47 +1769,67 @@
 		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Greenhouse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1D6058940D05DD3E006BFB54 /* Debug */,
-				1D6058950D05DD3E006BFB54 /* Release */,
+				1D6058940D05DD3E006BFB54 /* Debug [localhost] */,
+				819CC3071223649E005059D1 /* Debug [qa] */,
+				819CC2F912235EA2005059D1 /* Debug [production] */,
+				1D6058950D05DD3E006BFB54 /* Release [localhost] */,
+				819CC30C122364B0005059D1 /* Release [qa] */,
+				819CC2FE12235F1E005059D1 /* Release [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release [localhost]";
 		};
 		8104E76711D1606500590E90 /* Build configuration list for PBXNativeTarget "LogicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8104E76511D1606500590E90 /* Debug */,
-				8104E76611D1606500590E90 /* Release */,
+				8104E76511D1606500590E90 /* Debug [localhost] */,
+				819CC3091223649E005059D1 /* Debug [qa] */,
+				819CC2FB12235EA2005059D1 /* Debug [production] */,
+				8104E76611D1606500590E90 /* Release [localhost] */,
+				819CC30E122364B0005059D1 /* Release [qa] */,
+				819CC30012235F1E005059D1 /* Release [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release [localhost]";
 		};
 		8104E7CF11D1646D00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTesting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8104E7D011D1646D00590E90 /* Debug */,
-				8104E7D111D1646D00590E90 /* Release */,
+				8104E7D011D1646D00590E90 /* Debug [localhost] */,
+				819CC3081223649E005059D1 /* Debug [qa] */,
+				819CC2FA12235EA2005059D1 /* Debug [production] */,
+				8104E7D111D1646D00590E90 /* Release [localhost] */,
+				819CC30D122364B0005059D1 /* Release [qa] */,
+				819CC2FF12235F1E005059D1 /* Release [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release [localhost]";
 		};
 		8104E7E111D164AF00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8104E7DF11D164AF00590E90 /* Debug */,
-				8104E7E011D164AF00590E90 /* Release */,
+				8104E7DF11D164AF00590E90 /* Debug [localhost] */,
+				819CC30A1223649E005059D1 /* Debug [qa] */,
+				819CC2FC12235EA2005059D1 /* Debug [production] */,
+				8104E7E011D164AF00590E90 /* Release [localhost] */,
+				819CC30F122364B0005059D1 /* Release [qa] */,
+				819CC30112235F1E005059D1 /* Release [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release [localhost]";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Greenhouse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C01FCF4F08A954540054247B /* Debug */,
-				C01FCF5008A954540054247B /* Release */,
+				C01FCF4F08A954540054247B /* Debug [localhost] */,
+				819CC3061223649E005059D1 /* Debug [qa] */,
+				819CC2F812235EA2005059D1 /* Debug [production] */,
+				C01FCF5008A954540054247B /* Release [localhost] */,
+				819CC30B122364B0005059D1 /* Release [qa] */,
+				819CC2FD12235F1E005059D1 /* Release [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = "Release [localhost]";
 		};
 /* End XCConfigurationList section */
 

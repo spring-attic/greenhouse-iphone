@@ -11,7 +11,20 @@
 #pragma mark -
 #pragma mark Web Service
 
-#define GREENHOUSE_URL							@"http://127.0.0.1:8080/greenhouse"
+
+#if LOCALHOST
+
+	#define GREENHOUSE_URL							@"http://127.0.0.1:8080/greenhouse"
+
+#elif QA
+
+	#define GREENHOUSE_URL							@"http://greenhouse.springsource.org"
+
+#elif PRODUCTION
+
+	#define GREENHOUSE_URL							@"http://greenhouse.springsource.org"
+
+#endif
 
 
 #pragma mark -
