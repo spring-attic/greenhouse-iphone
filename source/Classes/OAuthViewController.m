@@ -62,7 +62,7 @@
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:@"Sign Out", nil];
 		[alert show];
-		[alert release];		
+		[alert release];
 	}
 	else 
 	{
@@ -72,7 +72,7 @@
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];		
+		[alert release];
 	}
 }
 

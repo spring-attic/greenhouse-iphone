@@ -178,7 +178,7 @@
 		{
 			Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
 			
-			CGSize maxSize = CGSizeMake(tableViewTweets.frame.size.width - 63.0f, 1500.0f);
+			CGSize maxSize = CGSizeMake(tableViewTweets.frame.size.width - 63.0f, CGFLOAT_MAX);
 			CGSize textSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
 			height = MAX(textSize.height + 26.0f, 58.0f);
 		}
