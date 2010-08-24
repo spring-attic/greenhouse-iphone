@@ -13,25 +13,7 @@
 
 @synthesize accountId;
 @synthesize displayName;
-@dynamic imageUrl;
-@dynamic largeImageUrl;
-@dynamic smallImageUrl;
-
-
-- (NSURL *)imageUrl
-{
-	return [NSURL URLWithString:[NSString stringWithFormat:MEMBER_PROFILE_PICTURE_URL, accountId]];
-}
-
-- (NSURL *)smallImageUrl
-{
-	return [NSURL URLWithString:[NSString stringWithFormat:MEMBER_PROFILE_SMALL_PICTURE_URL, accountId]];
-}
-
-- (NSURL *)largeImageUrl
-{
-	return [NSURL URLWithString:[NSString stringWithFormat:MEMBER_PROFILE_LARGE_PICTURE_URL, accountId]];
-}
+@synthesize imageUrl;
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -40,7 +22,8 @@
 		if (dictionary)
 		{
 			self.accountId = [dictionary integerForKey:@"accountId"];
-			self.displayName = [dictionary stringByReplacingPercentEscapesForKey:@"displayName" usingEncoding:NSUTF8StringEncoding];			
+			self.displayName = [dictionary stringByReplacingPercentEscapesForKey:@"displayName" usingEncoding:NSUTF8StringEncoding];
+			self.imageUrl = [dictionary urlForKey:@"pictureUrl"];
 		}
 	}
 	
@@ -59,6 +42,7 @@
 - (void)dealloc
 {
 	[displayName release];
+	[imageUrl release];
 	
 	[super dealloc];
 }
