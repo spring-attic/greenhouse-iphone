@@ -24,6 +24,7 @@
 	// Application Settings
 	#import "Constants.h"
 	#import "AppSettings.h"
+	#import "UserSettings.h"
 
 	// Categories
 	#import "NSDictionary+Helpers.h"

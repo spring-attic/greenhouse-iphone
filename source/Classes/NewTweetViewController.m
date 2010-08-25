@@ -46,7 +46,9 @@
 
 - (IBAction)actionGeotag:(id)sender
 {
-	if (self.switchGeotag.on)
+	[[UserSettings sharedInstance] setIncludeLocationInTweet:switchGeotag.on];
+	
+	if ([[UserSettings sharedInstance] includeLocationInTweet])
 	{
 		[self startUpdatingLocation];
 	}
@@ -219,6 +221,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	
+	self.switchGeotag.on = [[UserSettings sharedInstance] includeLocationInTweet];
 }
 				   
 - (void)viewWillAppear:(BOOL)animated
@@ -228,7 +232,7 @@
 	textViewTweet.text = tweetText;
 	[self setCount:[tweetText length]];
 	
-	if (self.switchGeotag.on)
+	if ([[UserSettings sharedInstance] includeLocationInTweet])
 	{
 		[self startUpdatingLocation];
 	}

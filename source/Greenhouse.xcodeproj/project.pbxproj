@@ -108,6 +108,8 @@
 		819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 819E442111FF1EF400DBC0BB /* EventMapViewController.xib */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		819E448E11FF2D1000DBC0BB /* EventAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E448D11FF2D1000DBC0BB /* EventAnnotation.m */; };
+		81A2DBCD12259B16000D58EF /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2DBCC12259B16000D58EF /* UserSettings.m */; };
+		81A2DBDD12259E42000D58EF /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81A2DBDC12259E42000D58EF /* Settings.bundle */; };
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
 		81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */; };
@@ -265,6 +267,9 @@
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		819E448C11FF2D1000DBC0BB /* EventAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventAnnotation.h; sourceTree = "<group>"; };
 		819E448D11FF2D1000DBC0BB /* EventAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAnnotation.m; sourceTree = "<group>"; };
+		81A2DBCB12259B16000D58EF /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
+		81A2DBCC12259B16000D58EF /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
+		81A2DBDC12259E42000D58EF /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
 		81AF1C5C11C7FBF200960E9F /* spring09_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring09_logo.png; sourceTree = "<group>"; };
 		81B94E4D11F0AD2E003B2117 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
@@ -434,6 +439,7 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				811F5DEF11C6DEFF005BD43E /* Constants.h */,
 				8122BEB311D102F300315B6F /* DLog.h */,
+				81A2DBDC12259E42000D58EF /* Settings.bundle */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -710,6 +716,8 @@
 				1D3623250D0F684500981E51 /* GreenhouseAppDelegate.m */,
 				81D4A45C11C30945000A71C3 /* AppSettings.h */,
 				81D4A45D11C30945000A71C3 /* AppSettings.m */,
+				81A2DBCB12259B16000D58EF /* UserSettings.h */,
+				81A2DBCC12259B16000D58EF /* UserSettings.m */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -930,6 +938,7 @@
 				817498AB120BCDB5008A9E61 /* star-half.png in Resources */,
 				817498AC120BCDB5008A9E61 /* star.png in Resources */,
 				81DD40B4121B3CAA004BE46A /* TweetDetailsViewController.xib in Resources */,
+				81A2DBDD12259E42000D58EF /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,6 +1071,7 @@
 				81E616011214398700451901 /* WebImageView.m in Sources */,
 				81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */,
 				81137ED71223352E00A45BA2 /* ActivityAlertView.m in Sources */,
+				81A2DBCD12259B16000D58EF /* UserSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
