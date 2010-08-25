@@ -1305,6 +1305,111 @@
 			};
 			name = "Release [localhost]";
 		};
+		81053A74122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		81053A75122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "Greenhouse-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		81053A76122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
+				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				PRODUCT_NAME = Greenhouse;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		81053A77122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		81053A78122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = GreenhouseTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
 		819CC2F812235EA2005059D1 /* Debug [production] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1775,6 +1880,7 @@
 				1D6058950D05DD3E006BFB54 /* Release [localhost] */,
 				819CC30C122364B0005059D1 /* Release [qa] */,
 				819CC2FE12235F1E005059D1 /* Release [production] */,
+				81053A75122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
@@ -1788,6 +1894,7 @@
 				8104E76611D1606500590E90 /* Release [localhost] */,
 				819CC30E122364B0005059D1 /* Release [qa] */,
 				819CC30012235F1E005059D1 /* Release [production] */,
+				81053A77122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
@@ -1801,6 +1908,7 @@
 				8104E7D111D1646D00590E90 /* Release [localhost] */,
 				819CC30D122364B0005059D1 /* Release [qa] */,
 				819CC2FF12235F1E005059D1 /* Release [production] */,
+				81053A76122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
@@ -1814,6 +1922,7 @@
 				8104E7E011D164AF00590E90 /* Release [localhost] */,
 				819CC30F122364B0005059D1 /* Release [qa] */,
 				819CC30112235F1E005059D1 /* Release [production] */,
+				81053A78122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
@@ -1827,6 +1936,7 @@
 				C01FCF5008A954540054247B /* Release [localhost] */,
 				819CC30B122364B0005059D1 /* Release [qa] */,
 				819CC2FD12235F1E005059D1 /* Release [production] */,
+				81053A74122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
