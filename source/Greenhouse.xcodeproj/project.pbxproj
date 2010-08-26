@@ -41,12 +41,6 @@
 		8104E7BE11D1646D00590E90 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1D11BE0C5800E6B283 /* OAToken.m */; };
 		8104E7BF11D1646D00590E90 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Profile.m */; };
 		8104E7C011D1646D00590E90 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
-		8104E7C111D1646D00590E90 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */; };
-		8104E7C211D1646D00590E90 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6511C679CE00E1659E /* NSString+SBJSON.m */; };
-		8104E7C311D1646D00590E90 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6711C679CE00E1659E /* SBJSON.m */; };
-		8104E7C411D1646D00590E90 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6911C679CE00E1659E /* SBJsonBase.m */; };
-		8104E7C511D1646D00590E90 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6B11C679CE00E1659E /* SBJsonParser.m */; };
-		8104E7C611D1646D00590E90 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6D11C679CE00E1659E /* SBJsonWriter.m */; };
 		8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		8104E7C811D1646D00590E90 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8104E7CA11D1646D00590E90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
@@ -113,12 +107,6 @@
 		81A34A8011BDF47500B12131 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AF1C5C11C7FBF200960E9F /* spring09_logo.png */; };
 		81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */; };
-		81C38A6E11C679CE00E1659E /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */; };
-		81C38A6F11C679CE00E1659E /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6511C679CE00E1659E /* NSString+SBJSON.m */; };
-		81C38A7011C679CE00E1659E /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6711C679CE00E1659E /* SBJSON.m */; };
-		81C38A7111C679CE00E1659E /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6911C679CE00E1659E /* SBJsonBase.m */; };
-		81C38A7211C679CE00E1659E /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6B11C679CE00E1659E /* SBJsonParser.m */; };
-		81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C38A6D11C679CE00E1659E /* SBJsonWriter.m */; };
 		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
 		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
@@ -126,6 +114,7 @@
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
 		81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */; };
 		81DD40B4121B3CAA004BE46A /* TweetDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81DD40B3121B3CAA004BE46A /* TweetDetailsViewController.xib */; };
+		81DD7CC512270A0C00F62D5D /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */; };
 		81E61521121329D400451901 /* EventSessionLeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E61520121329D400451901 /* EventSessionLeader.m */; };
 		81E615D41213B7B400451901 /* UITabBar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E615D31213B7B400451901 /* UITabBar+CustomStyle.m */; };
 		81E616011214398700451901 /* WebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E616001214398700451901 /* WebImageView.m */; };
@@ -274,19 +263,6 @@
 		81AF1C5C11C7FBF200960E9F /* spring09_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring09_logo.png; sourceTree = "<group>"; };
 		81B94E4D11F0AD2E003B2117 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
-		81C38A6111C679CE00E1659E /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
-		81C38A6211C679CE00E1659E /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
-		81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
-		81C38A6411C679CE00E1659E /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
-		81C38A6511C679CE00E1659E /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
-		81C38A6611C679CE00E1659E /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
-		81C38A6711C679CE00E1659E /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
-		81C38A6811C679CE00E1659E /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
-		81C38A6911C679CE00E1659E /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
-		81C38A6A11C679CE00E1659E /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
-		81C38A6B11C679CE00E1659E /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
-		81C38A6C11C679CE00E1659E /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
-		81C38A6D11C679CE00E1659E /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_HelpersTest.h; sourceTree = "<group>"; };
 		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -298,6 +274,7 @@
 		81DD40B0121B2914004BE46A /* TweetDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
 		81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
 		81DD40B3121B3CAA004BE46A /* TweetDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetDetailsViewController.xib; sourceTree = "<group>"; };
+		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = ThirdPartyLibraries/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E6151F121329D400451901 /* EventSessionLeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionLeader.h; sourceTree = "<group>"; };
 		81E61520121329D400451901 /* EventSessionLeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionLeader.m; sourceTree = "<group>"; };
 		81E615D21213B7B400451901 /* UITabBar+CustomStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomStyle.h"; sourceTree = "<group>"; };
@@ -361,6 +338,7 @@
 				81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */,
 				819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */,
 				811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */,
+				81DD7CC512270A0C00F62D5D /* YAJLIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +446,7 @@
 				81E75F3911BE0D5800E6B283 /* Security.framework */,
 				819E443B11FF1FA600DBC0BB /* MapKit.framework */,
 				811BA5CF120C58E40045BB34 /* CoreLocation.framework */,
+				81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -652,26 +631,6 @@
 			name = Common;
 			sourceTree = "<group>";
 		};
-		81C38A6011C679CE00E1659E /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				81C38A6111C679CE00E1659E /* JSON.h */,
-				81C38A6211C679CE00E1659E /* NSObject+SBJSON.h */,
-				81C38A6311C679CE00E1659E /* NSObject+SBJSON.m */,
-				81C38A6411C679CE00E1659E /* NSString+SBJSON.h */,
-				81C38A6511C679CE00E1659E /* NSString+SBJSON.m */,
-				81C38A6611C679CE00E1659E /* SBJSON.h */,
-				81C38A6711C679CE00E1659E /* SBJSON.m */,
-				81C38A6811C679CE00E1659E /* SBJsonBase.h */,
-				81C38A6911C679CE00E1659E /* SBJsonBase.m */,
-				81C38A6A11C679CE00E1659E /* SBJsonParser.h */,
-				81C38A6B11C679CE00E1659E /* SBJsonParser.m */,
-				81C38A6C11C679CE00E1659E /* SBJsonWriter.h */,
-				81C38A6D11C679CE00E1659E /* SBJsonWriter.m */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
 		81D4A44E11C3066D000A71C3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,7 +715,6 @@
 		81E75F0011BE0C5800E6B283 /* ThirdPartyLibraries */ = {
 			isa = PBXGroup;
 			children = (
-				81C38A6011C679CE00E1659E /* JSON */,
 				81E75F0111BE0C5800E6B283 /* OAuthConsumer */,
 			);
 			path = ThirdPartyLibraries;
@@ -1026,12 +984,6 @@
 				81E75F2D11BE0C5800E6B283 /* OAToken.m in Sources */,
 				81D4A45111C30692000A71C3 /* Profile.m in Sources */,
 				81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */,
-				81C38A6E11C679CE00E1659E /* NSObject+SBJSON.m in Sources */,
-				81C38A6F11C679CE00E1659E /* NSString+SBJSON.m in Sources */,
-				81C38A7011C679CE00E1659E /* SBJSON.m in Sources */,
-				81C38A7111C679CE00E1659E /* SBJsonBase.m in Sources */,
-				81C38A7211C679CE00E1659E /* SBJsonParser.m in Sources */,
-				81C38A7311C679CE00E1659E /* SBJsonWriter.m in Sources */,
 				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
 				8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */,
 				8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */,
@@ -1109,12 +1061,6 @@
 				8104E7BE11D1646D00590E90 /* OAToken.m in Sources */,
 				8104E7BF11D1646D00590E90 /* Profile.m in Sources */,
 				8104E7C011D1646D00590E90 /* AppSettings.m in Sources */,
-				8104E7C111D1646D00590E90 /* NSObject+SBJSON.m in Sources */,
-				8104E7C211D1646D00590E90 /* NSString+SBJSON.m in Sources */,
-				8104E7C311D1646D00590E90 /* SBJSON.m in Sources */,
-				8104E7C411D1646D00590E90 /* SBJsonBase.m in Sources */,
-				8104E7C511D1646D00590E90 /* SBJsonParser.m in Sources */,
-				8104E7C611D1646D00590E90 /* SBJsonWriter.m in Sources */,
 				8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */,
 				8104E7C811D1646D00590E90 /* MainViewController.m in Sources */,
 				8171939011E66910007C82B2 /* UpdatesMainViewController.m in Sources */,
@@ -1145,6 +1091,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1161,6 +1111,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
@@ -1326,6 +1280,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -1339,6 +1297,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
@@ -1433,6 +1395,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
@@ -1444,6 +1410,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1539,6 +1509,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
@@ -1550,6 +1524,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
@@ -1644,6 +1622,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
@@ -1655,6 +1637,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1750,6 +1736,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
@@ -1761,6 +1751,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
 				INFOPLIST_FILE = "Greenhouse-Info.plist";
@@ -1855,6 +1849,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;
@@ -1872,6 +1870,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos4.0;

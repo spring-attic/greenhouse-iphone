@@ -84,7 +84,7 @@
     DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
 	
 	NSString *responseBody = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
-	NSDictionary *geocodeResponse = (NSDictionary *)[responseBody JSONValue];
+	NSDictionary *geocodeResponse = (NSDictionary *)[responseBody yajl_JSON];
 	[responseBody release];
 	
 	NSString *status = [geocodeResponse stringForKey:@"status"];

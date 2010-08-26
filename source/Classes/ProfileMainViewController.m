@@ -37,7 +37,7 @@
 	if (ticket.didSucceed)
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSDictionary *dictionary = [responseBody JSONValue];
+		NSDictionary *dictionary = [responseBody yajl_JSON];
 		[responseBody release];
 		
 		DLog(@"%@", dictionary); 

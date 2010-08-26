@@ -36,7 +36,7 @@
 		[arrayUpdates removeAllObjects];
 		
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSArray *array = [responseBody JSONValue];
+		NSArray *array = [responseBody yajl_JSON];
 		[responseBody release];
 		
 		DLog(@"%@", array);

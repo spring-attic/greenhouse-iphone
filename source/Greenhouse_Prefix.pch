@@ -15,7 +15,7 @@
     #import <CoreData/CoreData.h>
 
 	// Third Party Libraries
-	#import "JSON.h"
+	#import <YAJLIOS/YAJLIOS.h>
 	#import "OauthConsumer.h"
 
 	//Debug Logging
