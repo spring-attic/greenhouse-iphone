@@ -45,20 +45,23 @@
                                          returningResponse:&response
                                                      error:&error];
 	
-    if (response == nil || responseData == nil || error != nil) {
-        OAServiceTicket *ticket= [[OAServiceTicket alloc] initWithRequest:request
-                                                                 response:response
-                                                               didSucceed:NO];
-        [delegate performSelector:didFailSelector
-                       withObject:ticket
-                       withObject:error];
-    } else {
-        OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
-                                                                  response:response
-                                                                didSucceed:[(NSHTTPURLResponse *)response statusCode] < 400];
-        [delegate performSelector:didFinishSelector
-                       withObject:ticket
-                       withObject:responseData];
+    if (response == nil || responseData == nil || error != nil) 
+	{
+        OAServiceTicket *ticket = [[[OAServiceTicket alloc] initWithRequest:request 
+																   response:response 
+																 didSucceed:NO] autorelease];
+		
+        [delegate performSelector:didFailSelector withObject:ticket withObject:error];
+    } 
+	else 
+	{
+		BOOL didSucceed = [(NSHTTPURLResponse *)response statusCode] < 400;
+		
+        OAServiceTicket *ticket = [[[OAServiceTicket alloc] initWithRequest:request
+																   response:response
+																 didSucceed:didSucceed] autorelease];
+		
+        [delegate performSelector:didFinishSelector withObject:ticket withObject:responseData];
     }   
 }
 

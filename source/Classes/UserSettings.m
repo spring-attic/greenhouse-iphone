@@ -20,7 +20,7 @@ static UserSettings *sharedInstance = nil;
 
 
 #pragma mark -
-#pragma mark Class methods
+#pragma mark Static methods
 
 // This class is configured to function as a singleton. 
 // Use this class method to obtain the shared instance of the class.
@@ -39,7 +39,7 @@ static UserSettings *sharedInstance = nil;
 
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Instance methods
 
 - (BOOL)includeLocationInTweet
 {
@@ -50,6 +50,7 @@ static UserSettings *sharedInstance = nil;
 {
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:boolVal] forKey:includeLocationInTweetPreference];
 }
+
 
 #pragma mark -
 #pragma mark NSObject methods

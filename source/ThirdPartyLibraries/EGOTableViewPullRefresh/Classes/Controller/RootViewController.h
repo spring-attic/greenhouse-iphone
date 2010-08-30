@@ -1,9 +1,9 @@
 //
-//  OADataFetcher.h
-//  OAuthConsumer
+//  RootViewController.h
+//  TableViewPull
 //
-//  Created by Jon Crosby on 11/5/07.
-//  Copyright 2007 Kaboomerang LLC. All rights reserved.
+//  Created by Devin Doty on 10/16/09October16.
+//  Copyright enormego 2009. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -22,25 +22,19 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
-#import <Foundation/Foundation.h>
-#import "OAMutableURLRequest.h"
-#import "OAServiceTicket.h"
-
-
-@interface OADataFetcher : NSObject 
-{
-
-@private
-    OAMutableURLRequest *request;
-    NSURLResponse *response;
-    NSError *error;
-    NSData *responseData;
-    id delegate;
-    SEL didFinishSelector;
-    SEL didFailSelector;
+@class EGORefreshTableHeaderView;
+@interface RootViewController : UITableViewController  <UITableViewDelegate, UITableViewDataSource>{
+	EGORefreshTableHeaderView *refreshHeaderView;
+	
+	//  Reloading should really be your tableviews model class
+	//  Putting it here for demo purposes 
+	BOOL _reloading;
 }
 
-- (void)fetchDataWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
+@property(assign,getter=isReloading) BOOL reloading;
 
+- (void)reloadTableViewDataSource;
+- (void)doneLoadingTableViewData;
 @end

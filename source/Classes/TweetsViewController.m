@@ -19,8 +19,9 @@
 
 @interface TweetsViewController()
 
-@property (nonatomic, retain) NSMutableArray *arrayTweets;
+@property (nonatomic, retain) NSArray *arrayTweets;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic, retain) TwitterController *twitterController;
 
 - (void)showTwitterForm;
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath;
@@ -32,55 +33,25 @@
 
 @synthesize arrayTweets;
 @synthesize imageDownloadsInProgress;
+@synthesize twitterController;
 @synthesize tweetUrl;
 @synthesize retweetUrl;
 @synthesize hashtag;
-@synthesize tableViewTweets;
 @synthesize newTweetViewController;
 @synthesize tweetDetailsViewController;
 
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed)
-	{
-		self.imageDownloadsInProgress = nil;
-		self.imageDownloadsInProgress = [NSMutableDictionary dictionary];		
-		self.arrayTweets = nil;
-		self.arrayTweets = [[NSMutableArray alloc] init];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSDictionary *dictionary = [responseBody yajl_JSON];
-		[responseBody release];
-		
-		DLog(@"%@", dictionary);
-		
-		NSArray *array = (NSArray *)[dictionary objectForKey:@"tweets"];
-		
-		for (NSDictionary *d in array) 
-		{
-			Tweet *tweet = [[Tweet alloc] initWithDictionary:d];
-			[arrayTweets addObject:tweet];
-			[tweet release];
-		}
-		
-		[tableViewTweets reloadData];
-	}
-}
-
 - (void)showTwitterForm
 {
-	newTweetViewController.tweetUrl = tweetUrl;
-	newTweetViewController.tweetText = hashtag;
 	[self presentModalViewController:newTweetViewController animated:YES];
 }
 
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath
 {
-    TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+    TwitterProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
 	
     if (profileImageDownloader == nil) 
     {
-        profileImageDownloader = [[TweetProfileImageDownloader alloc] init];
+        profileImageDownloader = [[TwitterProfileImageDownloader alloc] init];
         profileImageDownloader.tweet = tweet;
         profileImageDownloader.indexPathInTableView = indexPath;
         profileImageDownloader.delegate = self;
@@ -95,7 +66,7 @@
 {
     if ([self.arrayTweets count] > 0)
     {
-        NSArray *visiblePaths = [self.tableViewTweets indexPathsForVisibleRows];
+        NSArray *visiblePaths = [self.tableView indexPathsForVisibleRows];
 		
         for (NSIndexPath *indexPath in visiblePaths)
         {
@@ -109,32 +80,64 @@
     }
 }
 
-// called by our ImageDownloader when an image is ready to be displayed
-- (void)profileImageDidLoad:(NSIndexPath *)indexPath
-{
-    TweetProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
-	
-    if (profileImageDownloader != nil)
-    {
-        UITableViewCell *cell = [self.tableViewTweets cellForRowAtIndexPath:profileImageDownloader.indexPathInTableView];
-        
-        // Display the newly loaded image
-        cell.imageView.image = profileImageDownloader.tweet.profileImage;
-    }
-}
 
 #pragma mark -
 #pragma mark DataViewDelegate methods
 
 - (void)refreshView
 {
-	self.arrayTweets = nil;
-	[tableViewTweets reloadData];
+	newTweetViewController.tweetUrl = tweetUrl;
+	newTweetViewController.tweetText = hashtag;
 }
 
 - (void)fetchData
 {
+	if (!arrayTweets)
+	{
+		self.twitterController = [TwitterController twitterController];
+		twitterController.delegate = self;
+		
+		[twitterController fetchTweetsWithURL:tweetUrl];		
+	}
+}
+
+- (void)reloadTableViewDataSource
+{
+	self.twitterController = [TwitterController twitterController];
+	twitterController.delegate = self;
 	
+	[twitterController fetchTweetsWithURL:tweetUrl];
+}
+
+
+#pragma mark -
+#pragma mark TwitterControllerDelegate methods
+
+- (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets
+{
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
+	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+	self.arrayTweets = tweets;
+
+	[self.tableView reloadData];
+}
+
+
+#pragma mark -
+#pragma mark TwitterProfileImageDownloaderDelegate methods
+
+- (void)profileImageDidLoad:(NSIndexPath *)indexPath
+{
+    TwitterProfileImageDownloader *profileImageDownloader = [imageDownloadsInProgress objectForKey:indexPath];
+	
+    if (profileImageDownloader != nil)
+    {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:profileImageDownloader.indexPathInTableView];
+        
+        // Display the newly loaded image
+        cell.imageView.image = profileImageDownloader.tweet.profileImage;
+    }
 }
 
 
@@ -144,6 +147,9 @@
 // Load images for all onscreen rows when scrolling is finished
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
+	// pass this delegate call on so the pull to refresh works
+	[super scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+	
     if (!decelerate)
 	{
         [self loadImagesForOnscreenRows];
@@ -166,30 +172,22 @@
 	tweetDetailsViewController.tweetUrl = tweetUrl;
 	tweetDetailsViewController.retweetUrl = retweetUrl;
 	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
+	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	CGFloat height = 44.0f;
-	
-	@try 
+	if (arrayTweets)
 	{
-		if (arrayTweets)
-		{
-			Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
-			
-			CGSize maxSize = CGSizeMake(tableViewTweets.frame.size.width - 63.0f, CGFLOAT_MAX);
-			CGSize textSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
-			height = MAX(textSize.height + 26.0f, 58.0f);
-		}
+		Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
+		
+		CGSize maxSize = CGSizeMake(self.tableView.frame.size.width - 63.0f, CGFLOAT_MAX);
+		CGSize textSize = [tweet.text sizeWithFont:[UIFont systemFontOfSize:13.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
+		return MAX(textSize.height + 26.0f, 58.0f);
 	}
-	@catch (NSException * e) 
+	else 
 	{
-		DLog(@"%@", [e reason]);
-	}
-	@finally 
-	{
-		return height;
+		return 44.0f;
 	}
 }
 
@@ -294,10 +292,11 @@
     [super viewDidUnload];
 	
 	self.arrayTweets = nil;
+	self.imageDownloadsInProgress = nil;
+	self.twitterController = nil;
 	self.tweetUrl = nil;
 	self.retweetUrl = nil;
 	self.hashtag = nil;
-    self.tableViewTweets = nil;
 	self.newTweetViewController = nil;
 	self.tweetDetailsViewController = nil;
 }
@@ -308,11 +307,9 @@
 
 - (void)dealloc 
 {
-	[arrayTweets release];
 	[tweetUrl release];
 	[retweetUrl release];
 	[hashtag release];
-	[tableViewTweets release];
 	[newTweetViewController release];
 	[tweetDetailsViewController release];
 	

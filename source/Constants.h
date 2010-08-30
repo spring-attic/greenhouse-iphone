@@ -43,9 +43,6 @@
 #pragma mark Member Profile
 
 #define MEMBER_PROFILE_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/members/@self"]
-#define MEMBER_PROFILE_PICTURE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/members/%i/picture?"]
-#define MEMBER_PROFILE_SMALL_PICTURE_URL		[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/members/%i/picture?type=small"]
-#define MEMBER_PROFILE_LARGE_PICTURE_URL		[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/members/%i/picture?type=large"]
 
 
 #pragma mark -

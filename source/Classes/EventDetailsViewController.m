@@ -9,7 +9,7 @@
 #import "EventDetailsViewController.h"
 #import "EventDescriptionViewController.h"
 #import "EventSessionsMenuViewController.h"
-#import "EventTweetsViewController.h"
+#import "TweetsViewController.h"
 #import "EventMapViewController.h"
 
 
@@ -31,7 +31,7 @@
 @synthesize tableViewMenu;
 @synthesize eventDescriptionViewController;
 @synthesize eventSessionsMenuViewController;
-@synthesize eventTweetsViewController;
+@synthesize tweetsViewController;
 @synthesize eventMapViewController;
 
 
@@ -42,8 +42,17 @@
 {
 	eventDescriptionViewController.event = event;
 	eventSessionsMenuViewController.event = event;
-	eventTweetsViewController.event = event;
 	eventMapViewController.event = event;
+	
+	tweetsViewController.hashtag = event.hashtag;
+	
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];
+	tweetsViewController.tweetUrl = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
+	urlString = [[NSString alloc] initWithFormat:EVENT_RETWEET_URL, event.eventId];
+	tweetsViewController.retweetUrl = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
 	
 	labelTitle.text = event.title;
 
@@ -113,7 +122,7 @@
 			[self.navigationController pushViewController:eventSessionsMenuViewController animated:YES];
 			break;
 		case 2:
-			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
+			[self.navigationController pushViewController:tweetsViewController animated:YES];
 			break;
 		case 3:
 			[self.navigationController pushViewController:eventMapViewController animated:YES];
@@ -172,7 +181,7 @@
 	
 	self.eventDescriptionViewController = [[EventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventSessionsMenuViewController = [[EventSessionsMenuViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	self.tweetsViewController = [[TweetsViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventMapViewController = [[EventMapViewController alloc] initWithNibName:nil bundle:nil];
 }
 
@@ -194,7 +203,7 @@
 	self.tableViewMenu = nil;
 	self.eventDescriptionViewController = nil;
 	self.eventSessionsMenuViewController = nil;
-	self.eventTweetsViewController = nil;
+	self.tweetsViewController = nil;
 	self.eventMapViewController = nil;
 }
 
@@ -213,7 +222,7 @@
 	[tableViewMenu release];
 	[eventDescriptionViewController release];
 	[eventSessionsMenuViewController release];
-	[eventTweetsViewController release];
+	[tweetsViewController release];
 	[eventMapViewController release];
 	
     [super dealloc];

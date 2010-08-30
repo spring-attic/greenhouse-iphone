@@ -12,7 +12,7 @@
 
 
 @class EventSessionDescriptionViewController;
-@class EventSessionTweetsViewController;
+@class TweetsViewController;
 @class EventSessionRateViewController;
 
 
@@ -34,7 +34,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *imageViewRating5;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventSessionDescriptionViewController *sessionDescriptionViewController;
-@property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
+@property (nonatomic, retain) TweetsViewController *tweetsViewController;
 @property (nonatomic, retain) EventSessionRateViewController *sessionRateViewController;
 
 - (void)refreshView;

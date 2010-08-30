@@ -58,7 +58,6 @@
 		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
 		81275BE011FE2F1600FF9A80 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */; };
-		81275BEC11FE319600FF9A80 /* EventSessionTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275BEB11FE319600FF9A80 /* EventSessionTweetsViewController.m */; };
 		81275C2111FE889500FF9A80 /* EventSessionDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275C2011FE889500FF9A80 /* EventSessionDescriptionViewController.m */; };
 		81275C2311FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81275C2211FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib */; };
 		81275C8811FE996600FF9A80 /* spring.png in Resources */ = {isa = PBXBuildFile; fileRef = 81275C8711FE996600FF9A80 /* spring.png */; };
@@ -68,7 +67,6 @@
 		8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */; };
 		8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */; };
 		8135A0FA11ED236900F0F2F8 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */; };
-		8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */; };
 		8135A10611ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A10511ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m */; };
 		8138DC2C11F73EF700D7A47F /* EventSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC2B11F73EF700D7A47F /* EventSession.m */; };
 		8138DC2F11F73FED00D7A47F /* WebDataModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DC2E11F73FED00D7A47F /* WebDataModelObject.m */; };
@@ -78,12 +76,10 @@
 		8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */; };
 		8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */; };
 		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
-		8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171938D11E668DE007C82B2 /* EventsMainViewController.m */; };
-		8171939011E66910007C82B2 /* UpdatesMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */; };
 		8171949311E66AD7007C82B2 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171949211E66AD7007C82B2 /* Event.m */; };
 		817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 817194A011E66F6D007C82B2 /* EventsMainViewController.xib */; };
 		8174930C12070884008A9E61 /* EventSessionsFavoritesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8174930B12070884008A9E61 /* EventSessionsFavoritesViewController.m */; };
@@ -92,7 +88,7 @@
 		8174943B120758CB008A9E61 /* EventSessionRateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8174943A120758CB008A9E61 /* EventSessionRateViewController.m */; };
 		8174945012075D69008A9E61 /* EventSessionRateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8174944F12075D69008A9E61 /* EventSessionRateViewController.xib */; };
 		817494C61207CE3E008A9E61 /* UIToolbar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 817494C51207CE3E008A9E61 /* UIToolbar+CustomStyle.m */; };
-		817496741209FE04008A9E61 /* TweetProfileImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */; };
+		817496741209FE04008A9E61 /* TwitterProfileImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 817496731209FE04008A9E61 /* TwitterProfileImageDownloader.m */; };
 		81749882120B8617008A9E61 /* t_logo-b.png in Resources */ = {isa = PBXBuildFile; fileRef = 81749881120B8617008A9E61 /* t_logo-b.png */; };
 		817498AA120BCDB5008A9E61 /* star-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 817498A7120BCDB5008A9E61 /* star-empty.png */; };
 		817498AB120BCDB5008A9E61 /* star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 817498A8120BCDB5008A9E61 /* star-half.png */; };
@@ -140,6 +136,16 @@
 		81F79FDB1202097300743FFF /* EventSessionsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F79FDA1202097300743FFF /* EventSessionsMenuViewController.xib */; };
 		81F7A11E12030D2D00743FFF /* EventSessionsByDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F7A11D12030D2D00743FFF /* EventSessionsByDayViewController.m */; };
 		81F7A1A41203541100743FFF /* EventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81F7A1A31203541100743FFF /* EventSessionsViewController.xib */; };
+		81F8DE89122771C100C3E8FD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DE81122771C100C3E8FD /* RootViewController.m */; };
+		81F8DE8A122771C100C3E8FD /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DE84122771C100C3E8FD /* EGORefreshTableHeaderView.m */; };
+		81F8DE8B122771C100C3E8FD /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F8DE86122771C100C3E8FD /* blackArrow.png */; };
+		81F8DE8C122771C100C3E8FD /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F8DE87122771C100C3E8FD /* blueArrow.png */; };
+		81F8DE8D122771C100C3E8FD /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F8DE88122771C100C3E8FD /* whiteArrow.png */; };
+		81F8DE9012277B9E00C3E8FD /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DE8F12277B9E00C3E8FD /* PullRefreshTableViewController.m */; };
+		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
+		81F8DEDD1227830400C3E8FD /* TwitterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DEDC1227830400C3E8FD /* TwitterController.m */; };
+		81F8DF0A1227FEF100C3E8FD /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DF091227FEF100C3E8FD /* LocationManager.m */; };
+		81F8DF9C12285E0700C3E8FD /* OAuthControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DF9B12285E0700C3E8FD /* OAuthControllerBase.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,8 +193,6 @@
 		8122BEB311D102F300315B6F /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
 		81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
-		81275BEA11FE319600FF9A80 /* EventSessionTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionTweetsViewController.h; sourceTree = "<group>"; };
-		81275BEB11FE319600FF9A80 /* EventSessionTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionTweetsViewController.m; sourceTree = "<group>"; };
 		81275C1F11FE889500FF9A80 /* EventSessionDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionDescriptionViewController.h; sourceTree = "<group>"; };
 		81275C2011FE889500FF9A80 /* EventSessionDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionDescriptionViewController.m; sourceTree = "<group>"; };
 		81275C2211FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionDescriptionViewController.xib; sourceTree = "<group>"; };
@@ -201,8 +205,6 @@
 		8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsNavigationViewController.xib; sourceTree = "<group>"; };
 		8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventDetailsViewController.xib; sourceTree = "<group>"; };
 		8135A0F911ED236900F0F2F8 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
-		8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventTweetsViewController.h; sourceTree = "<group>"; };
-		8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTweetsViewController.m; sourceTree = "<group>"; };
 		8135A10411ED5E5300F0F2F8 /* EventSessionsCurrentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsCurrentViewController.h; sourceTree = "<group>"; };
 		8135A10511ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsCurrentViewController.m; sourceTree = "<group>"; };
 		8138DC2A11F73EF700D7A47F /* EventSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSession.h; sourceTree = "<group>"; };
@@ -218,8 +220,6 @@
 		8138DE7011F8D79600D7A47F /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
 		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
-		8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdatesMainViewController.h; sourceTree = "<group>"; };
-		8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdatesMainViewController.m; sourceTree = "<group>"; };
 		8153C7BC11DD353700F7BDE1 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		8153C7BD11DD353700F7BDE1 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
@@ -242,8 +242,8 @@
 		8174944F12075D69008A9E61 /* EventSessionRateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionRateViewController.xib; sourceTree = "<group>"; };
 		817494C41207CE3E008A9E61 /* UIToolbar+CustomStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+CustomStyle.h"; sourceTree = "<group>"; };
 		817494C51207CE3E008A9E61 /* UIToolbar+CustomStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+CustomStyle.m"; sourceTree = "<group>"; };
-		817496721209FE04008A9E61 /* TweetProfileImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetProfileImageDownloader.h; sourceTree = "<group>"; };
-		817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetProfileImageDownloader.m; sourceTree = "<group>"; };
+		817496721209FE04008A9E61 /* TwitterProfileImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterProfileImageDownloader.h; sourceTree = "<group>"; };
+		817496731209FE04008A9E61 /* TwitterProfileImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterProfileImageDownloader.m; sourceTree = "<group>"; };
 		81749881120B8617008A9E61 /* t_logo-b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "t_logo-b.png"; sourceTree = "<group>"; };
 		817498A7120BCDB5008A9E61 /* star-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-empty.png"; sourceTree = "<group>"; };
 		817498A8120BCDB5008A9E61 /* star-half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-half.png"; sourceTree = "<group>"; };
@@ -323,6 +323,22 @@
 		81F7A11C12030D2D00743FFF /* EventSessionsByDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionsByDayViewController.h; sourceTree = "<group>"; };
 		81F7A11D12030D2D00743FFF /* EventSessionsByDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSessionsByDayViewController.m; sourceTree = "<group>"; };
 		81F7A1A31203541100743FFF /* EventSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsViewController.xib; sourceTree = "<group>"; };
+		81F8DE80122771C100C3E8FD /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		81F8DE81122771C100C3E8FD /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		81F8DE83122771C100C3E8FD /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		81F8DE84122771C100C3E8FD /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		81F8DE86122771C100C3E8FD /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		81F8DE87122771C100C3E8FD /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		81F8DE88122771C100C3E8FD /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		81F8DE8E12277B9E00C3E8FD /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
+		81F8DE8F12277B9E00C3E8FD /* PullRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PullRefreshTableViewController.m; sourceTree = "<group>"; };
+		81F8DEBF1227801000C3E8FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		81F8DEDB1227830400C3E8FD /* TwitterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterController.h; sourceTree = "<group>"; };
+		81F8DEDC1227830400C3E8FD /* TwitterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterController.m; sourceTree = "<group>"; };
+		81F8DF081227FEF100C3E8FD /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		81F8DF091227FEF100C3E8FD /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
+		81F8DF9A12285E0700C3E8FD /* OAuthControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthControllerBase.h; sourceTree = "<group>"; };
+		81F8DF9B12285E0700C3E8FD /* OAuthControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthControllerBase.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Greenhouse-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,6 +355,7 @@
 				819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */,
 				811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */,
 				81DD7CC512270A0C00F62D5D /* YAJLIOS.framework in Frameworks */,
+				81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,9 +395,8 @@
 				81D4A45311C30871000A71C3 /* App */,
 				81D4A44E11C3066D000A71C3 /* Models */,
 				81D4A47311C30B52000A71C3 /* Views */,
+				81E75EF611BE09E700E6B283 /* Controllers */,
 				81D4A45211C3083F000A71C3 /* View Controllers */,
-				81E75EF611BE09E700E6B283 /* Services */,
-				81D4A45B11C30904000A71C3 /* Utilities */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -417,7 +433,6 @@
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				811F5DEF11C6DEFF005BD43E /* Constants.h */,
 				8122BEB311D102F300315B6F /* DLog.h */,
-				81A2DBDC12259E42000D58EF /* Settings.bundle */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -432,6 +447,7 @@
 				81AF1C5B11C7FBB800960E9F /* Images */,
 				81A34A1011BDDBDF00B12131 /* Core Data Files */,
 				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
+				81A2DBDC12259E42000D58EF /* Settings.bundle */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -439,13 +455,14 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
-				1D30AB110D05D00D00671497 /* Foundation.framework */,
-				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
-				81E75F3911BE0D5800E6B283 /* Security.framework */,
-				819E443B11FF1FA600DBC0BB /* MapKit.framework */,
+				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				811BA5CF120C58E40045BB34 /* CoreLocation.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				819E443B11FF1FA600DBC0BB /* MapKit.framework */,
+				81F8DEBF1227801000C3E8FD /* QuartzCore.framework */,
+				81E75F3911BE0D5800E6B283 /* Security.framework */,
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */,
 			);
 			name = Frameworks;
@@ -478,15 +495,6 @@
 			name = "Application Tests";
 			sourceTree = "<group>";
 		};
-		81275CA111FE9DE100FF9A80 /* Updates */ = {
-			isa = PBXGroup;
-			children = (
-				8153C79411DD052E00F7BDE1 /* UpdatesMainViewController.h */,
-				8153C79511DD052E00F7BDE1 /* UpdatesMainViewController.m */,
-			);
-			name = Updates;
-			sourceTree = "<group>";
-		};
 		81275CB611FE9FB200FF9A80 /* Updates */ = {
 			isa = PBXGroup;
 			children = (
@@ -506,8 +514,6 @@
 				8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */,
 				8138DD9211F884D700D7A47F /* EventDescriptionViewController.h */,
 				8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */,
-				8135A0FB11ED242B00F0F2F8 /* EventTweetsViewController.h */,
-				8135A0FC11ED242B00F0F2F8 /* EventTweetsViewController.m */,
 				819E441E11FF1EE300DBC0BB /* EventMapViewController.h */,
 				819E441F11FF1EE300DBC0BB /* EventMapViewController.m */,
 				819E448C11FF2D1000DBC0BB /* EventAnnotation.h */,
@@ -526,8 +532,6 @@
 				8138DD2811F7A2CA00D7A47F /* EventSessionDetailsViewController.m */,
 				81275C1F11FE889500FF9A80 /* EventSessionDescriptionViewController.h */,
 				81275C2011FE889500FF9A80 /* EventSessionDescriptionViewController.m */,
-				81275BEA11FE319600FF9A80 /* EventSessionTweetsViewController.h */,
-				81275BEB11FE319600FF9A80 /* EventSessionTweetsViewController.m */,
 				81749439120758CB008A9E61 /* EventSessionRateViewController.h */,
 				8174943A120758CB008A9E61 /* EventSessionRateViewController.m */,
 			);
@@ -627,6 +631,8 @@
 				81B94E4E11F0AD2E003B2117 /* OAuthViewController.m */,
 				81275CA711FE9E6B00FF9A80 /* NavigationViewController.h */,
 				81275CA811FE9E6B00FF9A80 /* NavigationViewController.m */,
+				81F8DE8E12277B9E00C3E8FD /* PullRefreshTableViewController.h */,
+				81F8DE8F12277B9E00C3E8FD /* PullRefreshTableViewController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -661,9 +667,7 @@
 				8122BCE911D00A9D00315B6F /* MainViewController.h */,
 				8122BCEA11D00A9D00315B6F /* MainViewController.m */,
 				8135A09511ECA64B00F0F2F8 /* Events */,
-				81275CA111FE9DE100FF9A80 /* Updates */,
-				815F274F11BDF5A300F83095 /* ProfileMainViewController.h */,
-				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
+				81F8DEF51227F63A00C3E8FD /* Profile */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -681,15 +685,6 @@
 			name = App;
 			sourceTree = "<group>";
 		};
-		81D4A45B11C30904000A71C3 /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				817496721209FE04008A9E61 /* TweetProfileImageDownloader.h */,
-				817496731209FE04008A9E61 /* TweetProfileImageDownloader.m */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
 		81D4A47311C30B52000A71C3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -703,18 +698,27 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		81E75EF611BE09E700E6B283 /* Services */ = {
+		81E75EF611BE09E700E6B283 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				81E75EF711BE0A2100E6B283 /* OAuthManager.h */,
 				81E75EF811BE0A2200E6B283 /* OAuthManager.m */,
+				81F8DF9A12285E0700C3E8FD /* OAuthControllerBase.h */,
+				81F8DF9B12285E0700C3E8FD /* OAuthControllerBase.m */,
+				81F8DF081227FEF100C3E8FD /* LocationManager.h */,
+				81F8DF091227FEF100C3E8FD /* LocationManager.m */,
+				81F8DEDB1227830400C3E8FD /* TwitterController.h */,
+				81F8DEDC1227830400C3E8FD /* TwitterController.m */,
+				817496721209FE04008A9E61 /* TwitterProfileImageDownloader.h */,
+				817496731209FE04008A9E61 /* TwitterProfileImageDownloader.m */,
 			);
-			name = Services;
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		81E75F0011BE0C5800E6B283 /* ThirdPartyLibraries */ = {
 			isa = PBXGroup;
 			children = (
+				81F8DE7D122771C100C3E8FD /* EGOTableViewPullRefresh */,
 				81E75F0111BE0C5800E6B283 /* OAuthConsumer */,
 			);
 			path = ThirdPartyLibraries;
@@ -763,6 +767,61 @@
 				81E75F0411BE0C5800E6B283 /* Base64Transcoder.h */,
 			);
 			path = Crypto;
+			sourceTree = "<group>";
+		};
+		81F8DE7D122771C100C3E8FD /* EGOTableViewPullRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				81F8DE7E122771C100C3E8FD /* Classes */,
+				81F8DE85122771C100C3E8FD /* Resources */,
+			);
+			path = EGOTableViewPullRefresh;
+			sourceTree = "<group>";
+		};
+		81F8DE7E122771C100C3E8FD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				81F8DE7F122771C100C3E8FD /* Controller */,
+				81F8DE82122771C100C3E8FD /* View */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		81F8DE7F122771C100C3E8FD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				81F8DE80122771C100C3E8FD /* RootViewController.h */,
+				81F8DE81122771C100C3E8FD /* RootViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		81F8DE82122771C100C3E8FD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				81F8DE83122771C100C3E8FD /* EGORefreshTableHeaderView.h */,
+				81F8DE84122771C100C3E8FD /* EGORefreshTableHeaderView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		81F8DE85122771C100C3E8FD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				81F8DE86122771C100C3E8FD /* blackArrow.png */,
+				81F8DE87122771C100C3E8FD /* blueArrow.png */,
+				81F8DE88122771C100C3E8FD /* whiteArrow.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		81F8DEF51227F63A00C3E8FD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				815F274F11BDF5A300F83095 /* ProfileMainViewController.h */,
+				815F275011BDF5A300F83095 /* ProfileMainViewController.m */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -897,6 +956,9 @@
 				817498AC120BCDB5008A9E61 /* star.png in Resources */,
 				81DD40B4121B3CAA004BE46A /* TweetDetailsViewController.xib in Resources */,
 				81A2DBDD12259E42000D58EF /* Settings.bundle in Resources */,
+				81F8DE8B122771C100C3E8FD /* blackArrow.png in Resources */,
+				81F8DE8C122771C100C3E8FD /* blueArrow.png in Resources */,
+				81F8DE8D122771C100C3E8FD /* whiteArrow.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -987,12 +1049,10 @@
 				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
 				8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */,
 				8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */,
-				8153C79611DD052E00F7BDE1 /* UpdatesMainViewController.m in Sources */,
 				8153C7BE11DD353700F7BDE1 /* Update.m in Sources */,
 				8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */,
 				8171949311E66AD7007C82B2 /* Event.m in Sources */,
 				8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */,
-				8135A0FD11ED242B00F0F2F8 /* EventTweetsViewController.m in Sources */,
 				8135A10611ED5E5300F0F2F8 /* EventSessionsCurrentViewController.m in Sources */,
 				81CC605711EF41E5002BB755 /* Tweet.m in Sources */,
 				81B94E4F11F0AD2E003B2117 /* OAuthViewController.m in Sources */,
@@ -1004,7 +1064,6 @@
 				8107AA6211FA032300A59078 /* TweetTableViewCell.m in Sources */,
 				8107AA9811FA2BB000A59078 /* NewTweetViewController.m in Sources */,
 				81275BE011FE2F1600FF9A80 /* TweetsViewController.m in Sources */,
-				81275BEC11FE319600FF9A80 /* EventSessionTweetsViewController.m in Sources */,
 				81275C2111FE889500FF9A80 /* EventSessionDescriptionViewController.m in Sources */,
 				81275CA911FE9E6B00FF9A80 /* NavigationViewController.m in Sources */,
 				819E442011FF1EE300DBC0BB /* EventMapViewController.m in Sources */,
@@ -1017,13 +1076,19 @@
 				8174941A12074F51008A9E61 /* EventSessionsConferenceFavoritesViewController.m in Sources */,
 				8174943B120758CB008A9E61 /* EventSessionRateViewController.m in Sources */,
 				817494C61207CE3E008A9E61 /* UIToolbar+CustomStyle.m in Sources */,
-				817496741209FE04008A9E61 /* TweetProfileImageDownloader.m in Sources */,
+				817496741209FE04008A9E61 /* TwitterProfileImageDownloader.m in Sources */,
 				81E61521121329D400451901 /* EventSessionLeader.m in Sources */,
 				81E615D41213B7B400451901 /* UITabBar+CustomStyle.m in Sources */,
 				81E616011214398700451901 /* WebImageView.m in Sources */,
 				81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */,
 				81137ED71223352E00A45BA2 /* ActivityAlertView.m in Sources */,
 				81A2DBCD12259B16000D58EF /* UserSettings.m in Sources */,
+				81F8DE89122771C100C3E8FD /* RootViewController.m in Sources */,
+				81F8DE8A122771C100C3E8FD /* EGORefreshTableHeaderView.m in Sources */,
+				81F8DE9012277B9E00C3E8FD /* PullRefreshTableViewController.m in Sources */,
+				81F8DEDD1227830400C3E8FD /* TwitterController.m in Sources */,
+				81F8DF0A1227FEF100C3E8FD /* LocationManager.m in Sources */,
+				81F8DF9C12285E0700C3E8FD /* OAuthControllerBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,7 +1128,6 @@
 				8104E7C011D1646D00590E90 /* AppSettings.m in Sources */,
 				8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */,
 				8104E7C811D1646D00590E90 /* MainViewController.m in Sources */,
-				8171939011E66910007C82B2 /* UpdatesMainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,14 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TweetProfileImageDownloader.h"
+#import "TwitterController.h"
+#import "TwitterProfileImageDownloader.h"
+#import "PullRefreshTableViewController.h"
 
 
 @class NewTweetViewController;
 @class TweetDetailsViewController;
 
 
-@interface TweetsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate, TweetProfileImageDownloaderDelegate, DataViewDelegate>
+@interface TweetsViewController : PullRefreshTableViewController <TwitterControllerDelegate, TwitterProfileImageDownloaderDelegate>
 {
 
 }
@@ -22,12 +24,10 @@
 @property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, retain) NSURL *retweetUrl;
 @property (nonatomic, copy) NSString *hashtag;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewTweets;
 @property (nonatomic, retain) NewTweetViewController *newTweetViewController;
 @property (nonatomic, retain) TweetDetailsViewController *tweetDetailsViewController;
 
 - (void)refreshView;
-- (void)fetchData;
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath;
 
 @end

@@ -12,7 +12,7 @@
 
 @class EventDescriptionViewController;
 @class EventSessionsMenuViewController;
-@class EventTweetsViewController;
+@class TweetsViewController;
 @class EventMapViewController;
 
 
@@ -29,7 +29,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
 @property (nonatomic, retain) EventSessionsMenuViewController *eventSessionsMenuViewController;
-@property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
+@property (nonatomic, retain) TweetsViewController *tweetsViewController;
 @property (nonatomic, retain) EventMapViewController *eventMapViewController;
 
 - (void)refreshView;

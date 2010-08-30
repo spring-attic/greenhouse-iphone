@@ -24,7 +24,6 @@
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
-
 	if ((self = [super init]))
 	{
 		if (dictionary)
@@ -49,13 +48,14 @@
 
 - (void)dealloc
 {
+	[tweetId release];
 	[text release];
 	[createdAt release];
 	[fromUser release];
 	[profileImageUrl release];
+	[userId release];
 	[languageCode release];
 	[source release];
-	[profileImageUrl release];
 	
 	[super dealloc];
 }

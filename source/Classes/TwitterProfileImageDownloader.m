@@ -1,18 +1,18 @@
 //
-//  TweetProfileImageDownloader.m
+//  TwitterProfileImageDownloader.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 8/4/10.
 //  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "TweetProfileImageDownloader.h"
+#import "TwitterProfileImageDownloader.h"
 #import "Tweet.h"
 
 #define kImageHeight 48
 
 
-@implementation TweetProfileImageDownloader
+@implementation TwitterProfileImageDownloader
 
 @synthesize tweet;
 @synthesize indexPathInTableView;
@@ -23,6 +23,11 @@
 
 - (void)startDownload
 {
+	if (!tweet)
+	{
+		return;
+	}
+	
 	NSURL *url = [[NSURL alloc] initWithString:tweet.profileImageUrl];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	[url release];

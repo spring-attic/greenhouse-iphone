@@ -8,7 +8,7 @@
 
 #import "EventSessionDetailsViewController.h"
 #import "EventSessionDescriptionViewController.h"
-#import "EventSessionTweetsViewController.h"
+#import "TweetsViewController.h"
 #import "EventSessionRateViewController.h"
 #import "OAuthManager.h"
 
@@ -40,7 +40,7 @@
 @synthesize imageViewRating5;
 @synthesize tableViewMenu;
 @synthesize sessionDescriptionViewController;
-@synthesize sessionTweetsViewController;
+@synthesize tweetsViewController;
 @synthesize sessionRateViewController;
 
 
@@ -143,6 +143,20 @@
 		labelTitle.text = session.title;
 		labelLeader.text = session.leaderDisplay;
 		
+		sessionDescriptionViewController.session = session;
+		sessionRateViewController.event = event;
+		sessionRateViewController.session = session;
+
+		tweetsViewController.hashtag = [NSString stringWithFormat:@"%@ %@", event.hashtag, session.hashtag];
+		
+		NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_TWEETS_URL, event.eventId, session.number];
+		tweetsViewController.tweetUrl = [[NSURL alloc] initWithString:urlString];
+		[urlString release];
+		
+		urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RETWEET_URL, event.eventId, session.number];
+		tweetsViewController.retweetUrl = [[NSURL alloc] initWithString:urlString];
+		[urlString release];
+		
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"h:mm a"];
 		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
@@ -181,13 +195,10 @@
 	switch (indexPath.row) 
 	{
 		case 0:
-			sessionDescriptionViewController.session = session;
 			[self.navigationController pushViewController:sessionDescriptionViewController animated:YES];
 			break;
 		case 1:
-			sessionTweetsViewController.event = event;
-			sessionTweetsViewController.session = session;
-			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
+			[self.navigationController pushViewController:tweetsViewController animated:YES];
 			break;
 		case 2:
 			session.isFavorite = !session.isFavorite;
@@ -195,8 +206,6 @@
 			[self markSessionAsFavorite];
 			break;
 		case 3:
-			sessionRateViewController.event = event;
-			sessionRateViewController.session = session;
 			[self presentModalViewController:sessionRateViewController animated:YES];
 			break;
 		default:
@@ -259,7 +268,7 @@
 	self.title = @"Session";
 	
 	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
-	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	self.tweetsViewController = [[TweetsViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionRateViewController = [[EventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
 }
 
@@ -285,7 +294,7 @@
 	self.imageViewRating5 = nil;
 	self.tableViewMenu = nil;
 	self.sessionDescriptionViewController = nil;
-	self.sessionTweetsViewController = nil;
+	self.tweetsViewController = nil;
 	self.sessionRateViewController = nil;
 }
 
@@ -308,7 +317,7 @@
 	[imageViewRating5 release];
 	[tableViewMenu release];
 	[sessionDescriptionViewController release];
-	[sessionTweetsViewController release];
+	[tweetsViewController release];
 	[sessionRateViewController release];
 	
     [super dealloc];

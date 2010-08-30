@@ -1,5 +1,5 @@
 //
-//  TweetProfileImageDownloader.h
+//  TwitterProfileImageDownloader.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 8/4/10.
@@ -13,21 +13,21 @@
 @class RootViewController;
 
 
-@protocol TweetProfileImageDownloaderDelegate 
+@protocol TwitterProfileImageDownloaderDelegate 
 
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath;
 
 @end
 
 
-@interface TweetProfileImageDownloader : NSObject
+@interface TwitterProfileImageDownloader : NSObject
 {
 
 }
 
 @property (nonatomic, retain) Tweet *tweet;
 @property (nonatomic, retain) NSIndexPath *indexPathInTableView;
-@property (nonatomic, assign) id <TweetProfileImageDownloaderDelegate> delegate;
+@property (nonatomic, assign) id <TwitterProfileImageDownloaderDelegate> delegate;
 @property (nonatomic, retain) NSMutableData *receivedData;
 @property (nonatomic, retain) NSURLConnection *urlConnection;
 
