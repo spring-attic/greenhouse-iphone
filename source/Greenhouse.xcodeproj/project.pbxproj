@@ -11,10 +11,8 @@
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		28AD73600D9D9599002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
-		28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
 		8104E7A611D1646D00590E90 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD735F0D9D9599002E5188 /* MainWindow.xib */; };
 		8104E7A711D1646D00590E90 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */; };
 		8104E7A811D1646D00590E90 /* AuthorizeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */; };
@@ -22,7 +20,6 @@
 		8104E7AA11D1646D00590E90 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8122BCEC11D00CC300315B6F /* MainViewController.xib */; };
 		8104E7AC11D1646D00590E90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		8104E7AD11D1646D00590E90 /* GreenhouseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* GreenhouseAppDelegate.m */; };
-		8104E7AE11D1646D00590E90 /* Greenhouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */; };
 		8104E7AF11D1646D00590E90 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8104E7B011D1646D00590E90 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
 		8104E7B111D1646D00590E90 /* OAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EF811BE0A2200E6B283 /* OAuthManager.m */; };
@@ -62,7 +59,6 @@
 		81275C2311FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81275C2211FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib */; };
 		81275C8811FE996600FF9A80 /* spring.png in Resources */ = {isa = PBXBuildFile; fileRef = 81275C8711FE996600FF9A80 /* spring.png */; };
 		81275CA911FE9E6B00FF9A80 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275CA811FE9E6B00FF9A80 /* NavigationViewController.m */; };
-		81275CB811FE9FD600FF9A80 /* UpdatesNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81275CB711FE9FD600FF9A80 /* UpdatesNavigationViewController.xib */; };
 		8135A07F11ECA41200F0F2F8 /* EventDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */; };
 		8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */; };
 		8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8135A0BF11ECB40400F0F2F8 /* EventDetailsViewController.xib */; };
@@ -75,7 +71,6 @@
 		8138DD8F11F8836600D7A47F /* EventDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8138DD8E11F8836600D7A47F /* EventDescriptionViewController.xib */; };
 		8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */; };
 		8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */; };
-		8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
@@ -164,7 +159,6 @@
 		1D3623250D0F684500981E51 /* GreenhouseAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GreenhouseAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Greenhouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greenhouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		28860B760F44E54D00985440 /* Greenhouse.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = Greenhouse.xcdatamodel; sourceTree = "<group>"; };
 		28860BE40F44EE6400985440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		28A0AAE50D9B0CCF005BE974 /* Greenhouse_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Greenhouse_Prefix.pch; sourceTree = "<group>"; };
@@ -199,7 +193,6 @@
 		81275C8711FE996600FF9A80 /* spring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring.png; sourceTree = "<group>"; };
 		81275CA711FE9E6B00FF9A80 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		81275CA811FE9E6B00FF9A80 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
-		81275CB711FE9FD600FF9A80 /* UpdatesNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesNavigationViewController.xib; sourceTree = "<group>"; };
 		8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailsViewController.h; sourceTree = "<group>"; };
 		8135A07E11ECA41200F0F2F8 /* EventDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailsViewController.m; sourceTree = "<group>"; };
 		8135A08411ECA56C00F0F2F8 /* EventsNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsNavigationViewController.xib; sourceTree = "<group>"; };
@@ -219,7 +212,6 @@
 		8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDescriptionViewController.m; sourceTree = "<group>"; };
 		8138DE7011F8D79600D7A47F /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
-		8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpdatesMainViewController.xib; sourceTree = "<group>"; };
 		8153C7BC11DD353700F7BDE1 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		8153C7BD11DD353700F7BDE1 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
@@ -350,7 +342,6 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */,
-				28860BE50F44EE6400985440 /* CoreData.framework in Frameworks */,
 				81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */,
 				819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */,
 				811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */,
@@ -444,10 +435,9 @@
 				8104E7D411D1646D00590E90 /* GreenhouseTesting-Info.plist */,
 				8104E76411D1606400590E90 /* LogicTests-Info.plist */,
 				8104E7DE11D164AF00590E90 /* GreenhouseTests-Info.plist */,
-				81AF1C5B11C7FBB800960E9F /* Images */,
-				81A34A1011BDDBDF00B12131 /* Core Data Files */,
-				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
 				81A2DBDC12259E42000D58EF /* Settings.bundle */,
+				81AF1C5B11C7FBB800960E9F /* Images */,
+				81A34A0F11BDDBCF00B12131 /* Interface Builder Files */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -493,15 +483,6 @@
 				8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */,
 			);
 			name = "Application Tests";
-			sourceTree = "<group>";
-		};
-		81275CB611FE9FB200FF9A80 /* Updates */ = {
-			isa = PBXGroup;
-			children = (
-				81275CB711FE9FD600FF9A80 /* UpdatesNavigationViewController.xib */,
-				8153C79211DD04C500F7BDE1 /* UpdatesMainViewController.xib */,
-			);
-			name = Updates;
 			sourceTree = "<group>";
 		};
 		8135A09511ECA64B00F0F2F8 /* Events */ = {
@@ -596,19 +577,10 @@
 				28AD735F0D9D9599002E5188 /* MainWindow.xib */,
 				8122BCEC11D00CC300315B6F /* MainViewController.xib */,
 				81E75EDE11BE04D200E6B283 /* AuthorizeViewController.xib */,
-				81275CB611FE9FB200FF9A80 /* Updates */,
 				8135A0BE11ECB3E200F0F2F8 /* Events */,
-				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
+				81F8E242122D43CF00C3E8FD /* Profile */,
 			);
 			name = "Interface Builder Files";
-			sourceTree = "<group>";
-		};
-		81A34A1011BDDBDF00B12131 /* Core Data Files */ = {
-			isa = PBXGroup;
-			children = (
-				28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */,
-			);
-			name = "Core Data Files";
 			sourceTree = "<group>";
 		};
 		81AF1C5B11C7FBB800960E9F /* Images */ = {
@@ -824,6 +796,14 @@
 			name = Profile;
 			sourceTree = "<group>";
 		};
+		81F8E242122D43CF00C3E8FD /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				81A34A7F11BDF47500B12131 /* ProfileMainViewController.xib */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -935,7 +915,6 @@
 				81E75EDF11BE04D200E6B283 /* AuthorizeViewController.xib in Resources */,
 				81AF1C5D11C7FBF200960E9F /* spring09_logo.png in Resources */,
 				8122BCED11D00CC300315B6F /* MainViewController.xib in Resources */,
-				8153C79311DD04C500F7BDE1 /* UpdatesMainViewController.xib in Resources */,
 				817194A111E66F6D007C82B2 /* EventsMainViewController.xib in Resources */,
 				8135A08511ECA56C00F0F2F8 /* EventsNavigationViewController.xib in Resources */,
 				8135A0C011ECB40400F0F2F8 /* EventDetailsViewController.xib in Resources */,
@@ -945,7 +924,6 @@
 				8107AA8411FA28E100A59078 /* NewTweetViewController.xib in Resources */,
 				81275C2311FE88BC00FF9A80 /* EventSessionDescriptionViewController.xib in Resources */,
 				81275C8811FE996600FF9A80 /* spring.png in Resources */,
-				81275CB811FE9FD600FF9A80 /* UpdatesNavigationViewController.xib in Resources */,
 				819E442211FF1EF400DBC0BB /* EventMapViewController.xib in Resources */,
 				81F79FDB1202097300743FFF /* EventSessionsMenuViewController.xib in Resources */,
 				81F7A1A41203541100743FFF /* EventSessionsViewController.xib in Resources */,
@@ -1027,7 +1005,6 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* GreenhouseAppDelegate.m in Sources */,
-				28D3F202112F7DC200FD0661 /* Greenhouse.xcdatamodeld in Sources */,
 				815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */,
 				81E75EDD11BE048700E6B283 /* AuthorizeViewController.m in Sources */,
 				81E75EF911BE0A2200E6B283 /* OAuthManager.m in Sources */,
@@ -1107,7 +1084,6 @@
 			files = (
 				8104E7AC11D1646D00590E90 /* main.m in Sources */,
 				8104E7AD11D1646D00590E90 /* GreenhouseAppDelegate.m in Sources */,
-				8104E7AE11D1646D00590E90 /* Greenhouse.xcdatamodeld in Sources */,
 				8104E7AF11D1646D00590E90 /* ProfileMainViewController.m in Sources */,
 				8104E7B011D1646D00590E90 /* AuthorizeViewController.m in Sources */,
 				8104E7B111D1646D00590E90 /* OAuthManager.m in Sources */,
@@ -2018,19 +1994,6 @@
 			defaultConfigurationName = "Release [localhost]";
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		28D3F201112F7DC200FD0661 /* Greenhouse.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				28860B760F44E54D00985440 /* Greenhouse.xcdatamodel */,
-			);
-			currentVersion = 28860B760F44E54D00985440 /* Greenhouse.xcdatamodel */;
-			path = Greenhouse.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }

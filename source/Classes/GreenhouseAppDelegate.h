@@ -7,23 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreData/CoreData.h>
 
 
 @class MainViewController;
 @class AuthorizeViewController;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate> 
-{
-	
-@private
-    NSManagedObjectModel *_managedObjectModel;
-    NSManagedObjectContext *_managedObjectContext;
-    NSPersistentStoreCoordinator *_persistentStoreCoordinator;
-}
+@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate> { }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UIView *viewStart;
 @property (nonatomic, retain) MainViewController *mainViewController;
 @property (nonatomic, retain) AuthorizeViewController *authorizeViewController;
 

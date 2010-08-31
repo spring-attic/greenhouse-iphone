@@ -115,7 +115,7 @@
 
 - (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets
 {
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:1.0f];
 	
 	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 	self.arrayTweets = tweets;
