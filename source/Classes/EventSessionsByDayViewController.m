@@ -13,6 +13,7 @@
 
 @property (nonatomic, retain) EventSessionController *eventSessionController;
 @property (nonatomic, retain) NSArray *arrayTimes;
+@property (nonatomic, retain) NSDate *currentEventDate;
 
 @end
 
@@ -21,6 +22,7 @@
 
 @synthesize eventSessionController;
 @synthesize arrayTimes;
+@synthesize currentEventDate;
 @synthesize eventDate;
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
@@ -52,10 +54,12 @@
 	eventSessionController.delegate = nil;
 	self.eventSessionController = nil;
 	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
 	self.arraySessions = sessions;
 	self.arrayTimes = times;
 	
-	[self.tableViewSessions reloadData];
+	[self.tableView reloadData];
 }
 
 
@@ -64,55 +68,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	NSInteger numberOfSections;
-	
-	@try 
+	if (arrayTimes)
 	{
-		if (arrayTimes)
-		{
-			numberOfSections = [arrayTimes count];
-		}
-		else 
-		{
-			numberOfSections = 1;
-		}
-
+		return [arrayTimes count];
 	}
-	@catch (NSException * e) 
+	else 
 	{
-		DLog(@"%@", [e reason]);
-		numberOfSections = 0;
-	}
-	@finally 
-	{
-		return numberOfSections;
+		return 1;
 	}
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSInteger numberOfRows;
-	
-	@try 
+	if (self.arraySessions)
 	{
-		if (self.arraySessions)
-		{
-			NSArray *array = (NSArray *)[self.arraySessions objectAtIndex:section];
-			numberOfRows = [array count];
-		}
-		else 
-		{
-			numberOfRows = 1;
-		}
+		NSArray *array = (NSArray *)[self.arraySessions objectAtIndex:section];
+		return [array count];
 	}
-	@catch (NSException * e) 
+	else 
 	{
-		DLog(@"%@", [e reason]);
-		numberOfRows = 0;
-	}
-	@finally 
-	{
-		return numberOfRows;
+		return 1;
 	}
 }
 
@@ -120,7 +95,7 @@
 {
 	NSString *s = nil;
 	
-	@try 
+	if (arrayTimes)
 	{
 		NSDate *sessionTime = (NSDate *)[arrayTimes objectAtIndex:section];
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -129,37 +104,41 @@
 		[dateFormatter release];
 		s = dateString;		
 	}
-	@catch (NSException * e) 
-	{
-		DLog(@"%@", [e reason]);
-		s = nil;
-	}
-	@finally 
-	{
-		return s;
-	}
+	
+	return s;
 }
 
 
 #pragma mark -
-#pragma mark DataViewController methods
+#pragma mark PullRefreshTableViewController methods
 
 - (void)refreshView
 {
-	// clear out any existing data
-	self.arraySessions = nil;
-	self.arrayTimes = nil;
-	[self.tableViewSessions reloadData];
-	
 	// set the title of the view to the schedule day
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"EEEE"];
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
 	[dateFormatter release];
 	self.title = dateString;
+	
+	if (![self.currentEvent.eventId isEqualToString:self.event.eventId] ||
+		[currentEventDate compare:eventDate] != NSOrderedSame)
+	{
+		self.arraySessions = nil;
+		self.arrayTimes = nil;
+		[self.tableView reloadData];
+	}
+	
+	self.currentEvent = self.event;
+	self.currentEventDate = eventDate;
 }
 
-- (void)reloadData
+- (BOOL)shouldReloadData
+{
+	return (self.arraySessions == nil || arrayTimes == nil || self.lastRefreshExpired);
+}
+
+- (void)reloadTableViewDataSource
 {
 	self.eventSessionController = [EventSessionController eventSessionController];
 	eventSessionController.delegate = self;
@@ -173,6 +152,8 @@
 
 - (void)viewDidLoad 
 {
+	self.lastRefreshKey = @"EventSessionsByDayViewController_LastRefresh";
+	
     [super viewDidLoad];
 	
 	self.title = @"Schedule";
@@ -189,6 +170,7 @@
 	
 	self.eventSessionController = nil;
 	self.arrayTimes = nil;
+	self.currentEventDate = nil;
 	self.eventDate = nil;
 }
 
@@ -200,6 +182,7 @@
 {
 	[eventSessionController release];
 	[arrayTimes release];
+	[currentEventDate release];
 	[eventDate release];
 	
     [super dealloc];

@@ -7,16 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
 #import "Event.h"
 #import "EventSession.h"
 #import "EventSessionDetailsViewController.h"
 
 
-@interface EventSessionsViewController : DataViewController <UITableViewDelegate, UITableViewDataSource> { }
+@interface EventSessionsViewController : PullRefreshTableViewController { }
 
 @property (nonatomic, retain) NSArray *arraySessions;
 @property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
+@property (nonatomic, retain) Event *currentEvent;
 @property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;

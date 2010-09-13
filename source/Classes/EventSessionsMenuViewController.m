@@ -17,6 +17,8 @@
 
 @property (nonatomic, retain) NSArray *arrayMenuItems;
 @property (nonatomic, retain) NSMutableArray *arrayEventDates;
+@property (nonatomic, retain) NSMutableDictionary *dictionaryViewControllers;
+@property (nonatomic, retain) Event *currentEvent;
 
 @end
 
@@ -25,6 +27,8 @@
 
 @synthesize arrayMenuItems;
 @synthesize arrayEventDates;
+@synthesize dictionaryViewControllers;
+@synthesize currentEvent;
 @synthesize event;
 @synthesize tableViewMenu;
 @synthesize sessionsCurrentViewController;
@@ -60,10 +64,20 @@
 	}
 	else if (indexPath.section == 1)
 	{
-		sessionsByDayViewController.event = event;
 		NSDate *date = (NSDate *)[arrayEventDates objectAtIndex:indexPath.row];
-		sessionsByDayViewController.eventDate = date;
-		[self.navigationController pushViewController:sessionsByDayViewController animated:YES];
+		
+		EventSessionsByDayViewController *vc = (EventSessionsByDayViewController *)[dictionaryViewControllers objectForKey:[date description]];
+		
+		if (vc == nil)
+		{
+			vc = [[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+			[dictionaryViewControllers setObject:vc forKey:[date description]];
+		}
+		
+		vc.event = event;
+		vc.eventDate = date;
+		
+		[self.navigationController pushViewController:vc animated:YES];
 	}
 		
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -156,19 +170,25 @@
 
 - (void)refreshView
 {
-	[arrayEventDates removeAllObjects];
-	
-	NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
-	
-	while ([eventDate compare:event.endTime] != NSOrderedDescending)
+	if (![currentEvent.eventId isEqualToString:event.eventId])
 	{
-		[arrayEventDates addObject:eventDate];
+		[arrayEventDates removeAllObjects];
+		[dictionaryViewControllers removeAllObjects];
 		
-		// calculate the next event day by adding 24 hours
-		eventDate = [eventDate dateByAddingTimeInterval:86400];
+		NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
+		
+		while ([eventDate compare:event.endTime] != NSOrderedDescending)
+		{
+			[arrayEventDates addObject:eventDate];
+			
+			// calculate the next event day by adding 24 hours
+			eventDate = [eventDate dateByAddingTimeInterval:86400];
+		}
+		
+		[tableViewMenu reloadData];
 	}
 	
-	[tableViewMenu reloadData];
+	self.currentEvent = event;
 }
 
 
@@ -183,11 +203,11 @@
 	
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Current", @"My Favorites", @"Conference Favorites", nil];
 	self.arrayEventDates = [[NSMutableArray alloc] init];
+	self.dictionaryViewControllers = [[NSMutableDictionary alloc] init];
 	
 	self.sessionsCurrentViewController = [[EventSessionsCurrentViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 	self.sessionsFavoritesViewController = [[EventSessionsFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 	self.conferenceFavoritesViewController = [[EventSessionsConferenceFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
-	self.sessionsByDayViewController = [[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -201,12 +221,13 @@
 	
 	self.arrayMenuItems = nil;
 	self.arrayEventDates = nil;
+	self.dictionaryViewControllers = nil;
+	self.currentEvent = nil;
 	self.event = nil;
 	self.tableViewMenu = nil;
 	self.sessionsCurrentViewController = nil;
 	self.sessionsFavoritesViewController = nil;
 	self.conferenceFavoritesViewController = nil;
-	self.sessionsByDayViewController = nil;
 }
 
 
@@ -217,12 +238,14 @@
 {
 	[arrayMenuItems release];
 	[arrayEventDates release];
+	[dictionaryViewControllers release];
+	[currentEvent release];
 	[event release];
 	[tableViewMenu release];
 	[sessionsCurrentViewController release];
 	[sessionsFavoritesViewController release];
 	[conferenceFavoritesViewController release];
-	[sessionsByDayViewController release];
+
 	
     [super dealloc];
 }

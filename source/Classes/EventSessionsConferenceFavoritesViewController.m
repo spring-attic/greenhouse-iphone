@@ -25,14 +25,20 @@
 
 - (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
 {
-	// TODO: add logic
+	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
+	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
+	self.arraySessions = sessions;
+	[self.tableView reloadData];
 }
 
 
 #pragma mark -
 #pragma mark DataViewController methods
 
-- (void)reloadData
+- (void)reloadTableViewDataSource
 {
 	self.eventSessionController = [EventSessionController eventSessionController];
 	eventSessionController.delegate = self;
@@ -46,6 +52,8 @@
 
 - (void)viewDidLoad 
 {
+	self.lastRefreshKey = @"EventSessionFavoritesViewController_LastRefresh";
+	
     [super viewDidLoad];
 	
 	self.title = @"Conference Favorites";

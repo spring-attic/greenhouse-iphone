@@ -13,8 +13,8 @@
 
 @synthesize arraySessions;
 @synthesize event;
+@synthesize currentEvent;
 @synthesize sessionDetailsViewController;
-@synthesize tableViewSessions;
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
@@ -56,25 +56,16 @@
 {
 	CGFloat height = 44.0f;
 	
-	@try 
-	{
-		EventSession *session = [self eventSessionForIndexPath:indexPath];
+	EventSession *session = [self eventSessionForIndexPath:indexPath];
 		
-		if (session)
-		{
-			CGSize maxSize = CGSizeMake(tableViewSessions.frame.size.width - 40.0f, CGFLOAT_MAX);
-			CGSize textSize = [session.title sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
-			height = MAX(textSize.height + 26.0f, 44.0f);
-		}
-	}
-	@catch (NSException * e) 
+	if (session)
 	{
-		DLog(@"%@", [e reason]);
+		CGSize maxSize = CGSizeMake(tableView.frame.size.width - 40.0f, CGFLOAT_MAX);
+		CGSize textSize = [session.title sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
+		height = MAX(textSize.height + 26.0f, 44.0f);
 	}
-	@finally 
-	{
-		return height;
-	}
+	
+	return height;
 }
 
 
@@ -109,6 +100,7 @@
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		
 		[cell.textLabel setFont:[UIFont boldSystemFontOfSize:16.0f]];
 		[cell.textLabel setNumberOfLines:0];		
@@ -127,39 +119,43 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSInteger numberOfRows;
-	
-	@try 
+	if (self.arraySessions)
 	{
-		if (self.arraySessions)
-		{
-			numberOfRows = [self.arraySessions count];
-		}
-		else 
-		{
-			numberOfRows = 1;
-		}
-		
+		return [self.arraySessions count];
 	}
-	@catch (NSException * e) 
+	else 
 	{
-		DLog(@"%@", [e reason]);
-		numberOfRows = 0;
-	}
-	@finally 
-	{
-		return numberOfRows;
+		return 1;
 	}
 }
 
 
 #pragma mark -
-#pragma mark DataViewController methods
+#pragma mark PullRefreshTableViewController methods
 
 - (void)refreshView
 {
-	self.arraySessions = nil;
-	[self.tableViewSessions reloadData];
+	if (![self.currentEvent.eventId isEqualToString:self.event.eventId])
+	{
+		self.arraySessions = nil;
+		
+		[self.tableView reloadData];
+	}
+	
+	self.currentEvent = event;
+}
+
+- (void)reloadData
+{
+	if (self.shouldReloadData)
+	{
+		[self reloadTableViewDataSource];
+	}
+}
+
+- (BOOL)shouldReloadData
+{
+	return (!arraySessions || self.lastRefreshExpired);
 }
 
 
@@ -184,8 +180,8 @@
 	
 	self.arraySessions = nil;
 	self.event = nil;
+	self.currentEvent = nil;
 	self.sessionDetailsViewController = nil;
-	self.tableViewSessions = nil;
 }
 
 
@@ -196,8 +192,8 @@
 {
 	[arraySessions release];
 	[event release];
+	[currentEvent release];
 	[sessionDetailsViewController release];
-	[tableViewSessions release];
 	
     [super dealloc];
 }

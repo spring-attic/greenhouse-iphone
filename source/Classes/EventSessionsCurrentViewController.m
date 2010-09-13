@@ -42,25 +42,27 @@
 
 - (BOOL)displayLoadingCell
 {
-	NSInteger currentCount = [arrayCurrentSessions count];
-	NSInteger upcomingCount = [arrayUpcomingSessions count];
-	
-	return (currentCount == 0 && upcomingCount == 0);
+	return (arrayCurrentSessions == nil);
+//	NSInteger currentCount = [arrayCurrentSessions count];
+//	NSInteger upcomingCount = [arrayUpcomingSessions count];
+//	
+//	return (currentCount == 0 && upcomingCount == 0);
 }
 
 
 #pragma mark -
 #pragma mark EventSessionControllerDelegate methods
 
-- (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
+- (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
 {
 	eventSessionController.delegate = nil;
 	self.eventSessionController = nil;
 	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
 	self.arrayCurrentSessions = currentSessions;
 	self.arrayUpcomingSessions = upcomingSessions;
-	
-	[self.tableViewSessions reloadData];
+	[self.tableView reloadData];
 }
 
 
@@ -77,27 +79,19 @@
 	{
 		return 1;
 	}
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (arrayCurrentSessions && arrayUpcomingSessions)
+	if (arrayCurrentSessions && section == 0)
 	{
-		switch (section) 
-		{
-			case 0:
-				return [arrayCurrentSessions count];
-				break;
-			case 1:
-				return [arrayUpcomingSessions count];
-				break;
-			default:
-				return 0;
-				break;
-		}
+		return [arrayCurrentSessions count];
 	}
-	else
+	else if (arrayUpcomingSessions && section == 1)
+	{
+		return [arrayUpcomingSessions count];
+	}
+	else 
 	{
 		return 1;
 	}
@@ -105,43 +99,47 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	if (arrayCurrentSessions && arrayUpcomingSessions)
+	
+	if ([arrayCurrentSessions count] > 0 && section == 0)
 	{
-		switch (section) 
-		{
-			case 0:
-				return @"Happening Now:";
-				break;
-			case 1:
-				return @"Up Next:";
-				break;
-			default:
-				return @"";
-				break;
-		}
+		return @"Happening Now:";
 	}
-	else
+	else if ([arrayUpcomingSessions count] > 0 && section == 1)
+	{
+		return @"Up Next:";
+	}
+	else 
 	{
 		return @"";
-	}
+	}	
 }
 
 
 #pragma mark -
-#pragma mark DataViewController methods
+#pragma mark PullRefreshTableViewController methods
 
 - (void)refreshView
 {
-	self.arrayCurrentSessions = nil;
-	self.arrayUpcomingSessions = nil;
+	if (![self.currentEvent.eventId isEqualToString:self.event.eventId])
+	{
+		self.arrayCurrentSessions = nil;
+		self.arrayUpcomingSessions = nil;
 	
-	[self.tableViewSessions reloadData];
+		[self.tableView reloadData];
+	}
+	
+	self.currentEvent = self.event;
 }
 
-- (void)reloadData
+- (BOOL)shouldReloadData
+{
+	return (arrayCurrentSessions == nil || self.lastRefreshExpired);
+}
+
+- (void)reloadTableViewDataSource
 {
 	self.eventSessionController = [EventSessionController eventSessionController];
-	eventSessionController.delegate = nil;
+	eventSessionController.delegate = self;
 	
 	[eventSessionController fetchCurrentSessionsByEventId:self.event.eventId];
 }
@@ -152,6 +150,8 @@
 
 - (void)viewDidLoad 
 {
+	self.lastRefreshKey = @"EventSessionsCurrentViewController_LastRefresh";
+	
     [super viewDidLoad];
 	
 	self.title = @"Current";
