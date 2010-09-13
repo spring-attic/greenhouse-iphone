@@ -10,12 +10,9 @@
 #import "WebDataModelObject.h"
 
 
-@interface EventSession : WebDataModelObject 
-{
+@interface EventSession : WebDataModelObject { }
 
-}
-
-@property (nonatomic, assign) NSInteger number;
+@property (nonatomic, copy) NSString *number;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) NSDate *startTime;
 @property (nonatomic, retain) NSDate *endTime;

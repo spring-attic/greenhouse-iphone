@@ -9,9 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface WebDataModelObject : NSObject {
-
-}
+@interface WebDataModelObject : NSObject { }
 
 - (id)initWithDictionary:(NSDictionary *)dictionary;
 

@@ -28,7 +28,7 @@
 	{
 		if (dictionary)
 		{
-			self.eventId = [dictionary integerForKey:@"id"];
+			self.eventId = [dictionary stringForKey:@"id"];
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
@@ -50,6 +50,7 @@
 
 - (void)dealloc
 {
+	[eventId release];
 	[title release];
 	[startTime release];
 	[endTime release];

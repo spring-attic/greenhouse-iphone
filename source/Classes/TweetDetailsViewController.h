@@ -13,10 +13,7 @@
 @class NewTweetViewController;
 
 
-@interface TweetDetailsViewController : OAuthViewController <DataViewDelegate>
-{
-
-}
+@interface TweetDetailsViewController : DataViewController { }
 
 @property (nonatomic, retain) Tweet *tweet;
 @property (nonatomic, retain) NSURL *tweetUrl;

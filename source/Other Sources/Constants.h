@@ -11,7 +11,6 @@
 #pragma mark -
 #pragma mark Web Service
 
-
 #if LOCALHOST
 
 	#define GREENHOUSE_URL							@"http://127.0.0.1:8080/greenhouse"
@@ -49,16 +48,16 @@
 #pragma mark Events
 
 #define EVENTS_URL								[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/"]
-#define EVENT_SESSIONS_CURRENT_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/today"]
-#define EVENT_SESSIONS_FAVORITES_URL			[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/favorites"]
-#define EVENT_SESSIONS_CONFERENCE_FAVORITES_URL	[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/favorites"]
-#define EVENT_SESSIONS_FAVORITE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/%i/favorite"]
-#define EVENT_SESSIONS_BY_DAY_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/%@"]
-#define EVENT_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/tweets"]
-#define EVENT_RETWEET_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/retweet"]
-#define EVENT_SESSION_TWEETS_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/%i/tweets"]
-#define EVENT_SESSION_RETWEET_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/%i/retweet"]
-#define EVENT_SESSION_RATING_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%i/sessions/%i/rating"]
+#define EVENT_SESSIONS_CURRENT_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/today"]
+#define EVENT_SESSIONS_FAVORITES_URL			[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/favorites"]
+#define EVENT_SESSIONS_CONFERENCE_FAVORITES_URL	[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/favorites"]
+#define EVENT_SESSIONS_FAVORITE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%i/favorite"]
+#define EVENT_SESSIONS_BY_DAY_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@"]
+#define EVENT_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/tweets"]
+#define EVENT_RETWEET_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/retweet"]
+#define EVENT_SESSION_TWEETS_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/tweets"]
+#define EVENT_SESSION_RETWEET_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/retweet"]
+#define EVENT_SESSION_RATING_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/rating"]
 #define EVENT_LOCATION_MAP_URL					@"http://maps.google.com/maps/api/geocode/json?address=%@&sensor=true"
 
 

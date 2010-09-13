@@ -12,14 +12,11 @@
 
 @class EventDescriptionViewController;
 @class EventSessionsMenuViewController;
-@class TweetsViewController;
+@class EventTweetsViewController;
 @class EventMapViewController;
 
 
-@interface EventDetailsViewController : UIViewController <DataViewDelegate, UITableViewDataSource, UITableViewDelegate> 
-{
-
-}
+@interface EventDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate> { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UILabel *labelTitle;
@@ -29,10 +26,7 @@
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
 @property (nonatomic, retain) EventSessionsMenuViewController *eventSessionsMenuViewController;
-@property (nonatomic, retain) TweetsViewController *tweetsViewController;
+@property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
 @property (nonatomic, retain) EventMapViewController *eventMapViewController;
-
-- (void)refreshView;
-- (void)fetchData;
 
 @end

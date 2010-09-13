@@ -13,13 +13,11 @@
 #import "TweetTableViewCell.h"
 #import "Tweet.h"
 #import "OAuthManager.h"
-#import "NewTweetViewController.h"
 #import "TweetDetailsViewController.h"
 
 
 @interface TweetsViewController()
 
-@property (nonatomic, retain) NSArray *arrayTweets;
 @property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
 @property (nonatomic, retain) TwitterController *twitterController;
 
@@ -36,7 +34,6 @@
 @synthesize twitterController;
 @synthesize tweetUrl;
 @synthesize retweetUrl;
-@synthesize hashtag;
 @synthesize newTweetViewController;
 @synthesize tweetDetailsViewController;
 
@@ -82,41 +79,15 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate methods
-
-- (void)refreshView
-{
-	newTweetViewController.tweetUrl = tweetUrl;
-	newTweetViewController.tweetText = hashtag;
-}
-
-- (void)fetchData
-{
-	if (!arrayTweets)
-	{
-		self.twitterController = [TwitterController twitterController];
-		twitterController.delegate = self;
-		
-		[twitterController fetchTweetsWithURL:tweetUrl];		
-	}
-}
-
-- (void)reloadTableViewDataSource
-{
-	self.twitterController = [TwitterController twitterController];
-	twitterController.delegate = self;
-	
-	[twitterController fetchTweetsWithURL:tweetUrl];
-}
-
-
-#pragma mark -
 #pragma mark TwitterControllerDelegate methods
 
 - (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets
 {
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:1.0f];
+	twitterController.delegate = nil;
+	self.twitterController = nil;
 	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+		
 	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
 	self.arrayTweets = tweets;
 
@@ -144,7 +115,6 @@
 #pragma mark -
 #pragma mark UIScrollViewDelegate methods
 
-// Load images for all onscreen rows when scrolling is finished
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
 	// pass this delegate call on so the pull to refresh works
@@ -152,6 +122,7 @@
 	
     if (!decelerate)
 	{
+		// Load images for all onscreen rows when scrolling is finished
         [self loadImagesForOnscreenRows];
     }
 }
@@ -172,7 +143,6 @@
 	tweetDetailsViewController.tweetUrl = tweetUrl;
 	tweetDetailsViewController.retweetUrl = retweetUrl;
 	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
-	[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -224,6 +194,7 @@
 	if (cell == nil)
 	{
 		cell = [[[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
 		
 	// Leave cells empty if there's no data yet
@@ -256,6 +227,31 @@
 	{
 		return 1;
 	}
+}
+
+
+#pragma mark -
+#pragma mark PullRefreshTableViewController methods
+
+- (void)reloadData
+{
+	if (self.shouldReloadData)
+	{
+		[self reloadTableViewDataSource];
+	}
+}
+
+- (BOOL)shouldReloadData
+{
+	return (arrayTweets == nil || self.lastRefreshExpired);
+}
+
+- (void)reloadTableViewDataSource
+{
+	self.twitterController = [TwitterController twitterController];
+	twitterController.delegate = self;
+	
+	[twitterController fetchTweetsWithURL:tweetUrl];
 }
 
 
@@ -296,7 +292,6 @@
 	self.twitterController = nil;
 	self.tweetUrl = nil;
 	self.retweetUrl = nil;
-	self.hashtag = nil;
 	self.newTweetViewController = nil;
 	self.tweetDetailsViewController = nil;
 }
@@ -307,9 +302,11 @@
 
 - (void)dealloc 
 {
+	[arrayTweets release];
+	[imageDownloadsInProgress release];
+	[twitterController release];
 	[tweetUrl release];
 	[retweetUrl release];
-	[hashtag release];
 	[newTweetViewController release];
 	[tweetDetailsViewController release];
 	

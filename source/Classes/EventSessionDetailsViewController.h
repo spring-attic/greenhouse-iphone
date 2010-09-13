@@ -12,14 +12,11 @@
 
 
 @class EventSessionDescriptionViewController;
-@class TweetsViewController;
+@class EventSessionTweetsViewController;
 @class EventSessionRateViewController;
 
 
-@interface EventSessionDetailsViewController : UIViewController <DataViewDelegate, UITableViewDataSource, UITableViewDelegate>
-{
-
-}
+@interface EventSessionDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate> { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;
@@ -34,10 +31,7 @@
 @property (nonatomic, retain) IBOutlet UIImageView *imageViewRating5;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
 @property (nonatomic, retain) EventSessionDescriptionViewController *sessionDescriptionViewController;
-@property (nonatomic, retain) TweetsViewController *tweetsViewController;
+@property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
 @property (nonatomic, retain) EventSessionRateViewController *sessionRateViewController;
-
-- (void)refreshView;
-- (void)fetchData;
 
 @end

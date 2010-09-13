@@ -11,62 +11,17 @@
 
 @interface EventSessionsByDayViewController()
 
-@property (nonatomic, retain) NSMutableArray *arrayTimes;
+@property (nonatomic, retain) EventSessionController *eventSessionController;
+@property (nonatomic, retain) NSArray *arrayTimes;
 
 @end
 
 
 @implementation EventSessionsByDayViewController
 
+@synthesize eventSessionController;
 @synthesize arrayTimes;
 @synthesize eventDate;
-
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed)
-	{
-		self.arraySessions = [[NSMutableArray alloc] init];
-		self.arrayTimes = [[NSMutableArray alloc] init];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
-		
-		DLog(@"%@", array);
-		
-		NSMutableArray *arrayBlock = nil;
-		NSDate *sessionTime = [NSDate distantPast];
-		
-		for (NSDictionary *d in array) 
-		{
-			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			
-			// for each time block create an array to hold the sessions for that block
-			if ([sessionTime compare:session.startTime] == NSOrderedAscending)
-			{
-				arrayBlock = [[NSMutableArray alloc] init];
-				[self.arraySessions addObject:arrayBlock];
-				[arrayBlock release];
-				
-				[arrayBlock addObject:session];
-			}
-			else if ([sessionTime compare:session.startTime] == NSOrderedSame)
-			{
-				[arrayBlock addObject:session];
-			}
-			
-			sessionTime = session.startTime;
-			
-			NSDate *date = [session.startTime copyWithZone:NULL];
-			[self.arrayTimes addObject:date];
-			[date release];
-			
-			[session release];
-		}
-		
-		[self.tableViewSessions reloadData];
-	}
-}
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
@@ -90,33 +45,17 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
+#pragma mark EventSessionControllerDelegate methods
 
-- (void)refreshView
+- (void)fetchSessionsByDateDidFinishWithResults:(NSArray *)sessions andTimes:(NSArray *)times
 {
-	// clear out any existing data
-	self.arraySessions = nil;
-	self.arrayTimes = nil;
-	[self.tableViewSessions reloadData];
+	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
 	
-	// set the title of the view to the schedule day
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"EEEE"];
-	NSString *dateString = [dateFormatter stringFromDate:eventDate];
-	[dateFormatter release];
-	self.title = dateString;
-}
-
-- (void)fetchData
-{
-	// request the sessions for the selected day
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"YYYY-MM-d"];
-	NSString *dateString = [dateFormatter stringFromDate:eventDate];
-	[dateFormatter release];
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, self.event.eventId, dateString];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
-	[urlString release];	
+	self.arraySessions = sessions;
+	self.arrayTimes = times;
+	
+	[self.tableViewSessions reloadData];
 }
 
 
@@ -203,6 +142,33 @@
 
 
 #pragma mark -
+#pragma mark DataViewController methods
+
+- (void)refreshView
+{
+	// clear out any existing data
+	self.arraySessions = nil;
+	self.arrayTimes = nil;
+	[self.tableViewSessions reloadData];
+	
+	// set the title of the view to the schedule day
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"EEEE"];
+	NSString *dateString = [dateFormatter stringFromDate:eventDate];
+	[dateFormatter release];
+	self.title = dateString;
+}
+
+- (void)reloadData
+{
+	self.eventSessionController = [EventSessionController eventSessionController];
+	eventSessionController.delegate = self;
+	
+	[eventSessionController fetchSessionsByEventId:self.event.eventId withDate:eventDate];
+}
+
+
+#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
@@ -221,6 +187,7 @@
 {
     [super viewDidUnload];
 	
+	self.eventSessionController = nil;
 	self.arrayTimes = nil;
 	self.eventDate = nil;
 }
@@ -231,6 +198,7 @@
 
 - (void)dealloc 
 {
+	[eventSessionController release];
 	[arrayTimes release];
 	[eventDate release];
 	

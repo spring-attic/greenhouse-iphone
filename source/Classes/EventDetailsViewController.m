@@ -9,7 +9,7 @@
 #import "EventDetailsViewController.h"
 #import "EventDescriptionViewController.h"
 #import "EventSessionsMenuViewController.h"
-#import "TweetsViewController.h"
+#import "EventTweetsViewController.h"
 #import "EventMapViewController.h"
 
 
@@ -31,31 +31,83 @@
 @synthesize tableViewMenu;
 @synthesize eventDescriptionViewController;
 @synthesize eventSessionsMenuViewController;
-@synthesize tweetsViewController;
+@synthesize eventTweetsViewController;
 @synthesize eventMapViewController;
 
 
 #pragma mark -
-#pragma mark DataViewDelegate methods
+#pragma mark UITableViewDelegate methods
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	switch (indexPath.row) 
+	{
+		case 0:
+			[self.navigationController pushViewController:eventDescriptionViewController animated:YES];
+			break;
+		case 1:
+			[self.navigationController pushViewController:eventSessionsMenuViewController animated:YES];
+			break;
+		case 2:
+			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
+			break;
+		case 3:
+			[self.navigationController pushViewController:eventMapViewController animated:YES];
+			break;
+		default:
+			break;
+	}
+	
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource methods
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	static NSString *cellIdent = @"menuCell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
+	
+	if (cell == nil)
+	{
+		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+	}
+	
+	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
+	
+	[cell.textLabel setText:s];
+	
+	return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	if (arrayMenuItems)
+	{
+		return [arrayMenuItems count];
+	}
+	
+	return 0;
+}
+
+
+#pragma mark -
+#pragma mark DataViewController methods
 
 - (void)refreshView
 {
 	eventDescriptionViewController.event = event;
 	eventSessionsMenuViewController.event = event;
+	eventTweetsViewController.event = event;
 	eventMapViewController.event = event;
-	
-	tweetsViewController.hashtag = event.hashtag;
-	
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];
-	tweetsViewController.tweetUrl = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
-	
-	urlString = [[NSString alloc] initWithFormat:EVENT_RETWEET_URL, event.eventId];
-	tweetsViewController.retweetUrl = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
-	
+		
 	labelTitle.text = event.title;
-
+	
 	NSDate *date = [event.startTime dateByAddingTimeInterval:86400];
 	
 	// if start and end time are exactly the same, just display the date
@@ -102,71 +154,6 @@
 	labelLocation.text = event.location;
 }
 
-- (void)fetchData
-{
-	
-}
-
-
-#pragma mark -
-#pragma mark UITableViewDelegate methods
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	switch (indexPath.row) 
-	{
-		case 0:
-			[self.navigationController pushViewController:eventDescriptionViewController animated:YES];
-			break;
-		case 1:
-			[self.navigationController pushViewController:eventSessionsMenuViewController animated:YES];
-			break;
-		case 2:
-			[self.navigationController pushViewController:tweetsViewController animated:YES];
-			break;
-		case 3:
-			[self.navigationController pushViewController:eventMapViewController animated:YES];
-			break;
-		default:
-			break;
-	}
-	
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
-}
-
-
-#pragma mark -
-#pragma mark UITableViewDataSource methods
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	static NSString *cellIdent = @"menuCell";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
-	
-	if (cell == nil)
-	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	}
-	
-	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
-	
-	[cell.textLabel setText:s];
-	
-	return cell;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-	if (arrayMenuItems)
-	{
-		return [arrayMenuItems count];
-	}
-	
-	return 0;
-}
-
 
 #pragma mark -
 #pragma mark UIViewController methods
@@ -181,7 +168,7 @@
 	
 	self.eventDescriptionViewController = [[EventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventSessionsMenuViewController = [[EventSessionsMenuViewController alloc] initWithNibName:nil bundle:nil];
-	self.tweetsViewController = [[TweetsViewController alloc] initWithNibName:nil bundle:nil];
+	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventMapViewController = [[EventMapViewController alloc] initWithNibName:nil bundle:nil];
 }
 
@@ -203,7 +190,7 @@
 	self.tableViewMenu = nil;
 	self.eventDescriptionViewController = nil;
 	self.eventSessionsMenuViewController = nil;
-	self.tweetsViewController = nil;
+	self.eventTweetsViewController = nil;
 	self.eventMapViewController = nil;
 }
 
@@ -222,7 +209,7 @@
 	[tableViewMenu release];
 	[eventDescriptionViewController release];
 	[eventSessionsMenuViewController release];
-	[tweetsViewController release];
+	[eventTweetsViewController release];
 	[eventMapViewController release];
 	
     [super dealloc];

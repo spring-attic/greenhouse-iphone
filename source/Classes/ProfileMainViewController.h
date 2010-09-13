@@ -7,18 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProfileController.h"
+#import "WebImageView.h"
 
 
-@interface ProfileMainViewController : OAuthViewController <DataViewDelegate> 
-{
-
-}
+@interface ProfileMainViewController : DataViewController <ProfileControllerDelegate> { }
 
 @property (nonatomic, retain) IBOutlet UILabel *labelDisplayName;
 @property (nonatomic, retain) IBOutlet WebImageView *imageViewPicture;
 
 - (IBAction)actionSignOut:(id)sender;
-- (void)refreshView;
-- (void)fetchData;
 
 @end

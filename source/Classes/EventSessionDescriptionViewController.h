@@ -10,15 +10,9 @@
 #import "EventSession.h"
 
 
-@interface EventSessionDescriptionViewController : UIViewController <DataViewDelegate>
-{
-
-}
+@interface EventSessionDescriptionViewController : DataViewController { }
 
 @property (nonatomic, retain) EventSession *session;
 @property (nonatomic, retain) IBOutlet UITextView *textViewDescription;
-
-- (void)refreshView;
-- (void)fetchData;
 
 @end

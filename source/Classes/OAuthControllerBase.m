@@ -12,6 +12,31 @@
 @implementation OAuthControllerBase
 
 @synthesize dataFetcher;
+@synthesize fetchingData;
+
+- (id)init
+{
+	if ((self = [super init]))
+	{
+		self.dataFetcher = [[OADataFetcher alloc] init];
+	}
+	
+	return self;
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1)
+	{
+		// sign out
+		[[OAuthManager sharedInstance] removeAccessToken];
+		[appDelegate showAuthorizeViewController];
+	}
+}
 
 
 #pragma mark -

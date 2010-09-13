@@ -13,7 +13,8 @@
 
 @interface EventsMainViewController()
 
-@property (nonatomic, retain) NSMutableArray *arrayEvents;
+@property (nonatomic, retain) NSArray *arrayEvents;
+@property (nonatomic, retain) EventController *eventController;
 
 @end
 
@@ -21,52 +22,23 @@
 @implementation EventsMainViewController
 
 @synthesize arrayEvents;
+@synthesize eventController;
 @synthesize barButtonRefresh;
-@synthesize tableViewEvents;
 @synthesize eventDetailsViewController;
 
 
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed)
-	{
-		self.arrayEvents = [[NSMutableArray alloc] init];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
-		
-		DLog(@"%@", array);
-		
-		for (NSDictionary *d in array) 
-		{
-			Event *event = [[Event alloc] initWithDictionary:d];
-			[arrayEvents addObject:event];
-			[event release];
-		}
-		
-		[tableViewEvents reloadData];
-	}
-	
-	self.fetchingData = NO;
-}
-
-
 #pragma mark -
-#pragma mark DataViewDelegate methods
+#pragma mark EventControllerDelegate methods
 
-- (void)refreshView
+- (void)fetchEventsDidFinishWithResults:(NSArray *)events
 {
-	self.arrayEvents = nil;
-	[tableViewEvents reloadData];
-}
-
-- (void)fetchData
-{
-	if (!self.fetchingData)
-	{
-		[self fetchJSONDataWithURL:[NSURL URLWithString:EVENTS_URL]];
-	}
+	eventController.delegate = nil;
+	self.eventController = nil;
+	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
+	self.arrayEvents = events;
+	[self.tableView reloadData];
 }
 
 
@@ -76,9 +48,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
-	
 	eventDetailsViewController.event = event;
-	
 	[self.navigationController pushViewController:eventDetailsViewController animated:YES];
 }
 
@@ -116,6 +86,7 @@
 	{
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
 	
 	Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
@@ -140,11 +111,38 @@
 
 
 #pragma mark -
+#pragma mark PullRefreshTableViewController methods
+
+- (void)reloadData
+{
+	if ([self shouldReloadData])
+	{
+		[self reloadTableViewDataSource];
+	}
+}
+
+- (void)reloadTableViewDataSource
+{
+	self.eventController = [EventController eventController];
+	eventController.delegate = self;
+	
+	[eventController fetchEvents];	
+}
+
+- (BOOL)shouldReloadData
+{
+	return (!arrayEvents || self.lastRefreshExpired);
+}
+
+
+#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
 {
-    [super viewDidLoad];
+	self.lastRefreshKey = @"EventsMainViewController_LastRefresh";
+	
+	[super viewDidLoad];
 	
 	self.title = @"Upcoming Events";
 	
@@ -161,8 +159,8 @@
 	[super viewDidUnload];
 	
 	self.arrayEvents = nil;
+	self.eventController = nil;
 	self.barButtonRefresh = nil;
-	self.tableViewEvents = nil;
 	self.eventDetailsViewController = nil;
 }
 
@@ -173,8 +171,8 @@
 - (void)dealloc 
 {
 	[arrayEvents release];
+	[eventController release];
 	[barButtonRefresh release];
-	[tableViewEvents release];
 	[eventDetailsViewController release];
 	
     [super dealloc];

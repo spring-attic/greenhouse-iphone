@@ -11,63 +11,18 @@
 
 @interface EventSessionsCurrentViewController()
 
-@property (nonatomic, retain) NSMutableArray *arrayUpcomingSessions;
+@property (nonatomic, retain) EventSessionController *eventSessionController;
+@property (nonatomic, retain) NSArray *arrayCurrentSessions;
+@property (nonatomic, retain) NSArray *arrayUpcomingSessions;
 
 @end
 
 
 @implementation EventSessionsCurrentViewController
 
+@synthesize eventSessionController;
+@synthesize arrayCurrentSessions;
 @synthesize arrayUpcomingSessions;
-
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed)
-	{
-		self.arraySessions = [[NSMutableArray alloc] init];
-		self.arrayUpcomingSessions = [[NSMutableArray alloc] init];
-				
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
-		
-		DLog(@"%@", array);
-		
-		NSDate *nextStartTime = nil;
-		
-		for (NSDictionary *d in array) 
-		{
-			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			
-			NSDate *now = [NSDate date];
-			
-			if ([now compare:session.startTime] == NSOrderedDescending &&
-				[now compare:session.endTime] == NSOrderedAscending)
-			{
-				// find the sessions that are happening now
-				[self.arraySessions addObject:session];
-			}
-			else if ([now compare:session.startTime] == NSOrderedAscending)
-			{
-				// determine the start time of the next block of sessions
-				if (nextStartTime == nil)
-				{
-					nextStartTime = session.startTime;
-				}
-				
-				if ([nextStartTime compare:session.startTime] == NSOrderedSame)
-				{
-					// only show the sessions occurring in the next block
-					[arrayUpcomingSessions addObject:session];
-				}
-			}
-			
-			[session release];
-		}
-				
-		[self.tableViewSessions reloadData];
-	}
-}
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
@@ -75,7 +30,7 @@
 	
 	if (indexPath.section == 0)
 	{
-		session = (EventSession *)[self.arraySessions objectAtIndex:indexPath.row];
+		session = (EventSession *)[arrayCurrentSessions objectAtIndex:indexPath.row];
 	}
 	else if (indexPath.section == 1)
 	{
@@ -87,28 +42,25 @@
 
 - (BOOL)displayLoadingCell
 {
-	NSInteger currentCount = [self.arraySessions count];
-	NSInteger upcomingCount = [self.arrayUpcomingSessions count];
+	NSInteger currentCount = [arrayCurrentSessions count];
+	NSInteger upcomingCount = [arrayUpcomingSessions count];
 	
 	return (currentCount == 0 && upcomingCount == 0);
 }
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
+#pragma mark EventSessionControllerDelegate methods
 
-- (void)refreshView
+- (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
 {
-	self.arraySessions = nil;
-	self.arrayUpcomingSessions = nil;
+	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
+	
+	self.arrayCurrentSessions = currentSessions;
+	self.arrayUpcomingSessions = upcomingSessions;
+	
 	[self.tableViewSessions reloadData];
-}
-
-- (void)fetchData
-{
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CURRENT_URL, self.event.eventId];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
-	[urlString release];	
 }
 
 
@@ -117,7 +69,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	if (self.arraySessions && self.arrayUpcomingSessions)
+	if (arrayCurrentSessions && arrayUpcomingSessions)
 	{
 		return 2;
 	}
@@ -130,15 +82,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (self.arraySessions && self.arrayUpcomingSessions)
+	if (arrayCurrentSessions && arrayUpcomingSessions)
 	{
 		switch (section) 
 		{
 			case 0:
-				return [self.arraySessions count];
+				return [arrayCurrentSessions count];
 				break;
 			case 1:
-				return [self.arrayUpcomingSessions count];
+				return [arrayUpcomingSessions count];
 				break;
 			default:
 				return 0;
@@ -153,7 +105,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	if (self.arraySessions && self.arrayUpcomingSessions)
+	if (arrayCurrentSessions && arrayUpcomingSessions)
 	{
 		switch (section) 
 		{
@@ -176,6 +128,26 @@
 
 
 #pragma mark -
+#pragma mark DataViewController methods
+
+- (void)refreshView
+{
+	self.arrayCurrentSessions = nil;
+	self.arrayUpcomingSessions = nil;
+	
+	[self.tableViewSessions reloadData];
+}
+
+- (void)reloadData
+{
+	self.eventSessionController = [EventSessionController eventSessionController];
+	eventSessionController.delegate = nil;
+	
+	[eventSessionController fetchCurrentSessionsByEventId:self.event.eventId];
+}
+
+
+#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
@@ -194,6 +166,8 @@
 {
     [super viewDidUnload];
 	
+	self.eventSessionController = nil;
+	self.arrayCurrentSessions = nil;
 	self.arrayUpcomingSessions = nil;
 }
 
@@ -203,6 +177,8 @@
 
 - (void)dealloc 
 {
+	[eventSessionController release];
+	[arrayCurrentSessions release];
 	[arrayUpcomingSessions release];
 	
     [super dealloc];

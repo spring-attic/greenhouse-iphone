@@ -7,19 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
+#import "EventController.h"
 #import "EventDetailsViewController.h"
 
 
-@interface EventsMainViewController : OAuthViewController <DataViewDelegate>
-{
-
-}
+@interface EventsMainViewController : PullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, EventControllerDelegate> { }
 
 @property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonRefresh;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewEvents;
 @property (nonatomic, retain) IBOutlet EventDetailsViewController *eventDetailsViewController;
-
-- (void)refreshView;
-- (void)fetchData;
 
 @end

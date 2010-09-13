@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "OAuthManager.h"
 
 
-@interface OAuthControllerBase : NSObject { }
+@interface OAuthControllerBase : NSObject <UIAlertViewDelegate> { }
 
 @property (nonatomic, retain) OADataFetcher *dataFetcher;
+@property (nonatomic, assign) BOOL fetchingData;
 
 @end

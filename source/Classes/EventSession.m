@@ -30,7 +30,7 @@
 	{
 		if (dictionary)
 		{
-			self.number = [dictionary integerForKey:@"number"];
+			self.number = [dictionary stringForKey:@"number"];
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
@@ -79,10 +79,11 @@
 
 - (void)dealloc
 {
+	[number release];
 	[title release];
-	[description release];
 	[startTime release];
 	[endTime release];
+	[description release];
 	[leaders release];
 	[hashtag release];
 	

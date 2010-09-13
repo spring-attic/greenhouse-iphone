@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "EventSessionsViewController.h"
+#import "EventSessionController.h"
 
 
-@interface EventSessionsByDayViewController : EventSessionsViewController
-{
-
-}
+@interface EventSessionsByDayViewController : EventSessionsViewController <EventSessionControllerDelegate> { }
 
 @property (nonatomic, retain) NSDate *eventDate;
 

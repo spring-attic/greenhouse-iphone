@@ -16,16 +16,13 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
+#pragma mark DataViewController methods
 
 - (void)refreshView
 {
 	textViewDescription.text = session.description;
 }
 
-- (void)fetchData
-{
-}
 
 #pragma mark -
 #pragma mark UIViewController methods

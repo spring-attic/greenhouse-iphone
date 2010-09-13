@@ -119,7 +119,7 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate methods
+#pragma mark DataViewController methods
 
 - (void)refreshView
 {
@@ -135,14 +135,11 @@
 		[dateFormatter setDateFormat:@"MMM d h:mm a"];
 		labelTime.text = [dateFormatter stringFromDate:tweet.createdAt];
 		[dateFormatter release];
-
+		
 		textViewText.text = tweet.text;
 	}
 }
 
-- (void)fetchData
-{
-}
 
 #pragma mark -
 #pragma mark UIViewController methods

@@ -2,6 +2,9 @@
 //  EGORefreshTableHeaderView.m
 //  Demo
 //
+//  Modified by Roy Clarkson on 8/27/10.
+//  Copyright 2010 VMware, Inc. All rights reserved.
+//
 //  Created by Devin Doty on 10/14/09October14.
 //  Copyright 2009 enormego. All rights reserved.
 //
@@ -31,17 +34,31 @@
 #define BORDER_COLOR [UIColor colorWithRed:87.0/255.0 green:108.0/255.0 blue:137.0/255.0 alpha:1.0]
 
 
+@interface EGORefreshTableHeaderView()
+
+@property (nonatomic, retain) UILabel *lastUpdatedLabel;
+@property (nonatomic, retain) UILabel *statusLabel;
+@property (nonatomic, retain) CALayer *arrowImage;
+@property (nonatomic, retain) UIActivityIndicatorView *activityView;
+
+@end
+
+
 @implementation EGORefreshTableHeaderView
 
-@synthesize state=_state;
+@synthesize lastUpdatedLabel;
+@synthesize statusLabel;
+@synthesize arrowImage;
+@synthesize activityView;
+@synthesize state = _state;
 
-
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-		
+- (id)initWithFrame:(CGRect)frame
+{
+    if ((self = [super initWithFrame:frame])) 
+	{
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
-		lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
+		self.lastUpdatedLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 30.0f, self.frame.size.width, 20.0f)];
 		lastUpdatedLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		lastUpdatedLabel.font = [UIFont systemFontOfSize:12.0f];
 		lastUpdatedLabel.textColor = TEXT_COLOR;
@@ -50,15 +67,8 @@
 		lastUpdatedLabel.backgroundColor = [UIColor clearColor];
 		lastUpdatedLabel.textAlignment = UITextAlignmentCenter;
 		[self addSubview:lastUpdatedLabel];
-		[lastUpdatedLabel release];
-
-		if ([[NSUserDefaults standardUserDefaults] objectForKey:@"EGORefreshTableView_LastRefresh"]) {
-			lastUpdatedLabel.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"EGORefreshTableView_LastRefresh"];
-		} else {
-			[self setCurrentDate];
-		}
 		
-		statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
+		self.statusLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, frame.size.height - 48.0f, self.frame.size.width, 20.0f)];
 		statusLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		statusLabel.font = [UIFont boldSystemFontOfSize:13.0f];
 		statusLabel.textColor = TEXT_COLOR;
@@ -68,26 +78,24 @@
 		statusLabel.textAlignment = UITextAlignmentCenter;
 		[self setState:EGOOPullRefreshNormal];
 		[self addSubview:statusLabel];
-		[statusLabel release];
 		
-		arrowImage = [[CALayer alloc] init];
+		self.arrowImage = [[CALayer alloc] init];
 		arrowImage.frame = CGRectMake(25.0f, frame.size.height - 65.0f, 30.0f, 55.0f);
 		arrowImage.contentsGravity = kCAGravityResizeAspect;
-		arrowImage.contents = (id)[UIImage imageNamed:@"blueArrow.png"].CGImage;
+		arrowImage.contents = (id)[UIImage imageNamed:@"arrow-black.png"].CGImage;
 		[[self layer] addSublayer:arrowImage];
-		[arrowImage release];
 		
-		activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+		self.activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
 		activityView.frame = CGRectMake(25.0f, frame.size.height - 38.0f, 20.0f, 20.0f);
 		activityView.hidesWhenStopped = YES;
 		[self addSubview:activityView];
-		[activityView release];
-		
     }
+	
     return self;
 }
 
-- (void)drawRect:(CGRect)rect{
+- (void)drawRect:(CGRect)rect
+{
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextDrawPath(context,  kCGPathFillStroke);
 	[BORDER_COLOR setStroke];
@@ -97,14 +105,13 @@
 	CGContextStrokePath(context);
 }
 
-- (void)setCurrentDate {
+- (void)setLastUpdateLabel:(NSDate *)lastRefreshDate
+{
 	NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
 	[formatter setAMSymbol:@"AM"];
 	[formatter setPMSymbol:@"PM"];
 	[formatter setDateFormat:@"MM/dd/yyyy hh:mm:a"];
-	lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:[NSDate date]]];
-	[[NSUserDefaults standardUserDefaults] setObject:lastUpdatedLabel.text forKey:@"EGORefreshTableView_LastRefresh"];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+	lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:lastRefreshDate]];
 	[formatter release];
 }
 
@@ -136,7 +143,7 @@
 			arrowImage.hidden = NO;
 			arrowImage.transform = CATransform3DIdentity;
 			[CATransaction commit];
-			
+
 			break;
 		case EGOOPullRefreshLoading:
 			
@@ -155,13 +162,14 @@
 	_state = aState;
 }
 
-- (void)dealloc {
-	activityView = nil;
-	statusLabel = nil;
-	arrowImage = nil;
-	lastUpdatedLabel = nil;
+- (void)dealloc 
+{
+	[activityView release];
+	[statusLabel release];
+	[arrowImage release];
+	[lastUpdatedLabel release];
+	
     [super dealloc];
 }
-
 
 @end

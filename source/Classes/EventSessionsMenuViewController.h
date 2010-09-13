@@ -16,7 +16,7 @@
 @class EventSessionsByDayViewController;
 
 
-@interface EventSessionsMenuViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface EventSessionsMenuViewController : DataViewController <UITableViewDelegate, UITableViewDataSource>
 {
 
 }

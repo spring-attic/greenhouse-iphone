@@ -16,16 +16,11 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
+#pragma mark DataViewController methods
 
 - (void)refreshView
 {
 	textView.text = event.description;
-}
-
-- (void)fetchData
-{
-	
 }
 
 

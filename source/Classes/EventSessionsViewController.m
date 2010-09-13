@@ -16,29 +16,6 @@
 @synthesize sessionDetailsViewController;
 @synthesize tableViewSessions;
 
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	if (ticket.didSucceed)
-	{
-		self.arraySessions = [[NSMutableArray alloc] init];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
-		
-		DLog(@"%@", array);
-		
-		for (NSDictionary *d in array) 
-		{
-			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			[self.arraySessions addObject:session];			
-			[session release];
-		}
-		
-		[self.tableViewSessions reloadData];
-	}
-}
-
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
 	EventSession *session = nil;
@@ -62,21 +39,6 @@
 {
 	NSInteger count = [self.arraySessions count];
 	return (count == 0);
-}
-
-
-#pragma mark -
-#pragma mark DataViewDelegate
-
-- (void)refreshView
-{
-	self.arraySessions = nil;
-	[self.tableViewSessions reloadData];
-}
-
-- (void)fetchData
-{
-	
 }
 
 
@@ -188,6 +150,16 @@
 	{
 		return numberOfRows;
 	}
+}
+
+
+#pragma mark -
+#pragma mark DataViewController methods
+
+- (void)refreshView
+{
+	self.arraySessions = nil;
+	[self.tableViewSessions reloadData];
 }
 
 

@@ -10,13 +10,12 @@
 #import "WebDataModelObject.h"
 
 
-@interface Profile : WebDataModelObject 
-{
-
-}
+@interface Profile : WebDataModelObject { }
 
 @property (nonatomic, assign) NSUInteger accountId;
 @property (nonatomic, copy) NSString *displayName;
 @property (nonatomic, retain) NSURL *imageUrl;
+
++ (Profile *)profileWithDictionary:(NSDictionary *)dictionary;
 
 @end

@@ -16,8 +16,8 @@
 @optional
 
 - (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets;
-- (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)postUpdateDidFinish;
+- (void)postUpdateDidFailWithError:(NSError *)error;
 
 @end
 
@@ -27,7 +27,6 @@
 @property (nonatomic, assign) id<TwitterControllerDelegate> delegate;
 
 + (TwitterController *)twitterController;
-
 
 - (void)fetchTweetsWithURL:(NSURL *)url;
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

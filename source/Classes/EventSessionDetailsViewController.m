@@ -8,7 +8,7 @@
 
 #import "EventSessionDetailsViewController.h"
 #import "EventSessionDescriptionViewController.h"
-#import "TweetsViewController.h"
+#import "EventSessionTweetsViewController.h"
 #import "EventSessionRateViewController.h"
 #import "OAuthManager.h"
 
@@ -40,7 +40,7 @@
 @synthesize imageViewRating5;
 @synthesize tableViewMenu;
 @synthesize sessionDescriptionViewController;
-@synthesize tweetsViewController;
+@synthesize sessionTweetsViewController;
 @synthesize sessionRateViewController;
 
 
@@ -106,8 +106,7 @@
 }
 
 - (void)updateRatingImages:(double)rating
-{
-	
+{	
 	[self setRating:rating imageView:imageViewRating1];
 	[self setRating:rating imageView:imageViewRating2];
 	[self setRating:rating imageView:imageViewRating3];
@@ -134,60 +133,6 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
-
-- (void)refreshView
-{
-	if (session)
-	{
-		labelTitle.text = session.title;
-		labelLeader.text = session.leaderDisplay;
-		
-		sessionDescriptionViewController.session = session;
-		sessionRateViewController.event = event;
-		sessionRateViewController.session = session;
-
-		tweetsViewController.hashtag = [NSString stringWithFormat:@"%@ %@", event.hashtag, session.hashtag];
-		
-		NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_TWEETS_URL, event.eventId, session.number];
-		tweetsViewController.tweetUrl = [[NSURL alloc] initWithString:urlString];
-		[urlString release];
-		
-		urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RETWEET_URL, event.eventId, session.number];
-		tweetsViewController.retweetUrl = [[NSURL alloc] initWithString:urlString];
-		[urlString release];
-		
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"h:mm a"];
-		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
-		[dateFormatter release];
-		
-		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-		[formattedTime release];
-		
-		if ([session.endTime compare:[NSDate date]] == NSOrderedDescending)
-		{
-			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
-		}
-		else 
-		{
-			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
-		}
-
-		[tableViewMenu reloadData];
-		
-		[self updateRatingImages:session.rating];
-	}	
-}
-
-- (void)fetchData
-{
-}
-
-
-#pragma mark -
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -198,7 +143,7 @@
 			[self.navigationController pushViewController:sessionDescriptionViewController animated:YES];
 			break;
 		case 1:
-			[self.navigationController pushViewController:tweetsViewController animated:YES];
+			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
 			break;
 		case 2:
 			session.isFavorite = !session.isFavorite;
@@ -259,6 +204,48 @@
 
 
 #pragma mark -
+#pragma mark DataViewController methods
+
+- (void)refreshView
+{
+	if (session)
+	{
+		labelTitle.text = session.title;
+		labelLeader.text = session.leaderDisplay;
+		
+		sessionDescriptionViewController.session = session;
+		sessionTweetsViewController.event = event;
+		sessionTweetsViewController.session = session;
+		sessionRateViewController.event = event;
+		sessionRateViewController.session = session;
+				
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"h:mm a"];
+		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
+		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
+		[dateFormatter release];
+		
+		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+		labelTime.text = formattedTime;
+		[formattedTime release];
+		
+		if ([session.endTime compare:[NSDate date]] == NSOrderedDescending)
+		{
+			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
+		}
+		else 
+		{
+			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
+		}
+		
+		[tableViewMenu reloadData];
+		
+		[self updateRatingImages:session.rating];
+	}	
+}
+
+
+#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
@@ -268,7 +255,7 @@
 	self.title = @"Session";
 	
 	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
-	self.tweetsViewController = [[TweetsViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionRateViewController = [[EventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
 }
 
@@ -294,7 +281,7 @@
 	self.imageViewRating5 = nil;
 	self.tableViewMenu = nil;
 	self.sessionDescriptionViewController = nil;
-	self.tweetsViewController = nil;
+	self.sessionTweetsViewController = nil;
 	self.sessionRateViewController = nil;
 }
 
@@ -317,7 +304,7 @@
 	[imageViewRating5 release];
 	[tableViewMenu release];
 	[sessionDescriptionViewController release];
-	[tweetsViewController release];
+	[sessionTweetsViewController release];
 	[sessionRateViewController release];
 	
     [super dealloc];

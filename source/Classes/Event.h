@@ -15,7 +15,7 @@
 
 }
 
-@property (nonatomic, assign) NSInteger eventId;
+@property (nonatomic, copy) NSString *eventId;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) NSDate *startTime;
 @property (nonatomic, retain) NSDate *endTime;

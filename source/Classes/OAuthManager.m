@@ -26,7 +26,7 @@ static OAConsumer *sharedConsumer = nil;
 
 
 #pragma mark -
-#pragma mark Class methods
+#pragma mark Static methods
 
 // This class is configured to function as a singleton. 
 // Use this class method to obtain the shared instance of the class.
@@ -45,7 +45,7 @@ static OAConsumer *sharedConsumer = nil;
 
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Instance methods
 
 - (OAToken *)accessToken
 {
@@ -110,6 +110,11 @@ static OAConsumer *sharedConsumer = nil;
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	NSInteger statusCode = [response statusCode];
+	
+	DLog(@"%i", statusCode);
+	
 	if (ticket.didSucceed) 
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -123,6 +128,16 @@ static OAConsumer *sharedConsumer = nil;
 		
 		[self authorizeRequestToken:requestToken];
 		[requestToken release];
+	}
+	else if (statusCode == 404 || statusCode == 500)
+	{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+															message:@"The server is currently unavailable. Please check the availability at greenhouse.springsource.org." 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
 	}
 }
 

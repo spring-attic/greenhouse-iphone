@@ -9,17 +9,35 @@
 #import "EventSessionsConferenceFavoritesViewController.h"
 
 
+@interface EventSessionsConferenceFavoritesViewController()
+
+@property (nonatomic, retain) EventSessionController *eventSessionController;
+
+@end
+
+
 @implementation EventSessionsConferenceFavoritesViewController
+
+@synthesize eventSessionController;
+
+#pragma mark -
+#pragma mark EventSessionControllerDelegate methods
+
+- (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
+{
+	// TODO: add logic
+}
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
+#pragma mark DataViewController methods
 
-- (void)fetchData
+- (void)reloadData
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CONFERENCE_FAVORITES_URL, self.event.eventId];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
-	[urlString release];	
+	self.eventSessionController = [EventSessionController eventSessionController];
+	eventSessionController.delegate = self;
+	
+	[eventSessionController fetchConferenceFavoriteSessionsByEventId:self.event.eventId];
 }
 
 
@@ -41,6 +59,8 @@
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+	
+	self.eventSessionController = nil;
 }
 
 
@@ -49,6 +69,8 @@
 
 - (void)dealloc 
 {
+	[eventSessionController release];
+	
     [super dealloc];
 }
 

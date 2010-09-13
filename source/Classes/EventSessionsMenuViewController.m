@@ -34,32 +34,6 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate methods
-
-- (void)refreshView
-{
-	[arrayEventDates removeAllObjects];
-	
-	NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
-	
-	while ([eventDate compare:event.endTime] != NSOrderedDescending)
-	{
-		[arrayEventDates addObject:eventDate];
-		
-		// calculate the next event day by adding 24 hours
-		eventDate = [eventDate dateByAddingTimeInterval:86400];
-	}
-	
-	[tableViewMenu reloadData];
-}
-
-- (void)fetchData
-{
-	
-}
-
-
-#pragma mark -
 #pragma mark UITableViewDelegate methods
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -175,6 +149,28 @@
 			break;
 	}
 }
+
+
+#pragma mark -
+#pragma mark DataViewController methods
+
+- (void)refreshView
+{
+	[arrayEventDates removeAllObjects];
+	
+	NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
+	
+	while ([eventDate compare:event.endTime] != NSOrderedDescending)
+	{
+		[arrayEventDates addObject:eventDate];
+		
+		// calculate the next event day by adding 24 hours
+		eventDate = [eventDate dateByAddingTimeInterval:86400];
+	}
+	
+	[tableViewMenu reloadData];
+}
+
 
 #pragma mark -
 #pragma mark UIViewController methods

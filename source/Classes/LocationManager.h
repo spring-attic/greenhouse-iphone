@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OAuthControllerBase.h"
 #import <CoreLocation/CoreLocation.h>
 
 
@@ -22,7 +21,7 @@
 @end
 
 
-@interface LocationManager : OAuthControllerBase <CLLocationManagerDelegate> 
+@interface LocationManager : NSObject <CLLocationManagerDelegate> 
 { 
 	BOOL _locating;
 }

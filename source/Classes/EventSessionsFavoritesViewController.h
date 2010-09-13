@@ -8,11 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "EventSessionsViewController.h"
+#import "EventSessionController.h"
 
 
-@interface EventSessionsFavoritesViewController : EventSessionsViewController 
-{
-
-}
+@interface EventSessionsFavoritesViewController : EventSessionsViewController <EventSessionControllerDelegate> { }
 
 @end

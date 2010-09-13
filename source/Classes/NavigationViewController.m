@@ -20,9 +20,9 @@
 	   didShowViewController:(UIViewController *)viewController 
 					animated:(BOOL)animated
 {
-	if ([viewController respondsToSelector:@selector(fetchData)])
+	if ([viewController respondsToSelector:@selector(reloadData)])
 	{
-		[viewController performSelector:@selector(fetchData)];
+		[viewController performSelector:@selector(reloadData)];
 	}
 }
 

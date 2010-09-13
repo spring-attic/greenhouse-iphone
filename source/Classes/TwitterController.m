@@ -7,7 +7,6 @@
 //
 
 #import "TwitterController.h"
-#import "OAuthManager.h"
 #import "Tweet.h"
 
 
@@ -30,6 +29,11 @@
 
 - (void)fetchTweetsWithURL:(NSURL *)url
 {
+	if (self.fetchingData == YES)
+	{
+		return;
+	}
+	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
@@ -41,8 +45,6 @@
 	
 	DLog(@"%@", request);
 	
-	self.dataFetcher = [[OADataFetcher alloc] init];
-	
 	[self.dataFetcher fetchDataWithRequest:request
 								  delegate:self
 						 didFinishSelector:@selector(fetchTweets:didFinishWithData:)
@@ -53,7 +55,7 @@
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {	
-	self.dataFetcher = nil;
+	self.fetchingData = NO;
 	
 	if (ticket.didSucceed)
 	{
@@ -79,7 +81,7 @@
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.dataFetcher = nil;
+	self.fetchingData = NO;
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -165,8 +167,6 @@
 	
 	DLog(@"%@", request);
 	
-	self.dataFetcher = [[OADataFetcher alloc] init];
-	
 	[self.dataFetcher fetchDataWithRequest:request
 								  delegate:self
 						 didFinishSelector:@selector(postUpdate:didFinishWithData:)
@@ -177,7 +177,7 @@
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.dataFetcher = nil;
+	self.fetchingData = NO;
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -185,11 +185,11 @@
 	{
 		DLog(@"%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 		
-		[delegate postUpdate:ticket didFinishWithData:data];
+		[delegate postUpdateDidFinish];
 	}
 	else if ([response statusCode] == 412)
 	{
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
 															message:@"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect." 
 														   delegate:nil 
 												  cancelButtonTitle:@"OK" 
@@ -201,7 +201,7 @@
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.dataFetcher = nil;
+	self.fetchingData = NO;
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -226,7 +226,7 @@
 		[alert release];
 	}
 	
-	[delegate postUpdate:ticket didFailWithError:error];
+	[delegate postUpdateDidFailWithError:error];
 }
 
 

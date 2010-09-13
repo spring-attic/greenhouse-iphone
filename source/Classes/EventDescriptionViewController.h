@@ -10,15 +10,9 @@
 #import "Event.h"
 
 
-@interface EventDescriptionViewController : UIViewController <DataViewDelegate>
-{
-
-}
+@interface EventDescriptionViewController : DataViewController { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UITextView *textView;
-
-- (void)refreshView;
-- (void)fetchData;
 
 @end

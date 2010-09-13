@@ -76,7 +76,7 @@
 	
     DLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
-          [[error userInfo] objectForKey:NSErrorFailingURLStringKey]);
+          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
@@ -139,19 +139,6 @@
 
 
 #pragma mark -
-#pragma mark DataViewDelegate
-
-- (void)refreshView
-{
-	[self fetchGeocodeResults];
-}
-
-- (void)fetchData
-{
-	
-}
-
-#pragma mark -
 #pragma mark MKMapViewDelegate methods
 
 - (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -173,6 +160,16 @@
     return annotationView;
 }
 
+
+#pragma mark -
+#pragma mark DataViewController methods
+
+- (void)reloadData
+{
+	[self fetchGeocodeResults];
+}
+
+
 #pragma mark -
 #pragma mark UIViewController methods
 
@@ -181,6 +178,8 @@
     [super viewDidLoad];
 	
 	self.title = @"Map";
+	
+	[self fetchGeocodeResults];
 }
 
 - (void)didReceiveMemoryWarning 

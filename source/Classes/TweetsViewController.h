@@ -10,24 +10,20 @@
 #import "TwitterController.h"
 #import "TwitterProfileImageDownloader.h"
 #import "PullRefreshTableViewController.h"
+#import "NewTweetViewController.h"
 
 
-@class NewTweetViewController;
 @class TweetDetailsViewController;
 
 
-@interface TweetsViewController : PullRefreshTableViewController <TwitterControllerDelegate, TwitterProfileImageDownloaderDelegate>
-{
+@interface TweetsViewController : PullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, TwitterControllerDelegate, TwitterProfileImageDownloaderDelegate> { }
 
-}
-
+@property (nonatomic, retain) NSArray *arrayTweets;
 @property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, retain) NSURL *retweetUrl;
-@property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, retain) NewTweetViewController *newTweetViewController;
 @property (nonatomic, retain) TweetDetailsViewController *tweetDetailsViewController;
 
-- (void)refreshView;
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath;
 
 @end

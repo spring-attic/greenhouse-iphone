@@ -19,7 +19,6 @@
 @property (nonatomic, retain) TwitterController *twitterController;
 
 - (void)setCount:(NSUInteger)newCount;
-- (void)postTweet;
 
 @end
 
@@ -61,20 +60,20 @@
 
 - (IBAction)actionGeotag:(id)sender
 {
-	[[UserSettings sharedInstance] setIncludeLocationInTweet:switchGeotag.on];	
+	[[UserSettings sharedInstance] setIncludeLocationInTweet:switchGeotag.on];
 }
 
 - (IBAction)actionSend:(id)sender
 {
 	if ([[UserSettings sharedInstance] includeLocationInTweet])
 	{
-		self.locationManager = [[LocationManager alloc] init];
+		self.locationManager = [LocationManager locationManager];
 		locationManager.delegate = self;
 		[locationManager startUpdatingLocation];
 	}
 	else 
 	{
-		self.twitterController = [[TwitterController alloc] init];
+		self.twitterController = [TwitterController twitterController];
 		twitterController.delegate = self;
 		[twitterController postUpdate:textViewTweet.text withURL:tweetUrl];
 	}
@@ -86,31 +85,36 @@
 
 - (void)locationManager:(LocationManager *)manager didUpdateLocation:(CLLocation *)newLocation
 {
-	[manager release];
+	locationManager.delegate = nil;
+	self.locationManager = nil;
 	
-	self.twitterController = [[TwitterController alloc] init];
+	self.twitterController = [TwitterController twitterController];
 	twitterController.delegate = self;
+	
 	[twitterController postUpdate:textViewTweet.text withURL:tweetUrl location:newLocation];
 }
 
 - (void)locationManager:(LocationManager *)manager didFailWithError:(NSError *)error
 {
-	[manager release];
+	locationManager.delegate = nil;
+	self.locationManager = nil;
 }
 
 
 #pragma mark -
 #pragma mark TwitterControllerDelegate methods
 
-- (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)postUpdateDidFinish
 {
+	twitterController.delegate = nil;
 	self.twitterController = nil;
 	
 	[self dismissModalViewControllerAnimated:YES];
 }
 
-- (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)postUpdateDidFailWithError:(NSError *)error;
 {
+	twitterController.delegate = nil;
 	self.twitterController = nil;
 }
 
@@ -130,13 +134,13 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	
-	self.switchGeotag.on = [[UserSettings sharedInstance] includeLocationInTweet];
 }
 				   
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
+	
+	self.switchGeotag.on = [[UserSettings sharedInstance] includeLocationInTweet];
 	
 	textViewTweet.text = tweetText;
 	[self setCount:[tweetText length]];
@@ -160,6 +164,7 @@
     [super viewDidUnload];
 	
 	self.locationManager = nil;
+	self.twitterController = nil;
 	self.tweetUrl = nil;
 	self.tweetText = nil;
 	self.barButtonCancel = nil;

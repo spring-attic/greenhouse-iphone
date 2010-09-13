@@ -11,10 +11,7 @@
 #import "eventSession.h"
 
 
-@interface EventSessionRateViewController : OAuthViewController <UITextViewDelegate>
-{
-
-}
+@interface EventSessionRateViewController : UIViewController <UITextViewDelegate> { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;

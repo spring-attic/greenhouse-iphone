@@ -12,18 +12,13 @@
 #import "EventSessionDetailsViewController.h"
 
 
-@interface EventSessionsViewController : OAuthViewController <UITableViewDelegate, UITableViewDataSource, DataViewDelegate> 
-{
+@interface EventSessionsViewController : DataViewController <UITableViewDelegate, UITableViewDataSource> { }
 
-}
-
-@property (nonatomic, retain) NSMutableArray *arraySessions;
+@property (nonatomic, retain) NSArray *arraySessions;
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet UITableView *tableViewSessions;
 @property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
 
-- (void)refreshView;
-- (void)fetchData;
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)displayLoadingCell;
 

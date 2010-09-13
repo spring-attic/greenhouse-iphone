@@ -2,6 +2,9 @@
 //  EGORefreshTableHeaderView.h
 //  Demo
 //
+//  Modified by Roy Clarkson on 8/27/10.
+//  Copyright 2010 VMware, Inc. All rights reserved. 
+//
 //  Created by Devin Doty on 10/14/09October14.
 //  Copyright 2009 enormego. All rights reserved.
 //
@@ -28,26 +31,22 @@
 #import <QuartzCore/QuartzCore.h>
 
 
-typedef enum{
+typedef enum
+{
 	EGOOPullRefreshPulling = 0,
 	EGOOPullRefreshNormal,
 	EGOOPullRefreshLoading,	
 } EGOPullRefreshState;
 
-@interface EGORefreshTableHeaderView : UIView {
-	
-	UILabel *lastUpdatedLabel;
-	UILabel *statusLabel;
-	CALayer *arrowImage;
-	UIActivityIndicatorView *activityView;
-	
+@interface EGORefreshTableHeaderView : UIView 
+{	
 	EGOPullRefreshState _state;
 	BOOL _transitioning;
 }
 
-@property(nonatomic,assign) EGOPullRefreshState state;
+@property (nonatomic, assign) EGOPullRefreshState state;
 
-- (void)setCurrentDate;
+- (void)setLastUpdateLabel:(NSDate *)lastRefreshDate;
 - (void)setState:(EGOPullRefreshState)aState;
 
 @end

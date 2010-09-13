@@ -9,17 +9,38 @@
 #import "EventSessionsFavoritesViewController.h"
 
 
+@interface EventSessionsFavoritesViewController()
+
+@property (nonatomic, retain) EventSessionController *eventSessionController;
+
+@end
+
+
 @implementation EventSessionsFavoritesViewController
 
+@synthesize eventSessionController;
 
 #pragma mark -
-#pragma mark DataViewDelegate
+#pragma mark EventSessionControllerDelegate methods
 
-- (void)fetchData
+- (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITES_URL, self.event.eventId];
-	[self fetchJSONDataWithURL:[NSURL URLWithString:urlString]];
-	[urlString release];	
+	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
+	
+	self.arraySessions = sessions;
+	[self.tableViewSessions reloadData];
+}
+
+#pragma mark -
+#pragma mark DataViewController methods
+
+- (void)reloadData
+{
+	self.eventSessionController = [EventSessionController eventSessionController];
+	eventSessionController.delegate = self;
+	
+	[eventSessionController	fetchFavoriteSessionsByEventId:self.event.eventId];
 }
 
 
@@ -41,6 +62,8 @@
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+	
+	self.eventSessionController = nil;
 }
 
 
@@ -49,6 +72,8 @@
 
 - (void)dealloc 
 {
+	[eventSessionController release];
+	
     [super dealloc];
 }
 

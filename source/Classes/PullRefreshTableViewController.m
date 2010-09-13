@@ -23,11 +23,40 @@
 
 @synthesize refreshHeaderView;
 @synthesize reloading = _reloading;
+@synthesize lastRefreshKey;
+@dynamic lastRefreshDate;
+@dynamic lastRefreshExpired;
 
+- (NSDate *)lastRefreshDate
+{
+	return (NSDate *)[[NSUserDefaults standardUserDefaults] objectForKey:self.lastRefreshKey];
+}
+
+- (void)setLastRefreshDate:(NSDate *)date
+{
+	[[NSUserDefaults standardUserDefaults] setObject:date forKey:self.lastRefreshKey];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)lastRefreshExpired
+{
+	// if the last refresh was older than 4 hours, then expire the data
+	return ([self.lastRefreshDate compare:[NSDate dateWithTimeIntervalSinceNow:-14400]] == NSOrderedAscending);
+}
+
+- (void)reloadData
+{
+	// implement in inherited class
+}
+
+- (BOOL)shouldReloadData
+{
+	return NO;
+}
 
 - (void)reloadTableViewDataSource
 {
-	// implement in child class
+	// implement in inherited class
 }
 
 - (void)dataSourceDidFinishLoadingNewData
@@ -40,7 +69,8 @@
 	[UIView commitAnimations];
 	
 	[refreshHeaderView setState:EGOOPullRefreshNormal];
-	[refreshHeaderView setCurrentDate];  // should check if data reload was successful 
+	self.lastRefreshDate = [NSDate date];
+	[refreshHeaderView setLastUpdateLabel:self.lastRefreshDate];
 }
 
 
@@ -86,8 +116,10 @@
 	
 	if (refreshHeaderView == nil) 
 	{
-		self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, 320.0f, self.tableView.bounds.size.height)];
+		CGRect frame = CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, 320.0f, self.tableView.bounds.size.height);
+		self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:frame];
 		refreshHeaderView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
+		[refreshHeaderView setLastUpdateLabel:self.lastRefreshDate];
 		[self.tableView addSubview:refreshHeaderView];
 		self.tableView.showsVerticalScrollIndicator = YES;
 	}
@@ -103,6 +135,7 @@
 	[super viewDidUnload];
 	
 	self.refreshHeaderView = nil;
+	self.lastRefreshKey = nil;
 }
 
 
@@ -112,6 +145,7 @@
 - (void)dealloc 
 {
 	[refreshHeaderView release];
+	[lastRefreshKey release];
 	
     [super dealloc];
 }

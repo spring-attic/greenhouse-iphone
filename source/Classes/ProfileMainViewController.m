@@ -11,8 +11,16 @@
 #import "Profile.h"
 
 
+@interface ProfileMainViewController()
+
+@property (nonatomic, retain) ProfileController *profileController;
+
+@end
+
+
 @implementation ProfileMainViewController
 
+@synthesize profileController;
 @synthesize labelDisplayName;
 @synthesize imageViewPicture;
 
@@ -22,34 +30,30 @@
 	[appDelegate showAuthorizeViewController];
 }
 
-- (void)refreshView
+
+#pragma mark -
+#pragma mark ProfileControllerDelegate methods
+
+- (void)fetchProfileDidFinishWithResults:(Profile *)profile;
 {
+	profileController.delegate = nil;
+	self.profileController = nil;
 	
+	labelDisplayName.text = profile.displayName;
+	imageViewPicture.imageUrl = profile.imageUrl;
+	[imageViewPicture startImageDownload];
 }
 
-- (void)fetchData
-{
-	[self fetchJSONDataWithURL:[NSURL URLWithString:MEMBER_PROFILE_URL]];
-}
 
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+#pragma mark -
+#pragma mark DataViewController methods
+
+- (void)reloadData
 {
-	if (ticket.didSucceed)
-	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		NSDictionary *dictionary = [responseBody yajl_JSON];
-		[responseBody release];
-		
-		DLog(@"%@", dictionary); 
-		
-		Profile *profile = [[Profile alloc] initWithDictionary:dictionary];
-		
-		labelDisplayName.text = profile.displayName;
-		imageViewPicture.imageUrl = profile.imageUrl;
-		[imageViewPicture startImageDownload];
-		
-		[profile release];
-	}
+	self.profileController = [ProfileController profileController];
+	profileController.delegate = self;
+	
+	[profileController fetchProfile];
 }
 
 
@@ -64,8 +68,6 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
-	
-	[self fetchData];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -77,6 +79,7 @@
 {
     [super viewDidUnload];
 	
+	self.profileController = nil;
 	self.labelDisplayName = nil;
 	self.imageViewPicture = nil;
 }
@@ -87,6 +90,7 @@
 
 - (void)dealloc 
 {
+	[profileController release];
 	[labelDisplayName release];
 	[imageViewPicture release];
 	

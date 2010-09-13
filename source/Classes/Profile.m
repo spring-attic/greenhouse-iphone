@@ -15,6 +15,19 @@
 @synthesize displayName;
 @synthesize imageUrl;
 
+
+#pragma mark -
+#pragma mark Static methods
+
++ (Profile *)profileWithDictionary:(NSDictionary *)dictionary
+{
+	return [[[Profile alloc] initWithDictionary:dictionary] autorelease];
+}
+
+
+#pragma mark -
+#pragma mark Instance methods
+
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
 	if ((self = [super init]))
