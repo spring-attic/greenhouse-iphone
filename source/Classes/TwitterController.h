@@ -42,6 +42,6 @@
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
 - (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSData *)data;
+- (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end

@@ -21,6 +21,7 @@
 
 - (BOOL)shouldReloadData
 {
+	return NO;
 }
 
 @end

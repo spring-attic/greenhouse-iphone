@@ -25,7 +25,7 @@
 {
     [super viewDidLoad];
 	
-//	// fixes vertical position of the view
+	// fixes vertical position of the view
 //	CGRect frame = self.view.frame;
 //	frame.origin.y = 20.0f;
 //	self.view.frame = frame;

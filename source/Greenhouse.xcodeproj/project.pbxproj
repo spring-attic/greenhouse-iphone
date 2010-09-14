@@ -79,6 +79,7 @@
 		81A668BD123FF4AF00D67B76 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A668BC123FF4AF00D67B76 /* InfoViewController.m */; };
 		81A668D0123FF71400D67B76 /* gh-header-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668CE123FF71400D67B76 /* gh-header-logo.png */; };
 		81A668D1123FF71400D67B76 /* springsource-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668CF123FF71400D67B76 /* springsource-logo.png */; };
+		81A668DC123FFC9800D67B76 /* btn-signin.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668DB123FFC9800D67B76 /* btn-signin.png */; };
 		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
 		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
@@ -247,6 +248,7 @@
 		81A668BC123FF4AF00D67B76 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
 		81A668CE123FF71400D67B76 /* gh-header-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo.png"; sourceTree = "<group>"; };
 		81A668CF123FF71400D67B76 /* springsource-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "springsource-logo.png"; sourceTree = "<group>"; };
+		81A668DB123FFC9800D67B76 /* btn-signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-signin.png"; sourceTree = "<group>"; };
 		81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_HelpersTest.h; sourceTree = "<group>"; };
 		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -718,6 +720,7 @@
 		81FF3FAB123AB09D00439B37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81A668DB123FFC9800D67B76 /* btn-signin.png */,
 				81A668CE123FF71400D67B76 /* gh-header-logo.png */,
 				81A668CF123FF71400D67B76 /* springsource-logo.png */,
 				81A668AE123FF15000D67B76 /* tab-account.png */,
@@ -941,6 +944,7 @@
 				81A668BA123FF41200D67B76 /* InfoViewController.xib in Resources */,
 				81A668D0123FF71400D67B76 /* gh-header-logo.png in Resources */,
 				81A668D1123FF71400D67B76 /* springsource-logo.png in Resources */,
+				81A668DC123FFC9800D67B76 /* btn-signin.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

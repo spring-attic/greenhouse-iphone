@@ -13,12 +13,14 @@
 
 + (UIColor *)springDarkGreenColor
 {
-	return [UIColor colorWithRed:64.0f / 255.0f green:121.0f / 255.0f blue:45.0f / 255.0f alpha:1.0];
+	// HEX color: #387C2C
+	return [UIColor colorWithRed:56.0f / 255.0f green:124.0f / 255.0f blue:44.0f / 255.0f alpha:1.0];
 }
 
 + (UIColor *)springLightGreenColor
 {
-	return [UIColor colorWithRed:194.0f / 255.0f green:203.0f / 255.0f blue:38.0f / 255.0f alpha:1.0];
+	// HEX color: #6DB33F
+	return [UIColor colorWithRed:109.0f / 255.0f green:179.0f / 255.0f blue:63.0f / 255.0f alpha:1.0];
 }
 
 @end
