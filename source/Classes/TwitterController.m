@@ -285,9 +285,7 @@
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
 	if (ticket.didSucceed)
-	{
-		[self dismissModalViewControllerAnimated:YES];
-		
+	{		
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		DLog(@"%@", responseBody);
 		[responseBody release];

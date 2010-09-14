@@ -72,6 +72,13 @@
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		819E448E11FF2D1000DBC0BB /* EventAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 819E448D11FF2D1000DBC0BB /* EventAnnotation.m */; };
 		81A2DBCD12259B16000D58EF /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2DBCC12259B16000D58EF /* UserSettings.m */; };
+		81A668B1123FF15000D67B76 /* tab-account.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668AE123FF15000D67B76 /* tab-account.png */; };
+		81A668B2123FF15000D67B76 /* tab-events.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668AF123FF15000D67B76 /* tab-events.png */; };
+		81A668B3123FF15000D67B76 /* tab-info.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668B0123FF15000D67B76 /* tab-info.png */; };
+		81A668BA123FF41200D67B76 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A668B9123FF41200D67B76 /* InfoViewController.xib */; };
+		81A668BD123FF4AF00D67B76 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A668BC123FF4AF00D67B76 /* InfoViewController.m */; };
+		81A668D0123FF71400D67B76 /* gh-header-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668CE123FF71400D67B76 /* gh-header-logo.png */; };
+		81A668D1123FF71400D67B76 /* springsource-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A668CF123FF71400D67B76 /* springsource-logo.png */; };
 		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
 		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
@@ -117,8 +124,6 @@
 		81FF3FD0123AB09D00439B37 /* arrow-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAE123AB09D00439B37 /* arrow-white.png */; };
 		81FF3FD1123AB09D00439B37 /* gh-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAF123AB09D00439B37 /* gh-icon.png */; };
 		81FF3FD2123AB09D00439B37 /* gh-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB0123AB09D00439B37 /* gh-icon@2x.png */; };
-		81FF3FD3123AB09D00439B37 /* spring.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB1123AB09D00439B37 /* spring.png */; };
-		81FF3FD4123AB09D00439B37 /* spring09_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB2123AB09D00439B37 /* spring09_logo.png */; };
 		81FF3FD5123AB09D00439B37 /* star-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB3123AB09D00439B37 /* star-empty.png */; };
 		81FF3FD6123AB09D00439B37 /* star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB4123AB09D00439B37 /* star-half.png */; };
 		81FF3FD7123AB09D00439B37 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB5123AB09D00439B37 /* star.png */; };
@@ -234,6 +239,14 @@
 		819E448D11FF2D1000DBC0BB /* EventAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAnnotation.m; sourceTree = "<group>"; };
 		81A2DBCB12259B16000D58EF /* UserSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettings.h; sourceTree = "<group>"; };
 		81A2DBCC12259B16000D58EF /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
+		81A668AE123FF15000D67B76 /* tab-account.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-account.png"; sourceTree = "<group>"; };
+		81A668AF123FF15000D67B76 /* tab-events.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-events.png"; sourceTree = "<group>"; };
+		81A668B0123FF15000D67B76 /* tab-info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-info.png"; sourceTree = "<group>"; };
+		81A668B9123FF41200D67B76 /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		81A668BB123FF4AF00D67B76 /* InfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
+		81A668BC123FF4AF00D67B76 /* InfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
+		81A668CE123FF71400D67B76 /* gh-header-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo.png"; sourceTree = "<group>"; };
+		81A668CF123FF71400D67B76 /* springsource-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "springsource-logo.png"; sourceTree = "<group>"; };
 		81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_HelpersTest.h; sourceTree = "<group>"; };
 		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -313,8 +326,6 @@
 		81FF3FAE123AB09D00439B37 /* arrow-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-white.png"; sourceTree = "<group>"; };
 		81FF3FAF123AB09D00439B37 /* gh-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-icon.png"; sourceTree = "<group>"; };
 		81FF3FB0123AB09D00439B37 /* gh-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-icon@2x.png"; sourceTree = "<group>"; };
-		81FF3FB1123AB09D00439B37 /* spring.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring.png; sourceTree = "<group>"; };
-		81FF3FB2123AB09D00439B37 /* spring09_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spring09_logo.png; sourceTree = "<group>"; };
 		81FF3FB3123AB09D00439B37 /* star-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-empty.png"; sourceTree = "<group>"; };
 		81FF3FB4123AB09D00439B37 /* star-half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-half.png"; sourceTree = "<group>"; };
 		81FF3FB5123AB09D00439B37 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
@@ -573,6 +584,8 @@
 				8122BCEA11D00A9D00315B6F /* MainViewController.m */,
 				8135A09511ECA64B00F0F2F8 /* Events */,
 				81F8DEF51227F63A00C3E8FD /* Profile */,
+				81A668BB123FF4AF00D67B76 /* InfoViewController.h */,
+				81A668BC123FF4AF00D67B76 /* InfoViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -705,13 +718,16 @@
 		81FF3FAB123AB09D00439B37 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81A668CE123FF71400D67B76 /* gh-header-logo.png */,
+				81A668CF123FF71400D67B76 /* springsource-logo.png */,
+				81A668AE123FF15000D67B76 /* tab-account.png */,
+				81A668AF123FF15000D67B76 /* tab-events.png */,
+				81A668B0123FF15000D67B76 /* tab-info.png */,
 				81FF3FAC123AB09D00439B37 /* arrow-black.png */,
 				81FF3FAD123AB09D00439B37 /* arrow-blue.png */,
 				81FF3FAE123AB09D00439B37 /* arrow-white.png */,
 				81FF3FAF123AB09D00439B37 /* gh-icon.png */,
 				81FF3FB0123AB09D00439B37 /* gh-icon@2x.png */,
-				81FF3FB1123AB09D00439B37 /* spring.png */,
-				81FF3FB2123AB09D00439B37 /* spring09_logo.png */,
 				81FF3FB3123AB09D00439B37 /* star-empty.png */,
 				81FF3FB4123AB09D00439B37 /* star-half.png */,
 				81FF3FB5123AB09D00439B37 /* star.png */,
@@ -740,6 +756,7 @@
 				81FF3FC6123AB09D00439B37 /* ProfileMainViewController.xib */,
 				81FF3FC7123AB09D00439B37 /* TweetDetailsViewController.xib */,
 				81FF3FC8123AB09D00439B37 /* TweetsViewController.xib */,
+				81A668B9123FF41200D67B76 /* InfoViewController.xib */,
 			);
 			path = "Interface Builder Files";
 			sourceTree = "<group>";
@@ -895,8 +912,6 @@
 				81FF3FD0123AB09D00439B37 /* arrow-white.png in Resources */,
 				81FF3FD1123AB09D00439B37 /* gh-icon.png in Resources */,
 				81FF3FD2123AB09D00439B37 /* gh-icon@2x.png in Resources */,
-				81FF3FD3123AB09D00439B37 /* spring.png in Resources */,
-				81FF3FD4123AB09D00439B37 /* spring09_logo.png in Resources */,
 				81FF3FD5123AB09D00439B37 /* star-empty.png in Resources */,
 				81FF3FD6123AB09D00439B37 /* star-half.png in Resources */,
 				81FF3FD7123AB09D00439B37 /* star.png in Resources */,
@@ -920,6 +935,12 @@
 				81FF3FE9123AB09D00439B37 /* TweetsViewController.xib in Resources */,
 				81FF3FEA123AB09D00439B37 /* LogicTests-Info.plist in Resources */,
 				81FF3FEB123AB09D00439B37 /* Settings.bundle in Resources */,
+				81A668B1123FF15000D67B76 /* tab-account.png in Resources */,
+				81A668B2123FF15000D67B76 /* tab-events.png in Resources */,
+				81A668B3123FF15000D67B76 /* tab-info.png in Resources */,
+				81A668BA123FF41200D67B76 /* InfoViewController.xib in Resources */,
+				81A668D0123FF71400D67B76 /* gh-header-logo.png in Resources */,
+				81A668D1123FF71400D67B76 /* springsource-logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1048,6 +1069,7 @@
 				81FF3FFC123AB0ED00439B37 /* main.m in Sources */,
 				81FF414C123DC3C700439B37 /* EventTweetsViewController.m in Sources */,
 				81FF4182123DE47C00439B37 /* EventSessionTweetsViewController.m in Sources */,
+				81A668BD123FF4AF00D67B76 /* InfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
