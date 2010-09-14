@@ -11,8 +11,16 @@
 #import "OAuthManager.h"
 
 
+@interface TweetDetailsViewController()
+
+@property (nonatomic, retain) TwitterController *twitterController;
+
+@end
+
+
 @implementation TweetDetailsViewController
 
+@synthesize twitterController;
 @synthesize tweet;
 @synthesize tweetUrl;
 @synthesize retweetUrl;
@@ -49,74 +57,21 @@
 
 - (IBAction)actionRetweet:(id)sender
 {
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:retweetUrl 
-																   consumer:[OAuthManager sharedInstance].consumer
-																	  token:[OAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-		
-	NSString *postParams =[[NSString alloc] initWithFormat:@"tweetId=%@", tweet.tweetId];
-	DLog(@"%@", postParams);
+	self.twitterController = [TwitterController twitterController];
+	twitterController.delegate = self;
 	
-	NSString *escapedPostParams = [[postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-	[postParams release];
-	DLog(@"%@", escapedPostParams);
-	
-	NSData *postData = [[escapedPostParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[escapedPostParams release];
-	
-	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-	
-	[request setHTTPMethod:@"POST"];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-	[request setHTTPBody:postData];
-	[postData release];
-	
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(fetchRequest:didFinishWithData:)
-				  didFailSelector:@selector(fetchRequest:didFailWithError:)];
-	
-	[request release];
+	[twitterController postRetweet:tweet.tweetId withURL:retweetUrl];
 }
 
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+
+#pragma mark -
+#pragma mark TwitterControllerDelegate methods
+
+- (void)postRetweetDidFinish
 {
-	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
-	
-	if (ticket.didSucceed)
-	{
-		[self dismissModalViewControllerAnimated:YES];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		[responseBody release];
-		
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-															message:@"Retweet successful!" 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK" 
-												  otherButtonTitles:nil];
-		[alertView show];
-		[alertView release];		
-	}
-	else if ([response statusCode] == 412)
-	{
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Alert" 
-															message:@"Your account is not connected to Twitter.  Please sign in to greenhouse.springsource.org to connect." 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK" 
-												  otherButtonTitles:nil];
-		[alertView show];
-		[alertView release];
-	}
+	twitterController.delegate = nil;
+	self.twitterController = nil;
 }
-
 
 #pragma mark -
 #pragma mark DataViewController methods
@@ -160,6 +115,7 @@
 {
     [super viewDidUnload];
 	
+	self.twitterController = nil;
 	self.tweet = nil;
 	self.tweetUrl = nil;
 	self.retweetUrl = nil;
@@ -178,6 +134,7 @@
 
 - (void)dealloc 
 {
+	[twitterController release];
 	[tweet release];
 	[tweetUrl release];
 	[retweetUrl release];

@@ -18,6 +18,7 @@
 - (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets;
 - (void)postUpdateDidFinish;
 - (void)postUpdateDidFailWithError:(NSError *)error;
+- (void)postRetweetDidFinish;
 
 @end
 
@@ -39,5 +40,8 @@
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url location:(CLLocation *)location;
 - (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
+- (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSData *)data;
 
 @end

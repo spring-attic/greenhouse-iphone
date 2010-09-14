@@ -187,16 +187,29 @@
 		
 		[delegate postUpdateDidFinish];
 	}
-	else if ([response statusCode] == 412)
+	else 
 	{
+		NSString *msg = nil;
+		
+		switch ([response statusCode]) 
+		{
+			case 412:
+				msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
+				break;
+			case 403:
+			default:
+				msg = @"A problem occurred while posting to Twitter.";
+				break;
+		}
+		
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-															message:@"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect." 
+															message:msg 
 														   delegate:nil 
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];
-	}
+		[alertView release];		
+	}	
 }
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -227,6 +240,119 @@
 	}
 	
 	[delegate postUpdateDidFailWithError:error];
+}
+
+- (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
+{
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:[OAuthManager sharedInstance].consumer
+																	  token:[OAuthManager sharedInstance].accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	NSString *postParams =[[NSString alloc] initWithFormat:@"tweetId=%@", tweetId];
+	DLog(@"%@", postParams);
+	
+	NSString *escapedPostParams = [[postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
+	[postParams release];
+	DLog(@"%@", escapedPostParams);
+	
+	NSData *postData = [[escapedPostParams dataUsingEncoding:NSUTF8StringEncoding] retain];
+	[escapedPostParams release];
+	
+	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+	
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	[postData release];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(postRetweet:didFinishWithData:)
+				  didFailSelector:@selector(postRetweet:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	
+	if (ticket.didSucceed)
+	{
+		[self dismissModalViewControllerAnimated:YES];
+		
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		DLog(@"%@", responseBody);
+		[responseBody release];
+		
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+															message:@"Retweet successful!" 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
+		
+		[delegate postRetweetDidFinish];
+	}
+	else 
+	{
+		NSString *msg = nil;
+		
+		switch ([response statusCode]) 
+		{
+			case 412:
+				msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
+				break;
+			case 403:
+			default:
+				msg = @"A problem occurred while posting to Twitter.";
+				break;
+		}
+		
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+															message:msg 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];		
+	}
+}
+
+- (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	self.fetchingData = NO;
+	
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
+													   delegate:self 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:@"Sign Out", nil];
+		[alert show];
+		[alert release];
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"An error occurred while connecting to the server." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
 }
 
 

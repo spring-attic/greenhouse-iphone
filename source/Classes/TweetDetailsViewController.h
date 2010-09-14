@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TwitterController.h"
 #import "Tweet.h"
 
 
 @class NewTweetViewController;
 
 
-@interface TweetDetailsViewController : DataViewController { }
+@interface TweetDetailsViewController : DataViewController <TwitterControllerDelegate> { }
 
 @property (nonatomic, retain) Tweet *tweet;
 @property (nonatomic, retain) NSURL *tweetUrl;
