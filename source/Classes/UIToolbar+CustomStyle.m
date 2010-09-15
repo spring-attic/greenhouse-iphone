@@ -18,7 +18,7 @@
 	// only modify the default bar behavior
 	if (self.barStyle == UIBarStyleDefault)
 	{
-		UIColor *color = [UIColor springDarkGreenColor];
+		UIColor *color = [UIColor springLightGreenColor];
 		CGContextSetFillColor(ctx, CGColorGetComponents(color.CGColor));
 		CGRect rect = CGRectMake(0.0f, 0.0f, self.frame.size.width, self.frame.size.height);
 		CGContextFillRect(ctx, rect);

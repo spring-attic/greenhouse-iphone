@@ -13,7 +13,7 @@
 
 - (void)drawRect:(CGRect)rect 
 {
-	UIColor *color = [UIColor springDarkGreenColor];
+	UIColor *color = [UIColor springLightGreenColor];
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
 	CGContextFillRect(context, rect);
