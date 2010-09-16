@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EventSessionController.h"
 #import "Event.h"
 #import "eventSession.h"
 
 
-@interface EventSessionRateViewController : UIViewController <UITextViewDelegate> { }
+@interface EventSessionRateViewController : UIViewController <EventSessionControllerDelegate, UITextViewDelegate> { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;

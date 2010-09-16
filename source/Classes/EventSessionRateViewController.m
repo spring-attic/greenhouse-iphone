@@ -7,7 +7,6 @@
 //
 
 #import "EventSessionRateViewController.h"
-#import "OAuthManager.h"
 
 #define MAX_MESSAGE_SIZE	500
 
@@ -16,6 +15,7 @@
 
 - (void)updateRatingButtons:(NSInteger)count;
 
+@property (nonatomic, retain) EventSessionController *eventSessionController;
 @property (nonatomic, assign) NSUInteger rating;
 
 @end
@@ -23,6 +23,7 @@
 
 @implementation EventSessionRateViewController
 
+@synthesize eventSessionController;
 @synthesize rating;
 @synthesize event;
 @synthesize session;
@@ -109,60 +110,10 @@
 
 - (IBAction)actionSubmit:(id)sender
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RATING_URL, event.eventId, session.number];
-	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
+	self.eventSessionController = [EventSessionController eventSessionController];
+	eventSessionController.delegate = self;
 	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[OAuthManager sharedInstance].consumer
-																	  token:[OAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
-	
-	NSString *comment = [textViewComments.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	
-	NSString *putParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, comment];
-	DLog(@"%@", putParams);
-	
-	NSString *escapedPutParams = [[putParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-	[putParams release];
-	DLog(@"%@", escapedPutParams);
-	
-	NSData *putData = [[escapedPutParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[escapedPutParams release];
-	
-	NSString *putLength = [NSString stringWithFormat:@"%d", [putData length]];
-	
-	[request setHTTPMethod:@"POST"];
-	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-	[request setValue:putLength forHTTPHeaderField:@"Content-Length"];
-	[request setHTTPBody:putData];
-	[putData release];
-	
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(fetchRequest:didFinishWithData:)
-				  didFailSelector:@selector(fetchRequest:didFailWithError:)];
-	
-	[request release];
-}
-
-- (void)fetchRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{	
-	if (ticket.didSucceed)
-	{
-		[self dismissModalViewControllerAnimated:YES];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		[responseBody release];
-	}	
+	[eventSessionController rateSession:session.number withEventId:event.eventId rating:rating comment:textViewComments.text];
 }
 
 
@@ -184,6 +135,18 @@
 	{
 		barButtonSubmit.enabled = YES;
 	}	
+}
+
+
+#pragma mark -
+#pragma mark EventSessionControllerDelegate methods
+
+- (void)rateSessionDidFinish
+{
+	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
+	
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -220,6 +183,7 @@
 {
     [super viewDidUnload];
 	
+	self.eventSessionController = nil;
 	self.event = nil;
 	self.session = nil;
 	self.barButtonCancel = nil;
@@ -239,6 +203,7 @@
 
 - (void)dealloc 
 {
+	[eventSessionController release];
 	[event release];
 	[session release];
 	[barButtonCancel release];

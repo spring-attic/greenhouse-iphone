@@ -19,6 +19,7 @@
 - (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
 - (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
 - (void)updateFavoriteSessionDidFinish;
+- (void)rateSessionDidFinish;
 
 @end
 
@@ -45,6 +46,9 @@
 - (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment;
+- (void)rateSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end
 

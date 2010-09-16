@@ -466,6 +466,8 @@ static BOOL sharedShouldRefreshFavorites;
 				  didFailSelector:@selector(updateFavoriteSession:didFailWithError:)];
 	
 	[request release];
+	
+	self.fetchingData = YES;
 }
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
@@ -510,6 +512,95 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 }
 
+- (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment
+{
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RATING_URL, eventId, sessionNumber];
+	NSURL *url = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:[OAuthManager sharedInstance].consumer
+																	  token:[OAuthManager sharedInstance].accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[url release];
+	
+	NSString *s = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	
+	NSString *putParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, s];
+	DLog(@"%@", putParams);
+	
+	NSString *escapedPutParams = [[putParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
+	[putParams release];
+	DLog(@"%@", escapedPutParams);
+	
+	NSData *putData = [[escapedPutParams dataUsingEncoding:NSUTF8StringEncoding] retain];
+	[escapedPutParams release];
+	
+	NSString *putLength = [NSString stringWithFormat:@"%d", [putData length]];
+	
+	[request setHTTPMethod:@"POST"];
+	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+	[request setValue:putLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:putData];
+	[putData release];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(rateSession:didFinishWithData:)
+				  didFailSelector:@selector(rateSession:didFailWithError:)];
+	
+	[request release];
+	
+	self.fetchingData = YES;
+}
+
+- (void)rateSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{	
+	self.fetchingData = NO;
+	
+	if (ticket.didSucceed)
+	{		
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		DLog(@"%@", responseBody);
+		[responseBody release];
+	}
+	
+	[delegate rateSessionDidFinish];
+}
+
+- (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	self.fetchingData = NO;
+	
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
+													   delegate:self 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:@"Sign Out", nil];
+		[alert show];
+		[alert release];
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"An error occurred while connecting to the server." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+}
 
 
 #pragma mark -
