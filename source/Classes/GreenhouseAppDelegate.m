@@ -8,7 +8,6 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "GreenhouseAppDelegate.h"
-#import "MainViewController.h"
 #import "AuthorizeViewController.h"
 #import "OAuthManager.h"
 
@@ -16,31 +15,29 @@
 @implementation GreenhouseAppDelegate
 
 @synthesize window;
-@synthesize mainViewController;
+@synthesize tabBarController;
 @synthesize authorizeViewController;
 
 - (void)showAuthorizeViewController
 {	
-	if (mainViewController)
-	{
-		[mainViewController.view removeFromSuperview];
-		[mainViewController release];
-	}
-	
-	self.authorizeViewController = [[AuthorizeViewController alloc] initWithNibName:nil bundle:nil];
+	[tabBarController.view removeFromSuperview];
 	[window addSubview:authorizeViewController.view];		
 }
 
-- (void)showMainViewController
+- (void)showTabBarController
 {
-	if (authorizeViewController)
-	{
-		[authorizeViewController.view removeFromSuperview];
-		[authorizeViewController release];
-	}
+	[authorizeViewController.view removeFromSuperview];
+	[window addSubview:tabBarController.view];
+	tabBarController.selectedIndex = 0;
+}
 
-	self.mainViewController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
-	[window addSubview:mainViewController.view];
+
+#pragma mark -
+#pragma mark UITabBarControllerDelegate methods
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+	//[viewController viewDidAppear:YES];
 }
 
 
@@ -74,7 +71,7 @@
 		OAuthManager *mgr = [OAuthManager sharedInstance];
 		[mgr processOauthResponse:url 
 						 delegate:self 
-				didFinishSelector:@selector(showMainViewController)
+				didFinishSelector:@selector(showTabBarController)
 				  didFailSelector:@selector(showAuthorizeViewController)];
 	}
 
@@ -92,7 +89,7 @@
 			OAuthManager *mgr = [OAuthManager sharedInstance];
 			[mgr processOauthResponse:url 
 							 delegate:self 
-					didFinishSelector:@selector(showMainViewController)
+					didFinishSelector:@selector(showTabBarController)
 					  didFailSelector:@selector(showAuthorizeViewController)];
 		}
 		else
@@ -102,7 +99,7 @@
 	}
 	else if ([[OAuthManager sharedInstance] isAuthorized])
 	{
-		[self showMainViewController];
+		[self showTabBarController];
 	}
 	else 
 	{
@@ -137,7 +134,7 @@
 - (void)dealloc 
 {    
 	[authorizeViewController release];
-    [mainViewController release];
+    [tabBarController release];
     [window release];
 	
     [super dealloc];

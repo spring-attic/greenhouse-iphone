@@ -178,8 +178,6 @@
     [super viewDidLoad];
 	
 	self.title = @"Map";
-	
-	[self fetchGeocodeResults];
 }
 
 - (void)didReceiveMemoryWarning 

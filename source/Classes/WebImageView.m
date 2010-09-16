@@ -36,6 +36,8 @@
 
 - (void)startImageDownload
 {
+	[self cancelImageDownload];
+	
 	DLog(@"%@", imageUrl);
 	
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imageUrl];

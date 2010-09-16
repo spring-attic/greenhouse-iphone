@@ -31,7 +31,6 @@
 		8104E7BF11D1646D00590E90 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Profile.m */; };
 		8104E7C011D1646D00590E90 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
 		8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
-		8104E7C811D1646D00590E90 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		8104E7CA11D1646D00590E90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		8104E7CB11D1646D00590E90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		8104E7CC11D1646D00590E90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
@@ -45,7 +44,6 @@
 		810D8E7D12368B0C00EE0F57 /* EventSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D8E7C12368B0C00EE0F57 /* EventSessionController.m */; };
 		81137ED71223352E00A45BA2 /* ActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81137ED61223352E00A45BA2 /* ActivityAlertView.m */; };
 		811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
-		8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8122BCEA11D00A9D00315B6F /* MainViewController.m */; };
 		81275BE011FE2F1600FF9A80 /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */; };
 		81275C2111FE889500FF9A80 /* EventSessionDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275C2011FE889500FF9A80 /* EventSessionDescriptionViewController.m */; };
 		81275CA911FE9E6B00FF9A80 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81275CA811FE9E6B00FF9A80 /* NavigationViewController.m */; };
@@ -146,7 +144,6 @@
 		81FF3FE1123AB09D00439B37 /* EventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC0123AB09D00439B37 /* EventSessionsViewController.xib */; };
 		81FF3FE2123AB09D00439B37 /* EventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC1123AB09D00439B37 /* EventsMainViewController.xib */; };
 		81FF3FE3123AB09D00439B37 /* EventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC2123AB09D00439B37 /* EventsNavigationViewController.xib */; };
-		81FF3FE4123AB09D00439B37 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC3123AB09D00439B37 /* MainViewController.xib */; };
 		81FF3FE5123AB09D00439B37 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC4123AB09D00439B37 /* MainWindow.xib */; };
 		81FF3FE6123AB09D00439B37 /* NewTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC5123AB09D00439B37 /* NewTweetViewController.xib */; };
 		81FF3FE7123AB09D00439B37 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC6123AB09D00439B37 /* ProfileMainViewController.xib */; };
@@ -193,8 +190,6 @@
 		81137ED51223352E00A45BA2 /* ActivityAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityAlertView.h; sourceTree = "<group>"; };
 		81137ED61223352E00A45BA2 /* ActivityAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityAlertView.m; sourceTree = "<group>"; };
 		811BA5CF120C58E40045BB34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		8122BCE911D00A9D00315B6F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		8122BCEA11D00A9D00315B6F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetsViewController.h; sourceTree = "<group>"; };
 		81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetsViewController.m; sourceTree = "<group>"; };
 		81275C1F11FE889500FF9A80 /* EventSessionDescriptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionDescriptionViewController.h; sourceTree = "<group>"; };
@@ -355,7 +350,6 @@
 		81FF3FC0123AB09D00439B37 /* EventSessionsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventSessionsViewController.xib; sourceTree = "<group>"; };
 		81FF3FC1123AB09D00439B37 /* EventsMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsMainViewController.xib; sourceTree = "<group>"; };
 		81FF3FC2123AB09D00439B37 /* EventsNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsNavigationViewController.xib; sourceTree = "<group>"; };
-		81FF3FC3123AB09D00439B37 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		81FF3FC4123AB09D00439B37 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		81FF3FC5123AB09D00439B37 /* NewTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTweetViewController.xib; sourceTree = "<group>"; };
 		81FF3FC6123AB09D00439B37 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
@@ -594,8 +588,6 @@
 				81B94E4C11F0ACEA003B2117 /* Shared */,
 				81E75EDB11BE048700E6B283 /* AuthorizeViewController.h */,
 				81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */,
-				8122BCE911D00A9D00315B6F /* MainViewController.h */,
-				8122BCEA11D00A9D00315B6F /* MainViewController.m */,
 				8135A09511ECA64B00F0F2F8 /* Events */,
 				81F8DEF51227F63A00C3E8FD /* Profile */,
 				81A668BB123FF4AF00D67B76 /* InfoViewController.h */,
@@ -771,7 +763,6 @@
 				81FF3FC0123AB09D00439B37 /* EventSessionsViewController.xib */,
 				81FF3FC1123AB09D00439B37 /* EventsMainViewController.xib */,
 				81FF3FC2123AB09D00439B37 /* EventsNavigationViewController.xib */,
-				81FF3FC3123AB09D00439B37 /* MainViewController.xib */,
 				81FF3FC4123AB09D00439B37 /* MainWindow.xib */,
 				81FF3FC5123AB09D00439B37 /* NewTweetViewController.xib */,
 				81FF3FC6123AB09D00439B37 /* ProfileMainViewController.xib */,
@@ -948,7 +939,6 @@
 				81FF3FE1123AB09D00439B37 /* EventSessionsViewController.xib in Resources */,
 				81FF3FE2123AB09D00439B37 /* EventsMainViewController.xib in Resources */,
 				81FF3FE3123AB09D00439B37 /* EventsNavigationViewController.xib in Resources */,
-				81FF3FE4123AB09D00439B37 /* MainViewController.xib in Resources */,
 				81FF3FE5123AB09D00439B37 /* MainWindow.xib in Resources */,
 				81FF3FE6123AB09D00439B37 /* NewTweetViewController.xib in Resources */,
 				81FF3FE7123AB09D00439B37 /* ProfileMainViewController.xib in Resources */,
@@ -1050,7 +1040,6 @@
 				81D4A45111C30692000A71C3 /* Profile.m in Sources */,
 				81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */,
 				8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */,
-				8122BCEB11D00A9D00315B6F /* MainViewController.m in Sources */,
 				8178A8AD11D9113F0084FA66 /* NSDictionary+Helpers.m in Sources */,
 				8153C7BE11DD353700F7BDE1 /* Update.m in Sources */,
 				8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */,
@@ -1134,7 +1123,6 @@
 				8104E7BF11D1646D00590E90 /* Profile.m in Sources */,
 				8104E7C011D1646D00590E90 /* AppSettings.m in Sources */,
 				8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */,
-				8104E7C811D1646D00590E90 /* MainViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

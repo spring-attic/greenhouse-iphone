@@ -9,17 +9,16 @@
 #import <UIKit/UIKit.h>
 
 
-@class MainViewController;
 @class AuthorizeViewController;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate> { }
+@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> { }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) MainViewController *mainViewController;
-@property (nonatomic, retain) AuthorizeViewController *authorizeViewController;
+@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, retain) IBOutlet AuthorizeViewController *authorizeViewController;
 
 - (void)showAuthorizeViewController;
-- (void)showMainViewController;
+- (void)showTabBarController;
 
 @end
 
