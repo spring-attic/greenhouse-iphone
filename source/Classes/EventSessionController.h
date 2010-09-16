@@ -18,6 +18,7 @@
 - (void)fetchSessionsByDateDidFinishWithResults:(NSArray *)sessions andTimes:(NSArray *)times;
 - (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
 - (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
+- (void)updateFavoriteSessionDidFinish;
 
 @end
 
@@ -27,6 +28,7 @@
 @property (nonatomic, assign) id<EventSessionControllerDelegate> delegate;
 
 + (EventSessionController *)eventSessionController;
++ (BOOL)shouldRefreshFavorites;
 
 - (void)fetchCurrentSessionsByEventId:(NSString *)eventId;
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
@@ -40,6 +42,9 @@
 - (void)fetchConferenceFavoriteSessionsByEventId:(NSString *)eventId;
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
+- (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end
 

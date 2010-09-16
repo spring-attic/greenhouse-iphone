@@ -10,6 +10,8 @@
 #import "EventSession.h"
 
 
+static BOOL sharedShouldRefreshFavorites;
+
 @implementation EventSessionController
 
 @synthesize delegate;
@@ -20,6 +22,11 @@
 + (EventSessionController *)eventSessionController
 {
 	return [[[EventSessionController alloc] init] autorelease];
+}
+
++ (BOOL)shouldRefreshFavorites
+{	
+    return sharedShouldRefreshFavorites;
 }
 
 
@@ -262,6 +269,8 @@
 		return;
 	}
 	
+	sharedShouldRefreshFavorites = NO;
+	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITES_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
@@ -428,6 +437,79 @@
 		[alert release];
 	}
 }
+
+- (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
+{	
+	sharedShouldRefreshFavorites = YES;
+	
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, eventId, sessionNumber];
+	NSURL *url = [[NSURL alloc] initWithString:urlString];
+	[urlString release];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+																   consumer:[OAuthManager sharedInstance].consumer
+																	  token:[OAuthManager sharedInstance].accessToken
+																	  realm:OAUTH_REALM
+														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	
+	[url release];
+	
+	[request setHTTPMethod:@"PUT"];
+	
+	DLog(@"%@", request);
+	
+	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	
+	[fetcher fetchDataWithRequest:request
+						 delegate:self
+				didFinishSelector:@selector(updateFavoriteSession:didFinishWithData:)
+				  didFailSelector:@selector(updateFavoriteSession:didFailWithError:)];
+	
+	[request release];
+}
+
+- (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+{
+	self.fetchingData = NO;
+	
+	if (ticket.didSucceed)
+	{
+		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+		DLog(@"%@", responseBody);
+		[responseBody release];
+	}
+	
+	[delegate updateFavoriteSessionDidFinish];
+}
+
+- (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+{
+	self.fetchingData = NO;
+	
+	DLog(@"%@", [error localizedDescription]);
+	
+	if ([error code] == NSURLErrorUserCancelledAuthentication)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
+													   delegate:self 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:@"Sign Out", nil];
+		[alert show];
+		[alert release];
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"An error occurred while connecting to the server." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+}
+
 
 
 #pragma mark -

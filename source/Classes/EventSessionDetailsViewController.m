@@ -10,23 +10,22 @@
 #import "EventSessionDescriptionViewController.h"
 #import "EventSessionTweetsViewController.h"
 #import "EventSessionRateViewController.h"
-#import "OAuthManager.h"
 
 
 @interface EventSessionDetailsViewController()
 
-- (void)markSessionAsFavorite;
-- (void)putRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)putRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+@property (nonatomic, retain) EventSessionController *eventSessionController;
 
 - (void)updateRatingImages:(double)rating;
 - (void)setRating:(double)rating imageView:(UIImageView *)imageView;
+- (void)updateFavoriteSession;
 
 @end
 
 
 @implementation EventSessionDetailsViewController
 
+@synthesize eventSessionController;
 @synthesize event;
 @synthesize session;
 @synthesize arrayMenuItems;
@@ -42,68 +41,6 @@
 @synthesize sessionDescriptionViewController;
 @synthesize sessionTweetsViewController;
 @synthesize sessionRateViewController;
-
-
-- (void)markSessionAsFavorite
-{	
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, event.eventId, session.number];
-	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[OAuthManager sharedInstance].consumer
-																	  token:[OAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
-	
-	[request setHTTPMethod:@"PUT"];
-	
-	DLog(@"%@", request);
-	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
-	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(putRequest:didFinishWithData:)
-				  didFailSelector:@selector(putRequest:didFailWithError:)];
-	
-	[request release];
-}
-
-- (void)putRequest:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
-	[responseBody release];
-}
-
-- (void)putRequest:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
-{
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];		
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];		
-	}
-}
 
 - (void)updateRatingImages:(double)rating
 {	
@@ -131,6 +68,24 @@
 	}
 }
 
+- (void)updateFavoriteSession
+{
+	self.eventSessionController = [EventSessionController eventSessionController];
+	eventSessionController.delegate = self;
+	
+	[eventSessionController updateFavoriteSession:session.number withEventId:event.eventId];
+}
+
+
+#pragma mark -
+#pragma mark EventSessionControllerDelegate methods
+
+- (void)updateFavoriteSessionDidFinish
+{
+	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
+}
+
 
 #pragma mark -
 #pragma mark UITableViewDelegate methods
@@ -148,7 +103,7 @@
 		case 2:
 			session.isFavorite = !session.isFavorite;
 			[tableView reloadData];
-			[self markSessionAsFavorite];
+			[self updateFavoriteSession];
 			break;
 		case 3:
 			[self presentModalViewController:sessionRateViewController animated:YES];
@@ -268,6 +223,7 @@
 {
     [super viewDidUnload];
 	
+	self.eventSessionController = nil;
 	self.event = nil;
 	self.session = nil;
 	self.arrayMenuItems = nil;
@@ -291,6 +247,7 @@
 
 - (void)dealloc 
 {
+	[eventSessionController release];
 	[event release];
 	[session release];
 	[arrayMenuItems release];

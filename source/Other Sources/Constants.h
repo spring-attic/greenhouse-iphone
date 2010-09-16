@@ -51,7 +51,7 @@
 #define EVENT_SESSIONS_CURRENT_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/today"]
 #define EVENT_SESSIONS_FAVORITES_URL			[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/favorites"]
 #define EVENT_SESSIONS_CONFERENCE_FAVORITES_URL	[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/favorites"]
-#define EVENT_SESSIONS_FAVORITE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%i/favorite"]
+#define EVENT_SESSIONS_FAVORITE_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/favorite"]
 #define EVENT_SESSIONS_BY_DAY_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@"]
 #define EVENT_TWEETS_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/tweets"]
 #define EVENT_RETWEET_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/retweet"]

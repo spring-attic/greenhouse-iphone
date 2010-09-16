@@ -37,6 +37,11 @@
 #pragma mark -
 #pragma mark PullRefreshTableViewController methods
 
+- (BOOL)shouldReloadData
+{
+	return (!self.arraySessions || self.lastRefreshExpired || [EventSessionController shouldRefreshFavorites]);
+}
+
 - (void)reloadTableViewDataSource
 {
 	self.eventSessionController = [EventSessionController eventSessionController];

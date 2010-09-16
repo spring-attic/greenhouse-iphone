@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EventSessionController.h"
 #import "Event.h"
 #import "EventSession.h"
 
@@ -16,7 +17,7 @@
 @class EventSessionRateViewController;
 
 
-@interface EventSessionDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate> { }
+@interface EventSessionDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate, EventSessionControllerDelegate> { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;
