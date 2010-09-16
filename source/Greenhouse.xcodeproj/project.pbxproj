@@ -129,8 +129,8 @@
 		81FF3FCE123AB09D00439B37 /* arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAC123AB09D00439B37 /* arrow-black.png */; };
 		81FF3FCF123AB09D00439B37 /* arrow-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAD123AB09D00439B37 /* arrow-blue.png */; };
 		81FF3FD0123AB09D00439B37 /* arrow-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAE123AB09D00439B37 /* arrow-white.png */; };
-		81FF3FD1123AB09D00439B37 /* gh-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAF123AB09D00439B37 /* gh-icon.png */; };
-		81FF3FD2123AB09D00439B37 /* gh-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB0123AB09D00439B37 /* gh-icon@2x.png */; };
+		81FF3FD1123AB09D00439B37 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAF123AB09D00439B37 /* Icon.png */; };
+		81FF3FD2123AB09D00439B37 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB0123AB09D00439B37 /* Icon@2x.png */; };
 		81FF3FD5123AB09D00439B37 /* star-empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB3123AB09D00439B37 /* star-empty.png */; };
 		81FF3FD6123AB09D00439B37 /* star-half.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB4123AB09D00439B37 /* star-half.png */; };
 		81FF3FD7123AB09D00439B37 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FB5123AB09D00439B37 /* star.png */; };
@@ -338,8 +338,8 @@
 		81FF3FAC123AB09D00439B37 /* arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-black.png"; sourceTree = "<group>"; };
 		81FF3FAD123AB09D00439B37 /* arrow-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-blue.png"; sourceTree = "<group>"; };
 		81FF3FAE123AB09D00439B37 /* arrow-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-white.png"; sourceTree = "<group>"; };
-		81FF3FAF123AB09D00439B37 /* gh-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-icon.png"; sourceTree = "<group>"; };
-		81FF3FB0123AB09D00439B37 /* gh-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-icon@2x.png"; sourceTree = "<group>"; };
+		81FF3FAF123AB09D00439B37 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		81FF3FB0123AB09D00439B37 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		81FF3FB3123AB09D00439B37 /* star-empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-empty.png"; sourceTree = "<group>"; };
 		81FF3FB4123AB09D00439B37 /* star-half.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-half.png"; sourceTree = "<group>"; };
 		81FF3FB5123AB09D00439B37 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
@@ -739,8 +739,8 @@
 				81C1639A12414D5100DAC502 /* btn-signin@2x.png */,
 				81A668CE123FF71400D67B76 /* gh-header-logo.png */,
 				81C1639B12414D5100DAC502 /* gh-header-logo@2x.png */,
-				81FF3FAF123AB09D00439B37 /* gh-icon.png */,
-				81FF3FB0123AB09D00439B37 /* gh-icon@2x.png */,
+				81FF3FAF123AB09D00439B37 /* Icon.png */,
+				81FF3FB0123AB09D00439B37 /* Icon@2x.png */,
 				81A668CF123FF71400D67B76 /* springsource-logo.png */,
 				81C1639C12414D5100DAC502 /* springsource-logo@2x.png */,
 				81FF3FB3123AB09D00439B37 /* star-empty.png */,
@@ -931,8 +931,8 @@
 				81FF3FCE123AB09D00439B37 /* arrow-black.png in Resources */,
 				81FF3FCF123AB09D00439B37 /* arrow-blue.png in Resources */,
 				81FF3FD0123AB09D00439B37 /* arrow-white.png in Resources */,
-				81FF3FD1123AB09D00439B37 /* gh-icon.png in Resources */,
-				81FF3FD2123AB09D00439B37 /* gh-icon@2x.png in Resources */,
+				81FF3FD1123AB09D00439B37 /* Icon.png in Resources */,
+				81FF3FD2123AB09D00439B37 /* Icon@2x.png in Resources */,
 				81FF3FD5123AB09D00439B37 /* star-empty.png in Resources */,
 				81FF3FD6123AB09D00439B37 /* star-half.png in Resources */,
 				81FF3FD7123AB09D00439B37 /* star.png in Resources */,
