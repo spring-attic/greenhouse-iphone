@@ -8,13 +8,14 @@
 
 #import "EventSessionController.h"
 #import "EventSession.h"
+#import "OAuthManager.h"
 
 
 static BOOL sharedShouldRefreshFavorites;
 
 @implementation EventSessionController
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 #pragma mark -
 #pragma mark Static methods
@@ -35,11 +36,6 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchCurrentSessionsByEventId:(NSString *)eventId;
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CURRENT_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
@@ -57,19 +53,19 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchCurrentSessions:didFinishWithData:)
-						   didFailSelector:@selector(fetchCurrentSessions:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchCurrentSessions:didFinishWithData:)
+					   didFailSelector:@selector(fetchCurrentSessions:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -114,13 +110,13 @@ static BOOL sharedShouldRefreshFavorites;
 			[session release];
 		}
 		
-		[delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
+		[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
 	}	
 }
 
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -148,11 +144,6 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchSessionsByEventId:(NSString *)eventId withDate:(NSDate *)eventDate;
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
 	// request the sessions for the selected day
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"YYYY-MM-d"];
@@ -175,19 +166,19 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchSessions:didFinishWithData:)
-						   didFailSelector:@selector(fetchSessions:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchSessions:didFinishWithData:)
+					   didFailSelector:@selector(fetchSessions:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)fetchSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -230,13 +221,13 @@ static BOOL sharedShouldRefreshFavorites;
 			[session release];
 		}
 		
-		[delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
+		[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
 	}	
 }
 
 - (void)fetchSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -264,11 +255,6 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchFavoriteSessionsByEventId:(NSString *)eventId
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
 	sharedShouldRefreshFavorites = NO;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITES_URL, eventId];
@@ -288,19 +274,19 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchFavoriteSessions:didFinishWithData:)
-						   didFailSelector:@selector(fetchFavoriteSessions:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchFavoriteSessions:didFinishWithData:)
+					   didFailSelector:@selector(fetchFavoriteSessions:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -319,13 +305,13 @@ static BOOL sharedShouldRefreshFavorites;
 			[session release];
 		}
 		
-		[delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
+		[_delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
 	}	
 }
 
 - (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -353,11 +339,6 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchConferenceFavoriteSessionsByEventId:(NSString *)eventId
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CONFERENCE_FAVORITES_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
@@ -374,20 +355,20 @@ static BOOL sharedShouldRefreshFavorites;
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
 	DLog(@"%@", request);
+
+	_dataFetcher = [[OADataFetcher alloc] init];
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchConferenceFavoriteSessions:didFinishWithData:)
-						   didFailSelector:@selector(fetchConferenceFavoriteSessions:didFailWithError:)];
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchConferenceFavoriteSessions:didFinishWithData:)
+					   didFailSelector:@selector(fetchConferenceFavoriteSessions:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -406,13 +387,13 @@ static BOOL sharedShouldRefreshFavorites;
 			[session release];
 		}
 		
-		[delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
+		[_delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
 	}	
 }
 
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -458,21 +439,19 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	DLog(@"%@", request);
 	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	_dataFetcher = [[OADataFetcher alloc] init];
 	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(updateFavoriteSession:didFinishWithData:)
-				  didFailSelector:@selector(updateFavoriteSession:didFailWithError:)];
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(updateFavoriteSession:didFinishWithData:)
+					   didFailSelector:@selector(updateFavoriteSession:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -481,12 +460,12 @@ static BOOL sharedShouldRefreshFavorites;
 		[responseBody release];
 	}
 	
-	[delegate updateFavoriteSessionDidFinish];
+	[_delegate updateFavoriteSessionDidFinish];
 }
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -548,21 +527,19 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	DLog(@"%@", request);
 	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	_dataFetcher = [[OADataFetcher alloc] init];
 	
-	[fetcher fetchDataWithRequest:request
+	[_dataFetcher fetchDataWithRequest:request
 						 delegate:self
 				didFinishSelector:@selector(rateSession:didFinishWithData:)
 				  didFailSelector:@selector(rateSession:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)rateSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{	
-	self.fetchingData = NO;
+{
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{		
@@ -571,12 +548,12 @@ static BOOL sharedShouldRefreshFavorites;
 		[responseBody release];
 	}
 	
-	[delegate rateSessionDidFinish];
+	[_delegate rateSessionDidFinish];
 }
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	

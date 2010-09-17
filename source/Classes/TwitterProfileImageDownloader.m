@@ -17,9 +17,6 @@
 @synthesize tweet;
 @synthesize indexPathInTableView;
 @synthesize delegate;
-@synthesize receivedData;
-@synthesize urlConnection;
-
 
 - (void)startDownload
 {
@@ -32,35 +29,47 @@
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
 	[url release];
 	
-    self.urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    _urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[request release];
 	
-	if (urlConnection)
+	if (_urlConnection)
 	{
-		self.receivedData = [NSMutableData data];
+		_receivedData = [[NSMutableData data] retain];
 	}
 }
 
 - (void)cancelDownload
 {
-    [self.urlConnection cancel];
-    self.urlConnection= nil;
-    self.receivedData = nil;
+	if (_urlConnection)
+	{
+		[_urlConnection cancel];
+		[_urlConnection release];
+	}
+	
+	if (_receivedData)
+	{
+		[_receivedData release];
+	}
 }
 
 
 #pragma mark -
 #pragma mark NSURLConnectionDelegate methods
 
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [_receivedData setLength:0];
+}
+
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [self.receivedData appendData:data];
+    [_receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    self.receivedData = nil;    
-    self.urlConnection = nil;
+    [_receivedData release];
+    [connection release];
 	
 	DLog(@"Connection failed! Error - %@ %@",
 		 [error localizedDescription],
@@ -69,9 +78,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
+	[connection release];
 	
-    UIImage *image = [[UIImage alloc] initWithData:self.receivedData];
+	DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
+	
+    UIImage *image = [[UIImage alloc] initWithData:_receivedData];
+	[_receivedData release];
     
     if (image.size.width != kImageHeight && image.size.height != kImageHeight)
 	{
@@ -86,11 +98,8 @@
     {
         self.tweet.profileImage = image;
     }
-    
-    self.receivedData = nil;
-    [image release];
-    
-    self.urlConnection = nil;
+	
+	[image release];
 	
     [delegate profileImageDidLoad:self.indexPathInTableView];
 }
@@ -103,9 +112,6 @@
 {
     [tweet release];
     [indexPathInTableView release];
-    [receivedData release];
-    [urlConnection cancel];
-    [urlConnection release];
     
     [super dealloc];
 }

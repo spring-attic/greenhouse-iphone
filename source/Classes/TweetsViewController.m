@@ -87,8 +87,7 @@
 	self.twitterController = nil;
 	
 	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-		
-	self.imageDownloadsInProgress = [NSMutableDictionary dictionary];
+	
 	self.arrayTweets = tweets;
 
 	[self.tableView reloadData];
@@ -250,7 +249,7 @@
 {
 	self.twitterController = [TwitterController twitterController];
 	twitterController.delegate = self;
-	
+	[imageDownloadsInProgress removeAllObjects];
 	[twitterController fetchTweetsWithURL:tweetUrl];
 }
 
@@ -263,6 +262,8 @@
     [super viewDidLoad];
 	
 	self.title = @"Tweets";
+	
+	self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
 	
 	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
 	self.tweetDetailsViewController = [[TweetDetailsViewController alloc] initWithNibName:nil bundle:nil];

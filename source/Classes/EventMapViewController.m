@@ -42,12 +42,12 @@
 												 timeoutInterval:60.0];
 	[url release];
 
-	NSURLConnection *urlConnection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
+	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
 	[urlRequest release];
 	
-	if (urlConnection) 
+	if (connection) 
 	{
-		receivedData = [[NSMutableData data] retain];
+		_receivedData = [[NSMutableData data] retain];
 	} 
 	else 
 	{
@@ -61,18 +61,18 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-    [receivedData setLength:0];
+    [_receivedData setLength:0];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [receivedData appendData:data];
+    [_receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [connection release];
-    [receivedData release];
+    [_receivedData release];
 	
     DLog(@"Connection failed! Error - %@ %@",
           [error localizedDescription],
@@ -81,9 +81,13 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
+	[connection release];
 	
-	NSString *responseBody = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
+	
+	NSString *responseBody = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
+	[_receivedData release];
+	
 	NSDictionary *geocodeResponse = (NSDictionary *)[responseBody yajl_JSON];
 	[responseBody release];
 	
@@ -119,10 +123,10 @@
 	region.span = span;
 	region.center = coordinate;
 	
-	if(eventAnnotation != nil) 
+	if (eventAnnotation != nil) 
 	{
 		[mapViewLocation removeAnnotation:eventAnnotation];
-		self.eventAnnotation = nil;
+		[eventAnnotation release];
 	}
 	
 	self.eventAnnotation = [[EventAnnotation alloc] init];
@@ -131,10 +135,6 @@
 	[mapViewLocation addAnnotation:eventAnnotation];
 	[mapViewLocation setRegion:region animated:YES];
 	[mapViewLocation regionThatFits:region];
-	
-    // release the connection, and the data object
-    [connection release];
-    [receivedData release];
 }
 
 

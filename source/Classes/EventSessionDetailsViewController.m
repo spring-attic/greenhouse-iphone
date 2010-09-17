@@ -184,14 +184,20 @@
 		labelTime.text = formattedTime;
 		[formattedTime release];
 		
+		NSArray *items = nil;
+		
 		if ([session.endTime compare:[NSDate date]] == NSOrderedDescending)
 		{
-			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
+			items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
 		}
 		else 
 		{
-			self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
+			items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"rate", nil];
 		}
+			 
+		 self.arrayMenuItems = items;
+		 [items release];
+
 		
 		[tableViewMenu reloadData];
 		

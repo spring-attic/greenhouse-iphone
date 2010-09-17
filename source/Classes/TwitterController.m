@@ -7,12 +7,13 @@
 //
 
 #import "TwitterController.h"
+#import "OAuthManager.h"
 #import "Tweet.h"
 
 
 @implementation TwitterController
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 
 #pragma mark -
@@ -29,11 +30,6 @@
 
 - (void)fetchTweetsWithURL:(NSURL *)url
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
@@ -45,17 +41,19 @@
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchTweets:didFinishWithData:)
-						   didFailSelector:@selector(fetchTweets:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchTweets:didFinishWithData:)
+					   didFailSelector:@selector(fetchTweets:didFailWithError:)];
 	
 	[request release];
 }
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {	
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -75,13 +73,13 @@
 			[tweet release];
 		}
 		
-		[delegate fetchTweetsDidFinishWithResults:tweets];
+		[_delegate fetchTweetsDidFinishWithResults:tweets];
 	}	
 }
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -106,28 +104,6 @@
 		[alert release];
 	}
 }
-
-//- (void)postEventUpdate:(NSString *)update
-//{
-//	CLLocation *location = [[[CLLocation alloc] init] autorelease];
-//	[self postEventUpdate:update withLocation:location];
-//}
-//
-//- (void)postEventUpdate:(NSString *)update withLocation:(CLLocation *)location
-//{
-//	[self postUpdate:update withURL:[NSURL URLWithString:EVENT_TWEETS_URL] location:location];
-//}
-//
-//- (void)postEventSessionUpdate:(NSString *)update
-//{
-//	CLLocation *location = [[[CLLocation alloc] init] autorelease];
-//	[self postEventSessionUpdate:update withLocation:location];
-//}
-//
-//- (void)postEventSessionUpdate:(NSString *)update withLocation:(CLLocation *)location
-//{
-//	[self postUpdate:update withURL:[NSURL URLWithString:EVENT_SESSION_TWEETS_URL] location:location];
-//}
 
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url
 {
@@ -167,17 +143,19 @@
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(postUpdate:didFinishWithData:)
-						   didFailSelector:@selector(postUpdate:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(postUpdate:didFinishWithData:)
+					   didFailSelector:@selector(postUpdate:didFailWithError:)];
 	
 	[request release];
 }
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -185,7 +163,7 @@
 	{
 		DLog(@"%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
 		
-		[delegate postUpdateDidFinish];
+		[_delegate postUpdateDidFinish];
 	}
 	else 
 	{
@@ -214,7 +192,7 @@
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -239,7 +217,7 @@
 		[alert release];
 	}
 	
-	[delegate postUpdateDidFailWithError:error];
+	[_delegate postUpdateDidFailWithError:error];
 }
 
 - (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
@@ -270,18 +248,20 @@
 	
 	DLog(@"%@", request);
 	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	_dataFetcher = [[OADataFetcher alloc] init];
 	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(postRetweet:didFinishWithData:)
-				  didFailSelector:@selector(postRetweet:didFailWithError:)];
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(postRetweet:didFinishWithData:)
+					   didFailSelector:@selector(postRetweet:didFailWithError:)];
 	
 	[request release];
 }
 
 - (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
+	[_dataFetcher release];
+	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
 	if (ticket.didSucceed)
@@ -298,7 +278,7 @@
 		[alertView show];
 		[alertView release];
 		
-		[delegate postRetweetDidFinish];
+		[_delegate postRetweetDidFinish];
 	}
 	else 
 	{
@@ -327,7 +307,7 @@
 
 - (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	

@@ -55,6 +55,7 @@
 		8138DD9411F884D700D7A47F /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DD9311F884D700D7A47F /* EventDescriptionViewController.m */; };
 		8138DE7211F8D79600D7A47F /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */; };
 		8153C7BE11DD353700F7BDE1 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8153C7BD11DD353700F7BDE1 /* Update.m */; };
+		815932161242C1E8001E8E16 /* OAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815932151242C1E8001E8E16 /* OAuthController.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171938D11E668DE007C82B2 /* EventsMainViewController.m */; };
@@ -119,7 +120,6 @@
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 		81F8DEDD1227830400C3E8FD /* TwitterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DEDC1227830400C3E8FD /* TwitterController.m */; };
 		81F8DF0A1227FEF100C3E8FD /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DF091227FEF100C3E8FD /* LocationManager.m */; };
-		81F8DF9C12285E0700C3E8FD /* OAuthControllerBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DF9B12285E0700C3E8FD /* OAuthControllerBase.m */; };
 		81F8E25D122D52B700C3E8FD /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8E25C122D52B700C3E8FD /* EventController.m */; };
 		81FF3FCB123AB09D00439B37 /* Greenhouse-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FA8123AB09D00439B37 /* Greenhouse-Info.plist */; };
 		81FF3FCC123AB09D00439B37 /* GreenhouseTesting-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FA9123AB09D00439B37 /* GreenhouseTesting-Info.plist */; };
@@ -212,6 +212,12 @@
 		8138DE7111F8D79600D7A47F /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
 		8153C7BC11DD353700F7BDE1 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
 		8153C7BD11DD353700F7BDE1 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
+		815932141242C1E8001E8E16 /* OAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthController.h; sourceTree = "<group>"; };
+		815932151242C1E8001E8E16 /* OAuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthController.m; sourceTree = "<group>"; };
+		815932551242C5BA001E8E16 /* EventControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventControllerDelegate.h; sourceTree = "<group>"; };
+		815932761242C87D001E8E16 /* TwitterControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterControllerDelegate.h; sourceTree = "<group>"; };
+		8159328D1242D06A001E8E16 /* EventSessionControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionControllerDelegate.h; sourceTree = "<group>"; };
+		815932941242D2B5001E8E16 /* ProfileControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileControllerDelegate.h; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
@@ -323,8 +329,6 @@
 		81F8DEDC1227830400C3E8FD /* TwitterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterController.m; sourceTree = "<group>"; };
 		81F8DF081227FEF100C3E8FD /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		81F8DF091227FEF100C3E8FD /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
-		81F8DF9A12285E0700C3E8FD /* OAuthControllerBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthControllerBase.h; sourceTree = "<group>"; };
-		81F8DF9B12285E0700C3E8FD /* OAuthControllerBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthControllerBase.m; sourceTree = "<group>"; };
 		81F8E25B122D52B700C3E8FD /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventController.h; sourceTree = "<group>"; };
 		81F8E25C122D52B700C3E8FD /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
 		81FF3FA8123AB09D00439B37 /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Greenhouse-Info.plist"; path = "../Greenhouse-Info.plist"; sourceTree = "<group>"; };
@@ -496,7 +500,6 @@
 		8135A09511ECA64B00F0F2F8 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				8174937A1207165C008A9E61 /* Shared */,
 				8171938C11E668DE007C82B2 /* EventsMainViewController.h */,
 				8171938D11E668DE007C82B2 /* EventsMainViewController.m */,
 				8135A07D11ECA41200F0F2F8 /* EventDetailsViewController.h */,
@@ -509,24 +512,15 @@
 				819E441F11FF1EE300DBC0BB /* EventMapViewController.m */,
 				819E448C11FF2D1000DBC0BB /* EventAnnotation.h */,
 				819E448D11FF2D1000DBC0BB /* EventAnnotation.m */,
-				81FF414D123DC3EA00439B37 /* Sessions */,
-			);
-			name = Events;
-			sourceTree = "<group>";
-		};
-		8174937A1207165C008A9E61 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				817493771207162B008A9E61 /* EventSessionsViewController.h */,
-				817493781207162B008A9E61 /* EventSessionsViewController.m */,
 				8107AA9611FA2BB000A59078 /* NewTweetViewController.h */,
 				8107AA9711FA2BB000A59078 /* NewTweetViewController.m */,
 				81275BDE11FE2F1600FF9A80 /* TweetsViewController.h */,
 				81275BDF11FE2F1600FF9A80 /* TweetsViewController.m */,
 				81DD40B0121B2914004BE46A /* TweetDetailsViewController.h */,
 				81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */,
+				81FF414D123DC3EA00439B37 /* Sessions */,
 			);
-			name = Shared;
+			name = Events;
 			sourceTree = "<group>";
 		};
 		8178A8AA11D910FB0084FA66 /* Categories */ = {
@@ -629,18 +623,22 @@
 				81E75EF811BE0A2200E6B283 /* OAuthManager.m */,
 				81F8DF081227FEF100C3E8FD /* LocationManager.h */,
 				81F8DF091227FEF100C3E8FD /* LocationManager.m */,
-				81F8DF9A12285E0700C3E8FD /* OAuthControllerBase.h */,
-				81F8DF9B12285E0700C3E8FD /* OAuthControllerBase.m */,
+				815932141242C1E8001E8E16 /* OAuthController.h */,
+				815932151242C1E8001E8E16 /* OAuthController.m */,
 				81F8E25B122D52B700C3E8FD /* EventController.h */,
 				81F8E25C122D52B700C3E8FD /* EventController.m */,
+				815932551242C5BA001E8E16 /* EventControllerDelegate.h */,
 				81F8DEDB1227830400C3E8FD /* TwitterController.h */,
 				81F8DEDC1227830400C3E8FD /* TwitterController.m */,
+				815932761242C87D001E8E16 /* TwitterControllerDelegate.h */,
 				817496721209FE04008A9E61 /* TwitterProfileImageDownloader.h */,
 				817496731209FE04008A9E61 /* TwitterProfileImageDownloader.m */,
 				810D8E6412367A5200EE0F57 /* ProfileController.h */,
 				810D8E6512367A5200EE0F57 /* ProfileController.m */,
+				815932941242D2B5001E8E16 /* ProfileControllerDelegate.h */,
 				810D8E7B12368B0C00EE0F57 /* EventSessionController.h */,
 				810D8E7C12368B0C00EE0F57 /* EventSessionController.m */,
+				8159328D1242D06A001E8E16 /* EventSessionControllerDelegate.h */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -787,6 +785,8 @@
 		81FF414D123DC3EA00439B37 /* Sessions */ = {
 			isa = PBXGroup;
 			children = (
+				817493771207162B008A9E61 /* EventSessionsViewController.h */,
+				817493781207162B008A9E61 /* EventSessionsViewController.m */,
 				81F79FD71201FB2600743FFF /* EventSessionsMenuViewController.h */,
 				81F79FD81201FB2600743FFF /* EventSessionsMenuViewController.m */,
 				8135A10411ED5E5300F0F2F8 /* EventSessionsCurrentViewController.h */,
@@ -1078,7 +1078,6 @@
 				81F8DE9012277B9E00C3E8FD /* PullRefreshTableViewController.m in Sources */,
 				81F8DEDD1227830400C3E8FD /* TwitterController.m in Sources */,
 				81F8DF0A1227FEF100C3E8FD /* LocationManager.m in Sources */,
-				81F8DF9C12285E0700C3E8FD /* OAuthControllerBase.m in Sources */,
 				81F8E25D122D52B700C3E8FD /* EventController.m in Sources */,
 				810D8E6612367A5200EE0F57 /* ProfileController.m in Sources */,
 				810D8E7D12368B0C00EE0F57 /* EventSessionController.m in Sources */,
@@ -1087,6 +1086,7 @@
 				81FF414C123DC3C700439B37 /* EventTweetsViewController.m in Sources */,
 				81FF4182123DE47C00439B37 /* EventSessionTweetsViewController.m in Sources */,
 				81A668BD123FF4AF00D67B76 /* InfoViewController.m in Sources */,
+				815932161242C1E8001E8E16 /* OAuthController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,7 +1337,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1453,7 +1453,7 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1566,7 +1566,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1680,7 +1680,7 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1793,7 +1793,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "QA=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1907,7 +1907,7 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -1927,7 +1927,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "LOCALHOST=1";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-ObjC",

@@ -7,24 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OAuthControllerBase.h"
+#import "OAuthController.h"
+#import "EventSessionControllerDelegate.h"
 
 
-@protocol EventSessionControllerDelegate
-
-@optional
-
-- (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
-- (void)fetchSessionsByDateDidFinishWithResults:(NSArray *)sessions andTimes:(NSArray *)times;
-- (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
-- (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
-- (void)updateFavoriteSessionDidFinish;
-- (void)rateSessionDidFinish;
-
-@end
-
-
-@interface EventSessionController : OAuthControllerBase { }
+@interface EventSessionController : OAuthController 
+{ 
+	id<EventSessionControllerDelegate> _delegate;
+}
 
 @property (nonatomic, assign) id<EventSessionControllerDelegate> delegate;
 

@@ -7,18 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OAuthControllerBase.h"
-#import "Profile.h"
+#import "OAuthController.h"
+#import "ProfileControllerDelegate.h"
 
 
-@protocol ProfileControllerDelegate
-
-- (void)fetchProfileDidFinishWithResults:(Profile *)profile;
-
-@end
-
-
-@interface ProfileController : OAuthControllerBase { }
+@interface ProfileController : OAuthController 
+{ 
+	id<ProfileControllerDelegate> _delegate;
+}
 
 @property (nonatomic, assign) id<ProfileControllerDelegate> delegate;
 

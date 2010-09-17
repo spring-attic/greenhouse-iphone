@@ -8,11 +8,12 @@
 
 #import "ProfileController.h"
 #import "Profile.h"
+#import "OAuthManager.h"
 
 
 @implementation ProfileController
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 #pragma mark -
 #pragma mark Static methods
@@ -28,11 +29,6 @@
 
 - (void)fetchProfile
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
 	NSURL *url = [[NSURL alloc] initWithString:MEMBER_PROFILE_URL];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
@@ -48,19 +44,19 @@
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchProfile:didFinishWithData:)
-						   didFailSelector:@selector(fetchProfile:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchProfile:didFinishWithData:)
+					   didFailSelector:@selector(fetchProfile:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -72,13 +68,13 @@
 		
 		Profile *profile = [Profile profileWithDictionary:dictionary];
 		
-		[delegate fetchProfileDidFinishWithResults:profile];
+		[_delegate fetchProfileDidFinishWithResults:profile];
 	}
 }
 
 - (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	

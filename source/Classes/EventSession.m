@@ -39,8 +39,9 @@
 			self.isFavorite = [dictionary boolForKey:@"favorite"];
 			self.rating = [dictionary doubleForKey:@"rating"];
 
-			self.leaders = [[NSMutableArray alloc] init];
 			NSArray *array = [dictionary objectForKey:@"leaders"];
+			self.leaders = [NSMutableArray arrayWithCapacity:[array count]];
+			
 			for (NSDictionary *d in array) 
 			{
 				EventSessionLeader *leader = [[EventSessionLeader alloc] initWithDictionary:d];

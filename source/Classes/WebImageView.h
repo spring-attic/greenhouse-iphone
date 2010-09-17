@@ -11,7 +11,8 @@
 
 @interface WebImageView : UIImageView 
 {
-
+	NSURLConnection *_urlConnection;
+	NSMutableData *_receivedData;
 }
 
 @property (nonatomic, retain) NSURL *imageUrl;

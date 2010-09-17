@@ -21,7 +21,7 @@
 - (void)showAuthorizeViewController
 {	
 	[tabBarController.view removeFromSuperview];
-	[window addSubview:authorizeViewController.view];		
+	[window addSubview:authorizeViewController.view];
 }
 
 - (void)showTabBarController
@@ -37,7 +37,7 @@
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
-	//[viewController viewDidAppear:YES];
+	
 }
 
 

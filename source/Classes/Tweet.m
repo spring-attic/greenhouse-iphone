@@ -56,6 +56,7 @@
 	[userId release];
 	[languageCode release];
 	[source release];
+	[profileImage release];
 	
 	[super dealloc];
 }

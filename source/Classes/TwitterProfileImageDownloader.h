@@ -10,7 +10,6 @@
 
 
 @class Tweet;
-@class RootViewController;
 
 
 @protocol TwitterProfileImageDownloaderDelegate 
@@ -20,16 +19,15 @@
 @end
 
 
-@interface TwitterProfileImageDownloader : NSObject
+@interface TwitterProfileImageDownloader : NSObject 
 {
-
+	NSURLConnection *_urlConnection;
+	NSMutableData *_receivedData;
 }
 
 @property (nonatomic, retain) Tweet *tweet;
 @property (nonatomic, retain) NSIndexPath *indexPathInTableView;
 @property (nonatomic, assign) id <TwitterProfileImageDownloaderDelegate> delegate;
-@property (nonatomic, retain) NSMutableData *receivedData;
-@property (nonatomic, retain) NSURLConnection *urlConnection;
 
 - (void)startDownload;
 - (void)cancelDownload;

@@ -7,19 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OAuthControllerBase.h"
+#import "OAuthController.h"
+#import "EventControllerDelegate.h"
 
 
-@protocol EventControllerDelegate
-
-@optional
-
-- (void)fetchEventsDidFinishWithResults:(NSArray *)events;
-
-@end
-
-
-@interface EventController : OAuthControllerBase { }
+@interface EventController : OAuthController 
+{ 
+	id<EventControllerDelegate> _delegate;
+}
 
 @property (nonatomic, assign) id<EventControllerDelegate> delegate;
 

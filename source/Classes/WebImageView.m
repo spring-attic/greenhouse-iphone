@@ -9,18 +9,8 @@
 #import "WebImageView.h"
 
 
-@interface WebImageView()
-
-@property (nonatomic, retain) NSURLConnection *urlConnection;
-@property (nonatomic, retain) NSMutableData *receivedData;
-
-@end
-
-
 @implementation WebImageView
 
-@synthesize urlConnection;
-@synthesize receivedData;
 @synthesize imageUrl;
 
 - (id)initWithURL:(NSURL *)url
@@ -36,25 +26,23 @@
 
 - (void)startImageDownload
 {
-	[self cancelImageDownload];
-	
 	DLog(@"%@", imageUrl);
 	
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imageUrl];
-    self.urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    _urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[request release];
 	
-	if (urlConnection)
+	if (_urlConnection)
 	{
-		self.receivedData = [NSMutableData data];
+		_receivedData = [[NSMutableData data] retain];
 	}
 }
 
 - (void)cancelImageDownload
 {
-    [self.urlConnection cancel];
-    self.urlConnection = nil;
-    self.receivedData = nil;
+    [_urlConnection cancel];
+    [_urlConnection release];
+    [_receivedData release];
 }
 
 
@@ -63,13 +51,13 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-    [self.receivedData appendData:data];
+    [_receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    self.receivedData = nil;
-    self.urlConnection = nil;
+    [_receivedData release];
+    [connection release];
 	
 	DLog(@"Connection failed! Error - %@ %@",
 		 [error localizedDescription],
@@ -78,12 +66,12 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    self.urlConnection = nil;
+    [connection release];
 	
-	DLog(@"Succeeded! Received %d bytes of data", [receivedData length]);
+	DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
 		
-    UIImage *downloadedImage = [[UIImage alloc] initWithData:self.receivedData];
-	self.receivedData = nil;
+    UIImage *downloadedImage = [[UIImage alloc] initWithData:_receivedData];
+	[_receivedData release];
 	self.image = downloadedImage;
 	[downloadedImage release];    
 }
@@ -94,10 +82,6 @@
 
 - (void)dealloc
 {
-	[receivedData release];
-	[urlConnection cancel];
-	[urlConnection release];
-	
 	[super dealloc];
 }
 

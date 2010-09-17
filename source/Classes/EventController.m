@@ -7,12 +7,13 @@
 //
 
 #import "EventController.h"
+#import "OAuthManager.h"
 #import "Event.h"
 
 
 @implementation EventController
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
 
 #pragma mark -
 #pragma mark Static methods
@@ -28,11 +29,6 @@
 
 - (void)fetchEvents
 {
-	if (self.fetchingData == YES)
-	{
-		return;
-	}
-	
 	NSURL *url = [[NSURL alloc] initWithString:EVENTS_URL];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
@@ -48,19 +44,19 @@
 	
 	DLog(@"%@", request);
 	
-	[self.dataFetcher fetchDataWithRequest:request
-								  delegate:self
-						 didFinishSelector:@selector(fetchEvents:didFinishWithData:)
-						   didFailSelector:@selector(fetchEvents:didFailWithError:)];
+	_dataFetcher = [[OADataFetcher alloc] init];
+	
+	[_dataFetcher fetchDataWithRequest:request
+							  delegate:self
+					 didFinishSelector:@selector(fetchEvents:didFinishWithData:)
+					   didFailSelector:@selector(fetchEvents:didFailWithError:)];
 	
 	[request release];
-	
-	self.fetchingData = YES;
 }
 
 - (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	if (ticket.didSucceed)
 	{
@@ -79,13 +75,13 @@
 			[event release];
 		}
 		
-		[delegate fetchEventsDidFinishWithResults:events];
+		[_delegate fetchEventsDidFinishWithResults:events];
 	}
 }
 
 - (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	self.fetchingData = NO;
+	[_dataFetcher release];
 	
 	DLog(@"%@", [error localizedDescription]);
 	
