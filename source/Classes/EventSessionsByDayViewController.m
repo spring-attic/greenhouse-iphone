@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSArray *arrayTimes;
 @property (nonatomic, retain) NSDate *currentEventDate;
 
+- (void)completeFetchSessions:(NSArray *)sessions andTimes:(NSArray *)times;
+
 @end
 
 
@@ -45,13 +47,8 @@
 	}
 }
 
-
-#pragma mark -
-#pragma mark EventSessionControllerDelegate methods
-
-- (void)fetchSessionsByDateDidFinishWithResults:(NSArray *)sessions andTimes:(NSArray *)times
+- (void)completeFetchSessions:(NSArray *)sessions andTimes:(NSArray *)times
 {
-	eventSessionController.delegate = nil;
 	self.eventSessionController = nil;
 	
 	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
@@ -59,7 +56,23 @@
 	self.arraySessions = sessions;
 	self.arrayTimes = times;
 	
-	[self.tableView reloadData];
+	[self.tableView reloadData];	
+}
+
+
+#pragma mark -
+#pragma mark EventSessionControllerDelegate methods
+
+- (void)fetchSessionsByDateDidFinishWithResults:(NSArray *)sessions andTimes:(NSArray *)times
+{
+	[self completeFetchSessions:sessions andTimes:times];
+}
+
+- (void)fetchSessionsByDateDidFailWithError:(NSError *)error
+{
+	NSArray *array = [[NSArray alloc] init];
+	[self completeFetchSessions:array andTimes:array];
+	[array release];
 }
 
 

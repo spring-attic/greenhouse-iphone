@@ -14,11 +14,17 @@
 @optional
 
 - (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
+- (void)fetchCurrentSessionsDidFailWithError:(NSError *)error;
 - (void)fetchSessionsByDateDidFinishWithResults:(NSArray *)sessions andTimes:(NSArray *)times;
+- (void)fetchSessionsByDateDidFailWithError:(NSError *)error;
 - (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
+- (void)fetchFavoriteSessionsDidFailWithError:(NSError *)error;
 - (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
+- (void)fetchConferenceFavoriteSessionsDidFailWithError:(NSError *)error;
 - (void)updateFavoriteSessionDidFinish;
+- (void)updateFavoriteSessionDidFailWithError:(NSError *)error;
 - (void)rateSessionDidFinish;
+- (void)rateSessionDidFailWithError:(NSError *)error;
 
 @end
 

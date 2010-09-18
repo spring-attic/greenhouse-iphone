@@ -82,7 +82,11 @@
 
 - (void)updateFavoriteSessionDidFinish
 {
-	eventSessionController.delegate = nil;
+	self.eventSessionController = nil;
+}
+
+- (void)updateFavoriteSessionDidFailWithError:(NSError *)error
+{
 	self.eventSessionController = nil;
 }
 

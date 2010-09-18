@@ -15,6 +15,8 @@
 @property (nonatomic, retain) NSArray *arrayCurrentSessions;
 @property (nonatomic, retain) NSArray *arrayUpcomingSessions;
 
+- (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
+
 @end
 
 
@@ -42,11 +44,21 @@
 
 - (BOOL)displayLoadingCell
 {
-	return (arrayCurrentSessions == nil);
-//	NSInteger currentCount = [arrayCurrentSessions count];
-//	NSInteger upcomingCount = [arrayUpcomingSessions count];
-//	
-//	return (currentCount == 0 && upcomingCount == 0);
+	NSInteger currentCount = [arrayCurrentSessions count];
+	NSInteger upcomingCount = [arrayUpcomingSessions count];
+	
+	return (currentCount == 0 && upcomingCount == 0);
+}
+
+- (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
+{
+	self.eventSessionController = nil;
+	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
+	self.arrayCurrentSessions = currentSessions;
+	self.arrayUpcomingSessions = upcomingSessions;
+	[self.tableView reloadData];
 }
 
 
@@ -55,14 +67,14 @@
 
 - (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
 {
-	eventSessionController.delegate = nil;
-	self.eventSessionController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
-	self.arrayCurrentSessions = currentSessions;
-	self.arrayUpcomingSessions = upcomingSessions;
-	[self.tableView reloadData];
+	[self completeFetchCurrentSessions:currentSessions upcomingSessions:upcomingSessions];
+}
+
+- (void)fetchCurrentSessionsDidFailWithError:(NSError *)error
+{
+	NSArray *array = [[NSArray alloc] init];
+	[self completeFetchCurrentSessions:array upcomingSessions:array];
+	[array release];
 }
 
 

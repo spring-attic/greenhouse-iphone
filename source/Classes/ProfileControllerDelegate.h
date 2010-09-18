@@ -15,6 +15,7 @@
 @protocol ProfileControllerDelegate
 
 - (void)fetchProfileDidFinishWithResults:(Profile *)profile;
+- (void)fetchProfileDidFailWithError:(NSError *)error;
 
 @end
 

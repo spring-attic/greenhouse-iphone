@@ -116,30 +116,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchCurrentSessionsDidFailWithError:)];
 }
 
 - (void)fetchSessionsByEventId:(NSString *)eventId withDate:(NSDate *)eventDate;
@@ -227,30 +204,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchSessionsByDateDidFailWithError:)];
 }
 
 - (void)fetchFavoriteSessionsByEventId:(NSString *)eventId
@@ -311,30 +265,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchFavoriteSessionsDidFailWithError:)];
 }
 
 - (void)fetchConferenceFavoriteSessionsByEventId:(NSString *)eventId
@@ -393,30 +324,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchConferenceFavoriteSessionsDidFailWithError:)];
 }
 
 - (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
@@ -465,30 +373,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(updateFavoriteSessionDidFailWithError:)];
 }
 
 - (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment
@@ -553,30 +438,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(rateSessionDidFailWithError:)];
 }
 
 

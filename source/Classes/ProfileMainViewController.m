@@ -36,12 +36,16 @@
 
 - (void)fetchProfileDidFinishWithResults:(Profile *)profile;
 {
-	profileController.delegate = nil;
 	self.profileController = nil;
 	
 	labelDisplayName.text = profile.displayName;
 	imageViewPicture.imageUrl = profile.imageUrl;
 	[imageViewPicture startImageDownload];
+}
+
+- (void)fetchProfileDidFailWithError:(NSError *)error
+{
+	self.profileController = nil;
 }
 
 

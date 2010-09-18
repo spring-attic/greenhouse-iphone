@@ -14,8 +14,10 @@
 @optional
 
 - (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets;
+- (void)fetchTweetsDidFailWithError:(NSError *)error;
 - (void)postUpdateDidFinish;
 - (void)postUpdateDidFailWithError:(NSError *)error;
 - (void)postRetweetDidFinish;
+- (void)postRetweetDidFailWithError:(NSError *)error;
 
 @end

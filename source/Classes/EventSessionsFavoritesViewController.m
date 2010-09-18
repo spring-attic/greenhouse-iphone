@@ -13,6 +13,8 @@
 
 @property (nonatomic, retain) EventSessionController *eventSessionController;
 
+- (void)completeFetchFavoriteSessions:(NSArray *)sessions;
+
 @end
 
 
@@ -20,18 +22,29 @@
 
 @synthesize eventSessionController;
 
-#pragma mark -
-#pragma mark EventSessionControllerDelegate methods
-
-- (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
+- (void)completeFetchFavoriteSessions:(NSArray *)sessions
 {
-	eventSessionController.delegate = nil;
 	self.eventSessionController = nil;
 	
 	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
 	
 	self.arraySessions = sessions;
-	[self.tableView reloadData];
+	[self.tableView reloadData];	
+}
+
+#pragma mark -
+#pragma mark EventSessionControllerDelegate methods
+
+- (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
+{
+	[self completeFetchFavoriteSessions:sessions];
+}
+
+- (void)fetchFavoriteSessionsDidFailWithError:(NSError *)error
+{
+	NSArray *array = [[NSArray alloc] init];
+	[self completeFetchFavoriteSessions:array];
+	[array release];
 }
 
 #pragma mark -

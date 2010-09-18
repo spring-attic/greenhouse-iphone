@@ -74,30 +74,7 @@
 
 - (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
-													   delegate:self 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-		[alert release];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
-	}
+	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchProfileDidFailWithError:)];
 }
 
 

@@ -16,6 +16,8 @@
 @property (nonatomic, retain) NSArray *arrayEvents;
 @property (nonatomic, retain) EventController *eventController;
 
+- (void)completeFetchEvents:(NSArray *)events;
+
 @end
 
 
@@ -26,19 +28,30 @@
 @synthesize barButtonRefresh;
 @synthesize eventDetailsViewController;
 
+- (void)completeFetchEvents:(NSArray *)events
+{
+	self.eventController = nil;
+	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
+	self.arrayEvents = events;
+	[self.tableView reloadData];	
+}
+
 
 #pragma mark -
 #pragma mark EventControllerDelegate methods
 
 - (void)fetchEventsDidFinishWithResults:(NSArray *)events
 {
-	eventController.delegate = nil;
-	self.eventController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
-	self.arrayEvents = events;
-	[self.tableView reloadData];
+	[self completeFetchEvents:events];
+}
+
+- (void)fetchEventsDidFailWithError:(NSError *)error
+{
+	NSArray *array = [[NSArray alloc] init];
+	[self completeFetchEvents:array];
+	[array release];
 }
 
 

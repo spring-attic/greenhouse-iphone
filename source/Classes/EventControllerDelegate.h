@@ -11,8 +11,7 @@
 
 @protocol EventControllerDelegate<NSObject>
 
-@optional
-
 - (void)fetchEventsDidFinishWithResults:(NSArray *)events;
+- (void)fetchEventsDidFailWithError:(NSError *)error;
 
 @end

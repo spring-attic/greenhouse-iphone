@@ -23,6 +23,7 @@
 
 - (void)showTwitterForm;
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath;
+- (void)completeFetchTweets:(NSArray *)tweets;
 
 @end
 
@@ -77,20 +78,30 @@
     }
 }
 
+- (void)completeFetchTweets:(NSArray *)tweets
+{
+	self.twitterController = nil;
+	
+	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
+	
+	self.arrayTweets = tweets;
+	[self.tableView reloadData];	
+}
+
 
 #pragma mark -
 #pragma mark TwitterControllerDelegate methods
 
 - (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets
 {
-	twitterController.delegate = nil;
-	self.twitterController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
-	self.arrayTweets = tweets;
+	[self completeFetchTweets:tweets];
+}
 
-	[self.tableView reloadData];
+- (void)fetchTweetsDidFailWithError:(NSError *)error
+{
+	NSArray *array = [[NSArray alloc] init];
+	[self completeFetchTweets:array];
+	[array release];
 }
 
 

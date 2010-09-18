@@ -106,7 +106,6 @@
 
 - (void)postUpdateDidFinish
 {
-	twitterController.delegate = nil;
 	self.twitterController = nil;
 	
 	[self dismissModalViewControllerAnimated:YES];
@@ -114,7 +113,6 @@
 
 - (void)postUpdateDidFailWithError:(NSError *)error;
 {
-	twitterController.delegate = nil;
 	self.twitterController = nil;
 }
 

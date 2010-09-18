@@ -69,7 +69,11 @@
 
 - (void)postRetweetDidFinish
 {
-	twitterController.delegate = nil;
+	self.twitterController = nil;
+}
+
+- (void)postRetweetDidFailWithError:(NSError *)error
+{
 	self.twitterController = nil;
 }
 

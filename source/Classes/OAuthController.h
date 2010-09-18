@@ -12,6 +12,11 @@
 @interface OAuthController : NSObject <UIAlertViewDelegate>
 {
 	OADataFetcher *_dataFetcher;
+	id _didFailDelegate;
+	SEL _didFailSelector;
+	NSError *_error;
 }
+
+- (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error didFailDelegate:(id)delegate didFailSelector:(SEL)selector;
 
 @end

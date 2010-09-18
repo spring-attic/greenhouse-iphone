@@ -143,10 +143,14 @@
 
 - (void)rateSessionDidFinish
 {
-	eventSessionController.delegate = nil;
 	self.eventSessionController = nil;
 	
 	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)rateSessionDidFailWithError:(NSError *)error
+{
+	self.eventSessionController = nil;
 }
 
 
