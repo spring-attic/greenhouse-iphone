@@ -78,6 +78,18 @@ static OAConsumer *sharedConsumer = nil;
 	sharedAccessToken = nil;
 }
 
+- (void)cancelDataFetcherRequest
+{
+	if (_dataFetcher)
+	{
+		DLog(@"");
+		
+		[_dataFetcher cancel];
+		[_dataFetcher release];
+		_dataFetcher = nil;
+	}
+}
+
 - (void)fetchUnauthorizedRequestToken;
 {
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
@@ -98,18 +110,23 @@ static OAConsumer *sharedConsumer = nil;
 	
 	DLog(@"%@", request);
 	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
-				  didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
+													  didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
+	
+	[_dataFetcher start];
 	
 	[request release];
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
+	[_dataFetcher release];
+	_dataFetcher = nil;
+	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	NSInteger statusCode = [response statusCode];
 	
@@ -143,17 +160,16 @@ static OAConsumer *sharedConsumer = nil;
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+	[_dataFetcher release];
+	_dataFetcher = nil;
+	
 	DLog(@"%@", [error localizedDescription]);
 }
 
 - (void)authorizeRequestToken:(OAToken *)requestToken;
 {
 	[requestToken retain];
-	NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", 
-						   OAUTH_AUTHORIZE_URL,
-						   OAUTH_TOKEN,
-						   requestToken.key];
-	
+	NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", OAUTH_AUTHORIZE_URL, OAUTH_TOKEN, requestToken.key];
 	[requestToken release];
 	
 	DLog(@"%@", urlString);
@@ -212,18 +228,23 @@ static OAConsumer *sharedConsumer = nil;
 	[request setHTTPMethod:@"POST"];
 	[request setOAuthParameterName:OAUTH_VERIFIER withValue:oauthVerifier];
 	
-	OADataFetcher *fetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[fetcher fetchDataWithRequest:request
-						 delegate:self
-				didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
-				  didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
+													  didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
+	
+	[_dataFetcher start];
 	
 	[request release];
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
+	[_dataFetcher release];
+	_dataFetcher = nil;
+	
 	if (ticket.didSucceed)
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -243,6 +264,9 @@ static OAConsumer *sharedConsumer = nil;
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+	[_dataFetcher release];
+	_dataFetcher = nil;
+	
 	DLog(@"%@", [error localizedDescription]);
 	
 	if ([delegate respondsToSelector:didFailSelector])

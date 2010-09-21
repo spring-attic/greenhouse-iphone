@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "OauthConsumer.h"
+//#import "OauthConsumer.h"
 
 
 @interface OAuthManager : NSObject 
-{ 
+{
+	OAAsynchronousDataFetcher *_dataFetcher;
 	id delegate;
 	SEL didFinishSelector;
 	SEL didFailSelector;
@@ -24,6 +25,8 @@
 + (OAuthManager *)sharedInstance;
 
 - (BOOL)isAuthorized;
+- (void)removeAccessToken;
+- (void)cancelDataFetcherRequest;
 - (void)fetchUnauthorizedRequestToken;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
@@ -32,6 +35,5 @@
 - (void)fetchAccessToken:(NSString *)oauthVerifier;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
-- (void)removeAccessToken;
 
 @end

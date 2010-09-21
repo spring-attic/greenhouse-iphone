@@ -57,7 +57,7 @@
 
 - (IBAction)actionRetweet:(id)sender
 {
-	self.twitterController = [TwitterController twitterController];
+	self.twitterController = [[TwitterController alloc] init];
 	twitterController.delegate = self;
 	
 	[twitterController postRetweet:tweet.tweetId withURL:retweetUrl];
