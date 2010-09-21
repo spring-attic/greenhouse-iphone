@@ -11,33 +11,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		8104E7AD11D1646D00590E90 /* GreenhouseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* GreenhouseAppDelegate.m */; };
-		8104E7AF11D1646D00590E90 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
-		8104E7B011D1646D00590E90 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EDC11BE048700E6B283 /* AuthorizeViewController.m */; };
-		8104E7B111D1646D00590E90 /* OAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75EF811BE0A2200E6B283 /* OAuthManager.m */; };
-		8104E7B211D1646D00590E90 /* Base64Transcoder.c in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0311BE0C5800E6B283 /* Base64Transcoder.c */; };
-		8104E7B311D1646D00590E90 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0611BE0C5800E6B283 /* NSMutableURLRequest+Parameters.m */; };
-		8104E7B411D1646D00590E90 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0811BE0C5800E6B283 /* NSString+URLEncoding.m */; };
-		8104E7B511D1646D00590E90 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0A11BE0C5800E6B283 /* NSURL+Base.m */; };
-		8104E7B611D1646D00590E90 /* OAAsynchronousDataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0C11BE0C5800E6B283 /* OAAsynchronousDataFetcher.m */; };
-		8104E7B711D1646D00590E90 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F0E11BE0C5800E6B283 /* OAConsumer.m */; };
-		8104E7B811D1646D00590E90 /* OADataFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1011BE0C5800E6B283 /* OADataFetcher.m */; };
-		8104E7B911D1646D00590E90 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1211BE0C5800E6B283 /* OAHMAC_SHA1SignatureProvider.m */; };
-		8104E7BA11D1646D00590E90 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1411BE0C5800E6B283 /* OAMutableURLRequest.m */; };
-		8104E7BB11D1646D00590E90 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1611BE0C5800E6B283 /* OAPlaintextSignatureProvider.m */; };
-		8104E7BC11D1646D00590E90 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1811BE0C5800E6B283 /* OARequestParameter.m */; };
-		8104E7BD11D1646D00590E90 /* OAServiceTicket.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1A11BE0C5800E6B283 /* OAServiceTicket.m */; };
-		8104E7BE11D1646D00590E90 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E75F1D11BE0C5800E6B283 /* OAToken.m */; };
-		8104E7BF11D1646D00590E90 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Profile.m */; };
-		8104E7C011D1646D00590E90 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
-		8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
-		8104E7CA11D1646D00590E90 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		8104E7CB11D1646D00590E90 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		8104E7CC11D1646D00590E90 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		8104E7CD11D1646D00590E90 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28860BE40F44EE6400985440 /* CoreData.framework */; };
-		8104E7CE11D1646D00590E90 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
-		8104E7EC11D1668800590E90 /* GreenhouseTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */; };
-		8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */ = {isa = PBXBuildFile; fileRef = 8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */; };
 		8107AA6211FA032300A59078 /* TweetTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA6111FA032300A59078 /* TweetTableViewCell.m */; };
 		8107AA9811FA2BB000A59078 /* NewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8107AA9711FA2BB000A59078 /* NewTweetViewController.m */; };
 		810D8E6612367A5200EE0F57 /* ProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D8E6512367A5200EE0F57 /* ProfileController.m */; };
@@ -90,8 +63,6 @@
 		81C1639D12414D5100DAC502 /* btn-signin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C1639A12414D5100DAC502 /* btn-signin@2x.png */; };
 		81C1639E12414D5100DAC502 /* gh-header-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C1639B12414D5100DAC502 /* gh-header-logo@2x.png */; };
 		81C1639F12414D5100DAC502 /* springsource-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C1639C12414D5100DAC502 /* springsource-logo@2x.png */; };
-		81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */; };
-		81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8178A8AC11D9113F0084FA66 /* NSDictionary+Helpers.m */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
 		81D339871237F6E7009524AE /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D339861237F6E7009524AE /* DataViewController.m */; };
 		81D4A45111C30692000A71C3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Profile.m */; };
@@ -161,16 +132,6 @@
 		81FF4182123DE47C00439B37 /* EventSessionTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF4181123DE47C00439B37 /* EventSessionTweetsViewController.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8104E7E811D1655700590E90 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8104E7DC11D164AF00590E90;
-			remoteInfo = GreenhouseTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* GreenhouseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenhouseAppDelegate.h; sourceTree = "<group>"; };
@@ -179,11 +140,6 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28860BE40F44EE6400985440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8104E76311D1606400590E90 /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8104E7D211D1646D00590E90 /* Greenhouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greenhouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8104E7F411D167AA00590E90 /* ApplicationTestSuite1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTestSuite1.h; sourceTree = "<group>"; };
-		8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationTestSuite1.m; sourceTree = "<group>"; };
 		8107AA6011FA032300A59078 /* TweetTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetTableViewCell.h; sourceTree = "<group>"; };
 		8107AA6111FA032300A59078 /* TweetTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetTableViewCell.m; sourceTree = "<group>"; };
 		8107AA9611FA2BB000A59078 /* NewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTweetViewController.h; sourceTree = "<group>"; };
@@ -272,8 +228,6 @@
 		81C1639A12414D5100DAC502 /* btn-signin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-signin@2x.png"; sourceTree = "<group>"; };
 		81C1639B12414D5100DAC502 /* gh-header-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo@2x.png"; sourceTree = "<group>"; };
 		81C1639C12414D5100DAC502 /* springsource-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "springsource-logo@2x.png"; sourceTree = "<group>"; };
-		81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_HelpersTest.h; sourceTree = "<group>"; };
-		81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTest.m; sourceTree = "<group>"; };
 		81CC605511EF41E5002BB755 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		81CC605611EF41E5002BB755 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		81D339851237F6E7009524AE /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
@@ -397,32 +351,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8104E76011D1606400590E90 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8104E7C911D1646D00590E90 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8104E7CA11D1646D00590E90 /* Foundation.framework in Frameworks */,
-				8104E7CB11D1646D00590E90 /* UIKit.framework in Frameworks */,
-				8104E7CC11D1646D00590E90 /* CoreGraphics.framework in Frameworks */,
-				8104E7CD11D1646D00590E90 /* CoreData.framework in Frameworks */,
-				8104E7CE11D1646D00590E90 /* Security.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8104E7DA11D164AF00590E90 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -443,9 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Greenhouse.app */,
-				8104E76311D1606400590E90 /* LogicTests.octest */,
-				8104E7D211D1646D00590E90 /* Greenhouse.app */,
-				8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -453,7 +378,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				8104E76D11D1612300590E90 /* Tests */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				81FF3FF7123AB0ED00439B37 /* Other Sources */,
 				81FF3FA7123AB09D00439B37 /* Resources */,
@@ -478,33 +402,6 @@
 				81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		8104E76D11D1612300590E90 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				8104E7F311D1676E00590E90 /* Application Tests */,
-				8104E7F211D1675500590E90 /* Logic Tests */,
-			);
-			name = Tests;
-			sourceTree = "<group>";
-		};
-		8104E7F211D1675500590E90 /* Logic Tests */ = {
-			isa = PBXGroup;
-			children = (
-				81CC5FAF11EE6BD1002BB755 /* NSDictionary_HelpersTest.h */,
-				81CC5FB011EE6BD1002BB755 /* NSDictionary_HelpersTest.m */,
-			);
-			name = "Logic Tests";
-			sourceTree = "<group>";
-		};
-		8104E7F311D1676E00590E90 /* Application Tests */ = {
-			isa = PBXGroup;
-			children = (
-				8104E7F411D167AA00590E90 /* ApplicationTestSuite1.h */,
-				8104E7F511D167AA00590E90 /* ApplicationTestSuite1.m */,
-			);
-			name = "Application Tests";
 			sourceTree = "<group>";
 		};
 		8135A09511ECA64B00F0F2F8 /* Events */ = {
@@ -844,60 +741,6 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Greenhouse.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8104E76211D1606400590E90 /* LogicTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8104E76711D1606500590E90 /* Build configuration list for PBXNativeTarget "LogicTests" */;
-			buildPhases = (
-				8104E75E11D1606400590E90 /* Resources */,
-				8104E75F11D1606400590E90 /* Sources */,
-				8104E76011D1606400590E90 /* Frameworks */,
-				8104E76111D1606400590E90 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = LogicTests;
-			productName = LogicTests;
-			productReference = 8104E76311D1606400590E90 /* LogicTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
-		8104E7A411D1646D00590E90 /* GreenhouseTesting */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8104E7CF11D1646D00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTesting" */;
-			buildPhases = (
-				8104E7A511D1646D00590E90 /* Resources */,
-				8104E7AB11D1646D00590E90 /* Sources */,
-				8104E7C911D1646D00590E90 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8104E7E911D1655700590E90 /* PBXTargetDependency */,
-			);
-			name = GreenhouseTesting;
-			productName = Greenhouse;
-			productReference = 8104E7D211D1646D00590E90 /* Greenhouse.app */;
-			productType = "com.apple.product-type.application";
-		};
-		8104E7DC11D164AF00590E90 /* GreenhouseTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8104E7E111D164AF00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTests" */;
-			buildPhases = (
-				8104E7D811D164AF00590E90 /* Resources */,
-				8104E7D911D164AF00590E90 /* Sources */,
-				8104E7DA11D164AF00590E90 /* Frameworks */,
-				8104E7DB11D164AF00590E90 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = GreenhouseTests;
-			productName = GreenhouseTests;
-			productReference = 8104E7DD11D164AF00590E90 /* GreenhouseTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -919,9 +762,6 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Greenhouse */,
-				8104E7A411D1646D00590E90 /* GreenhouseTesting */,
-				8104E76211D1606400590E90 /* LogicTests */,
-				8104E7DC11D164AF00590E90 /* GreenhouseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -982,58 +822,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8104E75E11D1606400590E90 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8104E7A511D1646D00590E90 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8104E7EC11D1668800590E90 /* GreenhouseTests.octest in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8104E7D811D164AF00590E90 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		8104E76111D1606400590E90 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		8104E7DB11D164AF00590E90 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -1110,59 +899,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8104E75F11D1606400590E90 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81CC5FB111EE6BD1002BB755 /* NSDictionary_HelpersTest.m in Sources */,
-				81CC5FE811EE74BC002BB755 /* NSDictionary+Helpers.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8104E7AB11D1646D00590E90 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8104E7AD11D1646D00590E90 /* GreenhouseAppDelegate.m in Sources */,
-				8104E7AF11D1646D00590E90 /* ProfileMainViewController.m in Sources */,
-				8104E7B011D1646D00590E90 /* AuthorizeViewController.m in Sources */,
-				8104E7B111D1646D00590E90 /* OAuthManager.m in Sources */,
-				8104E7B211D1646D00590E90 /* Base64Transcoder.c in Sources */,
-				8104E7B311D1646D00590E90 /* NSMutableURLRequest+Parameters.m in Sources */,
-				8104E7B411D1646D00590E90 /* NSString+URLEncoding.m in Sources */,
-				8104E7B511D1646D00590E90 /* NSURL+Base.m in Sources */,
-				8104E7B611D1646D00590E90 /* OAAsynchronousDataFetcher.m in Sources */,
-				8104E7B711D1646D00590E90 /* OAConsumer.m in Sources */,
-				8104E7B811D1646D00590E90 /* OADataFetcher.m in Sources */,
-				8104E7B911D1646D00590E90 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
-				8104E7BA11D1646D00590E90 /* OAMutableURLRequest.m in Sources */,
-				8104E7BB11D1646D00590E90 /* OAPlaintextSignatureProvider.m in Sources */,
-				8104E7BC11D1646D00590E90 /* OARequestParameter.m in Sources */,
-				8104E7BD11D1646D00590E90 /* OAServiceTicket.m in Sources */,
-				8104E7BE11D1646D00590E90 /* OAToken.m in Sources */,
-				8104E7BF11D1646D00590E90 /* Profile.m in Sources */,
-				8104E7C011D1646D00590E90 /* AppSettings.m in Sources */,
-				8104E7C711D1646D00590E90 /* OAToken_KeychainExtensions.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8104E7D911D164AF00590E90 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8104E7F611D167AA00590E90 /* ApplicationTestSuite1.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		8104E7E911D1655700590E90 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8104E7DC11D164AF00590E90 /* GreenhouseTests */;
-			targetProxy = 8104E7E811D1655700590E90 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug [localhost] */ = {
@@ -1200,151 +937,6 @@
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release [localhost]";
-		};
-		8104E76511D1606500590E90 /* Debug [localhost] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Debug [localhost]";
-		};
-		8104E76611D1606500590E90 /* Release [localhost] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = "Release [localhost]";
-		};
-		8104E7D011D1646D00590E90 /* Debug [localhost] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
-				PRODUCT_NAME = Greenhouse;
-				RUN_CLANG_STATIC_ANALYZER = YES;
-			};
-			name = "Debug [localhost]";
-		};
-		8104E7D111D1646D00590E90 /* Release [localhost] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
-				PRODUCT_NAME = Greenhouse;
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release [localhost]";
-		};
-		8104E7DF11D164AF00590E90 /* Debug [localhost] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Debug [localhost]";
-		};
-		8104E7E011D164AF00590E90 /* Release [localhost] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
 			};
 			name = "Release [localhost]";
 		};
@@ -1389,77 +981,46 @@
 			};
 			name = "Ad Hoc Distribution [production]";
 		};
-		81053A76122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
+		8159359812480F5C001E8E16 /* Ad Hoc Distribution [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = "QA=1";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos4.1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution [qa]";
+		};
+		8159359912480F5C001E8E16 /* Ad Hoc Distribution [qa] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/ThirdPartyLibraries\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/Greenhouse_Prefix.pch";
+				INFOPLIST_FILE = "Greenhouse-Info.plist";
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "Ad Hoc Distribution [production]";
-		};
-		81053A77122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = "Ad Hoc Distribution [production]";
-		};
-		81053A78122575D500FBC268 /* Ad Hoc Distribution [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = "Ad Hoc Distribution [production]";
+			name = "Ad Hoc Distribution [qa]";
 		};
 		819CC2F812235EA2005059D1 /* Debug [production] */ = {
 			isa = XCBuildConfiguration;
@@ -1504,79 +1065,6 @@
 			};
 			name = "Debug [production]";
 		};
-		819CC2FA12235EA2005059D1 /* Debug [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
-				PRODUCT_NAME = Greenhouse;
-				RUN_CLANG_STATIC_ANALYZER = YES;
-			};
-			name = "Debug [production]";
-		};
-		819CC2FB12235EA2005059D1 /* Debug [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Debug [production]";
-		};
-		819CC2FC12235EA2005059D1 /* Debug [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Debug [production]";
-		};
 		819CC2FD12235F1E005059D1 /* Release [production] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1613,78 +1101,6 @@
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release [production]";
-		};
-		819CC2FF12235F1E005059D1 /* Release [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
-				PRODUCT_NAME = Greenhouse;
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release [production]";
-		};
-		819CC30012235F1E005059D1 /* Release [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = "Release [production]";
-		};
-		819CC30112235F1E005059D1 /* Release [production] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
 			};
 			name = "Release [production]";
 		};
@@ -1731,79 +1147,6 @@
 			};
 			name = "Debug [qa]";
 		};
-		819CC3081223649E005059D1 /* Debug [qa] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = NO;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
-				PRODUCT_NAME = Greenhouse;
-				RUN_CLANG_STATIC_ANALYZER = YES;
-			};
-			name = "Debug [qa]";
-		};
-		819CC3091223649E005059D1 /* Debug [qa] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Debug [qa]";
-		};
-		819CC30A1223649E005059D1 /* Debug [qa] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-			};
-			name = "Debug [qa]";
-		};
 		819CC30B122364B0005059D1 /* Release [qa] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1840,78 +1183,6 @@
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release [qa]";
-		};
-		819CC30D122364B0005059D1 /* Release [qa] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				COPY_PHASE_STRIP = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Greenhouse_Prefix.pch;
-				INFOPLIST_FILE = "GreenhouseTesting-Info.plist";
-				PRODUCT_NAME = Greenhouse;
-				RUN_CLANG_STATIC_ANALYZER = YES;
-				VALIDATE_PRODUCT = YES;
-			};
-			name = "Release [qa]";
-		};
-		819CC30E122364B0005059D1 /* Release [qa] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "LogicTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = LogicTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
-			};
-			name = "Release [qa]";
-		};
-		819CC30F122364B0005059D1 /* Release [qa] */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				INFOPLIST_FILE = "GreenhouseTests-Info.plist";
-				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					SenTestingKit,
-					"-framework",
-					UIKit,
-				);
-				PREBINDING = NO;
-				PRODUCT_NAME = GreenhouseTests;
-				WRAPPER_EXTENSION = octest;
-				ZERO_LINK = NO;
 			};
 			name = "Release [qa]";
 		};
@@ -1971,49 +1242,8 @@
 				1D6058950D05DD3E006BFB54 /* Release [localhost] */,
 				819CC30C122364B0005059D1 /* Release [qa] */,
 				819CC2FE12235F1E005059D1 /* Release [production] */,
+				8159359912480F5C001E8E16 /* Ad Hoc Distribution [qa] */,
 				81053A75122575D500FBC268 /* Ad Hoc Distribution [production] */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release [localhost]";
-		};
-		8104E76711D1606500590E90 /* Build configuration list for PBXNativeTarget "LogicTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8104E76511D1606500590E90 /* Debug [localhost] */,
-				819CC3091223649E005059D1 /* Debug [qa] */,
-				819CC2FB12235EA2005059D1 /* Debug [production] */,
-				8104E76611D1606500590E90 /* Release [localhost] */,
-				819CC30E122364B0005059D1 /* Release [qa] */,
-				819CC30012235F1E005059D1 /* Release [production] */,
-				81053A77122575D500FBC268 /* Ad Hoc Distribution [production] */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release [localhost]";
-		};
-		8104E7CF11D1646D00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTesting" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8104E7D011D1646D00590E90 /* Debug [localhost] */,
-				819CC3081223649E005059D1 /* Debug [qa] */,
-				819CC2FA12235EA2005059D1 /* Debug [production] */,
-				8104E7D111D1646D00590E90 /* Release [localhost] */,
-				819CC30D122364B0005059D1 /* Release [qa] */,
-				819CC2FF12235F1E005059D1 /* Release [production] */,
-				81053A76122575D500FBC268 /* Ad Hoc Distribution [production] */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Release [localhost]";
-		};
-		8104E7E111D164AF00590E90 /* Build configuration list for PBXNativeTarget "GreenhouseTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8104E7DF11D164AF00590E90 /* Debug [localhost] */,
-				819CC30A1223649E005059D1 /* Debug [qa] */,
-				819CC2FC12235EA2005059D1 /* Debug [production] */,
-				8104E7E011D164AF00590E90 /* Release [localhost] */,
-				819CC30F122364B0005059D1 /* Release [qa] */,
-				819CC30112235F1E005059D1 /* Release [production] */,
-				81053A78122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
@@ -2027,6 +1257,7 @@
 				C01FCF5008A954540054247B /* Release [localhost] */,
 				819CC30B122364B0005059D1 /* Release [qa] */,
 				819CC2FD12235F1E005059D1 /* Release [production] */,
+				8159359812480F5C001E8E16 /* Ad Hoc Distribution [qa] */,
 				81053A74122575D500FBC268 /* Ad Hoc Distribution [production] */,
 			);
 			defaultConfigurationIsVisible = 0;
