@@ -17,15 +17,6 @@
 
 
 #pragma mark -
-#pragma mark Static methods
-
-+ (TwitterController *)twitterController
-{
-	return [[[TwitterController alloc] init] autorelease];
-}
-
-
-#pragma mark -
 #pragma mark Instance methods
 
 - (void)fetchTweetsWithURL:(NSURL *)url
@@ -41,12 +32,14 @@
 	
 	DLog(@"%@", request);
 	
-	_dataFetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[_dataFetcher fetchDataWithRequest:request
-							  delegate:self
-					 didFinishSelector:@selector(fetchTweets:didFinishWithData:)
-					   didFailSelector:@selector(fetchTweets:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(fetchTweets:didFinishWithData:)
+													  didFailSelector:@selector(fetchTweets:didFailWithError:)];
+	
+	[_dataFetcher start];
 	
 	[request release];
 }
@@ -54,6 +47,7 @@
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {	
 	[_dataFetcher release];
+	_dataFetcher = nil;
 	
 	if (ticket.didSucceed)
 	{
@@ -120,12 +114,14 @@
 	
 	DLog(@"%@", request);
 	
-	_dataFetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[_dataFetcher fetchDataWithRequest:request
-							  delegate:self
-					 didFinishSelector:@selector(postUpdate:didFinishWithData:)
-					   didFailSelector:@selector(postUpdate:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(postUpdate:didFinishWithData:)
+													  didFailSelector:@selector(postUpdate:didFailWithError:)];
+	
+	[_dataFetcher start];
 	
 	[request release];
 }
@@ -133,6 +129,7 @@
 - (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	[_dataFetcher release];
+	_dataFetcher = nil;
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -200,12 +197,14 @@
 	
 	DLog(@"%@", request);
 	
-	_dataFetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[_dataFetcher fetchDataWithRequest:request
-							  delegate:self
-					 didFinishSelector:@selector(postRetweet:didFinishWithData:)
-					   didFailSelector:@selector(postRetweet:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(postRetweet:didFinishWithData:)
+													  didFailSelector:@selector(postRetweet:didFailWithError:)];
+	
+	[_dataFetcher start];
 	
 	[request release];
 }
@@ -213,6 +212,7 @@
 - (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	[_dataFetcher release];
+	_dataFetcher = nil;
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	

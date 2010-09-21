@@ -18,8 +18,6 @@
 
 @property (nonatomic, assign) id<EventControllerDelegate> delegate;
 
-+ (EventController *)eventController;
-
 - (void)fetchEvents;
 - (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

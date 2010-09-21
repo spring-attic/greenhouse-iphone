@@ -18,8 +18,6 @@
 
 @property (nonatomic, assign) id<ProfileControllerDelegate> delegate;
 
-+ (ProfileController *)profileController;
-
 - (void)fetchProfile;
 - (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

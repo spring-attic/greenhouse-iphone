@@ -73,7 +73,7 @@
 	}
 	else 
 	{
-		self.twitterController = [TwitterController twitterController];
+		self.twitterController = [[TwitterController alloc] init];
 		twitterController.delegate = self;
 		[twitterController postUpdate:textViewTweet.text withURL:tweetUrl];
 	}
@@ -88,9 +88,8 @@
 	locationManager.delegate = nil;
 	self.locationManager = nil;
 	
-	self.twitterController = [TwitterController twitterController];
+	self.twitterController = [[TwitterController alloc] init];
 	twitterController.delegate = self;
-	
 	[twitterController postUpdate:textViewTweet.text withURL:tweetUrl location:newLocation];
 }
 

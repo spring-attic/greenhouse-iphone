@@ -28,6 +28,9 @@
 {
 	DLog(@"%@", imageUrl);
 	
+	// cancel any current downloads to prevent memory leaks
+	[self cancelImageDownload];
+		
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imageUrl];
     _urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 	[request release];
@@ -40,14 +43,28 @@
 
 - (void)cancelImageDownload
 {
-    [_urlConnection cancel];
-    [_urlConnection release];
-    [_receivedData release];
+	if (_urlConnection)
+	{
+		[_urlConnection cancel];
+		[_urlConnection release];
+		_urlConnection = nil;
+	}
+	
+	if (_receivedData)
+	{
+		[_receivedData release];
+		_receivedData = nil;
+	}
 }
 
 
 #pragma mark -
 #pragma mark NSURLConnectionDelegate methods
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [_receivedData setLength:0];
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
@@ -57,7 +74,9 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [_receivedData release];
-    [connection release];
+	_receivedData = nil;
+    [_urlConnection release];
+	_urlConnection = nil;
 	
 	DLog(@"Connection failed! Error - %@ %@",
 		 [error localizedDescription],
@@ -66,12 +85,14 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [connection release];
+    [_urlConnection release];
+	_urlConnection = nil;
 	
 	DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
 		
     UIImage *downloadedImage = [[UIImage alloc] initWithData:_receivedData];
 	[_receivedData release];
+	_receivedData = nil;
 	self.image = downloadedImage;
 	[downloadedImage release];    
 }
@@ -82,6 +103,8 @@
 
 - (void)dealloc
 {
+	[self cancelImageDownload];
+	
 	[super dealloc];
 }
 

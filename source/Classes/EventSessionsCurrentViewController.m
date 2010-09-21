@@ -53,12 +53,10 @@
 - (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
 {
 	self.eventSessionController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
 	self.arrayCurrentSessions = currentSessions;
 	self.arrayUpcomingSessions = upcomingSessions;
 	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
@@ -150,7 +148,7 @@
 
 - (void)reloadTableViewDataSource
 {
-	self.eventSessionController = [EventSessionController eventSessionController];
+	self.eventSessionController = [[EventSessionController alloc] init];
 	eventSessionController.delegate = self;
 	
 	[eventSessionController fetchCurrentSessionsByEventId:self.event.eventId];

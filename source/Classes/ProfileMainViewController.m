@@ -39,6 +39,7 @@
 	self.profileController = nil;
 	
 	labelDisplayName.text = profile.displayName;
+	
 	imageViewPicture.imageUrl = profile.imageUrl;
 	[imageViewPicture startImageDownload];
 }
@@ -54,7 +55,7 @@
 
 - (void)reloadData
 {
-	self.profileController = [ProfileController profileController];
+	self.profileController = [[ProfileController alloc] init];
 	profileController.delegate = self;
 	
 	[profileController fetchProfile];

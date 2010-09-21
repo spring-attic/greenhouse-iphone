@@ -14,8 +14,6 @@
 
 @property (nonatomic, assign) EGORefreshTableHeaderView *refreshHeaderView;
 
-- (void)dataSourceDidFinishLoadingNewData;
-
 @end
 
 

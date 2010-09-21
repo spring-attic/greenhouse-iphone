@@ -31,11 +31,9 @@
 - (void)completeFetchEvents:(NSArray *)events
 {
 	self.eventController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
 	self.arrayEvents = events;
-	[self.tableView reloadData];	
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
@@ -136,7 +134,7 @@
 
 - (void)reloadTableViewDataSource
 {
-	self.eventController = [EventController eventController];
+	self.eventController = [[EventController alloc] init];
 	eventController.delegate = self;
 	
 	[eventController fetchEvents];	

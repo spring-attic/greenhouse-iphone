@@ -110,7 +110,7 @@
 
 - (IBAction)actionSubmit:(id)sender
 {
-	self.eventSessionController = [EventSessionController eventSessionController];
+	self.eventSessionController = [[EventSessionController alloc] init];
 	eventSessionController.delegate = self;
 	
 	[eventSessionController rateSession:session.number withEventId:event.eventId rating:rating comment:textViewComments.text];

@@ -80,12 +80,10 @@
 
 - (void)completeFetchTweets:(NSArray *)tweets
 {
-	self.twitterController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
+	self.twitterController = nil;	
 	self.arrayTweets = tweets;
-	[self.tableView reloadData];	
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
@@ -258,7 +256,7 @@
 
 - (void)reloadTableViewDataSource
 {
-	self.twitterController = [TwitterController twitterController];
+	self.twitterController = [[TwitterController alloc] init];
 	twitterController.delegate = self;
 	[imageDownloadsInProgress removeAllObjects];
 	[twitterController fetchTweetsWithURL:tweetUrl];

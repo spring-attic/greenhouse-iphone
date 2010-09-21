@@ -15,14 +15,6 @@
 
 @synthesize delegate = _delegate;
 
-#pragma mark -
-#pragma mark Static methods
-
-+ (ProfileController *)profileController
-{
-	return [[[ProfileController alloc] init] autorelease];
-}
-
 
 #pragma mark -
 #pragma mark Instance methods
@@ -44,12 +36,13 @@
 	
 	DLog(@"%@", request);
 	
-	_dataFetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[_dataFetcher fetchDataWithRequest:request
-							  delegate:self
-					 didFinishSelector:@selector(fetchProfile:didFinishWithData:)
-					   didFailSelector:@selector(fetchProfile:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(fetchProfile:didFinishWithData:)
+													  didFailSelector:@selector(fetchProfile:didFailWithError:)];
+	[_dataFetcher start];
 	
 	[request release];
 }
@@ -57,6 +50,7 @@
 - (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	[_dataFetcher release];
+	_dataFetcher = nil;
 	
 	if (ticket.didSucceed)
 	{

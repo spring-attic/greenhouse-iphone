@@ -25,11 +25,9 @@
 - (void)completeFetchFavoriteSessions:(NSArray *)sessions
 {
 	self.eventSessionController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
 	self.arraySessions = sessions;
-	[self.tableView reloadData];	
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 #pragma mark -
@@ -57,7 +55,7 @@
 
 - (void)reloadTableViewDataSource
 {
-	self.eventSessionController = [EventSessionController eventSessionController];
+	self.eventSessionController = [[EventSessionController alloc] init];
 	eventSessionController.delegate = self;
 	
 	[eventSessionController fetchFavoriteSessionsByEventId:self.event.eventId];

@@ -15,14 +15,6 @@
 
 @synthesize delegate = _delegate;
 
-#pragma mark -
-#pragma mark Static methods
-
-+ (EventController *)eventController
-{
-	return [[[EventController alloc] init] autorelease];
-}
-
 
 #pragma mark -
 #pragma mark Instance methods
@@ -44,12 +36,14 @@
 	
 	DLog(@"%@", request);
 	
-	_dataFetcher = [[OADataFetcher alloc] init];
+	[self cancelDataFetcherRequest];
 	
-	[_dataFetcher fetchDataWithRequest:request
-							  delegate:self
-					 didFinishSelector:@selector(fetchEvents:didFinishWithData:)
-					   didFailSelector:@selector(fetchEvents:didFailWithError:)];
+	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+															 delegate:self
+													didFinishSelector:@selector(fetchEvents:didFinishWithData:)
+													  didFailSelector:@selector(fetchEvents:didFailWithError:)];
+	
+	[_dataFetcher start];
 	
 	[request release];
 }
@@ -57,6 +51,7 @@
 - (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
 	[_dataFetcher release];
+	_dataFetcher = nil;
 	
 	if (ticket.didSucceed)
 	{

@@ -12,9 +12,23 @@
 
 @implementation OAuthController
 
+- (void)cancelDataFetcherRequest
+{
+	if (_dataFetcher)
+	{
+		DLog(@"");
+		
+		[_dataFetcher cancel];
+		[_dataFetcher release];
+		_dataFetcher = nil;
+	}
+}
+		
+
 - (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error didFailDelegate:(id)delegate didFailSelector:(SEL)selector
 {
 	[_dataFetcher release];
+	_dataFetcher = nil;
 	
 	_didFailDelegate = delegate;
 	_didFailSelector = selector;
@@ -58,6 +72,17 @@
 		[[OAuthManager sharedInstance] removeAccessToken];
 		[appDelegate showAuthorizeViewController];		
 	}
+}
+
+
+#pragma mark -
+#pragma mark NSObject methods
+
+- (void)dealloc
+{
+	[self cancelDataFetcherRequest];
+	
+	[super dealloc];
 }
 
 @end

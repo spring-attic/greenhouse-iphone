@@ -18,7 +18,6 @@
 
 @property (nonatomic, assign) id<EventSessionControllerDelegate> delegate;
 
-+ (EventSessionController *)eventSessionController;
 + (BOOL)shouldRefreshFavorites;
 
 - (void)fetchCurrentSessionsByEventId:(NSString *)eventId;

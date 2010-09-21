@@ -50,13 +50,10 @@
 - (void)completeFetchSessions:(NSArray *)sessions andTimes:(NSArray *)times
 {
 	self.eventSessionController = nil;
-	
-	[self performSelector:@selector(dataSourceDidFinishLoadingNewData) withObject:nil afterDelay:0.0f];
-	
 	self.arraySessions = sessions;
 	self.arrayTimes = times;
-	
-	[self.tableView reloadData];	
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
@@ -153,7 +150,7 @@
 
 - (void)reloadTableViewDataSource
 {
-	self.eventSessionController = [EventSessionController eventSessionController];
+	self.eventSessionController = [[EventSessionController alloc] init];
 	eventSessionController.delegate = self;
 	
 	[eventSessionController fetchSessionsByEventId:self.event.eventId withDate:eventDate];

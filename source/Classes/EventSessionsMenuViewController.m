@@ -70,7 +70,7 @@
 		
 		if (vc == nil)
 		{
-			vc = [[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+			vc = [[[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil] autorelease];
 			[dictionaryViewControllers setObject:vc forKey:[date description]];
 		}
 		

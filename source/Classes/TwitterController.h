@@ -19,8 +19,6 @@
 
 @property (nonatomic, assign) id<TwitterControllerDelegate> delegate;
 
-+ (TwitterController *)twitterController;
-
 - (void)fetchTweetsWithURL:(NSURL *)url;
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

@@ -70,7 +70,7 @@
 
 - (void)updateFavoriteSession
 {
-	self.eventSessionController = [EventSessionController eventSessionController];
+	self.eventSessionController = [[EventSessionController alloc] init];
 	eventSessionController.delegate = self;
 	
 	[eventSessionController updateFavoriteSession:session.number withEventId:event.eventId];
