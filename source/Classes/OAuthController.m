@@ -25,7 +25,7 @@
 	if ([error code] == NSURLErrorUserCancelledAuthentication)
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.com. Please sign out and reauthorize the app." 
+														message:@"You are not authorized to view the content from greenhouse.springsource.com. Please sign out and reauthorize the Greenhouse app." 
 													   delegate:self 
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:@"Sign Out", nil];
