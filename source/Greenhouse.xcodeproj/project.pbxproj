@@ -98,8 +98,6 @@
 		81F8DF0A1227FEF100C3E8FD /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8DF091227FEF100C3E8FD /* LocationManager.m */; };
 		81F8E25D122D52B700C3E8FD /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8E25C122D52B700C3E8FD /* EventController.m */; };
 		81FF3FCB123AB09D00439B37 /* Greenhouse-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FA8123AB09D00439B37 /* Greenhouse-Info.plist */; };
-		81FF3FCC123AB09D00439B37 /* GreenhouseTesting-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FA9123AB09D00439B37 /* GreenhouseTesting-Info.plist */; };
-		81FF3FCD123AB09D00439B37 /* GreenhouseTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAA123AB09D00439B37 /* GreenhouseTests-Info.plist */; };
 		81FF3FCE123AB09D00439B37 /* arrow-black.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAC123AB09D00439B37 /* arrow-black.png */; };
 		81FF3FCF123AB09D00439B37 /* arrow-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAD123AB09D00439B37 /* arrow-blue.png */; };
 		81FF3FD0123AB09D00439B37 /* arrow-white.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FAE123AB09D00439B37 /* arrow-white.png */; };
@@ -125,7 +123,6 @@
 		81FF3FE7123AB09D00439B37 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC6123AB09D00439B37 /* ProfileMainViewController.xib */; };
 		81FF3FE8123AB09D00439B37 /* TweetDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC7123AB09D00439B37 /* TweetDetailsViewController.xib */; };
 		81FF3FE9123AB09D00439B37 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC8123AB09D00439B37 /* TweetsViewController.xib */; };
-		81FF3FEA123AB09D00439B37 /* LogicTests-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FC9123AB09D00439B37 /* LogicTests-Info.plist */; };
 		81FF3FEB123AB09D00439B37 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81FF3FCA123AB09D00439B37 /* Settings.bundle */; };
 		81FF3FFC123AB0ED00439B37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF3FFB123AB0ED00439B37 /* main.m */; };
 		81FF414C123DC3C700439B37 /* EventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF414B123DC3C700439B37 /* EventTweetsViewController.m */; };
@@ -296,8 +293,6 @@
 		81F8E25B122D52B700C3E8FD /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventController.h; sourceTree = "<group>"; };
 		81F8E25C122D52B700C3E8FD /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
 		81FF3FA8123AB09D00439B37 /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Greenhouse-Info.plist"; path = "../Greenhouse-Info.plist"; sourceTree = "<group>"; };
-		81FF3FA9123AB09D00439B37 /* GreenhouseTesting-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GreenhouseTesting-Info.plist"; path = "../GreenhouseTesting-Info.plist"; sourceTree = "<group>"; };
-		81FF3FAA123AB09D00439B37 /* GreenhouseTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GreenhouseTests-Info.plist"; path = "../GreenhouseTests-Info.plist"; sourceTree = "<group>"; };
 		81FF3FAC123AB09D00439B37 /* arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-black.png"; sourceTree = "<group>"; };
 		81FF3FAD123AB09D00439B37 /* arrow-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-blue.png"; sourceTree = "<group>"; };
 		81FF3FAE123AB09D00439B37 /* arrow-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-white.png"; sourceTree = "<group>"; };
@@ -323,7 +318,6 @@
 		81FF3FC6123AB09D00439B37 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
 		81FF3FC7123AB09D00439B37 /* TweetDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetDetailsViewController.xib; sourceTree = "<group>"; };
 		81FF3FC8123AB09D00439B37 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
-		81FF3FC9123AB09D00439B37 /* LogicTests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "LogicTests-Info.plist"; path = "../LogicTests-Info.plist"; sourceTree = "<group>"; };
 		81FF3FCA123AB09D00439B37 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Settings.bundle; path = ../Settings.bundle; sourceTree = "<group>"; };
 		81FF3FF8123AB0ED00439B37 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		81FF3FF9123AB0ED00439B37 /* DLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DLog.h; sourceTree = "<group>"; };
@@ -616,9 +610,6 @@
 			isa = PBXGroup;
 			children = (
 				81FF3FA8123AB09D00439B37 /* Greenhouse-Info.plist */,
-				81FF3FA9123AB09D00439B37 /* GreenhouseTesting-Info.plist */,
-				81FF3FAA123AB09D00439B37 /* GreenhouseTests-Info.plist */,
-				81FF3FC9123AB09D00439B37 /* LogicTests-Info.plist */,
 				81FF3FCA123AB09D00439B37 /* Settings.bundle */,
 				81FF3FAB123AB09D00439B37 /* Images */,
 				81FF3FB7123AB09D00439B37 /* Interface Builder Files */,
@@ -772,8 +763,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81FF3FCB123AB09D00439B37 /* Greenhouse-Info.plist in Resources */,
-				81FF3FCC123AB09D00439B37 /* GreenhouseTesting-Info.plist in Resources */,
-				81FF3FCD123AB09D00439B37 /* GreenhouseTests-Info.plist in Resources */,
 				81FF3FCE123AB09D00439B37 /* arrow-black.png in Resources */,
 				81FF3FCF123AB09D00439B37 /* arrow-blue.png in Resources */,
 				81FF3FD0123AB09D00439B37 /* arrow-white.png in Resources */,
@@ -799,7 +788,6 @@
 				81FF3FE7123AB09D00439B37 /* ProfileMainViewController.xib in Resources */,
 				81FF3FE8123AB09D00439B37 /* TweetDetailsViewController.xib in Resources */,
 				81FF3FE9123AB09D00439B37 /* TweetsViewController.xib in Resources */,
-				81FF3FEA123AB09D00439B37 /* LogicTests-Info.plist in Resources */,
 				81FF3FEB123AB09D00439B37 /* Settings.bundle in Resources */,
 				81A668B1123FF15000D67B76 /* tab-account.png in Resources */,
 				81A668B2123FF15000D67B76 /* tab-events.png in Resources */,
