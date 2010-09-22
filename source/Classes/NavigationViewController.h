@@ -16,4 +16,6 @@
 
 @property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
 
+- (void)reloadData;
+
 @end

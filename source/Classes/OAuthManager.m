@@ -23,6 +23,7 @@ static OAConsumer *sharedConsumer = nil;
 
 @dynamic authorized;
 @dynamic accessToken;
+@synthesize activityAlertView = _activityAlertView;
 
 
 #pragma mark -
@@ -92,6 +93,9 @@ static OAConsumer *sharedConsumer = nil;
 
 - (void)fetchUnauthorizedRequestToken;
 {
+	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:@"Authorizing Greenhouse app..."];
+	[_activityAlertView startAnimating];
+	
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 	
@@ -127,10 +131,12 @@ static OAConsumer *sharedConsumer = nil;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
-	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
-	NSInteger statusCode = [response statusCode];
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 	
-	DLog(@"%i", statusCode);
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	
+	DLog(@"%i", [response statusCode]);
 	
 	if (ticket.didSucceed) 
 	{
@@ -146,7 +152,7 @@ static OAConsumer *sharedConsumer = nil;
 		[self authorizeRequestToken:requestToken];
 		[requestToken release];
 	}
-	else if (statusCode == 404 || statusCode == 500)
+	else
 	{
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
 															message:@"The server is currently unavailable. Please check the availability at greenhouse.springsource.org." 
@@ -162,6 +168,9 @@ static OAConsumer *sharedConsumer = nil;
 {
 	[_dataFetcher release];
 	_dataFetcher = nil;
+	
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 	
 	DLog(@"%@", [error localizedDescription]);
 }
@@ -208,6 +217,9 @@ static OAConsumer *sharedConsumer = nil;
 
 - (void)fetchAccessToken:(NSString *)oauthVerifier
 {
+	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:nil];
+	[_activityAlertView startAnimating];
+	
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
 		
@@ -244,6 +256,9 @@ static OAConsumer *sharedConsumer = nil;
 {
 	[_dataFetcher release];
 	_dataFetcher = nil;
+	
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 	
 	if (ticket.didSucceed)
 	{

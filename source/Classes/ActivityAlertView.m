@@ -18,7 +18,7 @@
 
 @implementation ActivityAlertView
 
-@synthesize activityIndicatorView;
+@synthesize activityIndicatorView = _activityIndicatorView;
 
 - (id)initWithActivityMessage:(NSString *)message
 {
@@ -33,14 +33,23 @@
 {
 	if ((self = [super initWithTitle:nil message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:nil]))
 	{
-		activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+		self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 		
-		CGRect frame = activityIndicatorView.frame;
+		CGRect frame = _activityIndicatorView.frame;
 		frame.origin.x = 140.0f - (frame.size.width / 2);
-		frame.origin.y = 50.0f;
-		activityIndicatorView.frame = frame;
+
+		if (message)
+		{
+			frame.origin.y = 50.0f;
+		}
+		else 
+		{
+			frame.origin.y = 15.0f;
+		}
+
+		_activityIndicatorView.frame = frame;
 		
-		[self addSubview:activityIndicatorView];
+		[self addSubview:_activityIndicatorView];
 	}
 	
 	return self;
@@ -48,14 +57,14 @@
 
 - (void)startAnimating
 {
-	[activityIndicatorView startAnimating];
+	[_activityIndicatorView startAnimating];
 	[self show];
 }
 
 - (void)stopAnimating
 {
 	[self dismissWithClickedButtonIndex:0 animated:NO];
-	[activityIndicatorView stopAnimating];
+	[_activityIndicatorView stopAnimating];
 }
 
 #pragma mark -
@@ -63,8 +72,7 @@
 
 - (void)dealloc
 {
-	[activityIndicatorView stopAnimating];
-	[activityIndicatorView release];
+	[_activityIndicatorView release];
 	
 	[super dealloc];
 }

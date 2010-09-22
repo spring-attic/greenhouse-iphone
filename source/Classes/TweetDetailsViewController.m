@@ -69,11 +69,13 @@
 
 - (void)postRetweetDidFinish
 {
+	[twitterController release];
 	self.twitterController = nil;
 }
 
 - (void)postRetweetDidFailWithError:(NSError *)error
 {
+	[twitterController release];
 	self.twitterController = nil;
 }
 
@@ -138,7 +140,6 @@
 
 - (void)dealloc 
 {
-	[twitterController release];
 	[tweet release];
 	[tweetUrl release];
 	[retweetUrl release];

@@ -82,11 +82,13 @@
 
 - (void)updateFavoriteSessionDidFinish
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 }
 
 - (void)updateFavoriteSessionDidFailWithError:(NSError *)error
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 }
 
@@ -257,7 +259,6 @@
 
 - (void)dealloc 
 {
-	[eventSessionController release];
 	[event release];
 	[session release];
 	[arrayMenuItems release];

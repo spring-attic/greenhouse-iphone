@@ -80,7 +80,8 @@
 
 - (void)completeFetchTweets:(NSArray *)tweets
 {
-	self.twitterController = nil;	
+	[twitterController release];
+	self.twitterController = nil;
 	self.arrayTweets = tweets;
 	[self.tableView reloadData];
 	[self dataSourceDidFinishLoadingNewData];
@@ -314,7 +315,6 @@
 {
 	[arrayTweets release];
 	[imageDownloadsInProgress release];
-	[twitterController release];
 	[tweetUrl release];
 	[retweetUrl release];
 	[newTweetViewController release];

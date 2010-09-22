@@ -10,12 +10,11 @@
 
 
 @interface ActivityAlertView : UIAlertView 
-{
-
+{ 
+	UIActivityIndicatorView *_activityIndicatorView;
 }
 
 - (id)initWithActivityMessage:(NSString *)message;
-
 - (void)startAnimating;
 - (void)stopAnimating;
 

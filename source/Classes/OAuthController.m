@@ -12,6 +12,8 @@
 
 @implementation OAuthController
 
+@synthesize activityAlertiView = _activityAlertiView;
+
 - (void)cancelDataFetcherRequest
 {
 	if (_dataFetcher)
@@ -81,6 +83,7 @@
 - (void)dealloc
 {
 	[self cancelDataFetcherRequest];
+	[_activityAlertiView release];
 	
 	[super dealloc];
 }

@@ -19,6 +19,9 @@
 
 - (void)showAuthorizeViewController;
 - (void)showTabBarController;
+- (void)reloadDataForCurrentView;
+- (void)processOauthResponseDidFinish;
+- (void)processOauthResponseDidFail;
 
 @end
 

@@ -233,6 +233,7 @@
 		81D4A45011C30692000A71C3 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
 		81D4A45D11C30945000A71C3 /* AppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppSettings.m; sourceTree = "<group>"; };
+		81D9A89E12499C29000D00DD /* LocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManagerDelegate.h; sourceTree = "<group>"; };
 		81DD40B0121B2914004BE46A /* TweetDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
 		81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
 		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = ThirdPartyLibraries/YAJLIOS.framework; sourceTree = "<group>"; };
@@ -524,6 +525,7 @@
 				81E75EF811BE0A2200E6B283 /* OAuthManager.m */,
 				81F8DF081227FEF100C3E8FD /* LocationManager.h */,
 				81F8DF091227FEF100C3E8FD /* LocationManager.m */,
+				81D9A89E12499C29000D00DD /* LocationManagerDelegate.h */,
 				815932141242C1E8001E8E16 /* OAuthController.h */,
 				815932151242C1E8001E8E16 /* OAuthController.m */,
 				81F8E25B122D52B700C3E8FD /* EventController.h */,

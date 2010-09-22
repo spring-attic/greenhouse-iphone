@@ -24,6 +24,7 @@
 
 - (void)completeFetchFavoriteSessions:(NSArray *)sessions
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 	self.arraySessions = sessions;
 	[self.tableView reloadData];
@@ -92,8 +93,6 @@
 
 - (void)dealloc 
 {
-	[eventSessionController release];
-	
     [super dealloc];
 }
 

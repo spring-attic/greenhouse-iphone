@@ -9,10 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AppSettings : NSObject {
+@interface AppSettings : NSObject { }
 
-}
-
-+ (NSString *)applicationDocumentsDirectory;
++ (NSString *)documentsDirectory;
++ (NSString *)version;
 
 @end

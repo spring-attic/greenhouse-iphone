@@ -143,6 +143,7 @@
 
 - (void)rateSessionDidFinish
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 	
 	[self dismissModalViewControllerAnimated:YES];
@@ -150,6 +151,7 @@
 
 - (void)rateSessionDidFailWithError:(NSError *)error
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 }
 
@@ -207,7 +209,6 @@
 
 - (void)dealloc 
 {
-	[eventSessionController release];
 	[event release];
 	[session release];
 	[barButtonCancel release];

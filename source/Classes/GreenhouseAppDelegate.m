@@ -31,6 +31,25 @@
 	tabBarController.selectedIndex = 0;
 }
 
+- (void)reloadDataForCurrentView
+{
+	if ([tabBarController isViewLoaded] && [tabBarController.selectedViewController respondsToSelector:@selector(reloadData)])
+	{
+		[tabBarController.selectedViewController performSelector:@selector(reloadData)];
+	}	
+}
+
+- (void)processOauthResponseDidFinish
+{
+	[self showTabBarController];
+	[self reloadDataForCurrentView];
+}
+
+- (void)processOauthResponseDidFail
+{
+	[self showAuthorizeViewController];
+}
+
 
 #pragma mark -
 #pragma mark UITabBarControllerDelegate methods
@@ -71,8 +90,8 @@
 		OAuthManager *mgr = [OAuthManager sharedInstance];
 		[mgr processOauthResponse:url 
 						 delegate:self 
-				didFinishSelector:@selector(showTabBarController)
-				  didFailSelector:@selector(showAuthorizeViewController)];
+				didFinishSelector:@selector(processOauthResponseDidFinish)
+				  didFailSelector:@selector(processOauthResponseDidFail)];
 	}
 
 	return YES;
@@ -80,6 +99,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	DLog(@"");
+	
 	if (launchOptions)
 	{
 		NSURL *url = (NSURL *)[launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
@@ -89,8 +110,8 @@
 			OAuthManager *mgr = [OAuthManager sharedInstance];
 			[mgr processOauthResponse:url 
 							 delegate:self 
-					didFinishSelector:@selector(showTabBarController)
-					  didFailSelector:@selector(showAuthorizeViewController)];
+					didFinishSelector:@selector(processOauthResponseDidFinish)
+					  didFailSelector:@selector(processOauthResponseDidFail)];
 		}
 		else
 		{

@@ -30,6 +30,7 @@
 
 - (void)completeFetchEvents:(NSArray *)events
 {
+	[eventController release];
 	self.eventController = nil;
 	self.arrayEvents = events;
 	[self.tableView reloadData];
@@ -182,7 +183,6 @@
 - (void)dealloc 
 {
 	[arrayEvents release];
-	[eventController release];
 	[barButtonRefresh release];
 	[eventDetailsViewController release];
 	

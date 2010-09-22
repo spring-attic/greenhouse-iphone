@@ -8,28 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-
-
-@class LocationManager;
-
-
-@protocol LocationManagerDelegate
-
-- (void)locationManager:(LocationManager *)manager didUpdateLocation:(CLLocation *)newLocation;
-- (void)locationManager:(LocationManager *)manager didFailWithError:(NSError *)error;
-
-@end
+#import "LocationManagerDelegate.h"
 
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate> 
 { 
+	id<LocationManagerDelegate> _delegate;
+	CLLocationManager *_locationManager;
+	CLLocation *_bestEffortLocation;
 	BOOL _locating;
 }
 
 @property (nonatomic, assign) id<LocationManagerDelegate> delegate;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 
 + (LocationManager *)locationManager;
-
 - (void)startUpdatingLocation;
 - (void)stopUpdatingLocation;
 

@@ -49,6 +49,7 @@
 
 - (void)completeFetchSessions:(NSArray *)sessions andTimes:(NSArray *)times
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 	self.arraySessions = sessions;
 	self.arrayTimes = times;
@@ -190,7 +191,6 @@
 
 - (void)dealloc 
 {
-	[eventSessionController release];
 	[arrayTimes release];
 	[currentEventDate release];
 	[eventDate release];

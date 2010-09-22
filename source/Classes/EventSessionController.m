@@ -336,6 +336,9 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
 {	
+	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Updating favorite..."];
+	[_activityAlertiView startAnimating];
+	
 	sharedShouldRefreshFavorites = YES;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, eventId, sessionNumber];
@@ -371,6 +374,9 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+	
 	if (ticket.didSucceed)
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -383,11 +389,17 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+	
 	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(updateFavoriteSessionDidFailWithError:)];
 }
 
 - (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment
 {
+	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Submitting rating..."];
+	[_activityAlertiView startAnimating];
+	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RATING_URL, eventId, sessionNumber];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
@@ -439,6 +451,9 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+	
 	if (ticket.didSucceed)
 	{		
 		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -451,6 +466,9 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+
 	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(rateSessionDidFailWithError:)];
 }
 

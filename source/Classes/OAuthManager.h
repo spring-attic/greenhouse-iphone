@@ -7,12 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "OauthConsumer.h"
+#import "ActivityAlertView.h"
 
 
 @interface OAuthManager : NSObject 
 {
 	OAAsynchronousDataFetcher *_dataFetcher;
+	ActivityAlertView *_activityAlertView;
 	id delegate;
 	SEL didFinishSelector;
 	SEL didFailSelector;
@@ -21,6 +22,7 @@
 @property (nonatomic, assign, readonly) BOOL authorized;
 @property (nonatomic, assign, readonly) OAToken *accessToken;
 @property (nonatomic, assign, readonly) OAConsumer *consumer;
+@property (nonatomic, retain) ActivityAlertView *activityAlertView;
 
 + (OAuthManager *)sharedInstance;
 

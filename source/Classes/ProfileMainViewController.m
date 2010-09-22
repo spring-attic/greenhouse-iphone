@@ -36,6 +36,7 @@
 
 - (void)fetchProfileDidFinishWithResults:(Profile *)profile;
 {
+	[profileController release];
 	self.profileController = nil;
 	
 	labelDisplayName.text = profile.displayName;
@@ -46,6 +47,7 @@
 
 - (void)fetchProfileDidFailWithError:(NSError *)error
 {
+	[profileController release];
 	self.profileController = nil;
 }
 
@@ -97,7 +99,6 @@
 
 - (void)dealloc 
 {
-	[profileController release];
 	[labelDisplayName release];
 	[imageViewPicture release];
 	

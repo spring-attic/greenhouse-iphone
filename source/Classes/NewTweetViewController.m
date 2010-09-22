@@ -67,7 +67,7 @@
 {
 	if ([[UserSettings sharedInstance] includeLocationInTweet])
 	{
-		self.locationManager = [LocationManager locationManager];
+		self.locationManager = [[LocationManager alloc] init];
 		locationManager.delegate = self;
 		[locationManager startUpdatingLocation];
 	}
@@ -85,7 +85,7 @@
 
 - (void)locationManager:(LocationManager *)manager didUpdateLocation:(CLLocation *)newLocation
 {
-	locationManager.delegate = nil;
+	[locationManager release];
 	self.locationManager = nil;
 	
 	self.twitterController = [[TwitterController alloc] init];
@@ -95,7 +95,7 @@
 
 - (void)locationManager:(LocationManager *)manager didFailWithError:(NSError *)error
 {
-	locationManager.delegate = nil;
+	[locationManager release];
 	self.locationManager = nil;
 }
 
@@ -105,6 +105,7 @@
 
 - (void)postUpdateDidFinish
 {
+	[twitterController release];
 	self.twitterController = nil;
 	
 	[self dismissModalViewControllerAnimated:YES];
@@ -112,6 +113,7 @@
 
 - (void)postUpdateDidFailWithError:(NSError *)error;
 {
+	[twitterController release];
 	self.twitterController = nil;
 }
 
@@ -178,8 +180,6 @@
 
 - (void)dealloc 
 {
-	[locationManager release];
-	[twitterController release];
 	[tweetUrl release];
 	[tweetText release];
 	[barButtonCancel release];

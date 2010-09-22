@@ -84,6 +84,9 @@
 
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url location:(CLLocation *)location
 {
+	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
+	[_activityAlertiView startAnimating];
+
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
@@ -131,6 +134,9 @@
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
 	if (ticket.didSucceed)
@@ -166,11 +172,17 @@
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+
 	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(postUpdateDidFailWithError:)];
 }
 
 - (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
 {
+	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
+	[_activityAlertiView startAnimating];
+	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
@@ -213,6 +225,9 @@
 {
 	[_dataFetcher release];
 	_dataFetcher = nil;
+	
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -259,6 +274,9 @@
 
 - (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+	[_activityAlertiView stopAnimating];
+	self.activityAlertiView = nil;
+
 	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(postRetweetDidFailWithError:)];
 }
 

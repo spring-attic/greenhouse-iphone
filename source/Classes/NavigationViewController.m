@@ -13,6 +13,15 @@
 
 @synthesize navigationController;
 
+- (void)reloadData
+{
+	if ([navigationController.topViewController respondsToSelector:@selector(reloadData)])
+	{
+		[navigationController.topViewController performSelector:@selector(reloadData)];
+	}	
+}
+
+
 #pragma mark -
 #pragma mark UINavigationControllerDelegate methods
 

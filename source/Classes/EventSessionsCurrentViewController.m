@@ -52,6 +52,7 @@
 
 - (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
 {
+	[eventSessionController release];
 	self.eventSessionController = nil;
 	self.arrayCurrentSessions = currentSessions;
 	self.arrayUpcomingSessions = upcomingSessions;
@@ -187,7 +188,6 @@
 
 - (void)dealloc 
 {
-	[eventSessionController release];
 	[arrayCurrentSessions release];
 	[arrayUpcomingSessions release];
 	
