@@ -29,13 +29,13 @@
 		if (dictionary)
 		{
 			self.tweetId = [dictionary stringForKey:@"id"];
-			self.text = [dictionary stringByReplacingPercentEscapesForKey:@"text" usingEncoding:NSUTF8StringEncoding];
+			self.text = [[dictionary stringForKey:@"text"] stringBySimpleXmlDecoding];
 			self.createdAt = [dictionary dateWithMillisecondsSince1970ForKey:@"createdAt"];
 			self.fromUser = [dictionary stringByReplacingPercentEscapesForKey:@"fromUser" usingEncoding:NSUTF8StringEncoding];
-			self.profileImageUrl = [dictionary stringForKey:@"profileImageUrl"];
+			self.profileImageUrl = [[dictionary stringForKey:@"profileImageUrl"] URLDecodedString];
 			self.userId = [dictionary stringForKey:@"userId"];
 			self.languageCode = [dictionary stringForKey:@"languageCode"];
-			self.source = [dictionary stringForKey:@"source"];
+			self.source = [[dictionary stringForKey:@"source"] URLDecodedString];
 		}
 	}
 	

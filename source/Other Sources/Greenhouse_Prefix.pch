@@ -26,6 +26,7 @@
 	#import "UserSettings.h"
 
 	// Categories
+	#import "NSString+XmlEncoding.h"
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
 	#import "UITabBar+CustomStyle.h"

@@ -34,6 +34,7 @@
 		8159352512470AA4001E8E16 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 8159352012470AA4001E8E16 /* Icon-Small.png */; };
 		8159352612470AA4001E8E16 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8159352112470AA4001E8E16 /* Icon-Small@2x.png */; };
 		8159352712470AA4001E8E16 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 8159352212470AA4001E8E16 /* iTunesArtwork.png */; };
+		815AE361124B15B60086586B /* NSString+XmlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 815AE360124B15B60086586B /* NSString+XmlEncoding.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171938D11E668DE007C82B2 /* EventsMainViewController.m */; };
@@ -181,6 +182,8 @@
 		8159352012470AA4001E8E16 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
 		8159352112470AA4001E8E16 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
 		8159352212470AA4001E8E16 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		815AE35F124B15B60086586B /* NSString+XmlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XmlEncoding.h"; sourceTree = "<group>"; };
+		815AE360124B15B60086586B /* NSString+XmlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XmlEncoding.m"; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
@@ -438,6 +441,8 @@
 				817494C51207CE3E008A9E61 /* UIToolbar+CustomStyle.m */,
 				81E615D21213B7B400451901 /* UITabBar+CustomStyle.h */,
 				81E615D31213B7B400451901 /* UITabBar+CustomStyle.m */,
+				815AE35F124B15B60086586B /* NSString+XmlEncoding.h */,
+				815AE360124B15B60086586B /* NSString+XmlEncoding.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -886,6 +891,7 @@
 				81FF4182123DE47C00439B37 /* EventSessionTweetsViewController.m in Sources */,
 				81A668BD123FF4AF00D67B76 /* InfoViewController.m in Sources */,
 				815932161242C1E8001E8E16 /* OAuthController.m in Sources */,
+				815AE361124B15B60086586B /* NSString+XmlEncoding.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

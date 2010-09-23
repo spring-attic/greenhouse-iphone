@@ -34,7 +34,7 @@
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
-			self.description = [dictionary stringByReplacingPercentEscapesForKey:@"description" usingEncoding:NSUTF8StringEncoding];
+			self.description = [[dictionary stringForKey:@"description"] stringBySimpleXmlDecoding];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.isFavorite = [dictionary boolForKey:@"favorite"];
 			self.rating = [dictionary doubleForKey:@"rating"];

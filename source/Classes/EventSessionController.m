@@ -414,15 +414,13 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	NSString *s = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
-	NSString *putParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, s];
-	DLog(@"%@", putParams);
+	s = [s URLEncodedString];
 	
-	NSString *escapedPutParams = [[putParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-	[putParams release];
-	DLog(@"%@", escapedPutParams);
-	
-	NSData *putData = [[escapedPutParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[escapedPutParams release];
+	NSString *postParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, s];
+	DLog(@"%@", postParams);
+		
+	NSData *putData = [[postParams dataUsingEncoding:NSUTF8StringEncoding] retain];
+	[postParams release];
 	
 	NSString *putLength = [NSString stringWithFormat:@"%d", [putData length]];
 	

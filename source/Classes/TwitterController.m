@@ -93,19 +93,17 @@
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	NSString *s = [update stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	DLog(@"tweet length: %i", s.length);
+	NSString *status = [update stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	DLog(@"tweet length: %i", status.length);
 	
-	NSString *postParams =[[NSString alloc] initWithFormat:@"status=%@&latitude=%f&longitude=%f", s, 
-						   location.coordinate.latitude, location.coordinate.longitude];
+	status = [status URLEncodedString];
+	
+	NSString *postParams = [[NSString alloc] initWithFormat:@"status=%@&latitude=%f&longitude=%f", status, 
+							location.coordinate.latitude, location.coordinate.longitude];
 	DLog(@"%@", postParams);
 	
-	NSString *escapedPostParams = [[postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
+	NSData *postData = [[postParams dataUsingEncoding:NSUTF8StringEncoding] retain];
 	[postParams release];
-	DLog(@"%@", escapedPostParams);
-	
-	NSData *postData = [[escapedPostParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[escapedPostParams release];
 	
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
 	
