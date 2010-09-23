@@ -147,11 +147,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
-	tweetDetailsViewController.tweet = tweet;
-	tweetDetailsViewController.tweetUrl = tweetUrl;
-	tweetDetailsViewController.retweetUrl = retweetUrl;
-	[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
+	if (arrayTweets)
+	{
+		Tweet *tweet = (Tweet *)[arrayTweets objectAtIndex:indexPath.row];
+		tweetDetailsViewController.tweet = tweet;
+		tweetDetailsViewController.tweetUrl = tweetUrl;
+		tweetDetailsViewController.retweetUrl = retweetUrl;
+		[self.navigationController pushViewController:tweetDetailsViewController animated:YES];
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

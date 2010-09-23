@@ -59,9 +59,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
-	eventDetailsViewController.event = event;
-	[self.navigationController pushViewController:eventDetailsViewController animated:YES];
+	if (arrayEvents)
+	{
+		Event *event = (Event *)[arrayEvents objectAtIndex:indexPath.row];
+		eventDetailsViewController.event = event;
+		[self.navigationController pushViewController:eventDetailsViewController animated:YES];
+	}
 }
 
 

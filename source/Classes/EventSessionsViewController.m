@@ -47,9 +47,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	self.sessionDetailsViewController.event = self.event;
-	self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
-	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
+	if (arraySessions)
+	{
+		self.sessionDetailsViewController.event = self.event;
+		self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
+		[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
+	}
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
