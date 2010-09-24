@@ -49,16 +49,19 @@
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
+	NSMutableArray *tweets = [[[NSMutableArray alloc] init] autorelease];
+		
 	if (ticket.didSucceed)
 	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSDictionary *dictionary = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", dictionary);
 		
 		NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];
-		NSMutableArray *tweets = [NSMutableArray arrayWithCapacity:[jsonArray count]];
 		
 		for (NSDictionary *d in jsonArray) 
 		{
@@ -66,9 +69,21 @@
 			[tweets addObject:tweet];
 			[tweet release];
 		}
-		
-		[_delegate fetchTweetsDidFinishWithResults:tweets];
-	}	
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while retrieving the Twitter feed." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	
+	[responseBody release];
+	
+	[_delegate fetchTweetsDidFinishWithResults:tweets];
 }
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -135,12 +150,16 @@
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
+	[responseBody release];
+	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
 	if (ticket.didSucceed)
 	{
-		DLog(@"%@", [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease]);
-		
 		[_delegate postUpdateDidFinish];
 	}
 	else 
@@ -165,7 +184,7 @@
 												  otherButtonTitles:nil];
 		[alertView show];
 		[alertView release];		
-	}	
+	}
 }
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -227,14 +246,16 @@
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+	DLog(@"%@", responseBody);
+	
+	[responseBody release];
+	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
 	if (ticket.didSucceed)
-	{		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		[responseBody release];
-		
+	{
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
 															message:@"Retweet successful!" 
 														   delegate:nil 

@@ -9,91 +9,56 @@
 #import "UserSettings.h"
 
 
-#define includeLocationInTweetPreference @"include_location_in_tweets_preference"
+#define includeLocationInTweetPreference	@"include_location_in_tweets_preference"
+#define resetAppOnStartPreference			@"reset_app_on_start_preference"
+#define dataExpirationPreference			@"data_expiration_preference"
+#define versionPreference					@"version_preference"
 
-
-static UserSettings *sharedInstance = nil;
 
 @implementation UserSettings
 
-@dynamic includeLocationInTweet;
-
-
-#pragma mark -
-#pragma mark Static methods
-
-// This class is configured to function as a singleton. 
-// Use this class method to obtain the shared instance of the class.
-+ (UserSettings *)sharedInstance
++ (void)reset
 {
-    @synchronized(self)
-    {
-        if (sharedInstance == nil)
-		{
-			sharedInstance = [[UserSettings alloc] init];
-		}
-    }
-	
-    return sharedInstance;
+	[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:resetAppOnStartPreference];
 }
 
-
-#pragma mark -
-#pragma mark Instance methods
-
-- (BOOL)includeLocationInTweet
++ (BOOL)includeLocationInTweet
 {
 	return [[NSUserDefaults standardUserDefaults] boolForKey:includeLocationInTweetPreference];
 }
 
-- (void)setIncludeLocationInTweet:(BOOL)boolVal
++ (void)setIncludeLocationInTweet:(BOOL)boolVal
 {
 	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:boolVal] forKey:includeLocationInTweetPreference];
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-+ (id)allocWithZone:(NSZone *)zone 
++ (NSInteger)dataExpiration
 {
-    @synchronized(self) 
-	{
-        if (sharedInstance == nil) 
-		{
-            sharedInstance = [super allocWithZone:zone];
-            return sharedInstance;  // assignment and return on first allocation
-        }
-    }
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	NSString *s = [[NSUserDefaults standardUserDefaults] stringForKey:dataExpirationPreference];
+	DLog(@"%@", s);
 	
-    return nil; // on subsequent allocation attempts return nil
+	if (s)
+	{
+		return [s intValue];
+	}
+	else 
+	{
+		// default of 4 hours
+		return 14400;
+	}
 }
 
-- (id)copyWithZone:(NSZone *)zone
++ (BOOL)resetAppOnStart
 {
-    return self;
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	return [[NSUserDefaults standardUserDefaults] boolForKey:resetAppOnStartPreference];
 }
 
-- (id)retain 
-{
-    return self;
-}
-
-- (unsigned)retainCount 
-{
-    return UINT_MAX;  // denotes an object that cannot be released
-}
-
-- (oneway void)release 
-{
-    //do nothing
-}
-
-- (id)autorelease 
-{
-    return self;
++ (void)setAppVersion:(NSString *)appVersion
+{	
+	[[NSUserDefaults standardUserDefaults] setObject:appVersion forKey:versionPreference];	
 }
 
 @end
-
-

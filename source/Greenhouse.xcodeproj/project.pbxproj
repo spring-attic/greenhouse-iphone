@@ -35,6 +35,7 @@
 		8159352612470AA4001E8E16 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8159352112470AA4001E8E16 /* Icon-Small@2x.png */; };
 		8159352712470AA4001E8E16 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 8159352212470AA4001E8E16 /* iTunesArtwork.png */; };
 		815AE361124B15B60086586B /* NSString+XmlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 815AE360124B15B60086586B /* NSString+XmlEncoding.m */; };
+		815AE562124CFE090086586B /* ActivityIndicatorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 815AE561124CFE090086586B /* ActivityIndicatorTableViewCell.m */; };
 		815F275111BDF5A300F83095 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815F275011BDF5A300F83095 /* ProfileMainViewController.m */; };
 		8170E46111C82A7600F4FB15 /* OAToken_KeychainExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170E46011C82A7600F4FB15 /* OAToken_KeychainExtensions.m */; };
 		8171938F11E668ED007C82B2 /* EventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8171938D11E668DE007C82B2 /* EventsMainViewController.m */; };
@@ -184,6 +185,8 @@
 		8159352212470AA4001E8E16 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		815AE35F124B15B60086586B /* NSString+XmlEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+XmlEncoding.h"; sourceTree = "<group>"; };
 		815AE360124B15B60086586B /* NSString+XmlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XmlEncoding.m"; sourceTree = "<group>"; };
+		815AE560124CFE090086586B /* ActivityIndicatorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicatorTableViewCell.h; sourceTree = "<group>"; };
+		815AE561124CFE090086586B /* ActivityIndicatorTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicatorTableViewCell.m; sourceTree = "<group>"; };
 		815F274F11BDF5A300F83095 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		815F275011BDF5A300F83095 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		8170E45F11C82A7600F4FB15 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 				8107AA6111FA032300A59078 /* TweetTableViewCell.m */,
 				81E615FF1214398700451901 /* WebImageView.h */,
 				81E616001214398700451901 /* WebImageView.m */,
+				815AE560124CFE090086586B /* ActivityIndicatorTableViewCell.h */,
+				815AE561124CFE090086586B /* ActivityIndicatorTableViewCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -892,6 +897,7 @@
 				81A668BD123FF4AF00D67B76 /* InfoViewController.m in Sources */,
 				815932161242C1E8001E8E16 /* OAuthController.m in Sources */,
 				815AE361124B15B60086586B /* NSString+XmlEncoding.m in Sources */,
+				815AE562124CFE090086586B /* ActivityIndicatorTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

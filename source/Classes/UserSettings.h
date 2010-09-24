@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UserSettings : NSObject {
+@interface UserSettings : NSObject { }
 
-}
-
-@property (nonatomic, assign) BOOL includeLocationInTweet;
-
-+ (UserSettings *)sharedInstance;
++ (void)reset;
++ (BOOL)includeLocationInTweet;
++ (void)setIncludeLocationInTweet:(BOOL)boolVal;
++ (NSInteger)dataExpiration;
++ (BOOL)resetAppOnStart;
++ (void)setAppVersion:(NSString *)appVersion;
 
 @end

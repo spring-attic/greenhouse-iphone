@@ -12,6 +12,6 @@
 @interface AppSettings : NSObject { }
 
 + (NSString *)documentsDirectory;
-+ (NSString *)version;
++ (NSString *)appVersion;
 
 @end

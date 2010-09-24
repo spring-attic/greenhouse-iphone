@@ -19,6 +19,7 @@
 
 @implementation PullRefreshTableViewController
 
+@synthesize tableView;
 @synthesize refreshHeaderView;
 @synthesize reloading = _reloading;
 @synthesize lastRefreshKey;
@@ -39,7 +40,7 @@
 - (BOOL)lastRefreshExpired
 {
 	// if the last refresh was older than 4 hours, then expire the data
-	return ([self.lastRefreshDate compare:[NSDate dateWithTimeIntervalSinceNow:-14400]] == NSOrderedAscending);
+	return ([self.lastRefreshDate compare:[NSDate dateWithTimeIntervalSinceNow:-[UserSettings dataExpiration]]] == NSOrderedAscending);
 }
 
 - (void)reloadData

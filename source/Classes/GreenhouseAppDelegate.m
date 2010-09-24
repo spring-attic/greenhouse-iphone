@@ -12,6 +12,13 @@
 #import "OAuthManager.h"
 
 
+@interface GreenhouseAppDelegate()
+
+- (void)verifyLocationServices;
+
+@end
+
+
 @implementation GreenhouseAppDelegate
 
 @synthesize window;
@@ -50,6 +57,20 @@
 	[self showAuthorizeViewController];
 }
 
+- (void)verifyLocationServices
+{
+	if ([CLLocationManager locationServicesEnabled] == NO) 
+	{
+        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" 
+																		message:@"Greenhouse would like to use your current location but you currently have all location services disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." 
+																	   delegate:nil 
+															  cancelButtonTitle:@"OK" 
+															  otherButtonTitles:nil];
+        [servicesDisabledAlert show];
+        [servicesDisabledAlert release];
+    }	
+}
+
 
 #pragma mark -
 #pragma mark UITabBarControllerDelegate methods
@@ -65,12 +86,30 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	DLog(@"");
+	DLog(@"");	
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	DLog(@"");
+	
+	NSArray *array = [[NSUserDefaults standardUserDefaults] persistentDomainNames];
+	
+	DLog(@"%@", array);
+	
+	for (NSString *s in array) 
+	{
+		DLog(@"%@", [[NSUserDefaults standardUserDefaults] persistentDomainForName:s]);
+	}
+	
+	if ([UserSettings resetAppOnStart])
+	{
+		DLog(@"reset app");
+		[[OAuthManager sharedInstance] removeAccessToken];
+		[UserSettings reset];
+		[UserSettings setAppVersion:[AppSettings appVersion]];
+		[self showAuthorizeViewController];
+	}
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -101,7 +140,13 @@
 {
 	DLog(@"");
 	
-	if (launchOptions)
+	if ([UserSettings resetAppOnStart])
+	{
+		[[OAuthManager sharedInstance] removeAccessToken];
+		[UserSettings reset];
+		[self showAuthorizeViewController];
+	}	
+	else if (launchOptions)
 	{
 		NSURL *url = (NSURL *)[launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
 		
@@ -129,16 +174,8 @@
 	
     [window makeKeyAndVisible];
 	
-    if ([CLLocationManager locationServicesEnabled] == NO) 
-	{
-        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" 
-																		message:@"Greenhouse would like to use your current location but you currently have all location services disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." 
-																	   delegate:nil 
-															  cancelButtonTitle:@"OK" 
-															  otherButtonTitles:nil];
-        [servicesDisabledAlert show];
-        [servicesDisabledAlert release];
-    }
+	[UserSettings setAppVersion:[AppSettings appVersion]];
+	[self verifyLocationServices];
 
 	return YES;
 }

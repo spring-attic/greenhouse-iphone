@@ -10,11 +10,13 @@
 #import "EventSessionDescriptionViewController.h"
 #import "EventSessionTweetsViewController.h"
 #import "EventSessionRateViewController.h"
+#import "ActivityIndicatorTableViewCell.h"
 
 
 @interface EventSessionDetailsViewController()
 
 @property (nonatomic, retain) EventSessionController *eventSessionController;
+@property (nonatomic, retain) ActivityIndicatorTableViewCell *favoriteTableViewCell;
 
 - (void)updateRatingImages:(double)rating;
 - (void)setRating:(double)rating imageView:(UIImageView *)imageView;
@@ -26,6 +28,7 @@
 @implementation EventSessionDetailsViewController
 
 @synthesize eventSessionController;
+@synthesize favoriteTableViewCell;
 @synthesize event;
 @synthesize session;
 @synthesize arrayMenuItems;
@@ -70,6 +73,8 @@
 
 - (void)updateFavoriteSession
 {
+	[favoriteTableViewCell startAnimating];
+	
 	self.eventSessionController = [[EventSessionController alloc] init];
 	eventSessionController.delegate = self;
 	
@@ -80,14 +85,21 @@
 #pragma mark -
 #pragma mark EventSessionControllerDelegate methods
 
-- (void)updateFavoriteSessionDidFinish
+- (void)updateFavoriteSessionDidFinishWithResults:(BOOL)isFavorite
 {
+	[favoriteTableViewCell stopAnimating];
+	
 	[eventSessionController release];
 	self.eventSessionController = nil;
+	
+	session.isFavorite = isFavorite;
+	[tableViewMenu reloadData];
 }
 
 - (void)updateFavoriteSessionDidFailWithError:(NSError *)error
 {
+	[favoriteTableViewCell stopAnimating];
+	
 	[eventSessionController release];
 	self.eventSessionController = nil;
 }
@@ -107,8 +119,6 @@
 			[self.navigationController pushViewController:sessionTweetsViewController animated:YES];
 			break;
 		case 2:
-			session.isFavorite = !session.isFavorite;
-			[tableView reloadData];
 			[self updateFavoriteSession];
 			break;
 		case 3:
@@ -128,15 +138,30 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString *cellIdent = @"menuCell";
+	static NSString *activityCellIdent = @"activityCellIdent";
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
+	UITableViewCell *cell = nil;
 	
-	if (cell == nil)
+	if (indexPath.row == 2)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell = (ActivityIndicatorTableViewCell *)[tableView dequeueReusableCellWithIdentifier:activityCellIdent];
+		
+		if (cell == nil)
+		{
+			self.favoriteTableViewCell = [[[ActivityIndicatorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:activityCellIdent] autorelease];
+			cell = favoriteTableViewCell;
+		}
 	}
-	
+	else 
+	{
+		cell = [tableView dequeueReusableCellWithIdentifier:cellIdent];
+		
+		if (cell == nil)
+		{
+			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
+		}
+	}
+
 	if (indexPath.row == 2)
 	{
 		cell.accessoryType = session.isFavorite ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
@@ -145,6 +170,11 @@
 	{
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	}
+	else 
+	{
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	}
+
 	
 	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
 	
@@ -222,7 +252,7 @@
 	self.title = @"Session";
 	
 	self.sessionDescriptionViewController = [[EventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
-	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionTweetsViewController = [[EventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	self.sessionRateViewController = [[EventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
 }
 
@@ -236,6 +266,7 @@
     [super viewDidUnload];
 	
 	self.eventSessionController = nil;
+	self.favoriteTableViewCell = nil;
 	self.event = nil;
 	self.session = nil;
 	self.arrayMenuItems = nil;
@@ -259,6 +290,7 @@
 
 - (void)dealloc 
 {
+	[favoriteTableViewCell release];
 	[event release];
 	[session release];
 	[arrayMenuItems release];

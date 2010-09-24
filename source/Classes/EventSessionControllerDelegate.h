@@ -21,7 +21,7 @@
 - (void)fetchFavoriteSessionsDidFailWithError:(NSError *)error;
 - (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions;
 - (void)fetchConferenceFavoriteSessionsDidFailWithError:(NSError *)error;
-- (void)updateFavoriteSessionDidFinish;
+- (void)updateFavoriteSessionDidFinishWithResults:(BOOL)isFavorite;
 - (void)updateFavoriteSessionDidFailWithError:(NSError *)error;
 - (void)rateSessionDidFinish;
 - (void)rateSessionDidFailWithError:(NSError *)error;

@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 
 
-@interface PullRefreshTableViewController : UITableViewController
+@interface PullRefreshTableViewController : UIViewController <UIScrollViewDelegate>
 {
 	BOOL _reloading;
 }
 
+@property (nonatomic, retain) IBOutlet UITableView *tableView;
 @property (assign, getter=isReloading) BOOL reloading;
 @property (nonatomic, copy) NSString *lastRefreshKey;
 @property (nonatomic, retain) NSDate *lastRefreshDate;

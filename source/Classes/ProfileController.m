@@ -52,18 +52,34 @@
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
+	Profile *profile = nil;
+	
 	if (ticket.didSucceed)
 	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSDictionary *dictionary = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", dictionary);
 		
-		Profile *profile = [Profile profileWithDictionary:dictionary];
-		
-		[_delegate fetchProfileDidFinishWithResults:profile];
+		profile = [Profile profileWithDictionary:dictionary];
 	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while retrieving the profile data." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	
+	[responseBody release];
+	
+	[_delegate fetchProfileDidFinishWithResults:profile];
 }
 
 - (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error

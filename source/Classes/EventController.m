@@ -53,15 +53,17 @@
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
+	NSMutableArray *events = [[[NSMutableArray alloc] init] autorelease];
+	
 	if (ticket.didSucceed)
 	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *jsonArray = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", jsonArray);
-		
-		NSMutableArray *events = [NSMutableArray arrayWithCapacity:[jsonArray count]];
 		
 		for (NSDictionary *d in jsonArray)
 		{
@@ -69,9 +71,21 @@
 			[events addObject:event];
 			[event release];
 		}
-		
-		[_delegate fetchEventsDidFinishWithResults:events];
 	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while retrieving the event data." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	
+	[responseBody release];
+	
+	[_delegate fetchEventsDidFinishWithResults:events];
 }
 
 - (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error

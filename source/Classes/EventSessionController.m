@@ -65,14 +65,16 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
+	NSMutableArray *arrayCurrentSessions = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *arrayUpcomingSessions = [[[NSMutableArray alloc] init] autorelease];
+	
 	if (ticket.didSucceed)
-	{
-		NSMutableArray *arrayCurrentSessions = [[[NSMutableArray alloc] init] autorelease];
-		NSMutableArray *arrayUpcomingSessions = [[[NSMutableArray alloc] init] autorelease];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	{		
 		NSArray *jsonArray = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", jsonArray);
 		
@@ -107,9 +109,21 @@ static BOOL sharedShouldRefreshFavorites;
 			
 			[session release];
 		}
-		
-		[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while retrieving the session data." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
 	}	
+	
+	[responseBody release];
+	
+	[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
 }
 
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -158,14 +172,16 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+
+	NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *arrayTimes = [[[NSMutableArray alloc] init] autorelease];
+		
 	if (ticket.didSucceed)
 	{
-		NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
-		NSMutableArray *arrayTimes = [[[NSMutableArray alloc] init] autorelease];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", array);
 		
@@ -198,9 +214,21 @@ static BOOL sharedShouldRefreshFavorites;
 			
 			[session release];
 		}
-		
-		[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
-	}	
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while retrieving the session data." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	
+	[responseBody release];
+	
+	[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
 }
 
 - (void)fetchSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -246,13 +274,15 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+	DLog(@"%@", responseBody);
+	
+	NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
+	
 	if (ticket.didSucceed)
 	{
-		NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", array);
 		
@@ -262,9 +292,21 @@ static BOOL sharedShouldRefreshFavorites;
 			[arraySessions addObject:session];			
 			[session release];
 		}
-		
-		[_delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
-	}	
+	}
+	else 
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while retrieving the session data." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+	
+	[responseBody release];
+
+	[_delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
 }
 
 - (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -308,13 +350,15 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
+	NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
+	
 	if (ticket.didSucceed)
-	{
-		NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
-		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	{	
 		NSArray *array = [responseBody yajl_JSON];
-		[responseBody release];
 		
 		DLog(@"%@", array);
 		
@@ -324,9 +368,11 @@ static BOOL sharedShouldRefreshFavorites;
 			[arraySessions addObject:session];			
 			[session release];
 		}
-		
-		[_delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
 	}	
+	
+	[responseBody release];
+	
+	[_delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
 }
 
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -336,9 +382,6 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
 {	
-	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Updating favorite..."];
-	[_activityAlertiView startAnimating];
-	
 	sharedShouldRefreshFavorites = YES;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, eventId, sessionNumber];
@@ -374,24 +417,24 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+	DLog(@"%@", responseBody);
+	
+	BOOL isFavorite = NO;
 	
 	if (ticket.didSucceed)
 	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		[responseBody release];
+		isFavorite = [responseBody boolValue];
 	}
 	
-	[_delegate updateFavoriteSessionDidFinish];
+	[responseBody release];
+	
+	[_delegate updateFavoriteSessionDidFinishWithResults:isFavorite];
 }
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
-	
 	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(updateFavoriteSessionDidFailWithError:)];
 }
 
@@ -452,12 +495,16 @@ static BOOL sharedShouldRefreshFavorites;
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 	
-	if (ticket.didSucceed)
-	{		
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		DLog(@"%@", responseBody);
-		[responseBody release];
-	}
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+	DLog(@"%@", responseBody);
+	
+//	if (ticket.didSucceed)
+//	{		
+//
+//	}
+	
+	[responseBody release];
 	
 	[_delegate rateSessionDidFinish];
 }

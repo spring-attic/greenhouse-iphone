@@ -168,7 +168,7 @@
 	
 	self.eventDescriptionViewController = [[EventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventSessionsMenuViewController = [[EventSessionsMenuViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:nil bundle:nil];
+	self.eventTweetsViewController = [[EventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
 	self.eventMapViewController = [[EventMapViewController alloc] initWithNibName:nil bundle:nil];
 }
 
