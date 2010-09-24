@@ -155,7 +155,7 @@ static OAConsumer *sharedConsumer = nil;
 	else
 	{
 		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-															message:@"The server is currently unavailable. Please check the availability at greenhouse.springsource.org." 
+															message:@"A problem occurred while authorizing the app. Please check the availability at greenhouse.springsource.org." 
 														   delegate:nil 
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
@@ -173,6 +173,14 @@ static OAConsumer *sharedConsumer = nil;
 	self.activityAlertView = nil;
 	
 	DLog(@"%@", [error localizedDescription]);
+	
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while authorizing the app. Please check the availability at greenhouse.springsource.org." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+	[alertView show];
+	[alertView release];
 }
 
 - (void)authorizeRequestToken:(OAToken *)requestToken;
@@ -260,21 +268,33 @@ static OAConsumer *sharedConsumer = nil;
 	[_activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	
+	DLog(@"%@", responseBody);
+	
 	if (ticket.didSucceed)
 	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		
-		OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-		[responseBody release];
-		
+		OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];		
 		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
-		[accessToken release];
-		
-		if ([delegate respondsToSelector:didFinishSelector])
-		{
-			[delegate performSelector:didFinishSelector];
-		}		
+		[accessToken release];		
 	}
+	else
+	{
+		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+															message:@"A problem occurred while authorizing the app. Please check the availability at greenhouse.springsource.org." 
+														   delegate:nil 
+												  cancelButtonTitle:@"OK" 
+												  otherButtonTitles:nil];
+		[alertView show];
+		[alertView release];
+	}
+	
+	[responseBody release];
+	
+	if ([delegate respondsToSelector:didFinishSelector])
+	{
+		[delegate performSelector:didFinishSelector];
+	}	
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -283,6 +303,14 @@ static OAConsumer *sharedConsumer = nil;
 	_dataFetcher = nil;
 	
 	DLog(@"%@", [error localizedDescription]);
+	
+	UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"A problem occurred while authorizing the app. Please check the availability at greenhouse.springsource.org." 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+	[alertView show];
+	[alertView release];
 	
 	if ([delegate respondsToSelector:didFailSelector])
 	{
