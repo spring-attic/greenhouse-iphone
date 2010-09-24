@@ -134,21 +134,14 @@ static OAConsumer *sharedConsumer = nil;
 	[_activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
-	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
-	DLog(@"%i", [response statusCode]);
+	DLog(@"%@", responseBody);
 	
 	if (ticket.didSucceed) 
 	{
-		NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-		
-		DLog(@"%@", responseBody);
-		
 		OAToken *requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
-		[responseBody release];
-		
 		[requestToken storeInDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
-		
 		[self authorizeRequestToken:requestToken];
 		[requestToken release];
 	}
@@ -162,6 +155,8 @@ static OAConsumer *sharedConsumer = nil;
 		[alertView show];
 		[alertView release];
 	}
+	
+	[responseBody release];
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
