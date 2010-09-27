@@ -13,15 +13,21 @@
 
 #if LOCALHOST
 
+	#define OAUTH_CONSUMER_KEY						@"a08318eb478a1ee31f69a55276f3af64"
+	#define OAUTH_CONSUMER_SECRET					@"80e7f8f7ba724aae9103f297e5fb9bdf"
 	#define GREENHOUSE_URL							@"http://127.0.0.1:8080/greenhouse"
 
 #elif QA
 
-	#define GREENHOUSE_URL							@"http://greenhouse.springsource.org"
+	#define OAUTH_CONSUMER_KEY						@""
+	#define OAUTH_CONSUMER_SECRET					@""
+	#define GREENHOUSE_URL							@"https://greenhouse.springsource.org"
 
 #elif PRODUCTION
 
-	#define GREENHOUSE_URL							@"http://greenhouse.springsource.org"
+	#define OAUTH_CONSUMER_KEY						@""
+	#define OAUTH_CONSUMER_SECRET					@""
+	#define GREENHOUSE_URL							@"https://greenhouse.springsource.org"
 
 #endif
 
@@ -29,8 +35,6 @@
 #pragma mark -
 #pragma mark OAuth
 
-#define OAUTH_CONSUMER_KEY						@"a08318eb478a1ee31f69a55276f3af64"
-#define OAUTH_CONSUMER_SECRET					@"80e7f8f7ba724aae9103f297e5fb9bdf"
 #define OAUTH_REALM								@"Greenhouse"
 #define OAUTH_REQUEST_TOKEN_URL					[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/oauth/request_token"]
 #define OAUTH_AUTHORIZE_URL						[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/oauth/confirm_access"]
@@ -59,9 +63,3 @@
 #define EVENT_SESSION_RETWEET_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/retweet"]
 #define EVENT_SESSION_RATING_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/rating"]
 #define EVENT_LOCATION_MAP_URL					@"http://maps.google.com/maps/api/geocode/json?address=%@&sensor=true"
-
-
-#pragma mark -
-#pragma mark Updates
-
-#define UPDATES_URL								[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/greenhouse/updates/"]

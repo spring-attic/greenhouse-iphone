@@ -92,16 +92,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	DLog(@"");
-	
-	NSArray *array = [[NSUserDefaults standardUserDefaults] persistentDomainNames];
-	
-	DLog(@"%@", array);
-	
-	for (NSString *s in array) 
-	{
-		DLog(@"%@", [[NSUserDefaults standardUserDefaults] persistentDomainForName:s]);
-	}
-	
+		
 	if ([UserSettings resetAppOnStart])
 	{
 		DLog(@"reset app");
