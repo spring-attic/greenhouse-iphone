@@ -170,14 +170,14 @@
 	
 	textViewComments.text = @"";
 	[self updateRatingButtons:0];
+	
+	// display the keyboard
+	[textViewComments becomeFirstResponder];
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
-	[super viewDidAppear:animated];
-	
-	// display the keyboard
-	[textViewComments becomeFirstResponder];
+	[super viewDidAppear:animated];	
 }
 
 - (void)didReceiveMemoryWarning 
