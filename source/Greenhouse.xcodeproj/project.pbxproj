@@ -67,6 +67,7 @@
 		81C1639F12414D5100DAC502 /* springsource-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C1639C12414D5100DAC502 /* springsource-logo@2x.png */; };
 		81CC605711EF41E5002BB755 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC605611EF41E5002BB755 /* Tweet.m */; };
 		81D339871237F6E7009524AE /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D339861237F6E7009524AE /* DataViewController.m */; };
+		81D3FA591251373C00869A9D /* InfoContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 81D3FA581251373C00869A9D /* InfoContent.html */; };
 		81D4A45111C30692000A71C3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45011C30692000A71C3 /* Profile.m */; };
 		81D4A45E11C30945000A71C3 /* AppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D4A45D11C30945000A71C3 /* AppSettings.m */; };
 		81DD40B2121B2914004BE46A /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DD40B1121B2914004BE46A /* TweetDetailsViewController.m */; };
@@ -235,6 +236,7 @@
 		81CC605611EF41E5002BB755 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		81D339851237F6E7009524AE /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
 		81D339861237F6E7009524AE /* DataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
+		81D3FA581251373C00869A9D /* InfoContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InfoContent.html; sourceTree = "<group>"; };
 		81D4A44F11C30692000A71C3 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
 		81D4A45011C30692000A71C3 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		81D4A45C11C30945000A71C3 /* AppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppSettings.h; sourceTree = "<group>"; };
@@ -622,6 +624,7 @@
 			isa = PBXGroup;
 			children = (
 				81FF3FA8123AB09D00439B37 /* Greenhouse-Info.plist */,
+				81D3FA581251373C00869A9D /* InfoContent.html */,
 				81FF3FCA123AB09D00439B37 /* Settings.bundle */,
 				81FF3FAB123AB09D00439B37 /* Images */,
 				81FF3FB7123AB09D00439B37 /* Interface Builder Files */,
@@ -819,6 +822,7 @@
 				8159352512470AA4001E8E16 /* Icon-Small.png in Resources */,
 				8159352612470AA4001E8E16 /* Icon-Small@2x.png in Resources */,
 				8159352712470AA4001E8E16 /* iTunesArtwork.png in Resources */,
+				81D3FA591251373C00869A9D /* InfoContent.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
