@@ -51,7 +51,7 @@
 	else 
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"An error occurred while connecting to the server." 
+														message:@"The network connection is not available. Please try again in a few minutes." 
 													   delegate:self 
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
