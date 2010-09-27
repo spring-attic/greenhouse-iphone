@@ -189,8 +189,8 @@ signatureProvider:(id<OASignatureProviding, NSObject>)aProvider
 - (void)_generateNonce 
 {
     CFUUIDRef theUUID = CFUUIDCreate(NULL);
+	[NSMakeCollectable(theUUID) autorelease];
     CFStringRef string = CFUUIDCreateString(NULL, theUUID);
-    NSMakeCollectable(theUUID);
     nonce = (NSString *)string;
 }
 
