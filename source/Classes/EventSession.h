@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, assign) BOOL isFavorite;
 @property (nonatomic, assign) double rating;
+@property (nonatomic, copy) NSString *location;
 @property (nonatomic, assign, readonly) NSInteger leaderCount;
 @property (nonatomic, copy, readonly) NSString *leaderDisplay;
 

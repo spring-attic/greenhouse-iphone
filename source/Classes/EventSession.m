@@ -21,6 +21,7 @@
 @synthesize hashtag;
 @synthesize isFavorite;
 @synthesize rating;
+@synthesize location;
 @dynamic leaderCount;
 @dynamic leaderDisplay;
 
@@ -38,6 +39,7 @@
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.isFavorite = [dictionary boolForKey:@"favorite"];
 			self.rating = [dictionary doubleForKey:@"rating"];
+			self.location = [[dictionary stringForKey:@"location"] stringBySimpleXmlDecoding];
 
 			NSArray *array = [dictionary objectForKey:@"leaders"];
 			self.leaders = [NSMutableArray arrayWithCapacity:[array count]];
@@ -87,6 +89,7 @@
 	[description release];
 	[leaders release];
 	[hashtag release];
+	[location release];
 	
 	[super dealloc];
 }

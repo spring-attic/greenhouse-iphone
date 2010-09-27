@@ -25,6 +25,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *labelTitle;
 @property (nonatomic, retain) IBOutlet UILabel *labelLeader;
 @property (nonatomic, retain) IBOutlet UILabel *labelTime;
+@property (nonatomic, retain) IBOutlet UILabel *labelLocation;
 @property (nonatomic, retain) IBOutlet UIImageView *imageViewRating1;
 @property (nonatomic, retain) IBOutlet UIImageView *imageViewRating2;
 @property (nonatomic, retain) IBOutlet UIImageView *imageViewRating3;

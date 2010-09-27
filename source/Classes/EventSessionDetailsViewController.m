@@ -35,6 +35,7 @@
 @synthesize labelTitle;
 @synthesize labelLeader;
 @synthesize labelTime;
+@synthesize labelLocation;
 @synthesize imageViewRating1;
 @synthesize imageViewRating2;
 @synthesize imageViewRating3;
@@ -220,6 +221,8 @@
 		labelTime.text = formattedTime;
 		[formattedTime release];
 		
+		labelLocation.text = session.location;
+		
 		NSArray *items = nil;
 		
 		if ([session.endTime compare:[NSDate date]] == NSOrderedDescending)
@@ -228,13 +231,12 @@
 		}
 		else 
 		{
-			items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"rate", nil];
+			items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
 		}
 			 
-		 self.arrayMenuItems = items;
-		 [items release];
+		self.arrayMenuItems = items;
+		[items release];
 
-		
 		[tableViewMenu reloadData];
 		
 		[self updateRatingImages:session.rating];
@@ -273,6 +275,7 @@
 	self.labelTitle = nil;
 	self.labelLeader = nil;
 	self.labelTime = nil;
+	self.labelLocation = nil;
 	self.imageViewRating1 = nil;
 	self.imageViewRating2 = nil;
 	self.imageViewRating3 = nil;
@@ -297,6 +300,7 @@
 	[labelTitle release];
 	[labelLeader release];
 	[labelTime release];
+	[labelLocation release];
 	[imageViewRating1 release];
 	[imageViewRating2 release];
 	[imageViewRating3 release];
