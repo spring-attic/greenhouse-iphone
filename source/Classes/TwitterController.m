@@ -72,23 +72,25 @@
 	}
 	else 
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"A problem occurred while retrieving the Twitter feed." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the Twitter feed."];
 	}
 	
 	[responseBody release];
 	
-	[_delegate fetchTweetsDidFinishWithResults:tweets];
+	if ([_delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:)])
+	{
+		[_delegate fetchTweetsDidFinishWithResults:tweets];
+	}
 }
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchTweetsDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchTweetsDidFailWithError:)])
+	{
+		[_delegate fetchTweetsDidFailWithError:error];
+	}
 }
 
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url
@@ -160,7 +162,10 @@
 	
 	if (ticket.didSucceed)
 	{
-		[_delegate postUpdateDidFinish];
+		if ([_delegate respondsToSelector:@selector(postUpdateDidFinish)])
+		{
+			[_delegate postUpdateDidFinish];
+		}
 	}
 	else 
 	{
@@ -192,7 +197,12 @@
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(postUpdateDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(postUpdateDidFailWithError:)])
+	{
+		[_delegate postUpdateDidFailWithError:error];
+	}
 }
 
 - (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
@@ -264,7 +274,10 @@
 		[alertView show];
 		[alertView release];
 		
-		[_delegate postRetweetDidFinish];
+		if ([_delegate respondsToSelector:@selector(postRetweetDidFinish)])
+		{
+			[_delegate postRetweetDidFinish];
+		}
 	}
 	else 
 	{
@@ -296,7 +309,12 @@
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(postRetweetDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(postRetweetDidFailWithError:)])
+	{
+		[_delegate postRetweetDidFailWithError:error];
+	}	
 }
 
 

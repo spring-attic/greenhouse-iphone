@@ -68,23 +68,25 @@
 	}
 	else 
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"A problem occurred while retrieving the profile data." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the profile data."];
 	}
 	
 	[responseBody release];
 	
-	[_delegate fetchProfileDidFinishWithResults:profile];
+	if ([_delegate respondsToSelector:@selector(fetchProfileDidFinishWithResults:)])
+	{
+		[_delegate fetchProfileDidFinishWithResults:profile];
+	}
 }
 
 - (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchProfileDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchProfileDidFailWithError:)])
+	{
+		[_delegate fetchProfileDidFailWithError:error];
+	}
 }
 
 

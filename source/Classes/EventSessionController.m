@@ -112,23 +112,25 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 	else 
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"A problem occurred while retrieving the session data." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}	
 	
 	[responseBody release];
-	
-	[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
+
+	if ([_delegate respondsToSelector:@selector(fetchCurrentSessionsDidFinishWithResults:upcomingSessions:)])
+	{
+		[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
+	}
 }
 
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchCurrentSessionsDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchCurrentSessionsDidFailWithError:)])
+	{
+		[_delegate fetchCurrentSessionsDidFailWithError:error];
+	}	
 }
 
 - (void)fetchSessionsByEventId:(NSString *)eventId withDate:(NSDate *)eventDate;
@@ -217,23 +219,25 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 	else 
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"A problem occurred while retrieving the session data." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}
 	
 	[responseBody release];
-	
-	[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
+
+	if ([_delegate respondsToSelector:@selector(fetchSessionsByDateDidFinishWithResults:andTimes:)])
+	{
+		[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
+	}
 }
 
 - (void)fetchSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchSessionsByDateDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchSessionsByDateDidFailWithError:)])
+	{
+		[_delegate fetchSessionsByDateDidFailWithError:error];
+	}
 }
 
 - (void)fetchFavoriteSessionsByEventId:(NSString *)eventId
@@ -295,23 +299,25 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 	else 
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"A problem occurred while retrieving the session data." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}
 	
 	[responseBody release];
 
-	[_delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
+	if ([_delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFinishWithResults:)])
+	{
+		[_delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
+	}
 }
 
 - (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchFavoriteSessionsDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFailWithError:)])
+	{
+		[_delegate fetchFavoriteSessionsDidFailWithError:error];
+	}
 }
 
 - (void)fetchConferenceFavoriteSessionsByEventId:(NSString *)eventId
@@ -368,16 +374,28 @@ static BOOL sharedShouldRefreshFavorites;
 			[arraySessions addObject:session];			
 			[session release];
 		}
-	}	
+	}
+	else 
+	{
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
+	}
 	
 	[responseBody release];
 	
-	[_delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
+	if ([_delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFinishWithResults:)])
+	{
+		[_delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
+	}
 }
 
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchConferenceFavoriteSessionsDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFailWithError:)])
+	{
+		[_delegate fetchConferenceFavoriteSessionsDidFailWithError:error];
+	}
 }
 
 - (void)updateFavoriteSession:(NSString *)sessionNumber withEventId:(NSString *)eventId;
@@ -427,15 +445,27 @@ static BOOL sharedShouldRefreshFavorites;
 	{
 		isFavorite = [responseBody boolValue];
 	}
+	else 
+	{
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while updating the favorite."];
+	}
 	
 	[responseBody release];
 	
-	[_delegate updateFavoriteSessionDidFinishWithResults:isFavorite];
+	if ([_delegate respondsToSelector:@selector(updateFavoriteSessionDidFinishWithResults:)])
+	{
+		[_delegate updateFavoriteSessionDidFinishWithResults:isFavorite];
+	}
 }
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(updateFavoriteSessionDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(updateFavoriteSessionDidFailWithError:)])
+	{
+		[_delegate updateFavoriteSessionDidFailWithError:error];
+	}
 }
 
 - (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment
@@ -499,14 +529,17 @@ static BOOL sharedShouldRefreshFavorites;
 
 	DLog(@"%@", responseBody);
 	
-//	if (ticket.didSucceed)
-//	{		
-//
-//	}
+	if (!ticket.didSucceed)
+	{
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating."];
+	}
 	
 	[responseBody release];
 	
-	[_delegate rateSessionDidFinish];
+	if ([_delegate respondsToSelector:@selector(rateSessionDidFinish)])
+	{
+		[_delegate rateSessionDidFinish];
+	}
 }
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -514,7 +547,12 @@ static BOOL sharedShouldRefreshFavorites;
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(rateSessionDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(rateSessionDidFailWithError:)])
+	{
+		[_delegate rateSessionDidFailWithError:error];
+	}
 }
 
 

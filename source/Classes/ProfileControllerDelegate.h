@@ -12,7 +12,7 @@
 @class Profile;
 
 
-@protocol ProfileControllerDelegate
+@protocol ProfileControllerDelegate<NSObject>
 
 - (void)fetchProfileDidFinishWithResults:(Profile *)profile;
 - (void)fetchProfileDidFailWithError:(NSError *)error;

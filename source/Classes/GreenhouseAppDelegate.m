@@ -73,6 +73,20 @@
 
 
 #pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1)
+	{
+		// sign out
+		[[OAuthManager sharedInstance] removeAccessToken];
+		[self showAuthorizeViewController];
+	}
+}
+
+
+#pragma mark -
 #pragma mark UITabBarControllerDelegate methods
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController

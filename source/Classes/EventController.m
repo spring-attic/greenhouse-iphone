@@ -74,23 +74,25 @@
 	}
 	else 
 	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"A problem occurred while retrieving the event data." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the event data."];
 	}
 	
 	[responseBody release];
 	
-	[_delegate fetchEventsDidFinishWithResults:events];
+	if ([_delegate respondsToSelector:@selector(fetchEventsDidFinishWithResults:)])
+	{
+		[_delegate fetchEventsDidFinishWithResults:events];
+	}
 }
 
 - (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error didFailDelegate:_delegate didFailSelector:@selector(fetchEventsDidFailWithError:)];
+	[self request:ticket didFailWithError:error];
+	
+	if ([_delegate respondsToSelector:@selector(fetchEventsDidFailWithError:)])
+	{
+		[_delegate fetchEventsDidFailWithError:error];
+	}
 }
 
 

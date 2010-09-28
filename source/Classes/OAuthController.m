@@ -25,16 +25,40 @@
 		_dataFetcher = nil;
 	}
 }
-		
 
-- (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error didFailDelegate:(id)delegate didFailSelector:(SEL)selector
+- (void)request:(OAServiceTicket *)ticket didNotSucceedWithDefaultMessage:(NSString *)message
+{
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	NSInteger statusCode = [response statusCode];
+
+	DLog(@"status code: %d", statusCode);
+	
+	if (statusCode == 401)
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:@"You are not authorized to view the content from greenhouse.springsource.com. Please sign out and reauthorize the Greenhouse app." 
+													   delegate:appDelegate 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:@"Sign Out", nil];
+		[alert show];
+		[alert release];
+	}
+	else
+	{
+		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
+														message:message 
+													   delegate:nil 
+											  cancelButtonTitle:@"OK" 
+											  otherButtonTitles:nil];
+		[alert show];
+		[alert release];
+	}
+}
+
+- (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
 	[_dataFetcher release];
 	_dataFetcher = nil;
-	
-	_didFailDelegate = delegate;
-	_didFailSelector = selector;
-	_error = error;
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -42,7 +66,7 @@
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
 														message:@"You are not authorized to view the content from greenhouse.springsource.com. Please sign out and reauthorize the Greenhouse app." 
-													   delegate:self 
+													   delegate:appDelegate 
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:@"Sign Out", nil];
 		[alert show];
@@ -52,28 +76,12 @@
 	{
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
 														message:@"The network connection is not available. Please try again in a few minutes." 
-													   delegate:self 
+													   delegate:nil 
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
 		[alert show];
 		[alert release];
 	}	
-}
-
-
-#pragma mark -
-#pragma mark UIAlertViewDelegate methods
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	[_didFailDelegate performSelector:_didFailSelector withObject:_error];
-	
-	if (buttonIndex == 1)
-	{
-		// sign out
-		[[OAuthManager sharedInstance] removeAccessToken];
-		[appDelegate showAuthorizeViewController];		
-	}
 }
 
 

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol EventSessionControllerDelegate
+@protocol EventSessionControllerDelegate<NSObject>
 
 @optional
 

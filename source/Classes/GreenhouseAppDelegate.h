@@ -11,7 +11,7 @@
 
 @class AuthorizeViewController;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate> { }
+@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate> { }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;

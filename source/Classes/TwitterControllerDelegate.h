@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@protocol TwitterControllerDelegate
+@protocol TwitterControllerDelegate<NSObject>
 
 @optional
 

@@ -10,7 +10,7 @@
 #import "ActivityAlertView.h"
 
 
-@interface OAuthController : NSObject <UIAlertViewDelegate>
+@interface OAuthController : NSObject
 {
 	OAAsynchronousDataFetcher *_dataFetcher;
 	ActivityAlertView *_activityAlertiView;
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) ActivityAlertView *activityAlertiView;
 
 - (void)cancelDataFetcherRequest;
-- (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error didFailDelegate:(id)delegate didFailSelector:(SEL)selector;
+- (void)request:(OAServiceTicket *)ticket didNotSucceedWithDefaultMessage:(NSString *)message;
+- (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end
