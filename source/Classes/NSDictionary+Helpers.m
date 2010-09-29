@@ -167,7 +167,6 @@
 		double milliseconds = [self doubleForKey:aKey];
 		NSTimeInterval unixDate = (milliseconds * .001);
 		date = [NSDate dateWithTimeIntervalSince1970:unixDate];
-		DLog(@"%@", date.description);
 	}
 	@catch (NSException *e) 
 	{

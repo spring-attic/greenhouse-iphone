@@ -79,15 +79,16 @@ static BOOL sharedShouldRefreshFavorites;
 		DLog(@"%@", jsonArray);
 		
 		NSDate *nextStartTime = nil;
+		NSDate *now = [NSDate date];
+		
+		DLog(@"%@", now.description);
 		
 		for (NSDictionary *d in jsonArray) 
 		{
 			EventSession *session = [[EventSession alloc] initWithDictionary:d];
 			
-			NSDate *now = [NSDate date];
-			
-			DLog(@"%@", now.description);
-			
+			DLog(@"%@ - %@", [session.startTime description], [session.endTime description]);
+						
 			if ([now compare:session.startTime] == NSOrderedDescending &&
 				[now compare:session.endTime] == NSOrderedAscending)
 			{
