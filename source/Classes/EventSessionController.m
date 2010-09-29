@@ -86,6 +86,8 @@ static BOOL sharedShouldRefreshFavorites;
 			
 			NSDate *now = [NSDate date];
 			
+			DLog(@"%@", now.description);
+			
 			if ([now compare:session.startTime] == NSOrderedDescending &&
 				[now compare:session.endTime] == NSOrderedAscending)
 			{
@@ -119,6 +121,9 @@ static BOOL sharedShouldRefreshFavorites;
 
 	if ([_delegate respondsToSelector:@selector(fetchCurrentSessionsDidFinishWithResults:upcomingSessions:)])
 	{
+		DLog(@"arrayCurrentSessions: %@", arrayCurrentSessions);
+		DLog(@"arrayUpcomingSessions: %@", arrayUpcomingSessions);
+
 		[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
 	}
 }
@@ -202,6 +207,10 @@ static BOOL sharedShouldRefreshFavorites;
 				[arrayBlock release];
 				
 				[arrayBlock addObject:session];
+				
+				NSDate *date = [session.startTime copyWithZone:NULL];
+				[arrayTimes addObject:date];
+				[date release];				
 			}
 			else if ([sessionTime compare:session.startTime] == NSOrderedSame)
 			{
@@ -209,11 +218,6 @@ static BOOL sharedShouldRefreshFavorites;
 			}
 			
 			sessionTime = session.startTime;
-			
-			NSDate *date = [session.startTime copyWithZone:NULL];
-			[arrayTimes addObject:date];
-			[date release];
-			
 			[session release];
 		}
 	}
@@ -226,6 +230,9 @@ static BOOL sharedShouldRefreshFavorites;
 
 	if ([_delegate respondsToSelector:@selector(fetchSessionsByDateDidFinishWithResults:andTimes:)])
 	{
+		DLog(@"arraySessions: %@", arraySessions);
+		DLog(@"arrayTimes: %@", arrayTimes);
+		
 		[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
 	}
 }
