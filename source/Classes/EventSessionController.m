@@ -31,7 +31,13 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchCurrentSessionsByEventId:(NSString *)eventId;
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CURRENT_URL, eventId];
+	// request the sessions for the current day
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setDateFormat:@"YYYY-MM-d"];
+	NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
+	[dateFormatter release];
+	
+	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, eventId, dateString];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	[urlString release];
 	
