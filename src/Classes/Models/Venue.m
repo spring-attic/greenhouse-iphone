@@ -55,8 +55,6 @@
 			self.locationHint = [dictionary stringForKey:@"locationHint"];
 			self.name = [dictionary stringForKey:@"name"];
 			self.postalAddress = [dictionary stringForKey:@"postalAddress"];
-			
-			DLog(@"%@", location);
 		}
 	}
 	
