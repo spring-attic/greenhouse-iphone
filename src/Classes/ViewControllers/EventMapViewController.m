@@ -1,4 +1,4 @@
-    //
+//
 //  EventMapViewController.m
 //  Greenhouse
 //
@@ -10,11 +10,15 @@
 #import "Event.h"
 #import "Venue.h"
 #import "VenueAnnotation.h"
+#import "VenueDetailsViewController.h"
 
 
 @interface EventMapViewController()
 
 @property (nonatomic, retain) NSMutableArray *venueAnnotations;
+@property (nonatomic, retain) Event *currentEvent;
+
+- (void)reloadMapData;
 
 @end
 
@@ -22,44 +26,16 @@
 @implementation EventMapViewController
 
 @synthesize venueAnnotations;
+@synthesize currentEvent;
 @synthesize event;
 @synthesize mapViewLocation;
 @synthesize venueDetailsViewController;
 
 
 #pragma mark -
-#pragma mark MKMapViewDelegate methods
+#pragma mark Private methods
 
-- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
-{
-	static NSString *ident = @"annotation";
-	
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ident];
-	
-	if (annotationView == nil)
-	{
-		annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ident] autorelease];
-		annotationView.pinColor = MKPinAnnotationColorGreen;
-		annotationView.animatesDrop = YES;
-		annotationView.canShowCallout = YES;
-		annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];		
-	}
-		
-    return annotationView;
-}
-
-- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
-{
-	VenueAnnotation *venueAnnotation = (VenueAnnotation *)view.annotation;
-	venueDetailsViewController.venue = venueAnnotation.venue;
-	[self.navigationController pushViewController:venueDetailsViewController animated:YES];
-}
-
-
-#pragma mark -
-#pragma mark DataViewController methods
-
-- (void)reloadData
+- (void)reloadMapData
 {
 	if (venueAnnotations != nil)
 	{
@@ -72,7 +48,7 @@
 	CLLocationDegrees maxLng = 0.0f;
 	CLLocationDegrees minLng = 0.0f;	
 	
-	for (Venue *venue in event.venues)
+	for (Venue *venue in currentEvent.venues)
 	{
 		VenueAnnotation *annotation = [[VenueAnnotation alloc] initWithVenue:venue];
 		[self.venueAnnotations addObject:annotation];
@@ -126,10 +102,10 @@
 		// set the map bounds based on the furthest two locations
 		CLLocationDegrees latDelta = maxLat - minLat;
 		CLLocationDegrees lngDelta = maxLng - minLng;
-
+		
 		span.latitudeDelta = latDelta;
 		span.longitudeDelta = lngDelta;
-
+		
 		center.latitude = latDelta / 2;
 		center.longitude = lngDelta / 2;
 	}
@@ -140,7 +116,49 @@
 	
 	[mapViewLocation addAnnotations:venueAnnotations];
 	[mapViewLocation setRegion:region animated:YES];
-	[mapViewLocation regionThatFits:region];	
+	[mapViewLocation regionThatFits:region];
+}
+
+
+#pragma mark -
+#pragma mark MKMapViewDelegate methods
+
+- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+	static NSString *ident = @"annotation";
+	
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ident];
+	
+	if (annotationView == nil)
+	{
+		annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ident] autorelease];
+		annotationView.pinColor = MKPinAnnotationColorGreen;
+		annotationView.animatesDrop = YES;
+		annotationView.canShowCallout = YES;
+		annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];		
+	}
+		
+    return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+	VenueAnnotation *venueAnnotation = (VenueAnnotation *)view.annotation;
+	venueDetailsViewController.venue = venueAnnotation.venue;
+	[self.navigationController pushViewController:venueDetailsViewController animated:YES];
+}
+
+
+#pragma mark -
+#pragma mark DataViewController methods
+
+- (void)refreshView
+{
+	if (currentEvent == nil || ![currentEvent.eventId isEqualToString:event.eventId])
+	{
+		self.currentEvent = event;
+		[self reloadMapData];
+	}
 }
 
 
@@ -167,6 +185,7 @@
     [super viewDidUnload];
 	
 	self.venueAnnotations = nil;
+	self.currentEvent = nil;
 	self.event = nil;
 	self.mapViewLocation = nil;
 	self.venueDetailsViewController = nil;
@@ -176,6 +195,7 @@
 - (void)dealloc 
 {
 	[venueAnnotations release];
+	[currentEvent release];
 	[event release];
 	[mapViewLocation release];
 	[venueDetailsViewController release];

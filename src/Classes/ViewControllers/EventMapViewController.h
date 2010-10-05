@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "VenueDetailsViewController.h"
 
 
 @class Event;
+@class VenueDetailsViewController;
+
 
 @interface EventMapViewController : DataViewController <MKMapViewDelegate>
 {
