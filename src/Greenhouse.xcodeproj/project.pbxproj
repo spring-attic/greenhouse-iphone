@@ -127,6 +127,7 @@
 		814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */; };
 		814FC5A4125A820700DB3123 /* VenueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
+		81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EA59125B6BB90067B8CA /* VenueRoom.m */; };
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 		81FF3FFC123AB0ED00439B37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF3FFB123AB0ED00439B37 /* main.m */; };
@@ -332,6 +333,8 @@
 		814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueDetailsViewController.m; sourceTree = "<group>"; };
 		814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		81B9EA58125B6BB90067B8CA /* VenueRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueRoom.h; sourceTree = "<group>"; };
+		81B9EA59125B6BB90067B8CA /* VenueRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRoom.m; sourceTree = "<group>"; };
 		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = Libraries/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E75F3911BE0D5800E6B283 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		81F8DEBF1227801000C3E8FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -497,6 +500,8 @@
 				8116898412565F5E0055A4F3 /* Tweet.m */,
 				814FC4C8125A492D00DB3123 /* Venue.h */,
 				814FC4C9125A492D00DB3123 /* Venue.m */,
+				81B9EA58125B6BB90067B8CA /* VenueRoom.h */,
+				81B9EA59125B6BB90067B8CA /* VenueRoom.m */,
 				814FC4D3125A5A6600DB3123 /* WebDataModel.h */,
 			);
 			path = Models;
@@ -892,6 +897,7 @@
 				81168A2B12565FA40055A4F3 /* OAToken_KeychainExtensions.m in Sources */,
 				814FC4CA125A492D00DB3123 /* Venue.m in Sources */,
 				814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */,
+				81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

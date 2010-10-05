@@ -8,6 +8,7 @@
 
 #import "EventSession.h"
 #import "EventSessionLeader.h"
+#import "VenueRoom.h"
 
 
 @interface EventSession()
@@ -28,7 +29,7 @@
 @synthesize hashtag;
 @synthesize isFavorite;
 @synthesize rating;
-@synthesize location;
+@synthesize room;
 @dynamic leaderCount;
 @dynamic leaderDisplay;
 
@@ -101,7 +102,7 @@
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.isFavorite = [dictionary boolForKey:@"favorite"];
 			self.rating = [dictionary doubleForKey:@"rating"];
-			self.location = [[dictionary stringForKey:@"location"] stringBySimpleXmlDecoding];
+			self.room = [[VenueRoom alloc] initWithDictionary:[dictionary objectForKey:@"room"]];
 		}
 	}
 	
@@ -121,7 +122,7 @@
 	[description release];
 	[leaders release];
 	[hashtag release];
-	[location release];
+	[room release];
 	
 	[super dealloc];
 }

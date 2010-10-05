@@ -1,4 +1,4 @@
-    //
+//
 //  EventSessionDetailsViewController.m
 //  Greenhouse
 //
@@ -6,6 +6,9 @@
 //  Copyright 2010 VMware, Inc. All rights reserved.
 //
 
+#import "Event.h"
+#import "EventSession.h"
+#import "VenueRoom.h"
 #import "EventSessionDetailsViewController.h"
 #import "EventSessionDescriptionViewController.h"
 #import "EventSessionTweetsViewController.h"
@@ -221,7 +224,7 @@
 		labelTime.text = formattedTime;
 		[formattedTime release];
 		
-		labelLocation.text = session.location;
+		labelLocation.text = session.room.label;
 		
 		NSArray *items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
 		self.arrayMenuItems = items;
