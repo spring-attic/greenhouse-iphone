@@ -29,13 +29,11 @@
 		811689D512565F5E0055A4F3 /* TwitterProfileImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116897512565F5E0055A4F3 /* TwitterProfileImageDownloader.m */; };
 		811689D612565F5E0055A4F3 /* UserSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116897712565F5E0055A4F3 /* UserSettings.m */; };
 		811689D712565F5E0055A4F3 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116897A12565F5E0055A4F3 /* Event.m */; };
-		811689D812565F5E0055A4F3 /* EventAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116897C12565F5E0055A4F3 /* EventAnnotation.m */; };
+		811689D812565F5E0055A4F3 /* VenueAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116897C12565F5E0055A4F3 /* VenueAnnotation.m */; };
 		811689D912565F5E0055A4F3 /* EventSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116897E12565F5E0055A4F3 /* EventSession.m */; };
 		811689DA12565F5E0055A4F3 /* EventSessionLeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898012565F5E0055A4F3 /* EventSessionLeader.m */; };
 		811689DB12565F5E0055A4F3 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898212565F5E0055A4F3 /* Profile.m */; };
 		811689DC12565F5E0055A4F3 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898412565F5E0055A4F3 /* Tweet.m */; };
-		811689DD12565F5E0055A4F3 /* Update.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898612565F5E0055A4F3 /* Update.m */; };
-		811689DE12565F5E0055A4F3 /* WebDataModelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898812565F5E0055A4F3 /* WebDataModelObject.m */; };
 		811689DF12565F5E0055A4F3 /* AuthorizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898B12565F5E0055A4F3 /* AuthorizeViewController.m */; };
 		811689E012565F5E0055A4F3 /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898D12565F5E0055A4F3 /* DataViewController.m */; };
 		811689E112565F5E0055A4F3 /* EventDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116898F12565F5E0055A4F3 /* EventDescriptionViewController.m */; };
@@ -125,6 +123,9 @@
 		81168A9712565FCF0055A4F3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6912565FCF0055A4F3 /* Settings.bundle */; };
 		811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
 		814FC4931256862700DB3123 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */; };
+		814FC4CA125A492D00DB3123 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC4C9125A492D00DB3123 /* Venue.m */; };
+		814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */; };
+		814FC5A4125A820700DB3123 /* VenueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
@@ -180,8 +181,8 @@
 		8116897712565F5E0055A4F3 /* UserSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettings.m; sourceTree = "<group>"; };
 		8116897912565F5E0055A4F3 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
 		8116897A12565F5E0055A4F3 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
-		8116897B12565F5E0055A4F3 /* EventAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventAnnotation.h; sourceTree = "<group>"; };
-		8116897C12565F5E0055A4F3 /* EventAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventAnnotation.m; sourceTree = "<group>"; };
+		8116897B12565F5E0055A4F3 /* VenueAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueAnnotation.h; sourceTree = "<group>"; };
+		8116897C12565F5E0055A4F3 /* VenueAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueAnnotation.m; sourceTree = "<group>"; };
 		8116897D12565F5E0055A4F3 /* EventSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSession.h; sourceTree = "<group>"; };
 		8116897E12565F5E0055A4F3 /* EventSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventSession.m; sourceTree = "<group>"; };
 		8116897F12565F5E0055A4F3 /* EventSessionLeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventSessionLeader.h; sourceTree = "<group>"; };
@@ -190,10 +191,6 @@
 		8116898212565F5E0055A4F3 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		8116898312565F5E0055A4F3 /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		8116898412565F5E0055A4F3 /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
-		8116898512565F5E0055A4F3 /* Update.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Update.h; sourceTree = "<group>"; };
-		8116898612565F5E0055A4F3 /* Update.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Update.m; sourceTree = "<group>"; };
-		8116898712565F5E0055A4F3 /* WebDataModelObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDataModelObject.h; sourceTree = "<group>"; };
-		8116898812565F5E0055A4F3 /* WebDataModelObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDataModelObject.m; sourceTree = "<group>"; };
 		8116898A12565F5E0055A4F3 /* AuthorizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthorizeViewController.h; sourceTree = "<group>"; };
 		8116898B12565F5E0055A4F3 /* AuthorizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthorizeViewController.m; sourceTree = "<group>"; };
 		8116898C12565F5E0055A4F3 /* DataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
@@ -328,6 +325,12 @@
 		81168A6812565FCF0055A4F3 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
 		81168A6912565FCF0055A4F3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		811BA5CF120C58E40045BB34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		814FC4C8125A492D00DB3123 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		814FC4C9125A492D00DB3123 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		814FC4D3125A5A6600DB3123 /* WebDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDataModel.h; sourceTree = "<group>"; };
+		814FC5A0125A81EC00DB3123 /* VenueDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueDetailsViewController.h; sourceTree = "<group>"; };
+		814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueDetailsViewController.m; sourceTree = "<group>"; };
+		814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = Libraries/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E75F3911BE0D5800E6B283 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -482,8 +485,8 @@
 			children = (
 				8116897912565F5E0055A4F3 /* Event.h */,
 				8116897A12565F5E0055A4F3 /* Event.m */,
-				8116897B12565F5E0055A4F3 /* EventAnnotation.h */,
-				8116897C12565F5E0055A4F3 /* EventAnnotation.m */,
+				8116897B12565F5E0055A4F3 /* VenueAnnotation.h */,
+				8116897C12565F5E0055A4F3 /* VenueAnnotation.m */,
 				8116897D12565F5E0055A4F3 /* EventSession.h */,
 				8116897E12565F5E0055A4F3 /* EventSession.m */,
 				8116897F12565F5E0055A4F3 /* EventSessionLeader.h */,
@@ -492,10 +495,9 @@
 				8116898212565F5E0055A4F3 /* Profile.m */,
 				8116898312565F5E0055A4F3 /* Tweet.h */,
 				8116898412565F5E0055A4F3 /* Tweet.m */,
-				8116898512565F5E0055A4F3 /* Update.h */,
-				8116898612565F5E0055A4F3 /* Update.m */,
-				8116898712565F5E0055A4F3 /* WebDataModelObject.h */,
-				8116898812565F5E0055A4F3 /* WebDataModelObject.m */,
+				814FC4C8125A492D00DB3123 /* Venue.h */,
+				814FC4C9125A492D00DB3123 /* Venue.m */,
+				814FC4D3125A5A6600DB3123 /* WebDataModel.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,6 +551,8 @@
 				811689B512565F5E0055A4F3 /* TweetDetailsViewController.m */,
 				811689B612565F5E0055A4F3 /* TweetsViewController.h */,
 				811689B712565F5E0055A4F3 /* TweetsViewController.m */,
+				814FC5A0125A81EC00DB3123 /* VenueDetailsViewController.h */,
+				814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -697,6 +701,7 @@
 				81168A6612565FCF0055A4F3 /* ProfileMainViewController.xib */,
 				81168A6712565FCF0055A4F3 /* TweetDetailsViewController.xib */,
 				81168A6812565FCF0055A4F3 /* TweetsViewController.xib */,
+				814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */,
 			);
 			path = NIBs;
 			sourceTree = "<group>";
@@ -807,6 +812,7 @@
 				81168A9512565FCF0055A4F3 /* TweetDetailsViewController.xib in Resources */,
 				81168A9612565FCF0055A4F3 /* TweetsViewController.xib in Resources */,
 				81168A9712565FCF0055A4F3 /* Settings.bundle in Resources */,
+				814FC5A4125A820700DB3123 /* VenueDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,13 +843,11 @@
 				811689D512565F5E0055A4F3 /* TwitterProfileImageDownloader.m in Sources */,
 				811689D612565F5E0055A4F3 /* UserSettings.m in Sources */,
 				811689D712565F5E0055A4F3 /* Event.m in Sources */,
-				811689D812565F5E0055A4F3 /* EventAnnotation.m in Sources */,
+				811689D812565F5E0055A4F3 /* VenueAnnotation.m in Sources */,
 				811689D912565F5E0055A4F3 /* EventSession.m in Sources */,
 				811689DA12565F5E0055A4F3 /* EventSessionLeader.m in Sources */,
 				811689DB12565F5E0055A4F3 /* Profile.m in Sources */,
 				811689DC12565F5E0055A4F3 /* Tweet.m in Sources */,
-				811689DD12565F5E0055A4F3 /* Update.m in Sources */,
-				811689DE12565F5E0055A4F3 /* WebDataModelObject.m in Sources */,
 				811689DF12565F5E0055A4F3 /* AuthorizeViewController.m in Sources */,
 				811689E012565F5E0055A4F3 /* DataViewController.m in Sources */,
 				811689E112565F5E0055A4F3 /* EventDescriptionViewController.m in Sources */,
@@ -886,6 +890,8 @@
 				81168A2912565FA40055A4F3 /* OAServiceTicket.m in Sources */,
 				81168A2A12565FA40055A4F3 /* OAToken.m in Sources */,
 				81168A2B12565FA40055A4F3 /* OAToken_KeychainExtensions.m in Sources */,
+				814FC4CA125A492D00DB3123 /* Venue.m in Sources */,
+				814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

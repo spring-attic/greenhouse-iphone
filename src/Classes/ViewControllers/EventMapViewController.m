@@ -7,135 +7,24 @@
 //
 
 #import "EventMapViewController.h"
-#import "EventAnnotation.h"
+#import "Event.h"
+#import "Venue.h"
+#import "VenueAnnotation.h"
 
 
 @interface EventMapViewController()
 
-@property (nonatomic, retain) EventAnnotation *eventAnnotation;
-
-- (void)fetchGeocodeResults;
+@property (nonatomic, retain) NSMutableArray *venueAnnotations;
 
 @end
 
 
 @implementation EventMapViewController
 
-@synthesize eventAnnotation;
+@synthesize venueAnnotations;
 @synthesize event;
 @synthesize mapViewLocation;
-
-- (void)fetchGeocodeResults
-{
-	// See Google for details of the geocoding API
-	// http://code.google.com/apis/maps/documentation/geocoding/#GeocodingRequests	
-	
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_LOCATION_MAP_URL, event.location];
-	NSString *escapedUrlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	[urlString release];
-	
-	DLog(@"%@", escapedUrlString);
-	
-	NSURL *url = [[NSURL alloc] initWithString:escapedUrlString];
-	NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:url
-													 cachePolicy:NSURLRequestReturnCacheDataElseLoad
-												 timeoutInterval:60.0];
-	[url release];
-
-	NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self];
-	[urlRequest release];
-	
-	if (connection) 
-	{
-		_receivedData = [[NSMutableData data] retain];
-	} 
-	else 
-	{
-		// Inform the user that the connection failed.
-	}
-}
-
-
-#pragma mark -
-#pragma mark NSURLConnection delegate methods
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-    [_receivedData setLength:0];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    [_receivedData appendData:data];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    [connection release];
-    [_receivedData release];
-	
-    DLog(@"Connection failed! Error - %@ %@",
-          [error localizedDescription],
-          [[error userInfo] objectForKey:NSURLErrorFailingURLStringErrorKey]);
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	[connection release];
-	
-    DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
-	
-	NSString *responseBody = [[NSString alloc] initWithData:_receivedData encoding:NSUTF8StringEncoding];
-	[_receivedData release];
-	
-	NSDictionary *geocodeResponse = (NSDictionary *)[responseBody yajl_JSON];
-	[responseBody release];
-	
-	NSString *status = [geocodeResponse stringForKey:@"status"];
-	NSArray *results = (NSArray *)[geocodeResponse objectForKey:@"results"];
-	
-    double latitude = 0.0f;
-    double longitude = 0.0f;
-	
-	if ([status isEqualToString:@"OK"])
-	{		
-		NSArray *a = [results valueForKey:@"geometry"];
-		NSDictionary *geometry = (NSDictionary *)[a objectAtIndex:0];
-		
-		if (geometry)
-		{
-			NSDictionary *location = (NSDictionary *)[geometry objectForKey:@"location"];
-			
-			latitude = [location doubleForKey:@"lat"];
-			longitude = [location doubleForKey:@"lng"];
-		}
-	}
-	
-	CLLocationCoordinate2D coordinate;
-	coordinate.latitude = latitude;
-	coordinate.longitude = longitude;
-		
-	MKCoordinateSpan span;
-	span.latitudeDelta = 0.2f;
-	span.longitudeDelta = 0.2f;
-	
-	MKCoordinateRegion region;
-	region.span = span;
-	region.center = coordinate;
-	
-	if (eventAnnotation != nil) 
-	{
-		[mapViewLocation removeAnnotation:eventAnnotation];
-		[eventAnnotation release];
-	}
-	
-	self.eventAnnotation = [[EventAnnotation alloc] init];
-	eventAnnotation.coordinate = coordinate;
-	
-	[mapViewLocation addAnnotation:eventAnnotation];
-	[mapViewLocation setRegion:region animated:YES];
-	[mapViewLocation regionThatFits:region];
-}
+@synthesize venueDetailsViewController;
 
 
 #pragma mark -
@@ -150,14 +39,20 @@
 	if (annotationView == nil)
 	{
 		annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ident] autorelease];
+		annotationView.pinColor = MKPinAnnotationColorGreen;
+		annotationView.animatesDrop = YES;
+		annotationView.canShowCallout = YES;
+		annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];		
 	}
-	
-    annotationView.pinColor = MKPinAnnotationColorGreen;
-    annotationView.animatesDrop = YES;
-    annotationView.canShowCallout = NO;
-    annotationView.calloutOffset = CGPointMake(-5.0f, 5.0f);
-	
+		
     return annotationView;
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+	VenueAnnotation *venueAnnotation = (VenueAnnotation *)view.annotation;
+	venueDetailsViewController.venue = venueAnnotation.venue;
+	[self.navigationController pushViewController:venueDetailsViewController animated:YES];
 }
 
 
@@ -166,7 +61,86 @@
 
 - (void)reloadData
 {
-	[self fetchGeocodeResults];
+	if (venueAnnotations != nil)
+	{
+		[mapViewLocation removeAnnotations:venueAnnotations];
+		[venueAnnotations removeAllObjects];
+	}
+	
+	CLLocationDegrees maxLat = 0.0f;
+	CLLocationDegrees minLat = 0.0f;
+	CLLocationDegrees maxLng = 0.0f;
+	CLLocationDegrees minLng = 0.0f;	
+	
+	for (Venue *venue in event.venues)
+	{
+		VenueAnnotation *annotation = [[VenueAnnotation alloc] initWithVenue:venue];
+		[self.venueAnnotations addObject:annotation];
+		[annotation release];
+		
+		// find the max and min lat,lng values to determine the bounds of the map
+		CLLocationDegrees lat = venue.location.coordinate.latitude;
+		CLLocationDegrees lng = venue.location.coordinate.longitude;
+		
+		if (lat != 0 && lat > maxLat)
+		{
+			maxLat = lat;
+		}
+		
+		if (lat != 0 && lat < minLat)
+		{
+			minLat = lat;
+		}
+		
+		if (lng != 0 && lng > maxLng)
+		{
+			maxLng = lng;
+		}
+		
+		if (lng != 0 && lng < minLng)
+		{
+			minLng = lng;
+		}
+	}
+	
+	if ([venueAnnotations count] == 0)
+	{
+		return;
+	}
+	
+	MKCoordinateSpan span;
+	CLLocationCoordinate2D center;
+	
+	if ([venueAnnotations count] == 1)
+	{
+		// if we only have a single venue location, then no need to calculate the map bounds
+		VenueAnnotation *annotation = [venueAnnotations objectAtIndex:0];
+		
+		span.latitudeDelta = 0.2f;
+		span.longitudeDelta = 0.2f;
+		
+		center = annotation.coordinate;
+	}
+	else if ([venueAnnotations count] > 1)
+	{
+		// set the map bounds based on the furthest two locations
+		CLLocationDegrees latDelta = maxLat - minLat;
+		CLLocationDegrees lngDelta = maxLng - minLng;
+
+		span.latitudeDelta = latDelta;
+		span.longitudeDelta = lngDelta;
+
+		center.latitude = latDelta / 2;
+		center.longitude = lngDelta / 2;
+	}
+	
+	MKCoordinateRegion region;
+	region.span = span;
+	region.center = center;	
+	
+	[mapViewLocation addAnnotations:venueAnnotations];
+	[mapViewLocation setRegion:region animated:YES];
+	[mapViewLocation regionThatFits:region];	
 }
 
 
@@ -178,6 +152,9 @@
     [super viewDidLoad];
 	
 	self.title = @"Map";
+	
+	self.venueAnnotations = [[NSMutableArray alloc] init];
+	self.venueDetailsViewController = [[VenueDetailsViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -189,17 +166,19 @@
 {
     [super viewDidUnload];
 	
-	self.eventAnnotation = nil;
+	self.venueAnnotations = nil;
 	self.event = nil;
 	self.mapViewLocation = nil;
+	self.venueDetailsViewController = nil;
 }
 
 
 - (void)dealloc 
 {
-	[eventAnnotation release];
+	[venueAnnotations release];
 	[event release];
 	[mapViewLocation release];
+	[venueDetailsViewController release];
 	
     [super dealloc];
 }

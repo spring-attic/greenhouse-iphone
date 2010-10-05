@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebDataModelObject.h"
+#import "WebDataModel.h"
 
 
-@interface Event : WebDataModelObject 
-{
-
-}
+@interface Event : NSObject <WebDataModel> { }
 
 @property (nonatomic, copy) NSString *eventId;
 @property (nonatomic, copy) NSString *title;
@@ -24,6 +21,6 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, copy) NSString *groupName;
-@property (nonatomic, copy) NSString *groupProfileKey;
+@property (nonatomic, retain) NSArray *venues;
 
 @end

@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebDataModelObject.h"
+#import "WebDataModel.h"
 
 
-@interface Tweet : WebDataModelObject 
-{
-
-}
+@interface Tweet : NSObject <WebDataModel> { }
 
 @property (nonatomic, copy) NSString *tweetId;
 @property (nonatomic, copy) NSString *text;

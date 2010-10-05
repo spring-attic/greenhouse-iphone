@@ -539,21 +539,38 @@ static BOOL sharedShouldRefreshFavorites;
 	[_activityAlertiView stopAnimating];
 	self.activityAlertiView = nil;
 	
+	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
+	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
 	DLog(@"%@", responseBody);
-	
-	if (!ticket.didSucceed)
+				
+	if (ticket.didSucceed)
 	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating."];
+		if ([_delegate respondsToSelector:@selector(rateSessionDidFinish)])
+		{
+			[_delegate rateSessionDidFinish];
+		}		
+	}
+	else
+	{	
+		if ([response statusCode] == 412) 
+		{
+			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
+																message:@"This session has not yet finished. Please wait until the session has completed before submitting your rating." 
+															   delegate:nil 
+													  cancelButtonTitle:@"OK" 
+													  otherButtonTitles:nil];
+			[alertView show];
+			[alertView release];		
+		}
+		else 
+		{
+			[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating."];
+		}
 	}
 	
-	[responseBody release];
-	
-	if ([_delegate respondsToSelector:@selector(rateSessionDidFinish)])
-	{
-		[_delegate rateSessionDidFinish];
-	}
+	[responseBody release];	
 }
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error

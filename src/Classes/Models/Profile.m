@@ -26,7 +26,7 @@
 
 
 #pragma mark -
-#pragma mark Instance methods
+#pragma mark WebDataModel methods
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {

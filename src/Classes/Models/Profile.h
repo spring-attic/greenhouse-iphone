@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "WebDataModelObject.h"
+#import "WebDataModel.h"
 
 
-@interface Profile : WebDataModelObject { }
+@interface Profile : NSObject <WebDataModel> { }
 
 @property (nonatomic, assign) NSUInteger accountId;
 @property (nonatomic, copy) NSString *displayName;

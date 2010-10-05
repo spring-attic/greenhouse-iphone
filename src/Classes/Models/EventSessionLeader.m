@@ -15,6 +15,10 @@
 @synthesize lastName;
 @dynamic displayName;
 
+
+#pragma mark -
+#pragma mark WebDataModel methods
+
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
 	if ((self = [super init]))

@@ -10,6 +10,13 @@
 #import "EventSessionLeader.h"
 
 
+@interface EventSession()
+
+- (NSArray *)processLeaderData:(NSArray *)leadersJson;
+
+@end
+
+
 @implementation EventSession
 
 @synthesize number;
@@ -25,36 +32,9 @@
 @dynamic leaderCount;
 @dynamic leaderDisplay;
 
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-	if ((self = [super init]))
-	{
-		if (dictionary)
-		{
-			self.number = [dictionary stringForKey:@"number"];
-			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
-			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
-			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
-			self.description = [[dictionary stringForKey:@"description"] stringBySimpleXmlDecoding];
-			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
-			self.isFavorite = [dictionary boolForKey:@"favorite"];
-			self.rating = [dictionary doubleForKey:@"rating"];
-			self.location = [[dictionary stringForKey:@"location"] stringBySimpleXmlDecoding];
 
-			NSArray *array = [dictionary objectForKey:@"leaders"];
-			self.leaders = [NSMutableArray arrayWithCapacity:[array count]];
-			
-			for (NSDictionary *d in array) 
-			{
-				EventSessionLeader *leader = [[EventSessionLeader alloc] initWithDictionary:d];
-				[leaders addObject:leader];
-				[leader release];
-			}
-		}
-	}
-	
-	return self;
-}
+#pragma mark -
+#pragma mark Public methods
 
 - (NSInteger)leaderCount
 {
@@ -74,6 +54,58 @@
 	}
 	
 	return @"";
+}
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (NSArray *)processLeaderData:(NSArray *)leadersJson
+{
+	if (leadersJson)
+	{
+		NSMutableArray *tmpLeaders = [[NSMutableArray alloc] initWithCapacity:[leadersJson count]];
+		
+		for (NSDictionary *d in leadersJson) 
+		{
+			EventSessionLeader *leader = [[EventSessionLeader alloc] initWithDictionary:d];
+			[tmpLeaders addObject:leader];
+			[leader release];
+		}
+		
+		NSArray *leadersArray = [NSArray arrayWithArray:tmpLeaders];
+		[tmpLeaders release];
+		
+		return leadersArray;
+	}
+	
+	return [NSArray array];
+}
+
+
+#pragma mark -
+#pragma mark WebDataModel methods
+
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+	if ((self = [super init]))
+	{
+		if (dictionary)
+		{
+			self.number = [dictionary stringForKey:@"number"];
+			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
+			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
+			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
+			self.description = [[dictionary stringForKey:@"description"] stringBySimpleXmlDecoding];
+			self.leaders = [self processLeaderData:[dictionary objectForKey:@"leaders"]];
+			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
+			self.isFavorite = [dictionary boolForKey:@"favorite"];
+			self.rating = [dictionary doubleForKey:@"rating"];
+			self.location = [[dictionary stringForKey:@"location"] stringBySimpleXmlDecoding];
+		}
+	}
+	
+	return self;
 }
 
 

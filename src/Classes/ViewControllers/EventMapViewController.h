@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "Event.h"
+#import "VenueDetailsViewController.h"
 
+
+@class Event;
 
 @interface EventMapViewController : DataViewController <MKMapViewDelegate>
 {
@@ -18,5 +20,6 @@
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) IBOutlet MKMapView *mapViewLocation;
+@property (nonatomic, retain) VenueDetailsViewController *venueDetailsViewController;
 
 @end

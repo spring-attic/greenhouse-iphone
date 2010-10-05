@@ -223,17 +223,7 @@
 		
 		labelLocation.text = session.location;
 		
-		NSArray *items = nil;
-		
-		if ([session.endTime compare:[NSDate date]] == NSOrderedDescending)
-		{
-			items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", nil];
-		}
-		else 
-		{
-			items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
-		}
-			 
+		NSArray *items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
 		self.arrayMenuItems = items;
 		[items release];
 

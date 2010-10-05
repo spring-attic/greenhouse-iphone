@@ -7,6 +7,14 @@
 //
 
 #import "Event.h"
+#import "Venue.h"
+
+
+@interface Event()
+
+- (NSArray *)processVenueData:(NSArray *)venuesJson;
+
+@end
 
 
 @implementation Event
@@ -20,7 +28,37 @@
 @synthesize name;
 @synthesize hashtag;
 @synthesize groupName;
-@synthesize groupProfileKey;
+@synthesize venues;
+
+
+#pragma mark -
+#pragma mark Private methods
+
+- (NSArray *)processVenueData:(NSArray *)venuesJson
+{
+	if (venuesJson)
+	{
+		NSMutableArray *tmpVenues = [[NSMutableArray alloc] initWithCapacity:[venuesJson count]];
+		
+		for (NSDictionary *d in venuesJson)
+		{
+			Venue *venue = [[Venue alloc] initWithDictionary:d];
+			[tmpVenues addObject:venue];
+			[venue release];
+		}
+		
+		NSArray *venuesArray = [NSArray arrayWithArray:tmpVenues];
+		[tmpVenues release];
+		
+		return venuesArray;
+	}
+	
+	return [NSArray array];
+}
+
+
+#pragma mark -
+#pragma mark WebDataModel methods
 
 - (id)initWithDictionary:(NSDictionary *)dictionary
 {
@@ -37,7 +75,7 @@
 			self.name = [dictionary stringByReplacingPercentEscapesForKey:@"name" usingEncoding:NSUTF8StringEncoding];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.groupName = [dictionary stringByReplacingPercentEscapesForKey:@"groupName" usingEncoding:NSUTF8StringEncoding];
-			self.groupProfileKey = [dictionary stringForKey:@"groupProfileKey"];
+			self.venues = [self processVenueData:[dictionary objectForKey:@"venues"]];
 		}
 	}
 	
@@ -59,7 +97,7 @@
 	[name release];
 	[hashtag release];
 	[groupName release];
-	[groupProfileKey release];
+	[venues release];
 	
 	[super dealloc];
 }
