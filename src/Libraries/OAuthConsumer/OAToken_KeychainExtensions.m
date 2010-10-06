@@ -123,6 +123,8 @@
 		
 		self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
 		self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
+		
+		[result release];
 	}
 	
 	return self;
@@ -195,7 +197,7 @@
 						   kCFBooleanTrue, kSecReturnAttributes, 
 						   nil];
 	
-	NSDictionary *result;
+	NSMutableDictionary *result = nil;
 	OSStatus status = SecItemCopyMatching((CFDictionaryRef)query, (CFTypeRef *)&result);
 	
 	[query release];

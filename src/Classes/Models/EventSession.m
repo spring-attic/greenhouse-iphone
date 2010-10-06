@@ -102,7 +102,10 @@
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.isFavorite = [dictionary boolForKey:@"favorite"];
 			self.rating = [dictionary doubleForKey:@"rating"];
-			self.room = [[VenueRoom alloc] initWithDictionary:[dictionary objectForKey:@"room"]];
+			
+			VenueRoom *venueRoom = [[VenueRoom alloc] initWithDictionary:[dictionary objectForKey:@"room"]];
+			self.room = venueRoom;
+			[venueRoom release];
 		}
 	}
 	
