@@ -36,4 +36,6 @@
 @property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
 @property (nonatomic, retain) EventSessionRateViewController *sessionRateViewController;
 
+- (void)updateRating:(double)newRating;
+
 @end

@@ -12,12 +12,14 @@
 
 @class Event;
 @class EventSession;
+@class EventSessionDetailsViewController;
 
 
 @interface EventSessionRateViewController : UIViewController <EventSessionControllerDelegate, UITextViewDelegate> { }
 
 @property (nonatomic, retain) Event *event;
 @property (nonatomic, retain) EventSession *session;
+@property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
 @property (nonatomic, retain) IBOutlet UIButton *buttonRating1;
 @property (nonatomic, retain) IBOutlet UIButton *buttonRating2;
 @property (nonatomic, retain) IBOutlet UIButton *buttonRating3;

@@ -23,7 +23,7 @@
 - (void)fetchConferenceFavoriteSessionsDidFailWithError:(NSError *)error;
 - (void)updateFavoriteSessionDidFinishWithResults:(BOOL)isFavorite;
 - (void)updateFavoriteSessionDidFailWithError:(NSError *)error;
-- (void)rateSessionDidFinish;
+- (void)rateSessionDidFinishWithResults:(double)newRating;
 - (void)rateSessionDidFailWithError:(NSError *)error;
 
 @end

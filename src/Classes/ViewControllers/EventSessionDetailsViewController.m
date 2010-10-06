@@ -21,7 +21,6 @@
 @property (nonatomic, retain) EventSessionController *eventSessionController;
 @property (nonatomic, retain) ActivityIndicatorTableViewCell *favoriteTableViewCell;
 
-- (void)updateRatingImages:(double)rating;
 - (void)setRating:(double)rating imageView:(UIImageView *)imageView;
 - (void)updateFavoriteSession;
 
@@ -49,14 +48,22 @@
 @synthesize sessionTweetsViewController;
 @synthesize sessionRateViewController;
 
-- (void)updateRatingImages:(double)rating
+
+#pragma mark -
+#pragma mark Public methods
+
+- (void)updateRating:(double)newRating
 {	
-	[self setRating:rating imageView:imageViewRating1];
-	[self setRating:rating imageView:imageViewRating2];
-	[self setRating:rating imageView:imageViewRating3];
-	[self setRating:rating imageView:imageViewRating4];
-	[self setRating:rating imageView:imageViewRating5];	
+	[self setRating:newRating imageView:imageViewRating1];
+	[self setRating:newRating imageView:imageViewRating2];
+	[self setRating:newRating imageView:imageViewRating3];
+	[self setRating:newRating imageView:imageViewRating4];
+	[self setRating:newRating imageView:imageViewRating5];	
 }
+
+
+#pragma mark -
+#pragma mark Private methods
 
 - (void)setRating:(double)rating imageView:(UIImageView *)imageView 
 {
@@ -213,6 +220,7 @@
 		sessionTweetsViewController.session = session;
 		sessionRateViewController.event = event;
 		sessionRateViewController.session = session;
+		sessionRateViewController.sessionDetailsViewController = self;
 				
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"h:mm a"];
@@ -232,7 +240,7 @@
 
 		[tableViewMenu reloadData];
 		
-		[self updateRatingImages:session.rating];
+		[self updateRating:session.rating];
 	}	
 }
 

@@ -547,9 +547,11 @@ static BOOL sharedShouldRefreshFavorites;
 				
 	if (ticket.didSucceed)
 	{
-		if ([_delegate respondsToSelector:@selector(rateSessionDidFinish)])
+		double rating = [responseBody doubleValue];
+		
+		if ([_delegate respondsToSelector:@selector(rateSessionDidFinishWithResults:)])
 		{
-			[_delegate rateSessionDidFinish];
+			[_delegate rateSessionDidFinishWithResults:rating];
 		}		
 	}
 	else

@@ -9,6 +9,7 @@
 #import "EventSessionRateViewController.h"
 #import "Event.h"
 #import "EventSession.h"
+#import "EventSessionDetailsViewController.h"
 
 #define MAX_MESSAGE_SIZE	140
 
@@ -30,6 +31,7 @@
 @synthesize rating;
 @synthesize event;
 @synthesize session;
+@synthesize sessionDetailsViewController;
 @synthesize barButtonCancel;
 @synthesize barButtonSubmit;
 @synthesize buttonRating1;
@@ -156,10 +158,13 @@
 #pragma mark -
 #pragma mark EventSessionControllerDelegate methods
 
-- (void)rateSessionDidFinish
+- (void)rateSessionDidFinishWithResults:(double)newRating
 {
 	[eventSessionController release];
 	self.eventSessionController = nil;
+	
+	session.rating = newRating;
+	[sessionDetailsViewController updateRating:newRating];
 	
 	[self dismissModalViewControllerAnimated:YES];
 }
@@ -207,6 +212,7 @@
 	
 	self.eventSessionController = nil;
 	self.event = nil;
+	self.sessionDetailsViewController = nil;
 	self.session = nil;
 	self.barButtonCancel = nil;
 	self.barButtonSubmit = nil;
@@ -227,6 +233,7 @@
 {
 	[event release];
 	[session release];
+	[sessionDetailsViewController release];
 	[barButtonCancel release];
 	[barButtonSubmit release];
 	[buttonRating1 release];
