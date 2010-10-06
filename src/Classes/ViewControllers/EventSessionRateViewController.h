@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "EventSessionController.h"
-#import "Event.h"
-#import "eventSession.h"
+
+
+@class Event;
+@class EventSession;
 
 
 @interface EventSessionRateViewController : UIViewController <EventSessionControllerDelegate, UITextViewDelegate> { }

@@ -7,16 +7,19 @@
 //
 
 #import "EventSessionRateViewController.h"
+#import "Event.h"
+#import "EventSession.h"
 
-#define MAX_MESSAGE_SIZE	500
+#define MAX_MESSAGE_SIZE	140
 
 
 @interface EventSessionRateViewController()
 
-- (void)updateRatingButtons:(NSInteger)count;
-
 @property (nonatomic, retain) EventSessionController *eventSessionController;
 @property (nonatomic, assign) NSUInteger rating;
+
+- (void)updateRatingButtons:(NSInteger)count;
+- (void)updateCharacterCount:(NSInteger)newCount;
 
 @end
 
@@ -36,6 +39,33 @@
 @synthesize buttonRating5;
 @synthesize textViewComments;
 @synthesize barButtonCount;
+
+
+#pragma mark -
+#pragma mark Public methods
+
+- (IBAction)actionSelectRating:(id)sender
+{
+	UIButton *button = (UIButton *)sender;
+	[self updateRatingButtons:button.tag];
+}
+
+- (IBAction)actionCancel:(id)sender
+{
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+- (IBAction)actionSubmit:(id)sender
+{
+	self.eventSessionController = [[EventSessionController alloc] init];
+	eventSessionController.delegate = self;
+	
+	[eventSessionController rateSession:session.number withEventId:event.eventId rating:rating comment:textViewComments.text];
+}
+
+
+#pragma mark -
+#pragma mark Private methods
 
 - (void)updateRatingButtons:(NSInteger)count
 {
@@ -96,33 +126,9 @@
 	}	
 }
 
-
-- (IBAction)actionSelectRating:(id)sender
+- (void)updateCharacterCount:(NSInteger)newCount
 {
-	UIButton *button = (UIButton *)sender;
-	[self updateRatingButtons:button.tag];
-}
-
-- (IBAction)actionCancel:(id)sender
-{
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction)actionSubmit:(id)sender
-{
-	self.eventSessionController = [[EventSessionController alloc] init];
-	eventSessionController.delegate = self;
-	
-	[eventSessionController rateSession:session.number withEventId:event.eventId rating:rating comment:textViewComments.text];
-}
-
-
-#pragma mark -
-#pragma mark UITextViewDelegate methods
-
-- (void)textViewDidChange:(UITextView *)textView
-{
-	NSInteger remainingChars = MAX_MESSAGE_SIZE - textView.text.length;
+	NSInteger remainingChars = MAX_MESSAGE_SIZE - newCount;
 	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
 	barButtonCount.title = s;
 	[s release];
@@ -135,6 +141,15 @@
 	{
 		barButtonSubmit.enabled = YES;
 	}	
+}
+
+
+#pragma mark -
+#pragma mark UITextViewDelegate methods
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	[self updateCharacterCount:[textView.text length]];
 }
 
 
@@ -169,6 +184,7 @@
 	[super viewWillAppear:animated];
 	
 	textViewComments.text = @"";
+	[self updateCharacterCount:0];
 	[self updateRatingButtons:0];
 	
 	// display the keyboard
