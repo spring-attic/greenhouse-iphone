@@ -43,7 +43,8 @@
 	
 	if (![currentEvent.eventId isEqualToString:event.eventId])
 	{
-		self.arrayTweets = nil;
+		self.isLoading = YES;
+		[self.arrayTweets removeAllObjects];
 		[self.tableView reloadData];
 	}
 	

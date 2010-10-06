@@ -45,7 +45,8 @@
 	
 	if (![currentSession.number isEqualToString:session.number])
 	{
-		self.arrayTweets = nil;
+		self.isLoading = YES;
+		[self.arrayTweets removeAllObjects];
 		[self.tableView reloadData];
 	}
 	

@@ -22,4 +22,6 @@
 @property (nonatomic, copy) NSString *source;
 @property (nonatomic, retain) UIImage *profileImage;
 
+- (void)removeCachedProfileImage;
+
 @end

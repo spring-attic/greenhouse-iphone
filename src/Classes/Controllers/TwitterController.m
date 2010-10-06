@@ -19,13 +19,16 @@
 #pragma mark -
 #pragma mark Instance methods
 
-- (void)fetchTweetsWithURL:(NSURL *)url
+- (void)fetchTweetsWithURL:(NSURL *)url page:(NSUInteger)page;
 {
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
+	NSString *urlString = [[NSString alloc] initWithFormat:@"%@?page=%d&pageSize=%d", [url absoluteString], page, TWITTER_PAGE_SIZE];
+	
+    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
+	[urlString release];
 	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -54,12 +57,15 @@
 	DLog(@"%@", responseBody);
 	
 	NSMutableArray *tweets = [[[NSMutableArray alloc] init] autorelease];
+	BOOL lastPage = NO;
 		
 	if (ticket.didSucceed)
 	{
 		NSDictionary *dictionary = [responseBody yajl_JSON];
 		
 		DLog(@"%@", dictionary);
+		
+		lastPage = [dictionary boolForKey:@"lastPage"];
 		
 		NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];
 		
@@ -77,9 +83,9 @@
 	
 	[responseBody release];
 	
-	if ([_delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:)])
+	if ([_delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:lastPage:)])
 	{
-		[_delegate fetchTweetsDidFinishWithResults:tweets];
+		[_delegate fetchTweetsDidFinishWithResults:tweets lastPage:lastPage];
 	}
 }
 

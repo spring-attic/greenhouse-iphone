@@ -22,6 +22,12 @@
 @synthesize profileImage;
 
 
+- (void)removeCachedProfileImage
+{
+	self.profileImage = nil;
+}
+
+
 #pragma mark -
 #pragma mark WebDataModel methods
 

@@ -44,11 +44,13 @@
 	{
 		[_urlConnection cancel];
 		[_urlConnection release];
+		_urlConnection = nil;
 	}
 	
 	if (_receivedData)
 	{
 		[_receivedData release];
+		_receivedData = nil;
 	}
 }
 
@@ -69,7 +71,10 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [_receivedData release];
-    [connection release];
+	_receivedData = nil;
+	
+    [_urlConnection release];
+	_urlConnection = nil;
 	
 	DLog(@"Connection failed! Error - %@ %@",
 		 [error localizedDescription],
@@ -78,12 +83,15 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	[connection release];
+    [_urlConnection release];
+	_urlConnection = nil;
 	
 	DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
 	
     UIImage *image = [[UIImage alloc] initWithData:_receivedData];
-	[_receivedData release];
+
+    [_receivedData release];
+	_receivedData = nil;
     
     if (image.size.width != kImageHeight && image.size.height != kImageHeight)
 	{
@@ -110,6 +118,8 @@
 
 - (void)dealloc
 {
+	[self cancelDownload];
+	
     [tweet release];
     [indexPathInTableView release];
     

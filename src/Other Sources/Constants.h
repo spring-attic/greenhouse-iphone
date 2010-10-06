@@ -63,3 +63,7 @@
 #define EVENT_SESSION_RETWEET_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/retweet"]
 #define EVENT_SESSION_RATING_URL				[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/events/%@/sessions/%@/rating"]
 #define EVENT_LOCATION_MAP_URL					@"http://maps.google.com/maps/api/geocode/json?address=%@&sensor=true"
+
+
+#define TWITTER_PAGE_SIZE						20
+

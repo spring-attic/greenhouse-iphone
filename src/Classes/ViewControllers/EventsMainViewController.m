@@ -146,7 +146,7 @@
 
 - (BOOL)shouldReloadData
 {
-	return (!arrayEvents || self.lastRefreshExpired);
+	return (!arrayEvents || self.lastRefreshExpired || [arrayEvents count] == 0);
 }
 
 

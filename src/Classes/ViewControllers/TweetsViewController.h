@@ -16,13 +16,21 @@
 @class TweetDetailsViewController;
 
 
-@interface TweetsViewController : PullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, TwitterControllerDelegate, TwitterProfileImageDownloaderDelegate> { }
+@interface TweetsViewController : PullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, TwitterControllerDelegate, TwitterProfileImageDownloaderDelegate> 
+{ 
+	
+@private
+	BOOL _isLoading;
+	NSUInteger _currentPage;
+	BOOL _isLastPage;
+}
 
-@property (nonatomic, retain) NSArray *arrayTweets;
+@property (nonatomic, retain) NSMutableArray *arrayTweets;
 @property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, retain) NSURL *retweetUrl;
 @property (nonatomic, retain) NewTweetViewController *newTweetViewController;
 @property (nonatomic, retain) TweetDetailsViewController *tweetDetailsViewController;
+@property (nonatomic, assign) BOOL isLoading;
 
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath;
 
