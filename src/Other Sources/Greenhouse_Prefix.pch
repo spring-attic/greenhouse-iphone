@@ -13,7 +13,7 @@
     #import <Foundation/Foundation.h>
     #import <UIKit/UIKit.h>
 
-	// Third Party Libraries
+	// Libraries
 	#import <YAJLIOS/YAJLIOS.h>
 	#import "OauthConsumer.h"
 
@@ -29,9 +29,6 @@
 	#import "NSString+XmlEncoding.h"
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
-	#import "UITabBar+CustomStyle.h"
-	#import "UINavigationBar+CustomStyle.h"
-	#import "UIToolbar+CustomStyle.h"
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"

@@ -14,9 +14,6 @@
 		811689C612565F5E0055A4F3 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895012565F5E0055A4F3 /* NSDictionary+Helpers.m */; };
 		811689C712565F5E0055A4F3 /* NSString+XmlEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895212565F5E0055A4F3 /* NSString+XmlEncoding.m */; };
 		811689C812565F5E0055A4F3 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895412565F5E0055A4F3 /* UIColor+CustomColors.m */; };
-		811689C912565F5E0055A4F3 /* UINavigationBar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895612565F5E0055A4F3 /* UINavigationBar+CustomStyle.m */; };
-		811689CA12565F5E0055A4F3 /* UITabBar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895812565F5E0055A4F3 /* UITabBar+CustomStyle.m */; };
-		811689CB12565F5E0055A4F3 /* UIToolbar+CustomStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895A12565F5E0055A4F3 /* UIToolbar+CustomStyle.m */; };
 		811689CC12565F5E0055A4F3 /* EventController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116895D12565F5E0055A4F3 /* EventController.m */; };
 		811689CD12565F5E0055A4F3 /* EventSessionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116896012565F5E0055A4F3 /* EventSessionController.m */; };
 		811689CE12565F5E0055A4F3 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8116896312565F5E0055A4F3 /* InfoViewController.m */; };
@@ -128,6 +125,9 @@
 		814FC5A4125A820700DB3123 /* VenueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EA59125B6BB90067B8CA /* VenueRoom.m */; };
+		81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC2125C20FF0067B8CA /* CustomTabBar.m */; };
+		81B9EBC6125C210E0067B8CA /* CustomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC5125C210E0067B8CA /* CustomToolbar.m */; };
+		81B9EBD6125C236C0067B8CA /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */; };
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 		81FF3FFC123AB0ED00439B37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF3FFB123AB0ED00439B37 /* main.m */; };
@@ -147,12 +147,6 @@
 		8116895212565F5E0055A4F3 /* NSString+XmlEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+XmlEncoding.m"; sourceTree = "<group>"; };
 		8116895312565F5E0055A4F3 /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
 		8116895412565F5E0055A4F3 /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
-		8116895512565F5E0055A4F3 /* UINavigationBar+CustomStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CustomStyle.h"; sourceTree = "<group>"; };
-		8116895612565F5E0055A4F3 /* UINavigationBar+CustomStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CustomStyle.m"; sourceTree = "<group>"; };
-		8116895712565F5E0055A4F3 /* UITabBar+CustomStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+CustomStyle.h"; sourceTree = "<group>"; };
-		8116895812565F5E0055A4F3 /* UITabBar+CustomStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBar+CustomStyle.m"; sourceTree = "<group>"; };
-		8116895912565F5E0055A4F3 /* UIToolbar+CustomStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIToolbar+CustomStyle.h"; sourceTree = "<group>"; };
-		8116895A12565F5E0055A4F3 /* UIToolbar+CustomStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIToolbar+CustomStyle.m"; sourceTree = "<group>"; };
 		8116895C12565F5E0055A4F3 /* EventController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventController.h; sourceTree = "<group>"; };
 		8116895D12565F5E0055A4F3 /* EventController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventController.m; sourceTree = "<group>"; };
 		8116895E12565F5E0055A4F3 /* EventControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventControllerDelegate.h; sourceTree = "<group>"; };
@@ -335,6 +329,12 @@
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81B9EA58125B6BB90067B8CA /* VenueRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueRoom.h; sourceTree = "<group>"; };
 		81B9EA59125B6BB90067B8CA /* VenueRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRoom.m; sourceTree = "<group>"; };
+		81B9EBC1125C20FF0067B8CA /* CustomTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTabBar.h; sourceTree = "<group>"; };
+		81B9EBC2125C20FF0067B8CA /* CustomTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTabBar.m; sourceTree = "<group>"; };
+		81B9EBC4125C210E0067B8CA /* CustomToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomToolbar.h; sourceTree = "<group>"; };
+		81B9EBC5125C210E0067B8CA /* CustomToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomToolbar.m; sourceTree = "<group>"; };
+		81B9EBD4125C236C0067B8CA /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
+		81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
 		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = Libraries/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E75F3911BE0D5800E6B283 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		81F8DEBF1227801000C3E8FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -432,12 +432,6 @@
 				8116895212565F5E0055A4F3 /* NSString+XmlEncoding.m */,
 				8116895312565F5E0055A4F3 /* UIColor+CustomColors.h */,
 				8116895412565F5E0055A4F3 /* UIColor+CustomColors.m */,
-				8116895512565F5E0055A4F3 /* UINavigationBar+CustomStyle.h */,
-				8116895612565F5E0055A4F3 /* UINavigationBar+CustomStyle.m */,
-				8116895712565F5E0055A4F3 /* UITabBar+CustomStyle.h */,
-				8116895812565F5E0055A4F3 /* UITabBar+CustomStyle.m */,
-				8116895912565F5E0055A4F3 /* UIToolbar+CustomStyle.h */,
-				8116895A12565F5E0055A4F3 /* UIToolbar+CustomStyle.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -569,6 +563,12 @@
 				811689BA12565F5E0055A4F3 /* ActivityAlertView.m */,
 				811689BB12565F5E0055A4F3 /* ActivityIndicatorTableViewCell.h */,
 				811689BC12565F5E0055A4F3 /* ActivityIndicatorTableViewCell.m */,
+				81B9EBD4125C236C0067B8CA /* CustomNavigationBar.h */,
+				81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */,
+				81B9EBC1125C20FF0067B8CA /* CustomTabBar.h */,
+				81B9EBC2125C20FF0067B8CA /* CustomTabBar.m */,
+				81B9EBC4125C210E0067B8CA /* CustomToolbar.h */,
+				81B9EBC5125C210E0067B8CA /* CustomToolbar.m */,
 				811689BD12565F5E0055A4F3 /* EGORefreshTableHeaderView.h */,
 				811689BE12565F5E0055A4F3 /* EGORefreshTableHeaderView.m */,
 				811689C112565F5E0055A4F3 /* TweetTableViewCell.h */,
@@ -833,9 +833,6 @@
 				811689C612565F5E0055A4F3 /* NSDictionary+Helpers.m in Sources */,
 				811689C712565F5E0055A4F3 /* NSString+XmlEncoding.m in Sources */,
 				811689C812565F5E0055A4F3 /* UIColor+CustomColors.m in Sources */,
-				811689C912565F5E0055A4F3 /* UINavigationBar+CustomStyle.m in Sources */,
-				811689CA12565F5E0055A4F3 /* UITabBar+CustomStyle.m in Sources */,
-				811689CB12565F5E0055A4F3 /* UIToolbar+CustomStyle.m in Sources */,
 				811689CC12565F5E0055A4F3 /* EventController.m in Sources */,
 				811689CD12565F5E0055A4F3 /* EventSessionController.m in Sources */,
 				811689CE12565F5E0055A4F3 /* InfoViewController.m in Sources */,
@@ -898,6 +895,9 @@
 				814FC4CA125A492D00DB3123 /* Venue.m in Sources */,
 				814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */,
 				81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */,
+				81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */,
+				81B9EBC6125C210E0067B8CA /* CustomToolbar.m in Sources */,
+				81B9EBD6125C236C0067B8CA /* CustomNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
