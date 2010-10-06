@@ -123,8 +123,6 @@
 		
 		self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
 		self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
-		
-		[result release];
 	}
 	
 	return self;
@@ -207,7 +205,7 @@
 		return nil;
 	}
 	
-	return result;
+	return [result autorelease];
 }
 
 - (OSStatus)deleteKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider

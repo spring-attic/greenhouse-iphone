@@ -96,6 +96,14 @@
 		span.longitudeDelta = 0.2f;
 		
 		center = annotation.coordinate;
+		
+		MKCoordinateRegion region;
+		region.span = span;
+		region.center = center;
+		
+		[mapViewLocation addAnnotations:venueAnnotations];
+		[mapViewLocation setRegion:region animated:YES];
+		[mapViewLocation regionThatFits:region];		
 	}
 	else if ([venueAnnotations count] > 1)
 	{
@@ -108,15 +116,15 @@
 		
 		center.latitude = latDelta / 2;
 		center.longitude = lngDelta / 2;
-	}
-	
-	MKCoordinateRegion region;
-	region.span = span;
-	region.center = center;	
-	
-	[mapViewLocation addAnnotations:venueAnnotations];
-	[mapViewLocation setRegion:region animated:YES];
-	[mapViewLocation regionThatFits:region];
+
+		MKCoordinateRegion region;
+		region.span = span;
+		region.center = center;	
+		
+		[mapViewLocation addAnnotations:venueAnnotations];
+		[mapViewLocation setRegion:region animated:YES];
+		[mapViewLocation regionThatFits:region];		
+	}	
 }
 
 
