@@ -9,6 +9,7 @@
 #import "ProfileMainViewController.h"
 #import "OAuthManager.h"
 #import "Profile.h"
+#import "WebImageView.h"
 
 
 @interface ProfileMainViewController()
@@ -20,9 +21,15 @@
 
 @implementation ProfileMainViewController
 
+@synthesize profile;
 @synthesize profileController;
 @synthesize labelDisplayName;
 @synthesize imageViewPicture;
+@synthesize activityIndicatorView;
+
+
+#pragma mark -
+#pragma mark Public methods
 
 - (IBAction)actionSignOut:(id)sender
 {
@@ -30,14 +37,25 @@
 	[appDelegate showAuthorizeViewController];
 }
 
+- (IBAction)actionRefresh:(id)sender
+{
+	self.profile = nil;
+
+	[self reloadData];
+}
+
 
 #pragma mark -
 #pragma mark ProfileControllerDelegate methods
 
-- (void)fetchProfileDidFinishWithResults:(Profile *)profile;
+- (void)fetchProfileDidFinishWithResults:(Profile *)newProfile;
 {
+	[activityIndicatorView stopAnimating];
+	
 	[profileController release];
 	self.profileController = nil;
+	
+	self.profile = newProfile;
 	
 	labelDisplayName.text = profile.displayName;
 	
@@ -47,6 +65,8 @@
 
 - (void)fetchProfileDidFailWithError:(NSError *)error
 {
+	[activityIndicatorView stopAnimating];
+	
 	[profileController release];
 	self.profileController = nil;
 }
@@ -57,10 +77,20 @@
 
 - (void)reloadData
 {
-	self.profileController = [[ProfileController alloc] init];
-	profileController.delegate = self;
-	
-	[profileController fetchProfile];
+	if ([self shouldReloadData])
+	{
+		[activityIndicatorView startAnimating];
+		
+		self.profileController = [[ProfileController alloc] init];
+		profileController.delegate = self;
+		
+		[profileController fetchProfile];
+	}
+}
+
+- (BOOL)shouldReloadData
+{
+	return (!profile);
 }
 
 
@@ -70,6 +100,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+	
+	activityIndicatorView.hidesWhenStopped = YES;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -89,8 +121,10 @@
     [super viewDidUnload];
 	
 	self.profileController = nil;
+	self.profile = nil;
 	self.labelDisplayName = nil;
 	self.imageViewPicture = nil;
+	self.activityIndicatorView = nil;
 }
 
 
@@ -99,8 +133,10 @@
 
 - (void)dealloc 
 {
+	[profile release];
 	[labelDisplayName release];
 	[imageViewPicture release];
+	[activityIndicatorView release];
 	
     [super dealloc];
 }
