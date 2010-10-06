@@ -107,8 +107,8 @@
 
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url location:(CLLocation *)location
 {
-	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
-	[_activityAlertiView startAnimating];
+	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
+	[_activityAlertView startAnimating];
 
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
@@ -155,8 +155,8 @@
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
@@ -200,8 +200,8 @@
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 
 	[self request:ticket didFailWithError:error];
 	
@@ -213,8 +213,8 @@
 
 - (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
 {
-	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
-	[_activityAlertiView startAnimating];
+	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
+	[_activityAlertView startAnimating];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
@@ -259,8 +259,8 @@
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -312,8 +312,8 @@
 
 - (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 
 	[self request:ticket didFailWithError:error];
 	

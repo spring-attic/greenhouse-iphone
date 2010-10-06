@@ -13,13 +13,13 @@
 @interface OAuthController : NSObject
 {
 	OAAsynchronousDataFetcher *_dataFetcher;
-	ActivityAlertView *_activityAlertiView;
+	ActivityAlertView *_activityAlertView;
 	id _didFailDelegate;
 	SEL _didFailSelector;
 	NSError *_error;
 }
 
-@property (nonatomic, retain) ActivityAlertView *activityAlertiView;
+@property (nonatomic, retain) ActivityAlertView *activityAlertView;
 
 - (void)cancelDataFetcherRequest;
 - (void)request:(OAServiceTicket *)ticket didNotSucceedWithDefaultMessage:(NSString *)message;

@@ -484,8 +484,8 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment
 {
-	self.activityAlertiView = [[ActivityAlertView alloc] initWithActivityMessage:@"Submitting rating..."];
-	[_activityAlertiView startAnimating];
+	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:@"Submitting rating..."];
+	[_activityAlertView startAnimating];
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RATING_URL, eventId, sessionNumber];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
@@ -536,8 +536,8 @@ static BOOL sharedShouldRefreshFavorites;
 	[_dataFetcher release];
 	_dataFetcher = nil;
 	
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -577,8 +577,8 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_activityAlertiView stopAnimating];
-	self.activityAlertiView = nil;
+	[_activityAlertView stopAnimating];
+	self.activityAlertView = nil;
 
 	[self request:ticket didFailWithError:error];
 	
