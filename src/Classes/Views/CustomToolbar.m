@@ -38,13 +38,12 @@
 	// warning, workaround ahead...
 	// The tint is not being applied correctly to UIBarButtonItems
 	// see http://www.openradar.me/8121374
-	for (UIBarButtonItem *item in self.items)
-	{
-		if (item.style == UIBarButtonItemStyleBordered)
+	for (UIBarButtonItem *buttonItem in self.items)
+	{		
+		if ([buttonItem respondsToSelector:@selector(setTintColor:)]) 
 		{
-			item.style = UIBarButtonItemStylePlain;
-			item.style = UIBarButtonItemStyleBordered;
-		}
+			[buttonItem performSelector:@selector(setTintColor:) withObject:color];
+		}		
 	}
 }
 
