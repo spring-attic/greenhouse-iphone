@@ -123,11 +123,18 @@
 		814FC4CA125A492D00DB3123 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC4C9125A492D00DB3123 /* Venue.m */; };
 		814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */; };
 		814FC5A4125A820700DB3123 /* VenueDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */; };
+		8157797C1276254200EA593E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		8157797D1276254200EA593E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
+		8157797E1276254200EA593E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		8157797F1276254200EA593E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		815779801276256A00EA593E /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8157792212761B5D00EA593E /* GHUnitIOS.framework */; };
+		815779961276294400EA593E /* MyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 815779951276294400EA593E /* MyTest.m */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EA59125B6BB90067B8CA /* VenueRoom.m */; };
 		81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC2125C20FF0067B8CA /* CustomTabBar.m */; };
 		81B9EBC6125C210E0067B8CA /* CustomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC5125C210E0067B8CA /* CustomToolbar.m */; };
 		81B9EBD6125C236C0067B8CA /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */; };
+		81C09D7E1277228B00996CA2 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C09D7D1277228B00996CA2 /* GHUnitIOSTestMain.m */; };
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 		81FF3FFC123AB0ED00439B37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF3FFB123AB0ED00439B37 /* main.m */; };
@@ -272,7 +279,6 @@
 		81168A1A12565FA40055A4F3 /* OAToken_KeychainExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken_KeychainExtensions.h; sourceTree = "<group>"; };
 		81168A1B12565FA40055A4F3 /* OAToken_KeychainExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAToken_KeychainExtensions.m; sourceTree = "<group>"; };
 		81168A1C12565FA40055A4F3 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
-		81168A1D12565FA40055A4F3 /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = YAJLIOS.framework; sourceTree = "<group>"; };
 		81168A3912565FCF0055A4F3 /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Greenhouse-Info.plist"; sourceTree = "<group>"; };
 		81168A3B12565FCF0055A4F3 /* InfoContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = InfoContent.html; sourceTree = "<group>"; };
 		81168A3D12565FCF0055A4F3 /* arrow-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-black.png"; sourceTree = "<group>"; };
@@ -326,6 +332,10 @@
 		814FC5A0125A81EC00DB3123 /* VenueDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueDetailsViewController.h; sourceTree = "<group>"; };
 		814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueDetailsViewController.m; sourceTree = "<group>"; };
 		814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
+		8157792212761B5D00EA593E /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = Libraries/GHUnitIOS.framework; sourceTree = "<group>"; };
+		8157795A12761C0C00EA593E /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		815779701276241C00EA593E /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		815779951276294400EA593E /* MyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTest.m; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81B9EA58125B6BB90067B8CA /* VenueRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueRoom.h; sourceTree = "<group>"; };
 		81B9EA59125B6BB90067B8CA /* VenueRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRoom.m; sourceTree = "<group>"; };
@@ -335,6 +345,7 @@
 		81B9EBC5125C210E0067B8CA /* CustomToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomToolbar.m; sourceTree = "<group>"; };
 		81B9EBD4125C236C0067B8CA /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
 		81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
+		81C09D7D1277228B00996CA2 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = Libraries/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E75F3911BE0D5800E6B283 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		81F8DEBF1227801000C3E8FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -360,6 +371,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8157796E1276241C00EA593E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8157797C1276254200EA593E /* CoreGraphics.framework in Frameworks */,
+				8157797D1276254200EA593E /* CoreLocation.framework in Frameworks */,
+				8157797E1276254200EA593E /* Foundation.framework in Frameworks */,
+				8157797F1276254200EA593E /* UIKit.framework in Frameworks */,
+				815779801276256A00EA593E /* GHUnitIOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -367,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Greenhouse.app */,
+				815779701276241C00EA593E /* Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -375,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				8116894A12565F5E0055A4F3 /* Classes */,
+				815779901276286F00EA593E /* Tests */,
 				811689FC12565FA40055A4F3 /* Libraries */,
 				81FF3FF7123AB0ED00439B37 /* Other Sources */,
 				81168A3812565FCF0055A4F3 /* Resources */,
@@ -396,6 +421,7 @@
 				81E75F3911BE0D5800E6B283 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */,
+				8157792212761B5D00EA593E /* GHUnitIOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -473,6 +499,7 @@
 				8116897512565F5E0055A4F3 /* TwitterProfileImageDownloader.m */,
 				8116897612565F5E0055A4F3 /* UserSettings.h */,
 				8116897712565F5E0055A4F3 /* UserSettings.m */,
+				81C09D7D1277228B00996CA2 /* GHUnitIOSTestMain.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -583,7 +610,6 @@
 			isa = PBXGroup;
 			children = (
 				811689FD12565FA40055A4F3 /* OAuthConsumer */,
-				81168A1D12565FA40055A4F3 /* YAJLIOS.framework */,
 			);
 			path = Libraries;
 			sourceTree = "<group>";
@@ -637,6 +663,7 @@
 			isa = PBXGroup;
 			children = (
 				81168A3912565FCF0055A4F3 /* Greenhouse-Info.plist */,
+				8157795A12761C0C00EA593E /* Tests-Info.plist */,
 				81168A6912565FCF0055A4F3 /* Settings.bundle */,
 				81168A3A12565FCF0055A4F3 /* HTML */,
 				81168A3C12565FCF0055A4F3 /* Images */,
@@ -711,6 +738,14 @@
 			path = NIBs;
 			sourceTree = "<group>";
 		};
+		815779901276286F00EA593E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				815779951276294400EA593E /* MyTest.m */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		81FF3FF7123AB0ED00439B37 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +777,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Greenhouse.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8157796F1276241C00EA593E /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8157797B1276243A00EA593E /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				8157796C1276241C00EA593E /* Resources */,
+				8157796D1276241C00EA593E /* Sources */,
+				8157796E1276241C00EA593E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 815779701276241C00EA593E /* Tests.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -763,6 +815,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Greenhouse */,
+				8157796F1276241C00EA593E /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -818,6 +871,13 @@
 				81168A9612565FCF0055A4F3 /* TweetsViewController.xib in Resources */,
 				81168A9712565FCF0055A4F3 /* Settings.bundle in Resources */,
 				814FC5A4125A820700DB3123 /* VenueDetailsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8157796C1276241C00EA593E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -898,6 +958,15 @@
 				81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */,
 				81B9EBC6125C210E0067B8CA /* CustomToolbar.m in Sources */,
 				81B9EBD6125C236C0067B8CA /* CustomNavigationBar.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8157796D1276241C00EA593E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				815779961276294400EA593E /* MyTest.m in Sources */,
+				81C09D7E1277228B00996CA2 /* GHUnitIOSTestMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1023,6 +1092,249 @@
 				PRODUCT_NAME = Greenhouse;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store Distribution";
+		};
+		815779721276241C00EA593E /* Debug [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Debug [localhost]";
+		};
+		815779731276241C00EA593E /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Debug [qa]";
+		};
+		815779741276241C00EA593E /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Debug [production]";
+		};
+		815779751276241C00EA593E /* Release [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Release [localhost]";
+		};
+		815779761276241C00EA593E /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Release [qa]";
+		};
+		815779771276241C00EA593E /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Release [production]";
+		};
+		815779781276241C00EA593E /* Ad Hoc Distribution [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Ad Hoc Distribution [qa]";
+		};
+		815779791276241C00EA593E /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		8157797A1276241C00EA593E /* App Store Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Libraries\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
+				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					UIKit,
+					"-ObjC",
+					"-all_load",
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tests;
+				SDKROOT = iphoneos4.1;
 			};
 			name = "App Store Distribution";
 		};
@@ -1297,6 +1609,22 @@
 				8159359912480F5C001E8E16 /* Ad Hoc Distribution [qa] */,
 				81053A75122575D500FBC268 /* Ad Hoc Distribution [production] */,
 				8138078312543EC80082DCC2 /* App Store Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release [localhost]";
+		};
+		8157797B1276243A00EA593E /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				815779721276241C00EA593E /* Debug [localhost] */,
+				815779731276241C00EA593E /* Debug [qa] */,
+				815779741276241C00EA593E /* Debug [production] */,
+				815779751276241C00EA593E /* Release [localhost] */,
+				815779761276241C00EA593E /* Release [qa] */,
+				815779771276241C00EA593E /* Release [production] */,
+				815779781276241C00EA593E /* Ad Hoc Distribution [qa] */,
+				815779791276241C00EA593E /* Ad Hoc Distribution [production] */,
+				8157797A1276241C00EA593E /* App Store Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
