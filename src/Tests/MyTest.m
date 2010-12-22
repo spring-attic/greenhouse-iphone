@@ -1,4 +1,4 @@
-#import <GHUnitIOS/GHUnitIOS.h>
+#import <GHUnit/GHUnit.h>
 
 @interface MyTest : GHTestCase { }
 @end

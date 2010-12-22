@@ -119,6 +119,7 @@
 		81168A9612565FCF0055A4F3 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6812565FCF0055A4F3 /* TweetsViewController.xib */; };
 		81168A9712565FCF0055A4F3 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6912565FCF0055A4F3 /* Settings.bundle */; };
 		811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
+		813A678712C1B46D00669912 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813A676F12C1B36500669912 /* GHUnit.framework */; };
 		814FC4931256862700DB3123 /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */; };
 		814FC4CA125A492D00DB3123 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC4C9125A492D00DB3123 /* Venue.m */; };
 		814FC5A2125A81EC00DB3123 /* VenueDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */; };
@@ -127,14 +128,13 @@
 		8157797D1276254200EA593E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
 		8157797E1276254200EA593E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		8157797F1276254200EA593E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		815779801276256A00EA593E /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8157792212761B5D00EA593E /* GHUnitIOS.framework */; };
 		815779961276294400EA593E /* MyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 815779951276294400EA593E /* MyTest.m */; };
+		81856ECC12C1B699006BAD62 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EA59125B6BB90067B8CA /* VenueRoom.m */; };
 		81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC2125C20FF0067B8CA /* CustomTabBar.m */; };
 		81B9EBC6125C210E0067B8CA /* CustomToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC5125C210E0067B8CA /* CustomToolbar.m */; };
 		81B9EBD6125C236C0067B8CA /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */; };
-		81C09D7E1277228B00996CA2 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C09D7D1277228B00996CA2 /* GHUnitIOSTestMain.m */; };
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 		81FF3FFC123AB0ED00439B37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF3FFB123AB0ED00439B37 /* main.m */; };
@@ -326,16 +326,17 @@
 		81168A6812565FCF0055A4F3 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
 		81168A6912565FCF0055A4F3 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		811BA5CF120C58E40045BB34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		813A676F12C1B36500669912 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = Libraries/GHUnit.framework; sourceTree = "<group>"; };
 		814FC4C8125A492D00DB3123 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		814FC4C9125A492D00DB3123 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		814FC4D3125A5A6600DB3123 /* WebDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDataModel.h; sourceTree = "<group>"; };
 		814FC5A0125A81EC00DB3123 /* VenueDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueDetailsViewController.h; sourceTree = "<group>"; };
 		814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueDetailsViewController.m; sourceTree = "<group>"; };
 		814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
-		8157792212761B5D00EA593E /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = Libraries/GHUnitIOS.framework; sourceTree = "<group>"; };
 		8157795A12761C0C00EA593E /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		815779701276241C00EA593E /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		815779951276294400EA593E /* MyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTest.m; sourceTree = "<group>"; };
+		81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81B9EA58125B6BB90067B8CA /* VenueRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueRoom.h; sourceTree = "<group>"; };
 		81B9EA59125B6BB90067B8CA /* VenueRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRoom.m; sourceTree = "<group>"; };
@@ -345,7 +346,6 @@
 		81B9EBC5125C210E0067B8CA /* CustomToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomToolbar.m; sourceTree = "<group>"; };
 		81B9EBD4125C236C0067B8CA /* CustomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomNavigationBar.h; sourceTree = "<group>"; };
 		81B9EBD5125C236C0067B8CA /* CustomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomNavigationBar.m; sourceTree = "<group>"; };
-		81C09D7D1277228B00996CA2 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = Libraries/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E75F3911BE0D5800E6B283 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		81F8DEBF1227801000C3E8FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -379,7 +379,7 @@
 				8157797D1276254200EA593E /* CoreLocation.framework in Frameworks */,
 				8157797E1276254200EA593E /* Foundation.framework in Frameworks */,
 				8157797F1276254200EA593E /* UIKit.framework in Frameworks */,
-				815779801276256A00EA593E /* GHUnitIOS.framework in Frameworks */,
+				813A678712C1B46D00669912 /* GHUnit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +421,7 @@
 				81E75F3911BE0D5800E6B283 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				81DD7CC412270A0C00F62D5D /* YAJLIOS.framework */,
-				8157792212761B5D00EA593E /* GHUnitIOS.framework */,
+				813A676F12C1B36500669912 /* GHUnit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -499,7 +499,6 @@
 				8116897512565F5E0055A4F3 /* TwitterProfileImageDownloader.m */,
 				8116897612565F5E0055A4F3 /* UserSettings.h */,
 				8116897712565F5E0055A4F3 /* UserSettings.m */,
-				81C09D7D1277228B00996CA2 /* GHUnitIOSTestMain.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -753,6 +752,7 @@
 				81FF3FF9123AB0ED00439B37 /* DLog.h */,
 				81FF3FFA123AB0ED00439B37 /* Greenhouse_Prefix.pch */,
 				81FF3FFB123AB0ED00439B37 /* main.m */,
+				81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -966,7 +966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				815779961276294400EA593E /* MyTest.m in Sources */,
-				81C09D7E1277228B00996CA2 /* GHUnitIOSTestMain.m in Sources */,
+				81856ECC12C1B699006BAD62 /* GHUnitIOSTestMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1118,7 +1118,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Debug [localhost]";
 		};
@@ -1145,7 +1145,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Debug [qa]";
 		};
@@ -1172,7 +1172,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Debug [production]";
 		};
@@ -1199,7 +1199,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Release [localhost]";
 		};
@@ -1226,7 +1226,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Release [qa]";
 		};
@@ -1253,7 +1253,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Release [production]";
 		};
@@ -1280,7 +1280,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Ad Hoc Distribution [qa]";
 		};
@@ -1307,7 +1307,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Ad Hoc Distribution [production]";
 		};
@@ -1334,7 +1334,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "App Store Distribution";
 		};
