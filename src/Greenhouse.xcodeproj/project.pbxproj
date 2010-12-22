@@ -128,8 +128,10 @@
 		8157797D1276254200EA593E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
 		8157797E1276254200EA593E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		8157797F1276254200EA593E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
-		815779961276294400EA593E /* MyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 815779951276294400EA593E /* MyTest.m */; };
 		81856ECC12C1B699006BAD62 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */; };
+		81856EE112C1BAA5006BAD62 /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81856EE012C1BAA5006BAD62 /* DateHelper.m */; };
+		81856EE212C1BAA5006BAD62 /* DateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 81856EE012C1BAA5006BAD62 /* DateHelper.m */; };
+		81856F0612C1BF35006BAD62 /* DateHelperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 81856F0512C1BF35006BAD62 /* DateHelperTest.m */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81B9EA5A125B6BB90067B8CA /* VenueRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EA59125B6BB90067B8CA /* VenueRoom.m */; };
 		81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9EBC2125C20FF0067B8CA /* CustomTabBar.m */; };
@@ -333,10 +335,13 @@
 		814FC5A0125A81EC00DB3123 /* VenueDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueDetailsViewController.h; sourceTree = "<group>"; };
 		814FC5A1125A81EC00DB3123 /* VenueDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueDetailsViewController.m; sourceTree = "<group>"; };
 		814FC5A3125A820700DB3123 /* VenueDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VenueDetailsViewController.xib; sourceTree = "<group>"; };
-		8157795A12761C0C00EA593E /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
+		8157795A12761C0C00EA593E /* GreenhouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseTests-Info.plist"; sourceTree = "<group>"; };
 		815779701276241C00EA593E /* Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tests.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		815779951276294400EA593E /* MyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTest.m; sourceTree = "<group>"; };
 		81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
+		81856EDF12C1BAA5006BAD62 /* DateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateHelper.h; sourceTree = "<group>"; };
+		81856EE012C1BAA5006BAD62 /* DateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelper.m; sourceTree = "<group>"; };
+		81856EE912C1BCBA006BAD62 /* GreenhouseTests_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenhouseTests_Prefix.pch; sourceTree = "<group>"; };
+		81856F0512C1BF35006BAD62 /* DateHelperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateHelperTest.m; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81B9EA58125B6BB90067B8CA /* VenueRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueRoom.h; sourceTree = "<group>"; };
 		81B9EA59125B6BB90067B8CA /* VenueRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueRoom.m; sourceTree = "<group>"; };
@@ -499,6 +504,8 @@
 				8116897512565F5E0055A4F3 /* TwitterProfileImageDownloader.m */,
 				8116897612565F5E0055A4F3 /* UserSettings.h */,
 				8116897712565F5E0055A4F3 /* UserSettings.m */,
+				81856EDF12C1BAA5006BAD62 /* DateHelper.h */,
+				81856EE012C1BAA5006BAD62 /* DateHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -662,7 +669,7 @@
 			isa = PBXGroup;
 			children = (
 				81168A3912565FCF0055A4F3 /* Greenhouse-Info.plist */,
-				8157795A12761C0C00EA593E /* Tests-Info.plist */,
+				8157795A12761C0C00EA593E /* GreenhouseTests-Info.plist */,
 				81168A6912565FCF0055A4F3 /* Settings.bundle */,
 				81168A3A12565FCF0055A4F3 /* HTML */,
 				81168A3C12565FCF0055A4F3 /* Images */,
@@ -740,7 +747,7 @@
 		815779901276286F00EA593E /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				815779951276294400EA593E /* MyTest.m */,
+				81856F0512C1BF35006BAD62 /* DateHelperTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -750,9 +757,10 @@
 			children = (
 				81FF3FF8123AB0ED00439B37 /* Constants.h */,
 				81FF3FF9123AB0ED00439B37 /* DLog.h */,
+				81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */,
 				81FF3FFA123AB0ED00439B37 /* Greenhouse_Prefix.pch */,
 				81FF3FFB123AB0ED00439B37 /* main.m */,
-				81856ECB12C1B699006BAD62 /* GHUnitIOSTestMain.m */,
+				81856EE912C1BCBA006BAD62 /* GreenhouseTests_Prefix.pch */,
 			);
 			path = "Other Sources";
 			sourceTree = "<group>";
@@ -777,9 +785,9 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Greenhouse.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8157796F1276241C00EA593E /* Tests */ = {
+		8157796F1276241C00EA593E /* GreenhouseTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8157797B1276243A00EA593E /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildConfigurationList = 8157797B1276243A00EA593E /* Build configuration list for PBXNativeTarget "GreenhouseTests" */;
 			buildPhases = (
 				8157796C1276241C00EA593E /* Resources */,
 				8157796D1276241C00EA593E /* Sources */,
@@ -789,7 +797,7 @@
 			);
 			dependencies = (
 			);
-			name = Tests;
+			name = GreenhouseTests;
 			productName = Tests;
 			productReference = 815779701276241C00EA593E /* Tests.app */;
 			productType = "com.apple.product-type.application";
@@ -815,7 +823,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Greenhouse */,
-				8157796F1276241C00EA593E /* Tests */,
+				8157796F1276241C00EA593E /* GreenhouseTests */,
 			);
 		};
 /* End PBXProject section */
@@ -958,6 +966,7 @@
 				81B9EBC3125C20FF0067B8CA /* CustomTabBar.m in Sources */,
 				81B9EBC6125C210E0067B8CA /* CustomToolbar.m in Sources */,
 				81B9EBD6125C236C0067B8CA /* CustomNavigationBar.m in Sources */,
+				81856EE212C1BAA5006BAD62 /* DateHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -965,8 +974,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				815779961276294400EA593E /* MyTest.m in Sources */,
 				81856ECC12C1B699006BAD62 /* GHUnitIOSTestMain.m in Sources */,
+				81856EE112C1BAA5006BAD62 /* DateHelper.m in Sources */,
+				81856F0612C1BF35006BAD62 /* DateHelperTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1105,14 +1115,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1132,14 +1139,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1159,14 +1163,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1186,14 +1187,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1213,14 +1211,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1240,14 +1235,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1267,14 +1259,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1294,14 +1283,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1321,14 +1307,11 @@
 					"\"$(SRCROOT)/Libraries\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/UIKit.framework/Headers/UIKit.h";
-				INFOPLIST_FILE = "Resources/Tests-Info.plist";
+				GCC_PREFIX_HEADER = "Other Sources/GreenhouseTests_Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				INFOPLIST_FILE = "Resources/GreenhouseTests-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				OTHER_LDFLAGS = (
-					"-framework",
-					Foundation,
-					"-framework",
-					UIKit,
 					"-ObjC",
 					"-all_load",
 				);
@@ -1613,7 +1596,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
 		};
-		8157797B1276243A00EA593E /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		8157797B1276243A00EA593E /* Build configuration list for PBXNativeTarget "GreenhouseTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				815779721276241C00EA593E /* Debug [localhost] */,

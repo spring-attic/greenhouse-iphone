@@ -1,0 +1,38 @@
+//
+// Prefix header for all source files of the 'Greenhouse' target in the 'Greenhouse' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_4_0
+#warning "This project uses features only available in iPhone SDK 4.0 and later."
+#endif
+
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+
+	// Libraries
+	#import <GHUnit/GHUnit.h>
+//	#import <YAJLIOS/YAJLIOS.h>
+//	#import "OauthConsumer.h"
+
+	//Debug Logging
+	#import "DLog.h"
+
+	// Application Settings
+//	#import "Constants.h"
+//	#import "AppSettings.h"
+//	#import "UserSettings.h"
+
+	// Categories
+//	#import "NSString+XmlEncoding.h"
+//	#import "NSDictionary+Helpers.h"
+//	#import "UIColor+CustomColors.h"
+
+	// Commonly Referenced Classes
+//	#import "GreenhouseAppDelegate.h"
+//	#import "DataViewController.h"
+
+#endif

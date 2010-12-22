@@ -11,12 +11,13 @@
 #import "EventSessionsFavoritesViewController.h"
 #import "EventSessionsConferenceFavoritesViewController.h"
 #import "EventSessionsByDayViewController.h"
+#import "DateHelper.h"
 
 
 @interface EventSessionsMenuViewController()
 
 @property (nonatomic, retain) NSArray *arrayMenuItems;
-@property (nonatomic, retain) NSMutableArray *arrayEventDates;
+@property (nonatomic, retain) NSArray *arrayEventDates;
 @property (nonatomic, retain) NSMutableDictionary *dictionaryViewControllers;
 @property (nonatomic, retain) Event *currentEvent;
 
@@ -172,19 +173,8 @@
 {
 	if (![currentEvent.eventId isEqualToString:event.eventId])
 	{
-		[arrayEventDates removeAllObjects];
 		[dictionaryViewControllers removeAllObjects];
-		
-		NSDate *eventDate = [[event.startTime copyWithZone:NULL] autorelease];
-		
-		while ([eventDate compare:event.endTime] != NSOrderedDescending)
-		{
-			[arrayEventDates addObject:eventDate];
-			
-			// calculate the next event day by adding 24 hours
-			eventDate = [eventDate dateByAddingTimeInterval:86400];
-		}
-		
+		self.arrayEventDates = [DateHelper daysBetweenStartTime:event.startTime endTime:event.endTime];
 		[tableViewMenu reloadData];
 	}
 	
