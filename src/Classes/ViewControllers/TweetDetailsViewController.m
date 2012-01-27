@@ -7,7 +7,7 @@
 //
 
 #import "TweetDetailsViewController.h"
-#import "newTweetViewController.h"
+#import "TweetViewController.h"
 #import "OAuthManager.h"
 
 
@@ -31,28 +31,28 @@
 @synthesize buttonReply;
 @synthesize buttonRetweet;
 @synthesize buttonQuote;
-@synthesize newTweetViewController;
+@synthesize tweetViewController;
 
 - (IBAction)actionReply:(id)sender
 {
-	newTweetViewController.tweetUrl = tweetUrl;
+	tweetViewController.tweetUrl = tweetUrl;
 	
 	NSString *replyText = [[NSString alloc] initWithFormat:@"@%@", tweet.fromUser];
-	newTweetViewController.tweetText = replyText;
+	tweetViewController.tweetText = replyText;
 	[replyText release];
 	
-	[self presentModalViewController:newTweetViewController animated:YES];
+	[self presentModalViewController:tweetViewController animated:YES];
 }
 
 - (IBAction)actionQuote:(id)sender
 {
-	newTweetViewController.tweetUrl = tweetUrl;
+	tweetViewController.tweetUrl = tweetUrl;
 	
 	NSString *quoteText = [[NSString alloc] initWithFormat:@"\"@%@: %@\"", tweet.fromUser, tweet.text];
-	newTweetViewController.tweetText = quoteText;
+	tweetViewController.tweetText = quoteText;
 	[quoteText release];
 	
-	[self presentModalViewController:newTweetViewController animated:YES];
+	[self presentModalViewController:tweetViewController animated:YES];
 }
 
 - (IBAction)actionRetweet:(id)sender
@@ -109,7 +109,7 @@
 {
     [super viewDidLoad];
 	
-	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
+	self.tweetViewController = [[TweetViewController alloc] initWithNibName:nil bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -131,7 +131,7 @@
 	self.buttonReply = nil;
 	self.buttonRetweet = nil;
 	self.buttonQuote = nil;
-	self.newTweetViewController = nil;
+	self.tweetViewController = nil;
 }
 
 
@@ -149,7 +149,7 @@
 	[buttonReply release];
 	[buttonRetweet release];
 	[buttonQuote release];
-	[newTweetViewController release];
+	[tweetViewController release];
 	
     [super dealloc];
 }

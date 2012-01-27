@@ -34,10 +34,10 @@
 	self.tweetUrl = url;
 	[url release];
 	
-	self.newTweetViewController.tweetUrl = url;
+	self.tweetViewController.tweetUrl = url;
 	
 	NSString *tweetText = [[NSString alloc] initWithFormat:@"%@ %@", event.hashtag, session.hashtag];
-	self.newTweetViewController.tweetText = tweetText;
+	self.tweetViewController.tweetText = tweetText;
 	[tweetText release];
 	
 	urlString = [[NSString alloc]  initWithFormat:EVENT_SESSION_RETWEET_URL, event.eventId, session.number];

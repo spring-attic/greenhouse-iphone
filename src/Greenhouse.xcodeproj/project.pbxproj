@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -49,7 +49,7 @@
 		811689EE12565F5E0055A4F3 /* EventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689A912565F5E0055A4F3 /* EventsMainViewController.m */; };
 		811689EF12565F5E0055A4F3 /* EventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689AB12565F5E0055A4F3 /* EventTweetsViewController.m */; };
 		811689F012565F5E0055A4F3 /* NavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689AD12565F5E0055A4F3 /* NavigationViewController.m */; };
-		811689F112565F5E0055A4F3 /* NewTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689AF12565F5E0055A4F3 /* NewTweetViewController.m */; };
+		811689F112565F5E0055A4F3 /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689AF12565F5E0055A4F3 /* TweetViewController.m */; };
 		811689F212565F5E0055A4F3 /* ProfileMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689B112565F5E0055A4F3 /* ProfileMainViewController.m */; };
 		811689F312565F5E0055A4F3 /* PullRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689B312565F5E0055A4F3 /* PullRefreshTableViewController.m */; };
 		811689F412565F5E0055A4F3 /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811689B512565F5E0055A4F3 /* TweetDetailsViewController.m */; };
@@ -113,7 +113,7 @@
 		81168A9012565FCF0055A4F3 /* EventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6212565FCF0055A4F3 /* EventsNavigationViewController.xib */; };
 		81168A9112565FCF0055A4F3 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6312565FCF0055A4F3 /* InfoViewController.xib */; };
 		81168A9212565FCF0055A4F3 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6412565FCF0055A4F3 /* MainWindow.xib */; };
-		81168A9312565FCF0055A4F3 /* NewTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6512565FCF0055A4F3 /* NewTweetViewController.xib */; };
+		81168A9312565FCF0055A4F3 /* TweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6512565FCF0055A4F3 /* TweetViewController.xib */; };
 		81168A9412565FCF0055A4F3 /* ProfileMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6612565FCF0055A4F3 /* ProfileMainViewController.xib */; };
 		81168A9512565FCF0055A4F3 /* TweetDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6712565FCF0055A4F3 /* TweetDetailsViewController.xib */; };
 		81168A9612565FCF0055A4F3 /* TweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81168A6812565FCF0055A4F3 /* TweetsViewController.xib */; };
@@ -231,8 +231,8 @@
 		811689AB12565F5E0055A4F3 /* EventTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventTweetsViewController.m; sourceTree = "<group>"; };
 		811689AC12565F5E0055A4F3 /* NavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationViewController.h; sourceTree = "<group>"; };
 		811689AD12565F5E0055A4F3 /* NavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationViewController.m; sourceTree = "<group>"; };
-		811689AE12565F5E0055A4F3 /* NewTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTweetViewController.h; sourceTree = "<group>"; };
-		811689AF12565F5E0055A4F3 /* NewTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTweetViewController.m; sourceTree = "<group>"; };
+		811689AE12565F5E0055A4F3 /* TweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetViewController.h; sourceTree = "<group>"; };
+		811689AF12565F5E0055A4F3 /* TweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetViewController.m; sourceTree = "<group>"; };
 		811689B012565F5E0055A4F3 /* ProfileMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileMainViewController.h; sourceTree = "<group>"; };
 		811689B112565F5E0055A4F3 /* ProfileMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileMainViewController.m; sourceTree = "<group>"; };
 		811689B212565F5E0055A4F3 /* PullRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PullRefreshTableViewController.h; sourceTree = "<group>"; };
@@ -322,7 +322,7 @@
 		81168A6212565FCF0055A4F3 /* EventsNavigationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventsNavigationViewController.xib; sourceTree = "<group>"; };
 		81168A6312565FCF0055A4F3 /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
 		81168A6412565FCF0055A4F3 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
-		81168A6512565FCF0055A4F3 /* NewTweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTweetViewController.xib; sourceTree = "<group>"; };
+		81168A6512565FCF0055A4F3 /* TweetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetViewController.xib; sourceTree = "<group>"; };
 		81168A6612565FCF0055A4F3 /* ProfileMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileMainViewController.xib; sourceTree = "<group>"; };
 		81168A6712565FCF0055A4F3 /* TweetDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetDetailsViewController.xib; sourceTree = "<group>"; };
 		81168A6812565FCF0055A4F3 /* TweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TweetsViewController.xib; sourceTree = "<group>"; };
@@ -573,8 +573,8 @@
 				811689AB12565F5E0055A4F3 /* EventTweetsViewController.m */,
 				811689AC12565F5E0055A4F3 /* NavigationViewController.h */,
 				811689AD12565F5E0055A4F3 /* NavigationViewController.m */,
-				811689AE12565F5E0055A4F3 /* NewTweetViewController.h */,
-				811689AF12565F5E0055A4F3 /* NewTweetViewController.m */,
+				811689AE12565F5E0055A4F3 /* TweetViewController.h */,
+				811689AF12565F5E0055A4F3 /* TweetViewController.m */,
 				811689B012565F5E0055A4F3 /* ProfileMainViewController.h */,
 				811689B112565F5E0055A4F3 /* ProfileMainViewController.m */,
 				811689B212565F5E0055A4F3 /* PullRefreshTableViewController.h */,
@@ -735,7 +735,7 @@
 				81168A6212565FCF0055A4F3 /* EventsNavigationViewController.xib */,
 				81168A6312565FCF0055A4F3 /* InfoViewController.xib */,
 				81168A6412565FCF0055A4F3 /* MainWindow.xib */,
-				81168A6512565FCF0055A4F3 /* NewTweetViewController.xib */,
+				81168A6512565FCF0055A4F3 /* TweetViewController.xib */,
 				81168A6612565FCF0055A4F3 /* ProfileMainViewController.xib */,
 				81168A6712565FCF0055A4F3 /* TweetDetailsViewController.xib */,
 				81168A6812565FCF0055A4F3 /* TweetsViewController.xib */,
@@ -807,8 +807,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Greenhouse" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -873,7 +876,7 @@
 				81168A9012565FCF0055A4F3 /* EventsNavigationViewController.xib in Resources */,
 				81168A9112565FCF0055A4F3 /* InfoViewController.xib in Resources */,
 				81168A9212565FCF0055A4F3 /* MainWindow.xib in Resources */,
-				81168A9312565FCF0055A4F3 /* NewTweetViewController.xib in Resources */,
+				81168A9312565FCF0055A4F3 /* TweetViewController.xib in Resources */,
 				81168A9412565FCF0055A4F3 /* ProfileMainViewController.xib in Resources */,
 				81168A9512565FCF0055A4F3 /* TweetDetailsViewController.xib in Resources */,
 				81168A9612565FCF0055A4F3 /* TweetsViewController.xib in Resources */,
@@ -936,7 +939,7 @@
 				811689EE12565F5E0055A4F3 /* EventsMainViewController.m in Sources */,
 				811689EF12565F5E0055A4F3 /* EventTweetsViewController.m in Sources */,
 				811689F012565F5E0055A4F3 /* NavigationViewController.m in Sources */,
-				811689F112565F5E0055A4F3 /* NewTweetViewController.m in Sources */,
+				811689F112565F5E0055A4F3 /* TweetViewController.m in Sources */,
 				811689F212565F5E0055A4F3 /* ProfileMainViewController.m in Sources */,
 				811689F312565F5E0055A4F3 /* PullRefreshTableViewController.m in Sources */,
 				811689F412565F5E0055A4F3 /* TweetDetailsViewController.m in Sources */,
@@ -1037,7 +1040,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D7DF383-6AA6-4455-BEB9-22FBEFA0C2FC";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -1079,7 +1081,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ADE2A8C1-5211-4397-899C-111EF5685596";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -1123,7 +1124,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1147,7 +1147,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1171,7 +1170,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1195,7 +1193,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1219,7 +1216,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1243,7 +1239,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1267,7 +1262,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1291,7 +1285,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1315,7 +1308,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tests;
 				SDKROOT = iphoneos;
 			};
@@ -1337,7 +1329,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D7DF383-6AA6-4455-BEB9-22FBEFA0C2FC";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -1381,7 +1372,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1423,7 +1413,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1465,7 +1454,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1507,7 +1495,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1549,7 +1536,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};
@@ -1571,7 +1557,6 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 			};

@@ -11,7 +11,7 @@
 #import "TwitterController.h"
 
 
-@interface NewTweetViewController : UIViewController <UITextViewDelegate, LocationManagerDelegate, TwitterControllerDelegate> { }
+@interface TweetViewController : UIViewController <UITextViewDelegate, LocationManagerDelegate, TwitterControllerDelegate> { }
 
 @property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, copy) NSString *tweetText;

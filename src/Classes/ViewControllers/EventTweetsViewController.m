@@ -32,8 +32,8 @@
 	self.tweetUrl = url;
 	[url release];
 	
-	self.newTweetViewController.tweetUrl = url;
-	self.newTweetViewController.tweetText = event.hashtag;
+	self.tweetViewController.tweetUrl = url;
+	self.tweetViewController.tweetText = event.hashtag;
 	
 	urlString = [[NSString alloc]  initWithFormat:EVENT_RETWEET_URL, event.eventId];
 	url = [[NSURL alloc] initWithString:urlString];

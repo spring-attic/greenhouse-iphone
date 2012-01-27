@@ -6,14 +6,14 @@
 //  Copyright 2010 VMware. All rights reserved.
 //
 
-#import "NewTweetViewController.h"
+#import "TweetViewController.h"
 #import "OAuthManager.h"
 #import "TwitterController.h"
 
 #define MAX_TWEET_SIZE 140
 
 
-@interface NewTweetViewController()
+@interface TweetViewController()
 
 @property (nonatomic, retain) LocationManager *locationManager;
 @property (nonatomic, retain) TwitterController *twitterController;
@@ -23,7 +23,7 @@
 @end
 
 
-@implementation NewTweetViewController
+@implementation TweetViewController
 
 @synthesize locationManager;
 @synthesize twitterController;

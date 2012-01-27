@@ -38,13 +38,13 @@
 @synthesize twitterController;
 @synthesize tweetUrl;
 @synthesize retweetUrl;
-@synthesize newTweetViewController;
+@synthesize tweetViewController;
 @synthesize tweetDetailsViewController;
 @synthesize isLoading = _isLoading;
 
 - (void)showTwitterForm
 {
-	[self presentModalViewController:newTweetViewController animated:YES];
+	[self presentModalViewController:tweetViewController animated:YES];
 }
 
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath
@@ -322,7 +322,7 @@
 	self.imageDownloadsInProgress = [[NSMutableDictionary alloc] init];
 	self.arrayTweets = [[NSMutableArray alloc] init];
 	
-	self.newTweetViewController = [[NewTweetViewController alloc] initWithNibName:nil bundle:nil];
+	self.tweetViewController = [[TweetViewController alloc] initWithNibName:nil bundle:nil];
 	self.tweetDetailsViewController = [[TweetDetailsViewController alloc] initWithNibName:nil bundle:nil];
 	
 	UIBarButtonItem *buttonItemCompose = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose 
@@ -354,7 +354,7 @@
 	self.twitterController = nil;
 	self.tweetUrl = nil;
 	self.retweetUrl = nil;
-	self.newTweetViewController = nil;
+	self.tweetViewController = nil;
 	self.tweetDetailsViewController = nil;
 }
 
@@ -368,7 +368,7 @@
 	[imageDownloadsInProgress release];
 	[tweetUrl release];
 	[retweetUrl release];
-	[newTweetViewController release];
+	[tweetViewController release];
 	[tweetDetailsViewController release];
 	
     [super dealloc];

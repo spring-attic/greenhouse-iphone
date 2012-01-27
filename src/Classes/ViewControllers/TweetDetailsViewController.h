@@ -11,7 +11,7 @@
 #import "Tweet.h"
 
 
-@class NewTweetViewController;
+@class TweetViewController;
 
 
 @interface TweetDetailsViewController : DataViewController <TwitterControllerDelegate> { }
@@ -26,7 +26,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonReply;
 @property (nonatomic, retain) IBOutlet UIButton *buttonRetweet;
 @property (nonatomic, retain) IBOutlet UIButton *buttonQuote;
-@property (nonatomic, retain) NewTweetViewController *newTweetViewController;
+@property (nonatomic, retain) TweetViewController *tweetViewController;
 
 - (IBAction)actionReply:(id)sender;
 - (IBAction)actionRetweet:(id)sender;

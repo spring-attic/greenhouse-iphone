@@ -10,7 +10,7 @@
 #import "TwitterController.h"
 #import "TwitterProfileImageDownloader.h"
 #import "PullRefreshTableViewController.h"
-#import "NewTweetViewController.h"
+#import "TweetViewController.h"
 
 
 @class TweetDetailsViewController;
@@ -28,7 +28,7 @@
 @property (nonatomic, retain) NSMutableArray *arrayTweets;
 @property (nonatomic, retain) NSURL *tweetUrl;
 @property (nonatomic, retain) NSURL *retweetUrl;
-@property (nonatomic, retain) NewTweetViewController *newTweetViewController;
+@property (nonatomic, retain) TweetViewController *tweetViewController;
 @property (nonatomic, retain) TweetDetailsViewController *tweetDetailsViewController;
 @property (nonatomic, assign) BOOL isLoading;
 
