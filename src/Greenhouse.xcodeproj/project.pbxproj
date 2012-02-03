@@ -1028,7 +1028,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VMware, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1040,7 +1040,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D7DF383-6AA6-4455-BEB9-22FBEFA0C2FC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1069,6 +1069,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VMware, Inc.";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
@@ -1081,7 +1082,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "ADE2A8C1-5211-4397-899C-111EF5685596";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D6CD71E-4090-4E29-95C9-C4D9F239BF38";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1317,7 +1318,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: VMware, Inc.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = "QA=1";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
@@ -1329,7 +1330,7 @@
 					"-ObjC",
 					"-all_load",
 				);
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2D7DF383-6AA6-4455-BEB9-22FBEFA0C2FC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
