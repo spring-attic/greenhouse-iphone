@@ -1,9 +1,7 @@
 //
 //  EGORefreshTableHeaderView.h
-//  Demo
 //
 //  Modified by Roy Clarkson on 8/27/10.
-//  Copyright 2010 VMware, Inc. All rights reserved. 
 //
 //  Created by Devin Doty on 10/14/09October14.
 //  Copyright 2009 enormego. All rights reserved.
