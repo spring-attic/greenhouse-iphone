@@ -94,7 +94,7 @@
 		return leadersArray;
 	}
 	
-	return [NSArray array];
+	return @[];
 }
 
 

@@ -34,7 +34,7 @@
 + (void)reset
 {
 	[[NSUserDefaults standardUserDefaults] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:NO] forKey:resetAppOnStartPreference];
+	[[NSUserDefaults standardUserDefaults] setObject:@(NO) forKey:resetAppOnStartPreference];
 }
 
 + (BOOL)includeLocationInTweet
@@ -44,7 +44,7 @@
 
 + (void)setIncludeLocationInTweet:(BOOL)boolVal
 {
-	[[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithBool:boolVal] forKey:includeLocationInTweetPreference];
+	[[NSUserDefaults standardUserDefaults] setObject:@(boolVal) forKey:includeLocationInTweetPreference];
 }
 
 + (NSInteger)dataExpiration

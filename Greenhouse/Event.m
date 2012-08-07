@@ -67,7 +67,7 @@
 		return venuesArray;
 	}
 	
-	return [NSArray array];
+	return @[];
 }
 
 
