@@ -14,7 +14,7 @@
     #import <Foundation/Foundation.h>
 
 	// Libraries
-	#import <YAJLIOS/YAJLIOS.h>
+	#import <YAJLIOS/YAJL.h>
 	#import "OauthConsumer.h"
 
 	//Debug Logging

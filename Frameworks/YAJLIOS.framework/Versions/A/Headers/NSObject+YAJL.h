@@ -30,7 +30,33 @@
 #import "YAJLGen.h"
 #import "YAJLParser.h"
 
-@interface NSObject (YAJL)
+/*!
+ Generate JSON string from NSArray, NSDictionary or custom object or parse JSON from NSString or custom object.
+ 
+ Parse JSON:
+ @code
+ NSData *JSONData = [NSData dataWithContentsOfFile:@"example.json"];
+ NSArray *arrayFromData = [JSONData yajl_JSON];
+ 
+ NSString *JSONString = @"[\"Test\"]";
+ NSArray *arrayFromString = [JSONString yajl_JSON];
+ 
+ // With options and out error
+ NSError *error = nil;
+ NSArray *arrayFromString = [JSONString yajl_JSONWithOptions:YAJLParserOptionsAllowComments error:&error];
+ @endcode
+ 
+ Generate JSON:
+ @code
+ NSDictionary *dict = [NSDictionary dictionaryWithObject:@"value" forKey:@"key"];
+ NSString *JSONString = [dict yajl_JSONString];
+ 
+ // Beautified with custon indent string
+ NSArray *array = [NSArray arrayWithObjects:@"value1", @"value2", nil];
+ NSString *JSONString = [dict yajl_JSONStringWithOptions:YAJLGenOptionsBeautify indentString:@"    "];
+ @endcode
+ */
+@interface NSObject(YAJL)
 
 #pragma mark Gen
 
@@ -38,7 +64,7 @@
  Create JSON string from object.
  Supported objects include: NSArray, NSDictionary, NSNumber, NSString, NSNull
  To override JSON value to encode (or support custom objects), implement (id)JSON; See YAJLCoding in YAJLGen.h
- Otherwise throws YAJLGenInvalidObjectException.
+ @throws YAJLGenInvalidObjectException If object is invalid
  @result JSON String
  */
 - (NSString *)yajl_JSONString;
@@ -47,8 +73,13 @@
  Create JSON string from object.
  Supported objects include: NSArray, NSDictionary, NSNumber, NSString, NSNull
  To override JSON value to encode (or support custom objects), implement (id)JSON; See YAJLCoding in YAJLGen.h
- Otherwise throws YAJLGenInvalidObjectException.
+ @throws YAJLGenInvalidObjectException If object is invalid
  @param options
+  - YAJLGenOptionsNone: No options
+  - YAJLGenOptionsBeautify: Beautifiy JSON output
+  - YAJLGenOptionsIgnoreUnknownTypes: Ignore unknown types (will use null value)
+  - YAJLGenOptionsIncludeUnsupportedTypes: Handle non-JSON types (including NSDate, NSData, NSURL) 
+ 
  @param indentString
  @result JSON String
  */
@@ -99,7 +130,12 @@
  If an error occurs, the returned object will be the current state of the object when
  the error occurred.
  
- @param options Options (see YAJLParserOptions)
+ @param options Parse options
+  - YAJLParserOptionsNone: No options
+  - YAJLParserOptionsAllowComments: Javascript style comments will be allowed in the input (both /&asterisk; &asterisk;/ and //)
+  - YAJLParserOptionsCheckUTF8: Invalid UTF8 strings will cause a parse error
+  - YAJLParserOptionsStrictPrecision: If YES will force strict precision and return integer overflow error
+ 
  @param error Error to set if we failed to parse
  @result JSON object
  @throws YAJLParserException If a parse error occured
