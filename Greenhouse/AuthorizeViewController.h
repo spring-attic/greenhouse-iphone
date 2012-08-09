@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface AuthorizeViewController : UIViewController { }
+@interface AuthorizeViewController : UIViewController
 
 - (IBAction)actionAuthorize:(id)sender;
 

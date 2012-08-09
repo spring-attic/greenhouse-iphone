@@ -24,7 +24,7 @@
 #import "WebDataModel.h"
 
 
-@interface VenueRoom : NSObject <WebDataModel> { }
+@interface VenueRoom : NSObject <WebDataModel>
 
 @property (nonatomic, copy) NSString *roomId;
 @property (nonatomic, copy) NSString *label;

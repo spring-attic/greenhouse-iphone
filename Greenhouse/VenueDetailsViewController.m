@@ -36,9 +36,7 @@
 {
 	NSString *encodedAddress = [venue.postalAddress URLEncodedString];
 	NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?q=%@", encodedAddress];
-	NSURL *url = [NSURL URLWithString:urlString];
-	[urlString release];
-	
+	NSURL *url = [NSURL URLWithString:urlString];	
 	[[UIApplication sharedApplication] openURL:url];
 }
 
@@ -82,21 +80,5 @@
 	self.labelAddress = nil;
 	self.buttonDirections = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[venue release];
-	[labelName release];
-	[labelLocationHint release];
-	[labelAddress release];
-	[buttonDirections release];
-	
-    [super dealloc];
-}
-
 
 @end

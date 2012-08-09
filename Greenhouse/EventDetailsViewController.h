@@ -30,17 +30,17 @@
 @class EventMapViewController;
 
 
-@interface EventDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate> { }
+@interface EventDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet UILabel *labelTitle;
-@property (nonatomic, retain) IBOutlet UILabel *labelDescription;
-@property (nonatomic, retain) IBOutlet UILabel *labelTime;
-@property (nonatomic, retain) IBOutlet UILabel *labelLocation;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
-@property (nonatomic, retain) EventDescriptionViewController *eventDescriptionViewController;
-@property (nonatomic, retain) EventSessionsMenuViewController *eventSessionsMenuViewController;
-@property (nonatomic, retain) EventTweetsViewController *eventTweetsViewController;
-@property (nonatomic, retain) EventMapViewController *eventMapViewController;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) IBOutlet UILabel *labelTitle;
+@property (nonatomic, strong) IBOutlet UILabel *labelDescription;
+@property (nonatomic, strong) IBOutlet UILabel *labelTime;
+@property (nonatomic, strong) IBOutlet UILabel *labelLocation;
+@property (nonatomic, strong) IBOutlet UITableView *tableViewMenu;
+@property (nonatomic, strong) EventDescriptionViewController *eventDescriptionViewController;
+@property (nonatomic, strong) EventSessionsMenuViewController *eventSessionsMenuViewController;
+@property (nonatomic, strong) EventTweetsViewController *eventTweetsViewController;
+@property (nonatomic, strong) EventMapViewController *eventMapViewController;
 
 @end

@@ -35,11 +35,11 @@
 
 }
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
-@property (nonatomic, retain) EventSessionsCurrentViewController *sessionsCurrentViewController;
-@property (nonatomic, retain) EventSessionsFavoritesViewController *sessionsFavoritesViewController;
-@property (nonatomic, retain) EventSessionsConferenceFavoritesViewController *conferenceFavoritesViewController;
-@property (nonatomic, retain) EventSessionsByDayViewController *sessionsByDayViewController;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) IBOutlet UITableView *tableViewMenu;
+@property (nonatomic, strong) EventSessionsCurrentViewController *sessionsCurrentViewController;
+@property (nonatomic, strong) EventSessionsFavoritesViewController *sessionsFavoritesViewController;
+@property (nonatomic, strong) EventSessionsConferenceFavoritesViewController *conferenceFavoritesViewController;
+@property (nonatomic, strong) EventSessionsByDayViewController *sessionsByDayViewController;
 
 @end

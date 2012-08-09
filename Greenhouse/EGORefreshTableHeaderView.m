@@ -34,10 +34,10 @@
 
 @interface EGORefreshTableHeaderView()
 
-@property (nonatomic, retain) UILabel *lastUpdatedLabel;
-@property (nonatomic, retain) UILabel *statusLabel;
-@property (nonatomic, retain) CALayer *arrowImage;
-@property (nonatomic, retain) UIActivityIndicatorView *activityView;
+@property (nonatomic, strong) UILabel *lastUpdatedLabel;
+@property (nonatomic, strong) UILabel *statusLabel;
+@property (nonatomic, strong) CALayer *arrowImage;
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
 
 @end
 
@@ -110,7 +110,6 @@
 	[formatter setPMSymbol:@"PM"];
 	[formatter setDateFormat:@"MM/dd/yyyy hh:mm:a"];
 	lastUpdatedLabel.text = [NSString stringWithFormat:@"Last Updated: %@", [formatter stringFromDate:lastRefreshDate]];
-	[formatter release];
 }
 
 - (void)setState:(EGOPullRefreshState)aState{
@@ -158,16 +157,6 @@
 	}
 	
 	_state = aState;
-}
-
-- (void)dealloc 
-{
-	[activityView release];
-	[statusLabel release];
-	[arrowImage release];
-	[lastUpdatedLabel release];
-	
-    [super dealloc];
 }
 
 @end

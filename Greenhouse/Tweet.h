@@ -24,17 +24,17 @@
 #import "WebDataModel.h"
 
 
-@interface Tweet : NSObject <WebDataModel> { }
+@interface Tweet : NSObject <WebDataModel>
 
 @property (nonatomic, copy) NSString *tweetId;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, retain) NSDate *createdAt;
+@property (nonatomic, strong) NSDate *createdAt;
 @property (nonatomic, copy) NSString *fromUser;
 @property (nonatomic, copy) NSString *profileImageUrl;
 @property (nonatomic, copy) NSString *userId;
 @property (nonatomic, copy) NSString *languageCode;
 @property (nonatomic, copy) NSString *source;
-@property (nonatomic, retain) UIImage *profileImage;
+@property (nonatomic, strong) UIImage *profileImage;
 
 - (void)removeCachedProfileImage;
 

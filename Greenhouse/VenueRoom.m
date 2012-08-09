@@ -48,16 +48,4 @@
 	return self;
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[roomId release];
-	[label release];
-	[venueId release];
-	
-	[super dealloc];
-}
 @end

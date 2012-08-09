@@ -23,22 +23,23 @@
 //  THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-
 #import "OAMutableURLRequest.h"
 
-@interface OAAsynchronousDataFetcher : NSObject {
+
+@interface OAAsynchronousDataFetcher : NSObject
+{
     OAMutableURLRequest *request;
     NSURLResponse *response;
     NSURLConnection *connection;
     NSMutableData *responseData;
     id delegate;
     SEL didFinishSelector;
-    SEL didFailSelector;	
+    SEL didFailSelector;
 }
 
 + (id)asynchronousFetcherWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
-- (id)initWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 
+- (id)initWithRequest:(OAMutableURLRequest *)aRequest delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
 - (void)start;
 - (void)cancel;
 

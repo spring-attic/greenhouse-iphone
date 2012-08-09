@@ -23,6 +23,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CustomToolbar : UIToolbar { }
+@interface CustomToolbar : UIToolbar
 
 @end

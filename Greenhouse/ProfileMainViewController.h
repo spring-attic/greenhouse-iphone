@@ -30,10 +30,10 @@
 
 @interface ProfileMainViewController : DataViewController <ProfileControllerDelegate> { }
 
-@property (nonatomic, retain) Profile *profile;
-@property (nonatomic, retain) IBOutlet UILabel *labelDisplayName;
-@property (nonatomic, retain) IBOutlet WebImageView *imageViewPicture;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) Profile *profile;
+@property (nonatomic, strong) IBOutlet UILabel *labelDisplayName;
+@property (nonatomic, strong) IBOutlet WebImageView *imageViewPicture;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 
 - (IBAction)actionSignOut:(id)sender;
 - (IBAction)actionRefresh:(id)sender;

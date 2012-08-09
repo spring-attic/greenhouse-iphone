@@ -98,7 +98,7 @@
 		
         if (cell == nil)
 		{
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PlaceholderCellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PlaceholderCellIdentifier];
             cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
@@ -112,7 +112,7 @@
 	
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		
@@ -197,20 +197,5 @@
 	self.currentEvent = nil;
 	self.sessionDetailsViewController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arraySessions release];
-	[event release];
-	[currentEvent release];
-	[sessionDetailsViewController release];
-	
-    [super dealloc];
-}
-
 
 @end

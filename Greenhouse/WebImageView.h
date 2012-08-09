@@ -29,7 +29,7 @@
 	NSMutableData *_receivedData;
 }
 
-@property (nonatomic, retain) NSURL *imageUrl;
+@property (nonatomic, strong) NSURL *imageUrl;
 
 - (id)initWithURL:(NSURL *)url;
 - (void)startImageDownload;

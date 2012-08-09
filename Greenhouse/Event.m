@@ -58,11 +58,9 @@
 		{
 			Venue *venue = [[Venue alloc] initWithDictionary:d];
 			[tmpVenues addObject:venue];
-			[venue release];
 		}
 		
 		NSArray *venuesArray = [NSArray arrayWithArray:tmpVenues];
-		[tmpVenues release];
 		
 		return venuesArray;
 	}
@@ -94,26 +92,6 @@
 	}
 	
 	return self;
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[eventId release];
-	[title release];
-	[startTime release];
-	[endTime release];
-	[location release];
-	[description release];
-	[name release];
-	[hashtag release];
-	[groupName release];
-	[venues release];
-	
-	[super dealloc];
 }
 
 @end

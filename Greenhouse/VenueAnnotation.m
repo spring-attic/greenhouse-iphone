@@ -26,17 +26,17 @@
 
 @implementation VenueAnnotation
 
-@synthesize venue = _venue;
+@synthesize venue;
 
 
 #pragma mark -
 #pragma mark Instance methods
 
-- (id)initWithVenue:(Venue *)venue
+- (id)initWithVenue:(Venue *)aVenue
 {
 	if ((self = [super init]))
 	{
-		self.venue = venue;
+		self.venue = aVenue;
 	}
 	
 	return self;
@@ -48,19 +48,19 @@
 
 - (CLLocationCoordinate2D)coordinate
 {
-	if (_venue)
+	if (venue)
 	{
-		_coordinate = _venue.location.coordinate;
+		coordinate = venue.location.coordinate;
 	}
 	
-	return _coordinate;
+	return coordinate;
 }
 
 - (NSString *)title
 {
-	if (_venue)
+	if (venue)
 	{
-		return _venue.name;
+		return venue.name;
 	}
 	
 	return @"";
@@ -68,23 +68,12 @@
 
 - (NSString *)subtitle
 {
-	if (_venue)
+	if (venue)
 	{
-		return _venue.locationHint;
+		return venue.locationHint;
 	}
 	
 	return @"";
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[_venue release];
-	
-	[super dealloc];
 }
 
 @end

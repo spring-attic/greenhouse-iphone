@@ -35,7 +35,6 @@
 		DLog(@"");
 		
 		[_dataFetcher cancel];
-		[_dataFetcher release];
 		_dataFetcher = nil;
 	}
 }
@@ -55,7 +54,6 @@
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:@"Sign Out", nil];
 		[alert show];
-		[alert release];
 	}
 	else
 	{
@@ -65,13 +63,11 @@
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}
 }
 
 - (void)request:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	DLog(@"%@", [error localizedDescription]);
@@ -84,7 +80,6 @@
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:@"Sign Out", nil];
 		[alert show];
-		[alert release];
 	}
 	else 
 	{
@@ -94,7 +89,6 @@
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
 		[alert show];
-		[alert release];
 	}	
 }
 
@@ -105,9 +99,6 @@
 - (void)dealloc
 {
 	[self cancelDataFetcherRequest];
-	[_activityAlertView release];
-	
-	[super dealloc];
 }
 
 @end

@@ -28,19 +28,19 @@
 @class TweetViewController;
 
 
-@interface TweetDetailsViewController : DataViewController <TwitterControllerDelegate> { }
+@interface TweetDetailsViewController : DataViewController <TwitterControllerDelegate>
 
-@property (nonatomic, retain) Tweet *tweet;
-@property (nonatomic, retain) NSURL *tweetUrl;
-@property (nonatomic, retain) NSURL *retweetUrl;
-@property (nonatomic, retain) IBOutlet UIImageView *imageViewProfile;
-@property (nonatomic, retain) IBOutlet UILabel *labelUser;
-@property (nonatomic, retain) IBOutlet UILabel *labelTime;
-@property (nonatomic, retain) IBOutlet UITextView *textViewText;
-@property (nonatomic, retain) IBOutlet UIButton *buttonReply;
-@property (nonatomic, retain) IBOutlet UIButton *buttonRetweet;
-@property (nonatomic, retain) IBOutlet UIButton *buttonQuote;
-@property (nonatomic, retain) TweetViewController *tweetViewController;
+@property (nonatomic, strong) Tweet *tweet;
+@property (nonatomic, strong) NSURL *tweetUrl;
+@property (nonatomic, strong) NSURL *retweetUrl;
+@property (nonatomic, strong) IBOutlet UIImageView *imageViewProfile;
+@property (nonatomic, strong) IBOutlet UILabel *labelUser;
+@property (nonatomic, strong) IBOutlet UILabel *labelTime;
+@property (nonatomic, strong) IBOutlet UITextView *textViewText;
+@property (nonatomic, strong) IBOutlet UIButton *buttonReply;
+@property (nonatomic, strong) IBOutlet UIButton *buttonRetweet;
+@property (nonatomic, strong) IBOutlet UIButton *buttonQuote;
+@property (nonatomic, strong) TweetViewController *tweetViewController;
 
 - (IBAction)actionReply:(id)sender;
 - (IBAction)actionRetweet:(id)sender;

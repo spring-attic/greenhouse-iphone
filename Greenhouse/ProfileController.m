@@ -27,7 +27,7 @@
 
 @implementation ProfileController
 
-@synthesize delegate = _delegate;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -43,8 +43,6 @@
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	[url release];
-	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
@@ -57,13 +55,10 @@
 													didFinishSelector:@selector(fetchProfile:didFinishWithData:)
 													  didFailSelector:@selector(fetchProfile:didFailWithError:)];
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -85,11 +80,9 @@
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the profile data."];
 	}
 	
-	[responseBody release];
-	
-	if ([_delegate respondsToSelector:@selector(fetchProfileDidFinishWithResults:)])
+	if ([delegate respondsToSelector:@selector(fetchProfileDidFinishWithResults:)])
 	{
-		[_delegate fetchProfileDidFinishWithResults:profile];
+		[delegate fetchProfileDidFinishWithResults:profile];
 	}
 }
 
@@ -97,19 +90,10 @@
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchProfileDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchProfileDidFailWithError:)])
 	{
-		[_delegate fetchProfileDidFailWithError:error];
+		[delegate fetchProfileDidFailWithError:error];
 	}
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[super dealloc];
 }
 
 @end

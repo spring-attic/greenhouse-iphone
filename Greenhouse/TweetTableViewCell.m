@@ -25,10 +25,10 @@
 
 @interface TweetTableViewCell()
 
-@property (nonatomic, retain) UILabel *labelUser;
-@property (nonatomic, retain) UILabel *labelText;
-@property (nonatomic, retain) UILabel *labelTime;
-@property (nonatomic, retain) UIImageView *imageViewProfile;
+@property (nonatomic, strong) UILabel *labelUser;
+@property (nonatomic, strong) UILabel *labelText;
+@property (nonatomic, strong) UILabel *labelTime;
+@property (nonatomic, strong) UIImageView *imageViewProfile;
 
 @end
 
@@ -58,9 +58,6 @@
 
 - (void)setTweet:(Tweet *)aTweet
 {
-	[tweet release];
-	tweet = [aTweet retain];
-	
 	if (aTweet.profileImage)
 	{
 		self.imageViewProfile.image = aTweet.profileImage;
@@ -75,8 +72,6 @@
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"MMM d h:mm a"];
 	self.labelTime.text = [dateFormatter stringFromDate:aTweet.createdAt];
-	[dateFormatter release];
-	
 	self.labelText.text = aTweet.text;
 	
 	// adjust the height of the label holding the tweet text
@@ -97,7 +92,6 @@
 		CGRect frame = CGRectMake(5.0f, 5.0f, 48.0f, 48.0f);
 		self.imageViewProfile = [[UIImageView alloc] initWithFrame:frame];
 		[self.contentView addSubview:imageViewProfile];
-		[imageViewProfile release];
 		
 		CGFloat xVal = CGRectGetMaxX(imageViewProfile.frame) + 7.0f;
 		
@@ -108,7 +102,6 @@
 		self.labelUser = [[UILabel alloc] initWithFrame:frame];
 		labelUser.font = [UIFont boldSystemFontOfSize:13.0f];
 		[self.contentView addSubview:labelUser];
-		[labelUser release];
 				
 		frame = CGRectMake(xVal, 
 						   CGRectGetMaxY(labelUser.frame) + 2.0f, 
@@ -119,7 +112,6 @@
 		labelText.numberOfLines = 0;
 		labelText.lineBreakMode = UILineBreakModeWordWrap;
 		[self.contentView addSubview:labelText];
-		[labelText release];
 		
 		xVal = CGRectGetMaxX(labelUser.frame) + 10.0f;
 		
@@ -130,8 +122,7 @@
 		self.labelTime = [[UILabel alloc] initWithFrame:frame];
 		labelTime.font = [UIFont boldSystemFontOfSize:11.0f];
 		labelTime.textAlignment = UITextAlignmentRight;
-		[self.contentView addSubview:labelTime];
-		[labelTime release];		
+		[self.contentView addSubview:labelTime];	
     }
 	
     return self;
@@ -142,21 +133,6 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[labelUser release];
-	[labelText release];
-	[labelTime release];
-	[imageViewProfile release];
-	[tweet release];
-	
-    [super dealloc];
 }
 
 @end

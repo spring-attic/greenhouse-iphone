@@ -29,8 +29,8 @@
 
 @interface TweetViewController()
 
-@property (nonatomic, retain) LocationManager *locationManager;
-@property (nonatomic, retain) TwitterController *twitterController;
+@property (nonatomic, strong) LocationManager *locationManager;
+@property (nonatomic, strong) TwitterController *twitterController;
 
 - (void)setCount:(NSUInteger)newCount;
 
@@ -55,7 +55,6 @@
 	NSInteger remainingChars = MAX_TWEET_SIZE - textLength;
 	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
 	barButtonCount.title = s;
-	[s release];
 	
 	if (remainingChars < 0)
 	{
@@ -99,9 +98,7 @@
 
 - (void)locationManager:(LocationManager *)manager didUpdateLocation:(CLLocation *)newLocation
 {
-	[locationManager release];
 	self.locationManager = nil;
-	
 	self.twitterController = [[TwitterController alloc] init];
 	twitterController.delegate = self;
 	[twitterController postUpdate:textViewTweet.text withURL:tweetUrl location:newLocation];
@@ -109,7 +106,6 @@
 
 - (void)locationManager:(LocationManager *)manager didFailWithError:(NSError *)error
 {
-	[locationManager release];
 	self.locationManager = nil;
 }
 
@@ -119,15 +115,12 @@
 
 - (void)postUpdateDidFinish
 {
-	[twitterController release];
 	self.twitterController = nil;
-	
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)postUpdateDidFailWithError:(NSError *)error;
 {
-	[twitterController release];
 	self.twitterController = nil;
 }
 
@@ -187,24 +180,5 @@
 	self.switchGeotag = nil;
 	self.barButtonCount = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[tweetUrl release];
-	[tweetText release];
-	[barButtonCancel release];
-	[barButtonSend release];
-	[textViewTweet release];
-	[barButtonGeotag release];
-	[switchGeotag release];
-	[barButtonCount release];
-	
-    [super dealloc];
-}
-
 
 @end

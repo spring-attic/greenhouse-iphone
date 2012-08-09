@@ -60,13 +60,13 @@
 	}	
 }
 
-- (void)processOauthResponseDidFinish
+- (void)processOAuthResponseDidFinish
 {
 	[self showTabBarController];
 	[self reloadDataForCurrentView];
 }
 
-- (void)processOauthResponseDidFail
+- (void)processOAuthResponseDidFail
 {
 	[self showAuthorizeViewController];
 }
@@ -81,7 +81,6 @@
 															  cancelButtonTitle:@"OK" 
 															  otherButtonTitles:nil];
         [servicesDisabledAlert show];
-        [servicesDisabledAlert release];
     }	
 }
 
@@ -146,10 +145,7 @@
 	if (url)
 	{
 		OAuthManager *mgr = [OAuthManager sharedInstance];
-		[mgr processOauthResponse:url 
-						 delegate:self 
-				didFinishSelector:@selector(processOauthResponseDidFinish)
-				  didFailSelector:@selector(processOauthResponseDidFail)];
+		[mgr processOauthResponse:url delegate:self ];
 	}
 
 	return YES;
@@ -172,10 +168,7 @@
 		if (url)
 		{
 			OAuthManager *mgr = [OAuthManager sharedInstance];
-			[mgr processOauthResponse:url 
-							 delegate:self 
-					didFinishSelector:@selector(processOauthResponseDidFinish)
-					  didFailSelector:@selector(processOauthResponseDidFail)];
+			[mgr processOauthResponse:url delegate:self];
 		}
 		else
 		{
@@ -202,19 +195,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application 
 {    
 	
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{    
-	[authorizeViewController release];
-    [tabBarController release];
-    [window release];
-	
-    [super dealloc];
 }
 
 @end

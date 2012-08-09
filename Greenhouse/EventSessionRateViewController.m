@@ -30,7 +30,7 @@
 
 @interface EventSessionRateViewController()
 
-@property (nonatomic, retain) EventSessionController *eventSessionController;
+@property (nonatomic, strong) EventSessionController *eventSessionController;
 @property (nonatomic, assign) NSUInteger rating;
 
 - (void)updateRatingButtons:(NSInteger)count;
@@ -147,7 +147,6 @@
 	NSInteger remainingChars = MAX_MESSAGE_SIZE - newCount;
 	NSString *s = [[NSString alloc] initWithFormat:@"%i", remainingChars];
 	barButtonCount.title = s;
-	[s release];
 	
 	if (remainingChars < 0)
 	{
@@ -174,7 +173,6 @@
 
 - (void)rateSessionDidFinishWithResults:(double)newRating
 {
-	[eventSessionController release];
 	self.eventSessionController = nil;
 	
 	session.rating = newRating;
@@ -185,7 +183,6 @@
 
 - (void)rateSessionDidFailWithError:(NSError *)error
 {
-	[eventSessionController release];
 	self.eventSessionController = nil;
 }
 
@@ -238,28 +235,5 @@
 	self.textViewComments = nil;
 	self.barButtonCount = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[event release];
-	[session release];
-	[sessionDetailsViewController release];
-	[barButtonCancel release];
-	[barButtonSubmit release];
-	[buttonRating1 release];
-	[buttonRating2 release];
-	[buttonRating3 release];
-	[buttonRating4 release];
-	[buttonRating5 release];
-	[textViewComments release];
-	[barButtonCount release];
-	
-    [super dealloc];
-}
-
 
 @end

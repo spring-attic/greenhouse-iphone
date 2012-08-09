@@ -26,11 +26,8 @@
 
 
 @interface EventController : OAuthController 
-{ 
-	id<EventControllerDelegate> _delegate;
-}
 
-@property (nonatomic, assign) id<EventControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<EventControllerDelegate> delegate;
 
 - (void)fetchEvents;
 - (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

@@ -27,7 +27,7 @@
 
 @implementation TwitterController
 
-@synthesize delegate = _delegate;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -42,8 +42,7 @@
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	[urlString release];
-	
+
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
@@ -57,20 +56,17 @@
 													  didFailSelector:@selector(fetchTweets:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
-{	
-	[_dataFetcher release];
+{
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	DLog(@"%@", responseBody);
 	
-	NSMutableArray *tweets = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *tweets = [[NSMutableArray alloc] init];
 	BOOL lastPage = NO;
 		
 	if (ticket.didSucceed)
@@ -87,19 +83,16 @@
 		{
 			Tweet *tweet = [[Tweet alloc] initWithDictionary:d];
 			[tweets addObject:tweet];
-			[tweet release];
 		}
 	}
 	else 
 	{
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the Twitter feed."];
 	}
-	
-	[responseBody release];
-	
-	if ([_delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:lastPage:)])
+
+	if ([delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:lastPage:)])
 	{
-		[_delegate fetchTweetsDidFinishWithResults:tweets lastPage:lastPage];
+		[delegate fetchTweetsDidFinishWithResults:tweets lastPage:lastPage];
 	}
 }
 
@@ -107,15 +100,15 @@
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchTweetsDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchTweetsDidFailWithError:)])
 	{
-		[_delegate fetchTweetsDidFailWithError:error];
+		[delegate fetchTweetsDidFailWithError:error];
 	}
 }
 
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url
 {
-	CLLocation *location = [[[CLLocation alloc] init] autorelease];
+	CLLocation *location = [[CLLocation alloc] init];
 	[self postUpdate:update withURL:url location:location];
 }
 
@@ -139,8 +132,7 @@
 							location.coordinate.latitude, location.coordinate.longitude];
 	DLog(@"%@", postParams);
 	
-	NSData *postData = [[postParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[postParams release];
+	NSData *postData = [postParams dataUsingEncoding:NSUTF8StringEncoding];
 	
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
 	
@@ -148,7 +140,6 @@
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
-	[postData release];
 	
 	DLog(@"%@", request);
 	
@@ -160,13 +151,10 @@
 													  didFailSelector:@selector(postUpdate:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	[_activityAlertView stopAnimating];
@@ -176,15 +164,13 @@
 	
 	DLog(@"%@", responseBody);
 	
-	[responseBody release];
-	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
 	if (ticket.didSucceed)
 	{
-		if ([_delegate respondsToSelector:@selector(postUpdateDidFinish)])
+		if ([delegate respondsToSelector:@selector(postUpdateDidFinish)])
 		{
-			[_delegate postUpdateDidFinish];
+			[delegate postUpdateDidFinish];
 		}
 	}
 	else 
@@ -208,7 +194,6 @@
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];		
 	}
 }
 
@@ -219,9 +204,9 @@
 
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(postUpdateDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(postUpdateDidFailWithError:)])
 	{
-		[_delegate postUpdateDidFailWithError:error];
+		[delegate postUpdateDidFailWithError:error];
 	}
 }
 
@@ -239,21 +224,16 @@
 	NSString *postParams =[[NSString alloc] initWithFormat:@"tweetId=%@", tweetId];
 	DLog(@"%@", postParams);
 	
-	NSString *escapedPostParams = [[postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding] retain];
-	[postParams release];
+	NSString *escapedPostParams = [postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	DLog(@"%@", escapedPostParams);
 	
-	NSData *postData = [[escapedPostParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[escapedPostParams release];
-	
+	NSData *postData = [escapedPostParams dataUsingEncoding:NSUTF8StringEncoding];	
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
 	
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
-	[postData release];
-	
 	DLog(@"%@", request);
 	
 	[self cancelDataFetcherRequest];
@@ -264,23 +244,17 @@
 													  didFailSelector:@selector(postRetweet:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	[_activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
 	DLog(@"%@", responseBody);
-	
-	[responseBody release];
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -292,11 +266,10 @@
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];
 		
-		if ([_delegate respondsToSelector:@selector(postRetweetDidFinish)])
+		if ([delegate respondsToSelector:@selector(postRetweetDidFinish)])
 		{
-			[_delegate postRetweetDidFinish];
+			[delegate postRetweetDidFinish];
 		}
 	}
 	else 
@@ -320,7 +293,6 @@
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];		
 	}
 }
 
@@ -331,19 +303,10 @@
 
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(postRetweetDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(postRetweetDidFailWithError:)])
 	{
-		[_delegate postRetweetDidFailWithError:error];
+		[delegate postRetweetDidFailWithError:error];
 	}	
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[super dealloc];
 }
 
 @end

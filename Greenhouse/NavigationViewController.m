@@ -82,15 +82,4 @@
 	self.navigationController = nil;
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[navigationController release];
-	
-    [super dealloc];
-}
-
 @end

@@ -24,9 +24,9 @@
 #import "EventSession.h"
 
 
-@interface EventSessionDescriptionViewController : DataViewController { }
+@interface EventSessionDescriptionViewController : DataViewController
 
-@property (nonatomic, retain) EventSession *session;
-@property (nonatomic, retain) IBOutlet UITextView *textViewDescription;
+@property (nonatomic, strong) EventSession *session;
+@property (nonatomic, strong) IBOutlet UITextView *textViewDescription;
 
 @end

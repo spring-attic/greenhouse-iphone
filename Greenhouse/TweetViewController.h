@@ -25,16 +25,16 @@
 #import "TwitterController.h"
 
 
-@interface TweetViewController : UIViewController <UITextViewDelegate, LocationManagerDelegate, TwitterControllerDelegate> { }
+@interface TweetViewController : UIViewController <UITextViewDelegate, LocationManagerDelegate, TwitterControllerDelegate>
 
-@property (nonatomic, retain) NSURL *tweetUrl;
+@property (nonatomic, strong) NSURL *tweetUrl;
 @property (nonatomic, copy) NSString *tweetText;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCancel;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonSend;
-@property (nonatomic, retain) IBOutlet UITextView *textViewTweet;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonGeotag;
-@property (nonatomic, retain) IBOutlet UISwitch *switchGeotag;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCount;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonCancel;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonSend;
+@property (nonatomic, strong) IBOutlet UITextView *textViewTweet;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonGeotag;
+@property (nonatomic, strong) IBOutlet UISwitch *switchGeotag;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonCount;
 
 
 - (IBAction)actionCancel:(id)sender;

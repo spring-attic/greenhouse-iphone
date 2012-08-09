@@ -34,8 +34,8 @@
 
 @interface TweetsViewController()
 
-@property (nonatomic, retain) NSMutableDictionary *imageDownloadsInProgress;
-@property (nonatomic, retain) TwitterController *twitterController;
+@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
+@property (nonatomic, strong) TwitterController *twitterController;
 
 - (void)showTwitterForm;
 - (void)startImageDownload:(Tweet *)tweet forIndexPath:(NSIndexPath *)indexPath;
@@ -74,7 +74,6 @@
         profileImageDownloader.delegate = self;
         [imageDownloadsInProgress setObject:profileImageDownloader forKey:indexPath];
         [profileImageDownloader startDownload];
-        [profileImageDownloader release];   
     }
 }
 
@@ -109,7 +108,6 @@
 - (void)completeFetchTweets:(NSArray *)tweets
 {
 	_isLoading = NO;
-	[twitterController release];
 	self.twitterController = nil;
 	[arrayTweets addObjectsFromArray:tweets];
 	[self.tableView reloadData];
@@ -145,7 +143,6 @@
 {
 	NSArray *array = [[NSArray alloc] init];
 	[self completeFetchTweets:array];
-	[array release];
 }
 
 
@@ -239,7 +236,7 @@
 		
         if (cell == nil)
 		{
-            cell = [[[ActivityIndicatorTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:loadingCellIdent] autorelease];
+            cell = [[ActivityIndicatorTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:loadingCellIdent];
             cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
 			cell.detailTextLabel.text = @"Loading Tweets…";
@@ -254,7 +251,7 @@
 	
 	if (cell == nil)
 	{
-		cell = [[[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
+		cell = [[TweetTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent];
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
 		
@@ -344,7 +341,6 @@
 																				target:self 
 																				action:@selector(showTwitterForm)];
 	self.navigationItem.rightBarButtonItem = buttonItemCompose;
-	[buttonItemCompose release];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -372,22 +368,5 @@
 	self.tweetViewController = nil;
 	self.tweetDetailsViewController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arrayTweets release];
-	[imageDownloadsInProgress release];
-	[tweetUrl release];
-	[retweetUrl release];
-	[tweetViewController release];
-	[tweetDetailsViewController release];
-	
-    [super dealloc];
-}
-
 
 @end

@@ -41,28 +41,36 @@
     
     [request prepare];
     
+    NSURLResponse *response;
+    NSError *error;
+    
     responseData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
                                                      error:&error];
 	
     if (response == nil || responseData == nil || error != nil) 
 	{
-        OAServiceTicket *ticket = [[[OAServiceTicket alloc] initWithRequest:request 
+        OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
 																   response:response 
-																 didSucceed:NO] autorelease];
-		
+																 didSucceed:NO];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [delegate performSelector:didFailSelector withObject:ticket withObject:error];
+#pragma clang diagnostic pop
     } 
 	else 
 	{
 		BOOL didSucceed = [(NSHTTPURLResponse *)response statusCode] < 400;
 		
-        OAServiceTicket *ticket = [[[OAServiceTicket alloc] initWithRequest:request
+        OAServiceTicket *ticket = [[OAServiceTicket alloc] initWithRequest:request
 																   response:response
-																 didSucceed:didSucceed] autorelease];
-		
+                                                                didSucceed:didSucceed];
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
         [delegate performSelector:didFinishSelector withObject:ticket withObject:responseData];
-    }   
+#pragma clang diagnostic pop
+    }
 }
 
 @end

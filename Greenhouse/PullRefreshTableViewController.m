@@ -26,7 +26,7 @@
 
 @interface PullRefreshTableViewController()
 
-@property (nonatomic, assign) EGORefreshTableHeaderView *refreshHeaderView;
+@property (nonatomic, strong) EGORefreshTableHeaderView *refreshHeaderView;
 
 @end
 
@@ -148,21 +148,9 @@
 	[super viewDidUnload];
 	
 	self.refreshHeaderView = nil;
+    self.tableView = nil;
 	self.lastRefreshKey = nil;
 }
-
-
-#pragma mark -
-#pragma mark Dealloc
-
-- (void)dealloc 
-{
-	[refreshHeaderView release];
-	[lastRefreshKey release];
-	
-    [super dealloc];
-}
-
 
 @end
 

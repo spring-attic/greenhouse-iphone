@@ -39,11 +39,11 @@
 	BOOL _isLastPage;
 }
 
-@property (nonatomic, retain) NSMutableArray *arrayTweets;
-@property (nonatomic, retain) NSURL *tweetUrl;
-@property (nonatomic, retain) NSURL *retweetUrl;
-@property (nonatomic, retain) TweetViewController *tweetViewController;
-@property (nonatomic, retain) TweetDetailsViewController *tweetDetailsViewController;
+@property (nonatomic, strong) NSMutableArray *arrayTweets;
+@property (nonatomic, strong) NSURL *tweetUrl;
+@property (nonatomic, strong) NSURL *retweetUrl;
+@property (nonatomic, strong) TweetViewController *tweetViewController;
+@property (nonatomic, strong) TweetDetailsViewController *tweetDetailsViewController;
 @property (nonatomic, assign) BOOL isLoading;
 
 - (void)profileImageDidLoad:(NSIndexPath *)indexPath;

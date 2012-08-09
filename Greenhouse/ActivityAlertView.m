@@ -25,14 +25,14 @@
 
 @interface ActivityAlertView()
 
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
 
 @implementation ActivityAlertView
 
-@synthesize activityIndicatorView = _activityIndicatorView;
+@synthesize activityIndicatorView;
 
 - (id)initWithActivityMessage:(NSString *)message
 {
@@ -49,7 +49,7 @@
 	{
 		self.activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 		
-		CGRect frame = _activityIndicatorView.frame;
+		CGRect frame = activityIndicatorView.frame;
 		frame.origin.x = 140.0f - (frame.size.width / 2);
 
 		if (message)
@@ -61,9 +61,9 @@
 			frame.origin.y = 15.0f;
 		}
 
-		_activityIndicatorView.frame = frame;
+		activityIndicatorView.frame = frame;
 		
-		[self addSubview:_activityIndicatorView];
+		[self addSubview:activityIndicatorView];
 	}
 	
 	return self;
@@ -71,24 +71,14 @@
 
 - (void)startAnimating
 {
-	[_activityIndicatorView startAnimating];
+	[activityIndicatorView startAnimating];
 	[self show];
 }
 
 - (void)stopAnimating
 {
 	[self dismissWithClickedButtonIndex:0 animated:NO];
-	[_activityIndicatorView stopAnimating];
-}
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[_activityIndicatorView release];
-	
-	[super dealloc];
+	[activityIndicatorView stopAnimating];
 }
 
 @end

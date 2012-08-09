@@ -24,11 +24,8 @@
 
 
 @interface NavigationViewController : UIViewController <UINavigationControllerDelegate>
-{
 
-}
-
-@property (nonatomic, retain) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
 
 - (void)reloadData;
 

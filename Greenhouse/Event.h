@@ -24,17 +24,17 @@
 #import "WebDataModel.h"
 
 
-@interface Event : NSObject <WebDataModel> { }
+@interface Event : NSObject <WebDataModel>
 
 @property (nonatomic, copy) NSString *eventId;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, retain) NSDate *startTime;
-@property (nonatomic, retain) NSDate *endTime;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, copy) NSString *location;
 @property (nonatomic, copy) NSString *description;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, copy) NSString *groupName;
-@property (nonatomic, retain) NSArray *venues;
+@property (nonatomic, strong) NSArray *venues;
 
 @end

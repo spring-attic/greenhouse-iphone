@@ -26,12 +26,9 @@
 #import "TwitterControllerDelegate.h"
 
 
-@interface TwitterController : OAuthController 
-{ 
-	id<TwitterControllerDelegate> _delegate;
-}
+@interface TwitterController : OAuthController
 
-@property (nonatomic, assign) id<TwitterControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<TwitterControllerDelegate> delegate;
 
 - (void)fetchTweetsWithURL:(NSURL *)url page:(NSUInteger)page;
 - (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

@@ -50,13 +50,4 @@
     [super viewDidUnload];
 }
 
-
-#pragma mark -
-#pragma NSObject methods
-
-- (void)dealloc 
-{
-    [super dealloc];
-}
-
 @end

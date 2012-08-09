@@ -37,7 +37,6 @@
 	NSString *filePath = [[NSBundle mainBundle] pathForResource:@"InfoContent" ofType:@"html"];
 	NSString *htmlString = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 	[self.webView loadHTMLString:htmlString baseURL:nil];
-	[htmlString release];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -51,17 +50,5 @@
 	
 	self.webView = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[webView release];
-	
-    [super dealloc];
-}
-
 
 @end

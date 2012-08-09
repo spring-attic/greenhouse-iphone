@@ -25,7 +25,7 @@
 
 @interface EventSessionsFavoritesViewController()
 
-@property (nonatomic, retain) EventSessionController *eventSessionController;
+@property (nonatomic, strong) EventSessionController *eventSessionController;
 
 - (void)completeFetchFavoriteSessions:(NSArray *)sessions;
 
@@ -38,7 +38,6 @@
 
 - (void)completeFetchFavoriteSessions:(NSArray *)sessions
 {
-	[eventSessionController release];
 	self.eventSessionController = nil;
 	self.arraySessions = sessions;
 	[self.tableView reloadData];
@@ -57,7 +56,6 @@
 {
 	NSArray *array = [[NSArray alloc] init];
 	[self completeFetchFavoriteSessions:array];
-	[array release];
 }
 
 #pragma mark -
@@ -100,15 +98,5 @@
 	
 	self.eventSessionController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-    [super dealloc];
-}
-
 
 @end

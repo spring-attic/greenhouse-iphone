@@ -33,8 +33,8 @@
 	NSMutableData *_receivedData;
 }
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet MKMapView *mapViewLocation;
-@property (nonatomic, retain) VenueDetailsViewController *venueDetailsViewController;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) IBOutlet MKMapView *mapViewLocation;
+@property (nonatomic, strong) VenueDetailsViewController *venueDetailsViewController;
 
 @end

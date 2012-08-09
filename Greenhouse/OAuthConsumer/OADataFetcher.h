@@ -33,8 +33,6 @@
 
 @private
     OAMutableURLRequest *request;
-    NSURLResponse *response;
-    NSError *error;
     NSData *responseData;
     id delegate;
     SEL didFinishSelector;

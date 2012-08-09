@@ -26,9 +26,9 @@
 #import "EventSession.h"
 
 
-@interface EventSessionTweetsViewController : TweetsViewController { }
+@interface EventSessionTweetsViewController : TweetsViewController
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) EventSession *session;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
 
 @end

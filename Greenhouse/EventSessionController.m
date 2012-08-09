@@ -29,7 +29,7 @@ static BOOL sharedShouldRefreshFavorites;
 
 @implementation EventSessionController
 
-@synthesize delegate = _delegate;
+@synthesize delegate;
 
 #pragma mark -
 #pragma mark Static methods
@@ -49,19 +49,14 @@ static BOOL sharedShouldRefreshFavorites;
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"YYYY-MM-d"];
 	NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-	[dateFormatter release];
-	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, eventId, dateString];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
 	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -76,21 +71,18 @@ static BOOL sharedShouldRefreshFavorites;
 													  didFailSelector:@selector(fetchCurrentSessions:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	DLog(@"%@", responseBody);
 	
-	NSMutableArray *arrayCurrentSessions = [[[NSMutableArray alloc] init] autorelease];
-	NSMutableArray *arrayUpcomingSessions = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *arrayCurrentSessions = [[NSMutableArray alloc] init];
+	NSMutableArray *arrayUpcomingSessions = [[NSMutableArray alloc] init];
 	
 	if (ticket.didSucceed)
 	{		
@@ -129,23 +121,19 @@ static BOOL sharedShouldRefreshFavorites;
 					[arrayUpcomingSessions addObject:session];
 				}
 			}
-			
-			[session release];
 		}
 	}
 	else 
 	{
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}	
-	
-	[responseBody release];
 
-	if ([_delegate respondsToSelector:@selector(fetchCurrentSessionsDidFinishWithResults:upcomingSessions:)])
+	if ([delegate respondsToSelector:@selector(fetchCurrentSessionsDidFinishWithResults:upcomingSessions:)])
 	{
 		DLog(@"arrayCurrentSessions: %@", arrayCurrentSessions);
 		DLog(@"arrayUpcomingSessions: %@", arrayUpcomingSessions);
 
-		[_delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
+		[delegate fetchCurrentSessionsDidFinishWithResults:arrayCurrentSessions upcomingSessions:arrayUpcomingSessions];
 	}
 }
 
@@ -153,9 +141,9 @@ static BOOL sharedShouldRefreshFavorites;
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchCurrentSessionsDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchCurrentSessionsDidFailWithError:)])
 	{
-		[_delegate fetchCurrentSessionsDidFailWithError:error];
+		[delegate fetchCurrentSessionsDidFailWithError:error];
 	}	
 }
 
@@ -165,18 +153,14 @@ static BOOL sharedShouldRefreshFavorites;
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"YYYY-MM-d"];
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
-	[dateFormatter release];
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, eventId, dateString];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 		
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
 	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -191,21 +175,18 @@ static BOOL sharedShouldRefreshFavorites;
 													  didFailSelector:@selector(fetchSessions:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	DLog(@"%@", responseBody);
 
-	NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
-	NSMutableArray *arrayTimes = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
+	NSMutableArray *arrayTimes = [[NSMutableArray alloc] init];
 		
 	if (ticket.didSucceed)
 	{
@@ -225,13 +206,10 @@ static BOOL sharedShouldRefreshFavorites;
 			{
 				arrayBlock = [[NSMutableArray alloc] init];
 				[arraySessions addObject:arrayBlock];
-				[arrayBlock release];
-				
 				[arrayBlock addObject:session];
 				
 				NSDate *date = [session.startTime copyWithZone:NULL];
 				[arrayTimes addObject:date];
-				[date release];				
 			}
 			else if ([sessionTime compare:session.startTime] == NSOrderedSame)
 			{
@@ -239,7 +217,6 @@ static BOOL sharedShouldRefreshFavorites;
 			}
 			
 			sessionTime = session.startTime;
-			[session release];
 		}
 	}
 	else 
@@ -247,14 +224,12 @@ static BOOL sharedShouldRefreshFavorites;
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}
 	
-	[responseBody release];
-
-	if ([_delegate respondsToSelector:@selector(fetchSessionsByDateDidFinishWithResults:andTimes:)])
+	if ([delegate respondsToSelector:@selector(fetchSessionsByDateDidFinishWithResults:andTimes:)])
 	{
 		DLog(@"arraySessions: %@", arraySessions);
 		DLog(@"arrayTimes: %@", arrayTimes);
 		
-		[_delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
+		[delegate fetchSessionsByDateDidFinishWithResults:arraySessions andTimes:arrayTimes];
 	}
 }
 
@@ -262,9 +237,9 @@ static BOOL sharedShouldRefreshFavorites;
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchSessionsByDateDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchSessionsByDateDidFailWithError:)])
 	{
-		[_delegate fetchSessionsByDateDidFailWithError:error];
+		[delegate fetchSessionsByDateDidFailWithError:error];
 	}
 }
 
@@ -274,15 +249,12 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITES_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
 	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -297,20 +269,17 @@ static BOOL sharedShouldRefreshFavorites;
 													  didFailSelector:@selector(fetchFavoriteSessions:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
 	DLog(@"%@", responseBody);
 	
-	NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
 	
 	if (ticket.didSucceed)
 	{
@@ -321,20 +290,17 @@ static BOOL sharedShouldRefreshFavorites;
 		for (NSDictionary *d in array) 
 		{
 			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			[arraySessions addObject:session];			
-			[session release];
+			[arraySessions addObject:session];
 		}
 	}
 	else 
 	{
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}
-	
-	[responseBody release];
-
-	if ([_delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFinishWithResults:)])
+    
+	if ([delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFinishWithResults:)])
 	{
-		[_delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
+		[delegate fetchFavoriteSessionsDidFinishWithResults:arraySessions];
 	}
 }
 
@@ -342,9 +308,9 @@ static BOOL sharedShouldRefreshFavorites;
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFailWithError:)])
 	{
-		[_delegate fetchFavoriteSessionsDidFailWithError:error];
+		[delegate fetchFavoriteSessionsDidFailWithError:error];
 	}
 }
 
@@ -352,15 +318,12 @@ static BOOL sharedShouldRefreshFavorites;
 {
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CONFERENCE_FAVORITES_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
 	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -375,20 +338,17 @@ static BOOL sharedShouldRefreshFavorites;
 													  didFailSelector:@selector(fetchConferenceFavoriteSessions:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	DLog(@"%@", responseBody);
 	
-	NSMutableArray *arraySessions = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
 	
 	if (ticket.didSucceed)
 	{	
@@ -399,8 +359,7 @@ static BOOL sharedShouldRefreshFavorites;
 		for (NSDictionary *d in array) 
 		{
 			EventSession *session = [[EventSession alloc] initWithDictionary:d];
-			[arraySessions addObject:session];			
-			[session release];
+			[arraySessions addObject:session];
 		}
 	}
 	else 
@@ -408,11 +367,9 @@ static BOOL sharedShouldRefreshFavorites;
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
 	}
 	
-	[responseBody release];
-	
-	if ([_delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFinishWithResults:)])
+	if ([delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFinishWithResults:)])
 	{
-		[_delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
+		[delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
 	}
 }
 
@@ -420,9 +377,9 @@ static BOOL sharedShouldRefreshFavorites;
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFailWithError:)])
 	{
-		[_delegate fetchConferenceFavoriteSessionsDidFailWithError:error];
+		[delegate fetchConferenceFavoriteSessionsDidFailWithError:error];
 	}
 }
 
@@ -432,16 +389,13 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, eventId, sessionNumber];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
 																	  token:[OAuthManager sharedInstance].accessToken
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[url release];
-	
+    
 	[request setHTTPMethod:@"PUT"];
 	
 	DLog(@"%@", request);
@@ -454,13 +408,10 @@ static BOOL sharedShouldRefreshFavorites;
 													  didFailSelector:@selector(updateFavoriteSession:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -478,11 +429,9 @@ static BOOL sharedShouldRefreshFavorites;
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while updating the favorite."];
 	}
 	
-	[responseBody release];
-	
-	if ([_delegate respondsToSelector:@selector(updateFavoriteSessionDidFinishWithResults:)])
+	if ([delegate respondsToSelector:@selector(updateFavoriteSessionDidFinishWithResults:)])
 	{
-		[_delegate updateFavoriteSessionDidFinishWithResults:isFavorite];
+		[delegate updateFavoriteSessionDidFinishWithResults:isFavorite];
 	}
 }
 
@@ -490,9 +439,9 @@ static BOOL sharedShouldRefreshFavorites;
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(updateFavoriteSessionDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(updateFavoriteSessionDidFailWithError:)])
 	{
-		[_delegate updateFavoriteSessionDidFailWithError:error];
+		[delegate updateFavoriteSessionDidFailWithError:error];
 	}
 }
 
@@ -503,7 +452,6 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RATING_URL, eventId, sessionNumber];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
 																   consumer:[OAuthManager sharedInstance].consumer
@@ -511,25 +459,19 @@ static BOOL sharedShouldRefreshFavorites;
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	[url release];
-	
 	NSString *s = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
 	s = [s URLEncodedString];
 	
 	NSString *postParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, s];
 	DLog(@"%@", postParams);
-		
-	NSData *putData = [[postParams dataUsingEncoding:NSUTF8StringEncoding] retain];
-	[postParams release];
-	
+	NSData *putData = [postParams dataUsingEncoding:NSUTF8StringEncoding];
 	NSString *putLength = [NSString stringWithFormat:@"%d", [putData length]];
 	
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:putLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:putData];
-	[putData release];
 	
 	DLog(@"%@", request);
 	
@@ -541,20 +483,16 @@ static BOOL sharedShouldRefreshFavorites;
 													  didFailSelector:@selector(rateSession:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)rateSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	[_activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
 	DLog(@"%@", responseBody);
@@ -563,9 +501,9 @@ static BOOL sharedShouldRefreshFavorites;
 	{
 		double rating = [responseBody doubleValue];
 		
-		if ([_delegate respondsToSelector:@selector(rateSessionDidFinishWithResults:)])
+		if ([delegate respondsToSelector:@selector(rateSessionDidFinishWithResults:)])
 		{
-			[_delegate rateSessionDidFinishWithResults:rating];
+			[delegate rateSessionDidFinishWithResults:rating];
 		}		
 	}
 	else
@@ -578,15 +516,12 @@ static BOOL sharedShouldRefreshFavorites;
 													  cancelButtonTitle:@"OK" 
 													  otherButtonTitles:nil];
 			[alertView show];
-			[alertView release];		
 		}
 		else 
 		{
 			[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating."];
 		}
 	}
-	
-	[responseBody release];	
 }
 
 - (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
@@ -596,19 +531,10 @@ static BOOL sharedShouldRefreshFavorites;
 
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(rateSessionDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(rateSessionDidFailWithError:)])
 	{
-		[_delegate rateSessionDidFailWithError:error];
+		[delegate rateSessionDidFailWithError:error];
 	}
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[super dealloc];
 }
 
 @end

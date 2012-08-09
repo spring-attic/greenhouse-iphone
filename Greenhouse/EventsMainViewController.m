@@ -27,8 +27,8 @@
 
 @interface EventsMainViewController()
 
-@property (nonatomic, retain) NSArray *arrayEvents;
-@property (nonatomic, retain) EventController *eventController;
+@property (nonatomic, strong) NSArray *arrayEvents;
+@property (nonatomic, strong) EventController *eventController;
 
 - (void)completeFetchEvents:(NSArray *)events;
 
@@ -44,7 +44,6 @@
 
 - (void)completeFetchEvents:(NSArray *)events
 {
-	[eventController release];
 	self.eventController = nil;
 	self.arrayEvents = events;
 	[self.tableView reloadData];
@@ -64,7 +63,6 @@
 {
 	NSArray *array = [[NSArray alloc] init];
 	[self completeFetchEvents:array];
-	[array release];
 }
 
 
@@ -99,7 +97,7 @@
 		
         if (cell == nil)
 		{
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PlaceholderCellIdentifier] autorelease];
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:PlaceholderCellIdentifier];
             cell.detailTextLabel.textAlignment = UITextAlignmentCenter;
 			cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
@@ -113,7 +111,7 @@
 	
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdent];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
@@ -192,19 +190,5 @@
 	self.barButtonRefresh = nil;
 	self.eventDetailsViewController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arrayEvents release];
-	[barButtonRefresh release];
-	[eventDetailsViewController release];
-	
-    [super dealloc];
-}
-
 
 @end

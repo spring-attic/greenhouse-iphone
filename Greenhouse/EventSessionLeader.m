@@ -61,12 +61,4 @@
 	return self.displayName;
 }
 
-- (void)dealloc
-{
-	[firstName release];
-	[lastName release];
-	
-	[super dealloc];
-}
-
 @end

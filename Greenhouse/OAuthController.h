@@ -33,7 +33,7 @@
 	NSError *_error;
 }
 
-@property (nonatomic, retain) ActivityAlertView *activityAlertView;
+@property (nonatomic, strong) ActivityAlertView *activityAlertView;
 
 - (void)cancelDataFetcherRequest;
 - (void)request:(OAServiceTicket *)ticket didNotSucceedWithDefaultMessage:(NSString *)message;

@@ -39,9 +39,9 @@
 	NSMutableData *_receivedData;
 }
 
-@property (nonatomic, retain) Tweet *tweet;
-@property (nonatomic, retain) NSIndexPath *indexPathInTableView;
-@property (nonatomic, assign) id <TwitterProfileImageDownloaderDelegate> delegate;
+@property (nonatomic, strong) Tweet *tweet;
+@property (nonatomic, strong) NSIndexPath *indexPathInTableView;
+@property (nonatomic, unsafe_unretained) id <TwitterProfileImageDownloaderDelegate> delegate;
 
 - (void)startDownload;
 - (void)cancelDownload;

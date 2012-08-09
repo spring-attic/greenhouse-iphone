@@ -26,9 +26,9 @@
 
 @interface EventSessionsCurrentViewController()
 
-@property (nonatomic, retain) EventSessionController *eventSessionController;
-@property (nonatomic, retain) NSArray *arrayCurrentSessions;
-@property (nonatomic, retain) NSArray *arrayUpcomingSessions;
+@property (nonatomic, strong) EventSessionController *eventSessionController;
+@property (nonatomic, strong) NSArray *arrayCurrentSessions;
+@property (nonatomic, strong) NSArray *arrayUpcomingSessions;
 
 - (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
 
@@ -67,7 +67,6 @@
 
 - (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
 {
-	[eventSessionController release];
 	self.eventSessionController = nil;
 	self.arrayCurrentSessions = currentSessions;
 	self.arrayUpcomingSessions = upcomingSessions;
@@ -88,7 +87,6 @@
 {
 	NSArray *array = [[NSArray alloc] init];
 	[self completeFetchCurrentSessions:array upcomingSessions:array];
-	[array release];
 }
 
 
@@ -196,18 +194,5 @@
 	self.arrayCurrentSessions = nil;
 	self.arrayUpcomingSessions = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arrayCurrentSessions release];
-	[arrayUpcomingSessions release];
-	
-    [super dealloc];
-}
-
 
 @end

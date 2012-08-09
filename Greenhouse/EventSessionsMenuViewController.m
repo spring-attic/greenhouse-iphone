@@ -30,10 +30,10 @@
 
 @interface EventSessionsMenuViewController()
 
-@property (nonatomic, retain) NSArray *arrayMenuItems;
-@property (nonatomic, retain) NSArray *arrayEventDates;
-@property (nonatomic, retain) NSMutableDictionary *dictionaryViewControllers;
-@property (nonatomic, retain) Event *currentEvent;
+@property (nonatomic, strong) NSArray *arrayMenuItems;
+@property (nonatomic, strong) NSArray *arrayEventDates;
+@property (nonatomic, strong) NSMutableDictionary *dictionaryViewControllers;
+@property (nonatomic, strong) Event *currentEvent;
 
 @end
 
@@ -85,7 +85,7 @@
 		
 		if (vc == nil)
 		{
-			vc = [[[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil] autorelease];
+			vc = [[EventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
 			[dictionaryViewControllers setObject:vc forKey:[date description]];
 		}
 		
@@ -115,7 +115,7 @@
 	
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}
 	
@@ -132,7 +132,6 @@
 			NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 			[dateFormatter setDateFormat:@"EEEE"];
 			s = [dateFormatter stringFromDate:eventDate];
-			[dateFormatter release];
 			break;
 		}
 		default:
@@ -233,26 +232,5 @@
 	self.sessionsFavoritesViewController = nil;
 	self.conferenceFavoritesViewController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arrayMenuItems release];
-	[arrayEventDates release];
-	[dictionaryViewControllers release];
-	[currentEvent release];
-	[event release];
-	[tableViewMenu release];
-	[sessionsCurrentViewController release];
-	[sessionsFavoritesViewController release];
-	[conferenceFavoritesViewController release];
-
-	
-    [super dealloc];
-}
-
 
 @end

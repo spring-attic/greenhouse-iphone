@@ -41,14 +41,12 @@
 	
 	NSURL *url = [[NSURL alloc] initWithString:tweet.profileImageUrl];
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-	[url release];
 	
     _urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	[request release];
 	
 	if (_urlConnection)
 	{
-		_receivedData = [[NSMutableData data] retain];
+		_receivedData = [NSMutableData data];
 	}
 }
 
@@ -57,13 +55,11 @@
 	if (_urlConnection)
 	{
 		[_urlConnection cancel];
-		[_urlConnection release];
 		_urlConnection = nil;
 	}
 	
 	if (_receivedData)
 	{
-		[_receivedData release];
 		_receivedData = nil;
 	}
 }
@@ -84,10 +80,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [_receivedData release];
 	_receivedData = nil;
-	
-    [_urlConnection release];
 	_urlConnection = nil;
 	
 	DLog(@"Connection failed! Error - %@ %@",
@@ -97,14 +90,11 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [_urlConnection release];
 	_urlConnection = nil;
 	
 	DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
 	
     UIImage *image = [[UIImage alloc] initWithData:_receivedData];
-
-    [_receivedData release];
 	_receivedData = nil;
     
     if (image.size.width != kImageHeight && image.size.height != kImageHeight)
@@ -121,8 +111,6 @@
         self.tweet.profileImage = image;
     }
 	
-	[image release];
-	
     [delegate profileImageDidLoad:self.indexPathInTableView];
 }
 
@@ -133,11 +121,6 @@
 - (void)dealloc
 {
 	[self cancelDownload];
-	
-    [tweet release];
-    [indexPathInTableView release];
-    
-    [super dealloc];
 }
 
 @end

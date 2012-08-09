@@ -31,18 +31,18 @@
 
 @interface EventSessionRateViewController : UIViewController <EventSessionControllerDelegate, UITextViewDelegate> { }
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) EventSession *session;
-@property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
-@property (nonatomic, retain) IBOutlet UIButton *buttonRating1;
-@property (nonatomic, retain) IBOutlet UIButton *buttonRating2;
-@property (nonatomic, retain) IBOutlet UIButton *buttonRating3;
-@property (nonatomic, retain) IBOutlet UIButton *buttonRating4;
-@property (nonatomic, retain) IBOutlet UIButton *buttonRating5;
-@property (nonatomic, retain) IBOutlet UITextView *textViewComments;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCancel;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonSubmit;
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonCount;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
+@property (nonatomic, strong) EventSessionDetailsViewController *sessionDetailsViewController;
+@property (nonatomic, strong) IBOutlet UIButton *buttonRating1;
+@property (nonatomic, strong) IBOutlet UIButton *buttonRating2;
+@property (nonatomic, strong) IBOutlet UIButton *buttonRating3;
+@property (nonatomic, strong) IBOutlet UIButton *buttonRating4;
+@property (nonatomic, strong) IBOutlet UIButton *buttonRating5;
+@property (nonatomic, strong) IBOutlet UITextView *textViewComments;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonCancel;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonSubmit;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonCount;
 
 - (IBAction)actionSelectRating:(id)sender;
 - (IBAction)actionCancel:(id)sender;

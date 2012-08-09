@@ -37,7 +37,7 @@
 	else 
 	{
         // POST, PUT
-        encodedParameters = [[[NSString alloc] initWithData:[self HTTPBody] encoding:NSASCIIStringEncoding] autorelease];
+        encodedParameters = [[NSString alloc] initWithData:[self HTTPBody] encoding:NSASCIIStringEncoding];
     }
     
     if ((encodedParameters == nil) || ([encodedParameters isEqualToString:@""]))
@@ -54,7 +54,7 @@
         [requestParameters addObject:parameter];
     }
     	
-    return [requestParameters autorelease];
+    return requestParameters;
 }
 
 - (void)setParameters:(NSArray *)parameters 

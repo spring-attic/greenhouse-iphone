@@ -25,7 +25,7 @@
 
 @interface ActivityIndicatorTableViewCell()
 
-@property (nonatomic, retain) UIActivityIndicatorView *activityIndicatorView;
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
@@ -74,17 +74,5 @@
 
     // Configure the view for the selected state
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[_activityIndicatorView release];
-	
-    [super dealloc];
-}
-
 
 @end

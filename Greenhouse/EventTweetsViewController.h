@@ -25,8 +25,8 @@
 #import "Event.h"
 
 
-@interface EventTweetsViewController : TweetsViewController { }
+@interface EventTweetsViewController : TweetsViewController
 
-@property (nonatomic, retain) Event *event;
+@property (nonatomic, strong) Event *event;
 
 @end

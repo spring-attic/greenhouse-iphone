@@ -26,7 +26,7 @@
 @class LocationManager;
 
 
-@protocol LocationManagerDelegate
+@protocol LocationManagerDelegate<NSObject>
 
 - (void)locationManager:(LocationManager *)manager didUpdateLocation:(CLLocation *)newLocation;
 - (void)locationManager:(LocationManager *)manager didFailWithError:(NSError *)error;

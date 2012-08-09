@@ -85,12 +85,9 @@
 		{
 			EventSessionLeader *leader = [[EventSessionLeader alloc] initWithDictionary:d];
 			[tmpLeaders addObject:leader];
-			[leader release];
 		}
 		
 		NSArray *leadersArray = [NSArray arrayWithArray:tmpLeaders];
-		[tmpLeaders release];
-		
 		return leadersArray;
 	}
 	
@@ -119,29 +116,10 @@
 			
 			VenueRoom *venueRoom = [[VenueRoom alloc] initWithDictionary:[dictionary objectForKey:@"room"]];
 			self.room = venueRoom;
-			[venueRoom release];
 		}
 	}
 	
 	return self;
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[number release];
-	[title release];
-	[startTime release];
-	[endTime release];
-	[description release];
-	[leaders release];
-	[hashtag release];
-	[room release];
-	
-	[super dealloc];
 }
 
 @end

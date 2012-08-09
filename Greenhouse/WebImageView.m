@@ -47,11 +47,10 @@
 		
 	NSURLRequest *request = [[NSURLRequest alloc] initWithURL:imageUrl];
     _urlConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-	[request release];
 	
 	if (_urlConnection)
 	{
-		_receivedData = [[NSMutableData data] retain];
+		_receivedData = [NSMutableData data];
 	}
 }
 
@@ -60,13 +59,11 @@
 	if (_urlConnection)
 	{
 		[_urlConnection cancel];
-		[_urlConnection release];
 		_urlConnection = nil;
 	}
 	
 	if (_receivedData)
 	{
-		[_receivedData release];
 		_receivedData = nil;
 	}
 }
@@ -87,9 +84,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-    [_receivedData release];
 	_receivedData = nil;
-    [_urlConnection release];
 	_urlConnection = nil;
 	
 	DLog(@"Connection failed! Error - %@ %@",
@@ -99,27 +94,13 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-    [_urlConnection release];
 	_urlConnection = nil;
 	
 	DLog(@"Succeeded! Received %d bytes of data", [_receivedData length]);
 		
     UIImage *downloadedImage = [[UIImage alloc] initWithData:_receivedData];
-	[_receivedData release];
 	_receivedData = nil;
 	self.image = downloadedImage;
-	[downloadedImage release];    
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[self cancelImageDownload];
-	
-	[super dealloc];
 }
 
 @end

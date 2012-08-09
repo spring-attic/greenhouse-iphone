@@ -25,8 +25,8 @@
 #import "EventSessionController.h"
 
 
-@interface EventSessionsByDayViewController : EventSessionsViewController <EventSessionControllerDelegate> { }
+@interface EventSessionsByDayViewController : EventSessionsViewController <EventSessionControllerDelegate>
 
-@property (nonatomic, retain) NSDate *eventDate;
+@property (nonatomic, strong) NSDate *eventDate;
 
 @end

@@ -26,11 +26,8 @@
 
 
 @interface ProfileController : OAuthController 
-{ 
-	id<ProfileControllerDelegate> _delegate;
-}
 
-@property (nonatomic, assign) id<ProfileControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<ProfileControllerDelegate> delegate;
 
 - (void)fetchProfile;
 - (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;

@@ -27,12 +27,12 @@
 #import "EventSessionDetailsViewController.h"
 
 
-@interface EventSessionsViewController : PullRefreshTableViewController { }
+@interface EventSessionsViewController : PullRefreshTableViewController
 
-@property (nonatomic, retain) NSArray *arraySessions;
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) Event *currentEvent;
-@property (nonatomic, retain) EventSessionDetailsViewController *sessionDetailsViewController;
+@property (nonatomic, strong) NSArray *arraySessions;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) Event *currentEvent;
+@property (nonatomic, strong) EventSessionDetailsViewController *sessionDetailsViewController;
 
 - (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath;
 - (BOOL)displayLoadingCell;

@@ -21,21 +21,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "OAuthResponseDelegate.h"
 
 
 @class AuthorizeViewController;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate> { }
+@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, OAuthResponseDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, retain) IBOutlet AuthorizeViewController *authorizeViewController;
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
+@property (nonatomic, strong) IBOutlet AuthorizeViewController *authorizeViewController;
 
 - (void)showAuthorizeViewController;
 - (void)showTabBarController;
 - (void)reloadDataForCurrentView;
-- (void)processOauthResponseDidFinish;
-- (void)processOauthResponseDidFail;
 
 @end
 

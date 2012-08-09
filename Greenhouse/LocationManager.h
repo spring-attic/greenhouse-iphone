@@ -27,14 +27,13 @@
 
 @interface LocationManager : NSObject <CLLocationManagerDelegate> 
 { 
-	id<LocationManagerDelegate> _delegate;
 	CLLocationManager *_locationManager;
 	CLLocation *_bestEffortLocation;
 	BOOL _locating;
 }
 
-@property (nonatomic, assign) id<LocationManagerDelegate> delegate;
-@property (nonatomic, retain) CLLocationManager *locationManager;
+@property (nonatomic, unsafe_unretained) id<LocationManagerDelegate> delegate;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
 + (LocationManager *)locationManager;
 - (void)startUpdatingLocation;

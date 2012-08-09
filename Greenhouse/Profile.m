@@ -35,7 +35,7 @@
 
 + (Profile *)profileWithDictionary:(NSDictionary *)dictionary
 {
-	return [[[Profile alloc] initWithDictionary:dictionary] autorelease];
+	return [[Profile alloc] initWithDictionary:dictionary];
 }
 
 
@@ -64,14 +64,6 @@
 - (NSString *)description
 {
 	return self.displayName;
-}
-
-- (void)dealloc
-{
-	[displayName release];
-	[imageUrl release];
-	
-	[super dealloc];
 }
 
 @end

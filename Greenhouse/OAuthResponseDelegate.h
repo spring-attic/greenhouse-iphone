@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,28 +14,17 @@
 //  limitations under the License.
 //
 //
-//  VenueAnnotation.h
+//  OAuthResponseDelegate.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 7/27/10.
+//  Created by Roy Clarkson on 8/7/12.
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
 
+@protocol OAuthResponseDelegate<NSObject>
 
-@class Venue;
-
-
-@interface VenueAnnotation : NSObject <MKAnnotation> 
-{
-
-@private
-	CLLocationCoordinate2D coordinate;
-}
-
-@property (nonatomic, strong) Venue *venue;
-
-- (id)initWithVenue:(Venue *)aVenue;
+- (void)processOAuthResponseDidFinish;
+- (void)processOAuthResponseDidFail;
 
 @end

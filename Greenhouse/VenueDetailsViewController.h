@@ -27,13 +27,13 @@
 @class Venue;
 
 
-@interface VenueDetailsViewController : DataViewController { }
+@interface VenueDetailsViewController : DataViewController
 
-@property (nonatomic, retain) Venue *venue;
-@property (nonatomic, retain) IBOutlet UILabel *labelName;
-@property (nonatomic, retain) IBOutlet UILabel *labelLocationHint;
-@property (nonatomic, retain) IBOutlet UILabel *labelAddress;
-@property (nonatomic, retain) IBOutlet UIButton *buttonDirections;
+@property (nonatomic, strong) Venue *venue;
+@property (nonatomic, strong) IBOutlet UILabel *labelName;
+@property (nonatomic, strong) IBOutlet UILabel *labelLocationHint;
+@property (nonatomic, strong) IBOutlet UILabel *labelAddress;
+@property (nonatomic, strong) IBOutlet UIButton *buttonDirections;
 
 - (IBAction)actionGetDirections:(id)sender;
 

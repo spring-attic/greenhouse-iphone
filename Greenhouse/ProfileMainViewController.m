@@ -28,7 +28,7 @@
 
 @interface ProfileMainViewController()
 
-@property (nonatomic, retain) ProfileController *profileController;
+@property (nonatomic, strong) ProfileController *profileController;
 
 @end
 
@@ -65,10 +65,7 @@
 - (void)fetchProfileDidFinishWithResults:(Profile *)newProfile;
 {
 	[activityIndicatorView stopAnimating];
-	
-	[profileController release];
 	self.profileController = nil;
-	
 	self.profile = newProfile;
 	
 	labelDisplayName.text = profile.displayName;
@@ -80,8 +77,6 @@
 - (void)fetchProfileDidFailWithError:(NSError *)error
 {
 	[activityIndicatorView stopAnimating];
-	
-	[profileController release];
 	self.profileController = nil;
 }
 
@@ -140,20 +135,5 @@
 	self.imageViewPicture = nil;
 	self.activityIndicatorView = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[profile release];
-	[labelDisplayName release];
-	[imageViewPicture release];
-	[activityIndicatorView release];
-	
-    [super dealloc];
-}
-
 
 @end

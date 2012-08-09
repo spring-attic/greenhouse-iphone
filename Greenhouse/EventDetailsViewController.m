@@ -29,7 +29,7 @@
 
 @interface EventDetailsViewController()
 
-@property (nonatomic, retain) NSArray *arrayMenuItems;
+@property (nonatomic, strong) NSArray *arrayMenuItems;
 
 @end
 
@@ -87,7 +87,7 @@
 	
 	if (cell == nil)
 	{
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
@@ -131,7 +131,6 @@
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
 		labelTime.text = [dateFormatter stringFromDate:event.startTime];
-		[dateFormatter release];
 	}
 	
 	// If start and end time are same day, show the times for the event
@@ -142,12 +141,9 @@
 		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY, h:mm a"];		
 		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
 		[dateFormatter setDateFormat:@"h:mm a"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];
-		[dateFormatter release];
-		
+		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];		
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
 		labelTime.text = formattedTime;
-		[formattedTime release];
 	}
 	
 	// if the times are days apart, display the date range for the event
@@ -157,12 +153,9 @@
 		[dateFormatter setDateFormat:@"EEE, MMM d"];		
 		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
 		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];
-		[dateFormatter release];
-		
+		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];		
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
 		labelTime.text = formattedTime;
-		[formattedTime release];
 	}
 	
 	labelLocation.text = event.location;
@@ -207,27 +200,5 @@
 	self.eventTweetsViewController = nil;
 	self.eventMapViewController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arrayMenuItems release];
-	[event release];
-	[labelTitle release];
-	[labelDescription release];
-	[labelTime release];
-	[labelLocation release];
-	[tableViewMenu release];
-	[eventDescriptionViewController release];
-	[eventSessionsMenuViewController release];
-	[eventTweetsViewController release];
-	[eventMapViewController release];
-	
-    [super dealloc];
-}
-
 
 @end

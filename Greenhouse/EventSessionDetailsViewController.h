@@ -33,22 +33,22 @@
 
 @interface EventSessionDetailsViewController : DataViewController <UITableViewDataSource, UITableViewDelegate, EventSessionControllerDelegate> { }
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) EventSession *session;
-@property (nonatomic, retain) NSArray *arrayMenuItems;
-@property (nonatomic, retain) IBOutlet UILabel *labelTitle;
-@property (nonatomic, retain) IBOutlet UILabel *labelLeader;
-@property (nonatomic, retain) IBOutlet UILabel *labelTime;
-@property (nonatomic, retain) IBOutlet UILabel *labelLocation;
-@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating1;
-@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating2;
-@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating3;
-@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating4;
-@property (nonatomic, retain) IBOutlet UIImageView *imageViewRating5;
-@property (nonatomic, retain) IBOutlet UITableView *tableViewMenu;
-@property (nonatomic, retain) EventSessionDescriptionViewController *sessionDescriptionViewController;
-@property (nonatomic, retain) EventSessionTweetsViewController *sessionTweetsViewController;
-@property (nonatomic, retain) EventSessionRateViewController *sessionRateViewController;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
+@property (nonatomic, strong) NSArray *arrayMenuItems;
+@property (nonatomic, strong) IBOutlet UILabel *labelTitle;
+@property (nonatomic, strong) IBOutlet UILabel *labelLeader;
+@property (nonatomic, strong) IBOutlet UILabel *labelTime;
+@property (nonatomic, strong) IBOutlet UILabel *labelLocation;
+@property (nonatomic, strong) IBOutlet UIImageView *imageViewRating1;
+@property (nonatomic, strong) IBOutlet UIImageView *imageViewRating2;
+@property (nonatomic, strong) IBOutlet UIImageView *imageViewRating3;
+@property (nonatomic, strong) IBOutlet UIImageView *imageViewRating4;
+@property (nonatomic, strong) IBOutlet UIImageView *imageViewRating5;
+@property (nonatomic, strong) IBOutlet UITableView *tableViewMenu;
+@property (nonatomic, strong) EventSessionDescriptionViewController *sessionDescriptionViewController;
+@property (nonatomic, strong) EventSessionTweetsViewController *sessionTweetsViewController;
+@property (nonatomic, strong) EventSessionRateViewController *sessionRateViewController;
 
 - (void)updateRating:(double)newRating;
 

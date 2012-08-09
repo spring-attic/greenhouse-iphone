@@ -23,6 +23,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CustomTabBar : UITabBar { }
+@interface CustomTabBar : UITabBar
 
 @end

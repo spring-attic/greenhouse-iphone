@@ -26,11 +26,8 @@
 
 
 @interface EventSessionController : OAuthController 
-{ 
-	id<EventSessionControllerDelegate> _delegate;
-}
 
-@property (nonatomic, assign) id<EventSessionControllerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<EventSessionControllerDelegate> delegate;
 
 + (BOOL)shouldRefreshFavorites;
 

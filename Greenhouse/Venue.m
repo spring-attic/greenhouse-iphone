@@ -48,10 +48,10 @@
 	{
 		CLLocationDegrees latitude = [locationJson doubleForKey:@"latitude"];	
 		CLLocationDegrees longitude = [locationJson doubleForKey:@"longitude"];
-		return [[[CLLocation alloc] initWithLatitude:latitude longitude:longitude] autorelease];
+		return [[CLLocation alloc] initWithLatitude:latitude longitude:longitude];
 	}
 	
-	return [[[CLLocation alloc] initWithLatitude:0.0f longitude:0.0f] autorelease];
+	return [[CLLocation alloc] initWithLatitude:0.0f longitude:0.0f];
 }
 
 
@@ -73,21 +73,6 @@
 	}
 	
 	return self;
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[venueId release];
-	[location release];
-	[locationHint release];
-	[name release];
-	[postalAddress release];
-	
-	[super dealloc];
 }
 
 @end

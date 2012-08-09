@@ -25,10 +25,10 @@
 #import <MapKit/MapKit.h>
 
 
-@interface Venue : NSObject <WebDataModel> { }
+@interface Venue : NSObject <WebDataModel>
 
 @property (nonatomic, copy) NSString *venueId;
-@property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, strong) CLLocation *location;
 @property (nonatomic, copy) NSString *locationHint;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *postalAddress;

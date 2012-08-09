@@ -23,6 +23,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface CustomNavigationBar : UINavigationBar { }
+@interface CustomNavigationBar : UINavigationBar
 
 @end

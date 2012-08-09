@@ -49,14 +49,4 @@
 	CGContextFillRect(context, rect);
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-    [super dealloc];
-}
-
-
 @end

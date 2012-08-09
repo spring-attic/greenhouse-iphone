@@ -32,8 +32,8 @@
 
 @interface EventSessionDetailsViewController()
 
-@property (nonatomic, retain) EventSessionController *eventSessionController;
-@property (nonatomic, retain) ActivityIndicatorTableViewCell *favoriteTableViewCell;
+@property (nonatomic, strong) EventSessionController *eventSessionController;
+@property (nonatomic, strong) ActivityIndicatorTableViewCell *favoriteTableViewCell;
 
 - (void)setRating:(double)rating imageView:(UIImageView *)imageView;
 - (void)updateFavoriteSession;
@@ -113,8 +113,6 @@
 - (void)updateFavoriteSessionDidFinishWithResults:(BOOL)isFavorite
 {
 	[favoriteTableViewCell stopAnimating];
-	
-	[eventSessionController release];
 	self.eventSessionController = nil;
 	
 	session.isFavorite = isFavorite;
@@ -124,8 +122,6 @@
 - (void)updateFavoriteSessionDidFailWithError:(NSError *)error
 {
 	[favoriteTableViewCell stopAnimating];
-	
-	[eventSessionController release];
 	self.eventSessionController = nil;
 }
 
@@ -173,7 +169,7 @@
 		
 		if (cell == nil)
 		{
-			self.favoriteTableViewCell = [[[ActivityIndicatorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:activityCellIdent] autorelease];
+			self.favoriteTableViewCell = [[ActivityIndicatorTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:activityCellIdent];
 			cell = favoriteTableViewCell;
 		}
 	}
@@ -183,7 +179,7 @@
 		
 		if (cell == nil)
 		{
-			cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent] autorelease];
+			cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdent];
 		}
 	}
 
@@ -240,17 +236,12 @@
 		[dateFormatter setDateFormat:@"h:mm a"];
 		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
 		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
-		[dateFormatter release];
-		
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
 		labelTime.text = formattedTime;
-		[formattedTime release];
-		
 		labelLocation.text = session.room.label;
 		
 		NSArray *items = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
 		self.arrayMenuItems = items;
-		[items release];
 
 		[tableViewMenu reloadData];
 		
@@ -301,33 +292,5 @@
 	self.sessionTweetsViewController = nil;
 	self.sessionRateViewController = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[favoriteTableViewCell release];
-	[event release];
-	[session release];
-	[arrayMenuItems release];
-	[labelTitle release];
-	[labelLeader release];
-	[labelTime release];
-	[labelLocation release];
-	[imageViewRating1 release];
-	[imageViewRating2 release];
-	[imageViewRating3 release];
-	[imageViewRating4 release];
-	[imageViewRating5 release];
-	[tableViewMenu release];
-	[sessionDescriptionViewController release];
-	[sessionTweetsViewController release];
-	[sessionRateViewController release];
-	
-    [super dealloc];
-}
-
 
 @end

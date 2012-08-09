@@ -65,23 +65,4 @@
 	return self;
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[tweetId release];
-	[text release];
-	[createdAt release];
-	[fromUser release];
-	[profileImageUrl release];
-	[userId release];
-	[languageCode release];
-	[source release];
-	[profileImage release];
-	
-	[super dealloc];
-}
-
 @end

@@ -121,8 +121,8 @@
 			return nil;
 		}
 		
-		self.key = (NSString *)[result objectForKey:(NSString *)kSecAttrAccount];
-		self.secret = (NSString *)[result objectForKey:(NSString *)kSecAttrGeneric];
+		self.key = (NSString *)[result objectForKey:(__bridge NSString *)kSecAttrAccount];
+		self.secret = (NSString *)[result objectForKey:(__bridge NSString *)kSecAttrGeneric];
 	}
 	
 	return self;
@@ -171,16 +171,14 @@
 	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
 	
 	NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
-						   (id)kSecClassGenericPassword, (id)kSecClass, 
+						   (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
 						   serviceName, kSecAttrService, 
 						   KEYCHAIN_LABEL, kSecAttrLabel, 
 						   self.key, kSecAttrAccount, 
 						   self.secret, kSecAttrGeneric,
 						   nil];
 	
-	OSStatus status = SecItemAdd((CFDictionaryRef)query, NULL);
-	
-	[query release];
+	OSStatus status = SecItemAdd((__bridge CFDictionaryRef)query, NULL);
 	
 	return status;
 }
@@ -190,22 +188,21 @@
 	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
 		
 	NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
-						   (id)kSecClassGenericPassword, (id)kSecClass, 
+						   (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass, 
 						   serviceName, kSecAttrService, 
-						   kCFBooleanTrue, kSecReturnAttributes, 
+						   kCFBooleanTrue, kSecReturnAttributes,
 						   nil];
 	
-	NSMutableDictionary *result = nil;
-	OSStatus status = SecItemCopyMatching((CFDictionaryRef)query, (CFTypeRef *)&result);
-	
-	[query release];
+    CFDataRef data = NULL;
+	OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, (CFTypeRef *)&data);
+    NSMutableDictionary *result = (__bridge_transfer NSMutableDictionary*)data;
 	
 	if (status != noErr) 
 	{
 		return nil;
 	}
-	
-	return [result autorelease];
+    
+	return result;
 }
 
 - (OSStatus)deleteKeychainUsingAppName:(NSString *)name serviceProviderName:(NSString *)provider
@@ -213,13 +210,11 @@
 	NSString *serviceName = [NSString stringWithFormat:SERVICE_NAME_FORMAT, name, provider];
 	
 	NSDictionary *query = [[NSDictionary alloc] initWithObjectsAndKeys:
-						   (id)kSecClassGenericPassword, (id)kSecClass,
+						   (__bridge id)kSecClassGenericPassword, (__bridge id)kSecClass,
 						   serviceName, kSecAttrService,
 						   nil];
 	
-	OSStatus status = SecItemDelete((CFDictionaryRef)query);
-	
-	[query release];
+	OSStatus status = SecItemDelete((__bridge CFDictionaryRef)query);
 	
 	return status;
 }

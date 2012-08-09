@@ -26,7 +26,7 @@
 
 @interface EventDescriptionViewController : DataViewController { }
 
-@property (nonatomic, retain) Event *event;
-@property (nonatomic, retain) IBOutlet UITextView *textView;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) IBOutlet UITextView *textView;
 
 @end

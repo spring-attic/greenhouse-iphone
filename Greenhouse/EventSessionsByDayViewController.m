@@ -25,9 +25,9 @@
 
 @interface EventSessionsByDayViewController()
 
-@property (nonatomic, retain) EventSessionController *eventSessionController;
-@property (nonatomic, retain) NSArray *arrayTimes;
-@property (nonatomic, retain) NSDate *currentEventDate;
+@property (nonatomic, strong) EventSessionController *eventSessionController;
+@property (nonatomic, strong) NSArray *arrayTimes;
+@property (nonatomic, strong) NSDate *currentEventDate;
 
 - (void)completeFetchSessions:(NSArray *)sessions andTimes:(NSArray *)times;
 
@@ -63,7 +63,6 @@
 
 - (void)completeFetchSessions:(NSArray *)sessions andTimes:(NSArray *)times
 {
-	[eventSessionController release];
 	self.eventSessionController = nil;
 	self.arraySessions = sessions;
 	self.arrayTimes = times;
@@ -84,7 +83,6 @@
 {
 	NSArray *array = [[NSArray alloc] init];
 	[self completeFetchSessions:array andTimes:array];
-	[array release];
 }
 
 
@@ -126,8 +124,7 @@
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"h:mm a"];
 		NSString *dateString = [dateFormatter stringFromDate:sessionTime];
-		[dateFormatter release];
-		s = dateString;		
+		s = dateString;
 	}
 	
 	return s;
@@ -143,7 +140,6 @@
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"EEEE"];
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
-	[dateFormatter release];
 	self.title = dateString;
 	
 	if (![self.currentEvent.eventId isEqualToString:self.event.eventId] ||
@@ -198,19 +194,5 @@
 	self.currentEventDate = nil;
 	self.eventDate = nil;
 }
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[arrayTimes release];
-	[currentEventDate release];
-	[eventDate release];
-	
-    [super dealloc];
-}
-
 
 @end

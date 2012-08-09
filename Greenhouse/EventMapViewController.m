@@ -29,8 +29,8 @@
 
 @interface EventMapViewController()
 
-@property (nonatomic, retain) NSMutableArray *venueAnnotations;
-@property (nonatomic, retain) Event *currentEvent;
+@property (nonatomic, strong) NSMutableArray *venueAnnotations;
+@property (nonatomic, strong) Event *currentEvent;
 
 - (void)reloadMapData;
 
@@ -66,7 +66,6 @@
 	{
 		VenueAnnotation *annotation = [[VenueAnnotation alloc] initWithVenue:venue];
 		[self.venueAnnotations addObject:annotation];
-		[annotation release];
 		
 		// find the max and min lat,lng values to determine the bounds of the map
 		CLLocationDegrees lat = venue.location.coordinate.latitude;
@@ -153,7 +152,7 @@
 	
 	if (annotationView == nil)
 	{
-		annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ident] autorelease];
+		annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:ident];
 		annotationView.pinColor = MKPinAnnotationColorGreen;
 		annotationView.animatesDrop = YES;
 		annotationView.canShowCallout = YES;
@@ -212,18 +211,5 @@
 	self.mapViewLocation = nil;
 	self.venueDetailsViewController = nil;
 }
-
-
-- (void)dealloc 
-{
-	[venueAnnotations release];
-	[currentEvent release];
-	[event release];
-	[mapViewLocation release];
-	[venueDetailsViewController release];
-	
-    [super dealloc];
-}
-
 
 @end

@@ -63,17 +63,4 @@
 	self.textView = nil;
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[event release];
-	[textView release];
-	
-    [super dealloc];
-}
-
-
 @end

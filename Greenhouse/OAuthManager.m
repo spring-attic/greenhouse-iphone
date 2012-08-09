@@ -29,33 +29,37 @@
 #define KEYCHAIN_SERVICE_PROVIDER	@"Greenhouse"
 
 
-static OAuthManager *sharedInstance = nil;
 static OAToken *sharedAccessToken = nil;
 static OAConsumer *sharedConsumer = nil;
 
+@interface OAuthManager()
+
+@property (nonatomic, strong) OAAsynchronousDataFetcher *dataFetcher;
+@property (nonatomic, strong) ActivityAlertView *activityAlertView;
+
+@end
+
+
 @implementation OAuthManager
 
+@synthesize dataFetcher;
 @dynamic authorized;
 @dynamic accessToken;
-@synthesize activityAlertView = _activityAlertView;
+@synthesize activityAlertView;
 
 
 #pragma mark -
 #pragma mark Static methods
 
-// This class is configured to function as a singleton. 
 // Use this class method to obtain the shared instance of the class.
 + (OAuthManager *)sharedInstance
 {
-    @synchronized(self)
-    {
-        if (sharedInstance == nil)
-		{
-			sharedInstance = [[OAuthManager alloc] init];
-		}
-    }
-	
-    return sharedInstance;
+    static OAuthManager *_sharedInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        _sharedInstance = [[OAuthManager alloc] init];
+    });
+    return _sharedInstance;
 }
 
 
@@ -95,20 +99,19 @@ static OAConsumer *sharedConsumer = nil;
 
 - (void)cancelDataFetcherRequest
 {
-	if (_dataFetcher)
+	if (dataFetcher)
 	{
 		DLog(@"");
 		
-		[_dataFetcher cancel];
-		[_dataFetcher release];
-		_dataFetcher = nil;
+		[dataFetcher cancel];
+		self.dataFetcher = nil;
 	}
 }
 
 - (void)fetchUnauthorizedRequestToken;
 {
 	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:@"Authorizing Greenhouse app..."];
-	[_activityAlertView startAnimating];
+	[activityAlertView startAnimating];
 	
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
@@ -121,8 +124,6 @@ static OAConsumer *sharedConsumer = nil;
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	[consumer release];
-	
 	[request setHTTPMethod:@"POST"];
 	[request setOAuthParameterName:OAUTH_CALLBACK withValue:OAUTH_CALLBACK_URL];
 	
@@ -130,22 +131,19 @@ static OAConsumer *sharedConsumer = nil;
 	
 	[self cancelDataFetcherRequest];
 	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+	self.dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
 															 delegate:self
 													didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
 													  didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
 	
-	[_dataFetcher start];
-	
-	[request release];
+	[dataFetcher start];
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-	[_dataFetcher release];
-	_dataFetcher = nil;
+	self.dataFetcher = nil;
 	
-	[_activityAlertView stopAnimating];
+	[activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -157,7 +155,6 @@ static OAConsumer *sharedConsumer = nil;
 		OAToken *requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
 		[requestToken storeInDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
 		[self authorizeRequestToken:requestToken];
-		[requestToken release];
 	}
 	else
 	{
@@ -167,18 +164,14 @@ static OAConsumer *sharedConsumer = nil;
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];
 	}
-	
-	[responseBody release];
 }
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	_dataFetcher = nil;
+	self.dataFetcher = nil;
 	
-	[_activityAlertView stopAnimating];
+	[activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
 	DLog(@"%@", [error localizedDescription]);
@@ -189,28 +182,20 @@ static OAConsumer *sharedConsumer = nil;
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
 	[alertView show];
-	[alertView release];
 }
 
 - (void)authorizeRequestToken:(OAToken *)requestToken;
 {
-	[requestToken retain];
 	NSString *urlString = [NSString stringWithFormat:@"%@?%@=%@", OAUTH_AUTHORIZE_URL, OAUTH_TOKEN, requestToken.key];
-	[requestToken release];
-	
 	DLog(@"%@", urlString);
 	NSURL *url = [NSURL URLWithString:urlString];
 	[[UIApplication sharedApplication] openURL:url];
 }
 
-- (void)processOauthResponse:(NSURL *)url delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector
+- (void)processOauthResponse:(NSURL *)url delegate:(id)aDelegate
 {
 	delegate = aDelegate;
-	didFinishSelector = finishSelector;
-	didFailSelector = failSelector;
-	
 	NSMutableDictionary* result = [NSMutableDictionary dictionary];
-	
 	NSArray *pairs = [[url query] componentsSeparatedByString:@"&"];
 	
 	for (NSString *pair in pairs) 
@@ -235,7 +220,7 @@ static OAConsumer *sharedConsumer = nil;
 - (void)fetchAccessToken:(NSString *)oauthVerifier
 {
 	self.activityAlertView = [[ActivityAlertView alloc] initWithActivityMessage:nil];
-	[_activityAlertView startAnimating];
+	[activityAlertView startAnimating];
 	
 	OAConsumer *consumer = [[OAConsumer alloc] initWithKey:OAUTH_CONSUMER_KEY
 													secret:OAUTH_CONSUMER_SECRET];
@@ -250,31 +235,25 @@ static OAConsumer *sharedConsumer = nil;
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	[consumer release];
 	[requestToken removeFromDefaultKeychainWithAppName:@"GreenhouseRequestToken" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
-	[requestToken release];
-	
 	[request setHTTPMethod:@"POST"];
 	[request setOAuthParameterName:OAUTH_VERIFIER withValue:oauthVerifier];
 	
 	[self cancelDataFetcherRequest];
 	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
+	self.dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
 															 delegate:self
 													didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
 													  didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
 	
-	[_dataFetcher start];
-	
-	[request release];
+	[dataFetcher start];
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data 
 {
-	[_dataFetcher release];
-	_dataFetcher = nil;
+	self.dataFetcher = nil;
 	
-	[_activityAlertView stopAnimating];
+	[activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -285,7 +264,6 @@ static OAConsumer *sharedConsumer = nil;
 	{
 		OAToken *accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];		
 		[accessToken storeInDefaultKeychainWithAppName:@"Greenhouse" serviceProviderName:KEYCHAIN_SERVICE_PROVIDER];
-		[accessToken release];		
 	}
 	else
 	{
@@ -295,21 +273,14 @@ static OAConsumer *sharedConsumer = nil;
 												  cancelButtonTitle:@"OK" 
 												  otherButtonTitles:nil];
 		[alertView show];
-		[alertView release];
 	}
 	
-	[responseBody release];
-	
-	if ([delegate respondsToSelector:didFinishSelector])
-	{
-		[delegate performSelector:didFinishSelector];
-	}	
+    [delegate processOAuthResponseDidFinish];
 }
 
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
-	[_dataFetcher release];
-	_dataFetcher = nil;
+	self.dataFetcher = nil;
 	
 	DLog(@"%@", [error localizedDescription]);
 	
@@ -319,55 +290,8 @@ static OAConsumer *sharedConsumer = nil;
 											  cancelButtonTitle:@"OK" 
 											  otherButtonTitles:nil];
 	[alertView show];
-	[alertView release];
-	
-	if ([delegate respondsToSelector:didFailSelector])
-	{
-		[delegate performSelector:didFailSelector];
-	}	
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-+ (id)allocWithZone:(NSZone *)zone 
-{
-    @synchronized(self) 
-	{
-        if (sharedInstance == nil) 
-		{
-            sharedInstance = [super allocWithZone:zone];
-            return sharedInstance;  // assignment and return on first allocation
-        }
-    }
-	
-    return nil; // on subsequent allocation attempts return nil
-}
-
-- (id)copyWithZone:(NSZone *)zone
-{
-    return self;
-}
-
-- (id)retain 
-{
-    return self;
-}
-
-- (unsigned)retainCount 
-{
-    return UINT_MAX;  // denotes an object that cannot be released
-}
-
-- (oneway void)release 
-{
-    //do nothing
-}
-
-- (id)autorelease 
-{
-    return self;
+    
+	[delegate processOAuthResponseDidFail];
 }
 
 @end

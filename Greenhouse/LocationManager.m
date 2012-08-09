@@ -25,7 +25,7 @@
 
 @implementation LocationManager
 
-@synthesize delegate = _delegate;
+@synthesize delegate;
 @synthesize locationManager = _locationManager;
 
 
@@ -34,7 +34,7 @@
 
 + (LocationManager *)locationManager
 {
-	return [[[LocationManager alloc] init] autorelease];
+	return [[LocationManager alloc] init];
 }
 
 
@@ -45,7 +45,7 @@
 {
 	if (!_locating)
 	{
-		self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+		self.locationManager = [[CLLocationManager alloc] init];
 		_locationManager.delegate = self;
 		_locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
 		[_locationManager startUpdatingLocation];
@@ -107,7 +107,7 @@
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(stopUpdatingLocation) object:nil];
 			
 			// pass the new location back to the delegate
-			[_delegate locationManager:self didUpdateLocation:newLocation];
+			[delegate locationManager:self didUpdateLocation:newLocation];
         }
     }
 }
@@ -120,7 +120,7 @@
 		
 		[self stopUpdatingLocation];
 		
-		[_delegate locationManager:self didFailWithError:error];
+		[delegate locationManager:self didFailWithError:error];
     }
 }
 
@@ -132,8 +132,6 @@
 {
 	[self stopUpdatingLocation];
 	_bestEffortLocation = nil;
-	
-	[super dealloc];
 }
 
 @end

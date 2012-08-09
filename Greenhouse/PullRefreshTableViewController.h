@@ -28,10 +28,10 @@
 	BOOL _reloading;
 }
 
-@property (nonatomic, retain) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (assign, getter=isReloading) BOOL reloading;
 @property (nonatomic, copy) NSString *lastRefreshKey;
-@property (nonatomic, retain) NSDate *lastRefreshDate;
+@property (nonatomic, strong) NSDate *lastRefreshDate;
 @property (nonatomic, assign, readonly) BOOL lastRefreshExpired;
 
 - (void)reloadData;

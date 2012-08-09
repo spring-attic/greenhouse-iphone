@@ -31,14 +31,14 @@
 
 @property (nonatomic, copy) NSString *number;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, retain) NSDate *startTime;
-@property (nonatomic, retain) NSDate *endTime;
+@property (nonatomic, strong) NSDate *startTime;
+@property (nonatomic, strong) NSDate *endTime;
 @property (nonatomic, copy) NSString *description;
-@property (nonatomic, retain) NSArray *leaders;
+@property (nonatomic, strong) NSArray *leaders;
 @property (nonatomic, copy) NSString *hashtag;
 @property (nonatomic, assign) BOOL isFavorite;
 @property (nonatomic, assign) double rating;
-@property (nonatomic, retain) VenueRoom *room;
+@property (nonatomic, strong) VenueRoom *room;
 @property (nonatomic, assign, readonly) NSInteger leaderCount;
 @property (nonatomic, copy, readonly) NSString *leaderDisplay;
 

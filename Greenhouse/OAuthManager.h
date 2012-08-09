@@ -22,21 +22,17 @@
 
 #import <Foundation/Foundation.h>
 #import "ActivityAlertView.h"
+#import "OAuthResponseDelegate.h"
 
 
 @interface OAuthManager : NSObject 
 {
-	OAAsynchronousDataFetcher *_dataFetcher;
-	ActivityAlertView *_activityAlertView;
-	id delegate;
-	SEL didFinishSelector;
-	SEL didFailSelector;
+	id<OAuthResponseDelegate> delegate;
 }
 
 @property (nonatomic, assign, readonly) BOOL authorized;
-@property (nonatomic, assign, readonly) OAToken *accessToken;
-@property (nonatomic, assign, readonly) OAConsumer *consumer;
-@property (nonatomic, retain) ActivityAlertView *activityAlertView;
+@property (nonatomic, weak, readonly) OAToken *accessToken;
+@property (nonatomic, weak, readonly) OAConsumer *consumer;
 
 + (OAuthManager *)sharedInstance;
 
@@ -47,7 +43,7 @@
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 - (void)authorizeRequestToken:(OAToken *)requestToken;
-- (void)processOauthResponse:(NSURL *)url delegate:(id)aDelegate didFinishSelector:(SEL)finishSelector didFailSelector:(SEL)failSelector;
+- (void)processOauthResponse:(NSURL *)url delegate:(id)aDelegate;
 - (void)fetchAccessToken:(NSString *)oauthVerifier;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)accessTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

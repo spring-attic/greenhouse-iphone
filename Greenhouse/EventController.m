@@ -27,7 +27,7 @@
 
 @implementation EventController
 
-@synthesize delegate = _delegate;
+@synthesize delegate;
 
 
 #pragma mark -
@@ -43,8 +43,6 @@
 																	  realm:OAUTH_REALM
 														  signatureProvider:nil]; // use the default method, HMAC-SHA1
 	
-	[url release];
-	
 	[request setHTTPMethod:@"GET"];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
@@ -58,20 +56,17 @@
 													  didFailSelector:@selector(fetchEvents:didFailWithError:)];
 	
 	[_dataFetcher start];
-	
-	[request release];
 }
 
 - (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
 {
-	[_dataFetcher release];
 	_dataFetcher = nil;
 	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 	
 	DLog(@"%@", responseBody);
 	
-	NSMutableArray *events = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray *events = [[NSMutableArray alloc] init];
 	
 	if (ticket.didSucceed)
 	{
@@ -83,7 +78,6 @@
 		{
 			Event *event = [[Event alloc] initWithDictionary:d];
 			[events addObject:event];
-			[event release];
 		}
 	}
 	else 
@@ -91,11 +85,9 @@
 		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the event data."];
 	}
 	
-	[responseBody release];
-	
-	if ([_delegate respondsToSelector:@selector(fetchEventsDidFinishWithResults:)])
+	if ([delegate respondsToSelector:@selector(fetchEventsDidFinishWithResults:)])
 	{
-		[_delegate fetchEventsDidFinishWithResults:events];
+		[delegate fetchEventsDidFinishWithResults:events];
 	}
 }
 
@@ -103,19 +95,10 @@
 {
 	[self request:ticket didFailWithError:error];
 	
-	if ([_delegate respondsToSelector:@selector(fetchEventsDidFailWithError:)])
+	if ([delegate respondsToSelector:@selector(fetchEventsDidFailWithError:)])
 	{
-		[_delegate fetchEventsDidFailWithError:error];
+		[delegate fetchEventsDidFailWithError:error];
 	}
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[super dealloc];
 }
 
 @end

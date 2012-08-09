@@ -27,7 +27,7 @@
 
 @interface TweetDetailsViewController()
 
-@property (nonatomic, retain) TwitterController *twitterController;
+@property (nonatomic, strong) TwitterController *twitterController;
 
 @end
 
@@ -53,7 +53,6 @@
 	
 	NSString *replyText = [[NSString alloc] initWithFormat:@"@%@", tweet.fromUser];
 	tweetViewController.tweetText = replyText;
-	[replyText release];
 	
 	[self presentModalViewController:tweetViewController animated:YES];
 }
@@ -64,7 +63,6 @@
 	
 	NSString *quoteText = [[NSString alloc] initWithFormat:@"\"@%@: %@\"", tweet.fromUser, tweet.text];
 	tweetViewController.tweetText = quoteText;
-	[quoteText release];
 	
 	[self presentModalViewController:tweetViewController animated:YES];
 }
@@ -83,13 +81,11 @@
 
 - (void)postRetweetDidFinish
 {
-	[twitterController release];
 	self.twitterController = nil;
 }
 
 - (void)postRetweetDidFailWithError:(NSError *)error
 {
-	[twitterController release];
 	self.twitterController = nil;
 }
 
@@ -104,12 +100,10 @@
 		
 		NSString *user = [[NSString alloc] initWithFormat:@"@%@", tweet.fromUser];
 		labelUser.text = user;
-		[user release];
 		
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"MMM d h:mm a"];
 		labelTime.text = [dateFormatter stringFromDate:tweet.createdAt];
-		[dateFormatter release];
 		
 		textViewText.text = tweet.text;
 	}
@@ -146,26 +140,6 @@
 	self.buttonRetweet = nil;
 	self.buttonQuote = nil;
 	self.tweetViewController = nil;
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[tweet release];
-	[tweetUrl release];
-	[retweetUrl release];
-	[imageViewProfile release];
-	[labelUser release];
-	[textViewText release];
-	[buttonReply release];
-	[buttonRetweet release];
-	[buttonQuote release];
-	[tweetViewController release];
-	
-    [super dealloc];
 }
 
 @end

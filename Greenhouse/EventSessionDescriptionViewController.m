@@ -63,17 +63,4 @@
 	self.textViewDescription = nil;
 }
 
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc 
-{
-	[session release];
-	[textViewDescription release];
-	
-    [super dealloc];
-}
-
-
 @end

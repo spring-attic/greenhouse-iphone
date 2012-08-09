@@ -25,7 +25,7 @@
 
 @interface EventTweetsViewController()
 
-@property (nonatomic, retain) Event *currentEvent;
+@property (nonatomic, strong) Event *currentEvent;
 
 @end
 
@@ -42,18 +42,13 @@
 {
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	self.tweetUrl = url;
-	[url release];
-	
 	self.tweetViewController.tweetUrl = url;
 	self.tweetViewController.tweetText = event.hashtag;
-	
+    
 	urlString = [[NSString alloc]  initWithFormat:EVENT_RETWEET_URL, event.eventId];
 	url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	self.retweetUrl = url;
-	[url release];
 	
 	if (![currentEvent.eventId isEqualToString:event.eventId])
 	{
@@ -82,18 +77,6 @@
 	
 	self.event = nil;
 	self.currentEvent = nil;
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[event release];
-	[currentEvent release];
-	
-	[super dealloc];
 }
 
 @end

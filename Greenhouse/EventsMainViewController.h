@@ -26,9 +26,9 @@
 #import "EventDetailsViewController.h"
 
 
-@interface EventsMainViewController : PullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, EventControllerDelegate> { }
+@interface EventsMainViewController : PullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, EventControllerDelegate>
 
-@property (nonatomic, retain) IBOutlet UIBarButtonItem *barButtonRefresh;
-@property (nonatomic, retain) IBOutlet EventDetailsViewController *eventDetailsViewController;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonRefresh;
+@property (nonatomic, strong) IBOutlet EventDetailsViewController *eventDetailsViewController;
 
 @end

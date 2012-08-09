@@ -25,10 +25,9 @@
 
 @interface EventSessionTweetsViewController()
 
-@property (nonatomic, retain) EventSession *currentSession;
+@property (nonatomic, strong) EventSession *currentSession;
 
 @end
-
 
 
 @implementation EventSessionTweetsViewController
@@ -44,21 +43,15 @@
 {
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_TWEETS_URL, event.eventId, session.number];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	self.tweetUrl = url;
-	[url release];
-	
 	self.tweetViewController.tweetUrl = url;
 	
 	NSString *tweetText = [[NSString alloc] initWithFormat:@"%@ %@", event.hashtag, session.hashtag];
 	self.tweetViewController.tweetText = tweetText;
-	[tweetText release];
 	
-	urlString = [[NSString alloc]  initWithFormat:EVENT_SESSION_RETWEET_URL, event.eventId, session.number];
+	urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RETWEET_URL, event.eventId, session.number];
 	url = [[NSURL alloc] initWithString:urlString];
-	[urlString release];
 	self.retweetUrl = url;
-	[url release];
 	
 	if (![currentSession.number isEqualToString:session.number])
 	{
@@ -88,19 +81,6 @@
 	self.event = nil;
 	self.session = nil;
 	self.currentSession = nil;
-}
-
-
-#pragma mark -
-#pragma mark NSObject methods
-
-- (void)dealloc
-{
-	[event release];
-	[session release];
-	[currentSession release];
-	
-	[super dealloc];
 }
 
 @end

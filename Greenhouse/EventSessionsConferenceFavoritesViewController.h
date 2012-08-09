@@ -25,6 +25,6 @@
 #import "EventSessionController.h"
 
 
-@interface EventSessionsConferenceFavoritesViewController : EventSessionsViewController <EventSessionControllerDelegate> { }
+@interface EventSessionsConferenceFavoritesViewController : EventSessionsViewController <EventSessionControllerDelegate>
 
 @end

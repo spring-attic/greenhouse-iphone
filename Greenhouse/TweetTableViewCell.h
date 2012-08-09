@@ -29,6 +29,6 @@
 
 }
 
-@property (nonatomic, retain) Tweet *tweet;
+@property (nonatomic, strong) Tweet *tweet;
 
 @end
