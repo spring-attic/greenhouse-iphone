@@ -14,27 +14,28 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHTweet.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 7/15/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import <Foundation/Foundation.h>
+#import "GHInitializingModel.h"
 
 
-@class GHAuthorizeViewController;
+@interface GHTweet : NSObject <GHInitializingModel>
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
+@property (nonatomic, copy) NSString *tweetId;
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, copy) NSString *fromUser;
+@property (nonatomic, copy) NSString *profileImageUrl;
+@property (nonatomic, copy) NSString *userId;
+@property (nonatomic, copy) NSString *languageCode;
+@property (nonatomic, copy) NSString *source;
+@property (nonatomic, strong) UIImage *profileImage;
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
-
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+- (void)removeCachedProfileImage;
 
 @end
-

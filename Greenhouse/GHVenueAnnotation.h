@@ -14,27 +14,28 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHVenueAnnotation.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 7/27/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
 
-@class GHAuthorizeViewController;
+@class GHVenue;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
+@interface GHVenueAnnotation : NSObject <MKAnnotation> 
+{
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@private
+	CLLocationCoordinate2D coordinate;
+}
+
+@property (nonatomic, strong) GHVenue *venue;
+
+- (id)initWithVenue:(GHVenue *)aVenue;
 
 @end
-

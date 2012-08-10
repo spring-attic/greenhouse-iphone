@@ -14,27 +14,21 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHEventsMainViewController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 7/8/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHPullRefreshTableViewController.h"
+#import "GHEventController.h"
+#import "GHEventDetailsViewController.h"
 
 
-@class GHAuthorizeViewController;
+@interface GHEventsMainViewController : GHPullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, GHEventControllerDelegate>
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
-
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
-
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *barButtonRefresh;
+@property (nonatomic, strong) IBOutlet GHEventDetailsViewController *eventDetailsViewController;
 
 @end
-

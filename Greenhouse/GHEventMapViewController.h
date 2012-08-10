@@ -14,27 +14,27 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHEventMapViewController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 7/27/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import <MapKit/MapKit.h>
 
 
-@class GHAuthorizeViewController;
+@class GHEvent;
+@class GHVenueDetailsViewController;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
+@interface GHEventMapViewController : GHDataViewController <MKMapViewDelegate>
+{
+	NSMutableData *_receivedData;
+}
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@property (nonatomic, strong) GHEvent *event;
+@property (nonatomic, strong) IBOutlet MKMapView *mapViewLocation;
+@property (nonatomic, strong) GHVenueDetailsViewController *venueDetailsViewController;
 
 @end
-

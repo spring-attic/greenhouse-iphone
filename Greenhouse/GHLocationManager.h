@@ -14,27 +14,29 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHLocationManager.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 8/27/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+#import "GHLocationManagerDelegate.h"
 
 
-@class GHAuthorizeViewController;
+@interface GHLocationManager : NSObject <CLLocationManagerDelegate> 
+{ 
+	CLLocationManager *_locationManager;
+	CLLocation *_bestEffortLocation;
+	BOOL _locating;
+}
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
+@property (nonatomic, unsafe_unretained) id<GHLocationManagerDelegate> delegate;
+@property (nonatomic, strong) CLLocationManager *locationManager;
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
-
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
++ (GHLocationManager *)locationManager;
+- (void)startUpdatingLocation;
+- (void)stopUpdatingLocation;
 
 @end
-

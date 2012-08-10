@@ -22,8 +22,8 @@
 
 	// Application Settings
 	#import "Constants.h"
-	#import "AppSettings.h"
-	#import "UserSettings.h"
+	#import "GHAppSettings.h"
+	#import "GHUserSettings.h"
 
 	// Categories
 	#import "NSString+XmlEncoding.h"
@@ -32,6 +32,6 @@
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
-	#import "DataViewController.h"
+	#import "GHDataViewController.h"
 
 #endif

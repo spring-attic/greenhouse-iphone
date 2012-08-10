@@ -14,27 +14,19 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHEventSessionDescriptionViewController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 7/26/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHEventSession.h"
 
 
-@class GHAuthorizeViewController;
+@interface GHEventSessionDescriptionViewController : GHDataViewController
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
-
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
-
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@property (nonatomic, strong) GHEventSession *session;
+@property (nonatomic, strong) IBOutlet UITextView *textViewDescription;
 
 @end
-

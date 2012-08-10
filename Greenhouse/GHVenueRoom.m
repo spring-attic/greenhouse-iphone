@@ -14,27 +14,38 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHVenueRoom.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 10/5/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHVenueRoom.h"
 
 
-@class GHAuthorizeViewController;
+@implementation GHVenueRoom
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
+@synthesize roomId;
+@synthesize label;
+@synthesize venueId;
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+#pragma mark -
+#pragma mark WebDataModel methods
+
+- (id)initWithDictionary:(NSDictionary *)dictionary
+{
+	if ((self = [super init]))
+	{
+		if (dictionary)
+		{
+			self.roomId = [dictionary stringForKey:@"id"];
+			self.label = [dictionary stringForKey:@"label"];
+			self.venueId = [dictionary stringForKey:@"parentId"];
+		}
+	}
+	
+	return self;
+}
 
 @end
-

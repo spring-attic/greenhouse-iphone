@@ -14,27 +14,21 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHTweetTableViewCell.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 7/23/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHTweet.h"
 
 
-@class GHAuthorizeViewController;
+@interface GHTweetTableViewCell : UITableViewCell 
+{
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
+}
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
-
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@property (nonatomic, strong) GHTweet *tweet;
 
 @end
-

@@ -14,27 +14,28 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHProfileMainViewController.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 6/7/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHProfileController.h"
 
 
-@class GHAuthorizeViewController;
+@class GHProfile;
+@class GHWebImageView;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
+@interface GHProfileMainViewController : GHDataViewController <GHProfileControllerDelegate> { }
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@property (nonatomic, strong) GHProfile *profile;
+@property (nonatomic, strong) IBOutlet UILabel *labelDisplayName;
+@property (nonatomic, strong) IBOutlet GHWebImageView *imageViewPicture;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicatorView;
+
+- (IBAction)actionSignOut:(id)sender;
+- (IBAction)actionRefresh:(id)sender;
 
 @end
-

@@ -22,8 +22,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "GreenhouseAppDelegate.h"
-#import "AuthorizeViewController.h"
-#import "OAuthManager.h"
+#import "GHAuthorizeViewController.h"
+#import "GHOAuthManager.h"
 
 
 @interface GreenhouseAppDelegate()
@@ -93,7 +93,7 @@
 	if (buttonIndex == 1)
 	{
 		// sign out
-		[[OAuthManager sharedInstance] removeAccessToken];
+		[[GHOAuthManager sharedInstance] removeAccessToken];
 		[self showAuthorizeViewController];
 	}
 }
@@ -120,12 +120,12 @@
 {
 	DLog(@"");
 		
-	if ([UserSettings resetAppOnStart])
+	if ([GHUserSettings resetAppOnStart])
 	{
 		DLog(@"reset app");
-		[[OAuthManager sharedInstance] removeAccessToken];
-		[UserSettings reset];
-		[UserSettings setAppVersion:[AppSettings appVersion]];
+		[[GHOAuthManager sharedInstance] removeAccessToken];
+		[GHUserSettings reset];
+		[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
 		[self showAuthorizeViewController];
 	}
 }
@@ -144,7 +144,7 @@
 {
 	if (url)
 	{
-		OAuthManager *mgr = [OAuthManager sharedInstance];
+		GHOAuthManager *mgr = [GHOAuthManager sharedInstance];
 		[mgr processOauthResponse:url delegate:self ];
 	}
 
@@ -155,10 +155,10 @@
 {
 	DLog(@"");
 	
-	if ([UserSettings resetAppOnStart])
+	if ([GHUserSettings resetAppOnStart])
 	{
-		[[OAuthManager sharedInstance] removeAccessToken];
-		[UserSettings reset];
+		[[GHOAuthManager sharedInstance] removeAccessToken];
+		[GHUserSettings reset];
 		[self showAuthorizeViewController];
 	}	
 	else if (launchOptions)
@@ -167,7 +167,7 @@
 		
 		if (url)
 		{
-			OAuthManager *mgr = [OAuthManager sharedInstance];
+			GHOAuthManager *mgr = [GHOAuthManager sharedInstance];
 			[mgr processOauthResponse:url delegate:self];
 		}
 		else
@@ -175,7 +175,7 @@
 			[self showAuthorizeViewController];
 		}
 	}
-	else if ([[OAuthManager sharedInstance] isAuthorized])
+	else if ([[GHOAuthManager sharedInstance] isAuthorized])
 	{
 		[self showTabBarController];
 	}
@@ -186,7 +186,7 @@
 	
     [window makeKeyAndVisible];
 	
-	[UserSettings setAppVersion:[AppSettings appVersion]];
+	[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
 	[self verifyLocationServices];
 
 	return YES;

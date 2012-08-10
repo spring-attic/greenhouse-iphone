@@ -14,27 +14,40 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHAuthorizeViewController.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 6/7/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHAuthorizeViewController.h"
+#import "GHOAuthManager.h"
 
 
-@class GHAuthorizeViewController;
+@implementation GHAuthorizeViewController
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
+- (IBAction)actionAuthorize:(id)sender
+{
+	[[GHOAuthManager sharedInstance] fetchUnauthorizedRequestToken];
+}
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+#pragma mark -
+#pragma mark UIViewController methods
+
+- (void)viewDidLoad 
+{
+    [super viewDidLoad];
+}
+
+- (void)didReceiveMemoryWarning 
+{
+    [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidUnload 
+{
+    [super viewDidUnload];
+}
 
 @end
-

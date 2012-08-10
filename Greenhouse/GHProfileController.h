@@ -14,27 +14,23 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHProfileController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 9/7/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import <Foundation/Foundation.h>
+#import "GHOAuthController.h"
+#import "GHProfileControllerDelegate.h"
 
 
-@class GHAuthorizeViewController;
+@interface GHProfileController : GHOAuthController 
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
+@property (nonatomic, unsafe_unretained) id<GHProfileControllerDelegate> delegate;
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
-
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+- (void)fetchProfile;
+- (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
+- (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
 @end
-

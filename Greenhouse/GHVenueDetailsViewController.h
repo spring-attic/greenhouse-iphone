@@ -14,27 +14,27 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHVenueDetailsViewController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 10/4/10.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import "GHDataViewController.h"
 
 
-@class GHAuthorizeViewController;
+@class GHVenue;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
+@interface GHVenueDetailsViewController : GHDataViewController
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+@property (nonatomic, strong) GHVenue *venue;
+@property (nonatomic, strong) IBOutlet UILabel *labelName;
+@property (nonatomic, strong) IBOutlet UILabel *labelLocationHint;
+@property (nonatomic, strong) IBOutlet UILabel *labelAddress;
+@property (nonatomic, strong) IBOutlet UIButton *buttonDirections;
+
+- (IBAction)actionGetDirections:(id)sender;
 
 @end
-

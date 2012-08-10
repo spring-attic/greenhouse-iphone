@@ -14,27 +14,36 @@
 //  limitations under the License.
 //
 //
-//  GreenhouseAppDelegate.h
+//  GHTwitterProfileImageDownloader.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 8/4/10.
 //
 
-#import <UIKit/UIKit.h>
-#import "GHOAuthResponseDelegate.h"
+#import <Foundation/Foundation.h>
 
 
-@class GHAuthorizeViewController;
+@class GHTweet;
 
-@interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate, GHOAuthResponseDelegate>
 
-@property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeViewController *authorizeViewController;
+@protocol GHTwitterProfileImageDownloaderDelegate 
 
-- (void)showAuthorizeViewController;
-- (void)showTabBarController;
-- (void)reloadDataForCurrentView;
+- (void)profileImageDidLoad:(NSIndexPath *)indexPath;
 
 @end
 
+
+@interface GHTwitterProfileImageDownloader : NSObject 
+{
+	NSURLConnection *_urlConnection;
+	NSMutableData *_receivedData;
+}
+
+@property (nonatomic, strong) GHTweet *tweet;
+@property (nonatomic, strong) NSIndexPath *indexPathInTableView;
+@property (nonatomic, unsafe_unretained) id <GHTwitterProfileImageDownloaderDelegate> delegate;
+
+- (void)startDownload;
+- (void)cancelDownload;
+
+@end
