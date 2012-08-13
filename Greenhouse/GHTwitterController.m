@@ -160,9 +160,7 @@
 	[_activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	
@@ -253,8 +251,7 @@
 	[_activityAlertView stopAnimating];
 	self.activityAlertView = nil;
 	
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
 	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	

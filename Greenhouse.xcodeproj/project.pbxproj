@@ -12,6 +12,16 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
+		81A1BD1915D5AF9D0028A2D3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */; };
+		81A1BD1A15D5AF9D0028A2D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		81A1BD1B15D5AF9D0028A2D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		81A1BD2115D5AF9D0028A2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81A1BD1F15D5AF9D0028A2D3 /* InfoPlist.strings */; };
+		81A1BD2415D5AF9D0028A2D3 /* GreenhouseLogicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A1BD2315D5AF9D0028A2D3 /* GreenhouseLogicTests.m */; };
+		81A1BD3615D5B44E0028A2D3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */; };
+		81A1BD3715D5B44E0028A2D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		81A1BD3815D5B44E0028A2D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		81A1BD3E15D5B44E0028A2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81A1BD3C15D5B44E0028A2D3 /* InfoPlist.strings */; };
+		81A1BD4115D5B44E0028A2D3 /* GreenhouseApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A1BD4015D5B44E0028A2D3 /* GreenhouseApplicationTests.m */; };
 		81E42E1B15ADE82F001FA72D /* GHActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42D5F15ADE82F001FA72D /* GHActivityAlertView.m */; };
 		81E42E1C15ADE82F001FA72D /* GHActivityIndicatorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42D6115ADE82F001FA72D /* GHActivityIndicatorTableViewCell.m */; };
 		81E42E1D15ADE82F001FA72D /* GHAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42D6315ADE82F001FA72D /* GHAppSettings.m */; };
@@ -134,6 +144,16 @@
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		81A1BD4D15D5B5C00028A2D3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54;
+			remoteInfo = Greenhouse;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D6058910D05DD3D006BFB54 /* Greenhouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Greenhouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +163,19 @@
 		811BA5CF120C58E40045BB34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		811F8CF015D1B4AB00208CA7 /* GHOAuthResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOAuthResponseDelegate.h; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		81A1BD1715D5AF9D0028A2D3 /* GreenhouseLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		81A1BD1E15D5AF9D0028A2D3 /* GreenhouseLogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseLogicTests-Info.plist"; sourceTree = "<group>"; };
+		81A1BD2015D5AF9D0028A2D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		81A1BD2215D5AF9D0028A2D3 /* GreenhouseLogicTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreenhouseLogicTests.h; sourceTree = "<group>"; };
+		81A1BD2315D5AF9D0028A2D3 /* GreenhouseLogicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenhouseLogicTests.m; sourceTree = "<group>"; };
+		81A1BD2515D5AF9D0028A2D3 /* GreenhouseLogicTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GreenhouseLogicTests-Prefix.pch"; sourceTree = "<group>"; };
+		81A1BD3515D5B44E0028A2D3 /* GreenhouseApplicationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseApplicationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		81A1BD3B15D5B44E0028A2D3 /* GreenhouseApplicationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GreenhouseApplicationTests-Info.plist"; sourceTree = "<group>"; };
+		81A1BD3D15D5B44E0028A2D3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		81A1BD3F15D5B44E0028A2D3 /* GreenhouseApplicationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreenhouseApplicationTests.h; sourceTree = "<group>"; };
+		81A1BD4015D5B44E0028A2D3 /* GreenhouseApplicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenhouseApplicationTests.m; sourceTree = "<group>"; };
+		81A1BD4215D5B44E0028A2D3 /* GreenhouseApplicationTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GreenhouseApplicationTests-Prefix.pch"; sourceTree = "<group>"; };
 		81E42D5E15ADE82F001FA72D /* GHActivityAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHActivityAlertView.h; sourceTree = "<group>"; };
 		81E42D5F15ADE82F001FA72D /* GHActivityAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHActivityAlertView.m; sourceTree = "<group>"; };
 		81E42D6015ADE82F001FA72D /* GHActivityIndicatorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHActivityIndicatorTableViewCell.h; sourceTree = "<group>"; };
@@ -363,6 +396,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		81A1BD1315D5AF9D0028A2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81A1BD1915D5AF9D0028A2D3 /* SenTestingKit.framework in Frameworks */,
+				81A1BD1A15D5AF9D0028A2D3 /* UIKit.framework in Frameworks */,
+				81A1BD1B15D5AF9D0028A2D3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81A1BD3115D5B44E0028A2D3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81A1BD3615D5B44E0028A2D3 /* SenTestingKit.framework in Frameworks */,
+				81A1BD3715D5B44E0028A2D3 /* UIKit.framework in Frameworks */,
+				81A1BD3815D5B44E0028A2D3 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -370,6 +423,8 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Greenhouse.app */,
+				81A1BD1715D5AF9D0028A2D3 /* GreenhouseLogicTests.octest */,
+				81A1BD3515D5B44E0028A2D3 /* GreenhouseApplicationTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -378,6 +433,8 @@
 			isa = PBXGroup;
 			children = (
 				81E42D5D15ADE82F001FA72D /* Greenhouse */,
+				81A1BD1C15D5AF9D0028A2D3 /* GreenhouseLogicTests */,
+				81A1BD3915D5B44E0028A2D3 /* GreenhouseApplicationTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -397,8 +454,49 @@
 				81F8DEBF1227801000C3E8FD /* QuartzCore.framework */,
 				81E75F3911BE0D5800E6B283 /* Security.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81A1BD1C15D5AF9D0028A2D3 /* GreenhouseLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				81A1BD2215D5AF9D0028A2D3 /* GreenhouseLogicTests.h */,
+				81A1BD2315D5AF9D0028A2D3 /* GreenhouseLogicTests.m */,
+				81A1BD1D15D5AF9D0028A2D3 /* Supporting Files */,
+			);
+			path = GreenhouseLogicTests;
+			sourceTree = "<group>";
+		};
+		81A1BD1D15D5AF9D0028A2D3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81A1BD1E15D5AF9D0028A2D3 /* GreenhouseLogicTests-Info.plist */,
+				81A1BD1F15D5AF9D0028A2D3 /* InfoPlist.strings */,
+				81A1BD2515D5AF9D0028A2D3 /* GreenhouseLogicTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81A1BD3915D5B44E0028A2D3 /* GreenhouseApplicationTests */ = {
+			isa = PBXGroup;
+			children = (
+				81A1BD3F15D5B44E0028A2D3 /* GreenhouseApplicationTests.h */,
+				81A1BD4015D5B44E0028A2D3 /* GreenhouseApplicationTests.m */,
+				81A1BD3A15D5B44E0028A2D3 /* Supporting Files */,
+			);
+			path = GreenhouseApplicationTests;
+			sourceTree = "<group>";
+		};
+		81A1BD3A15D5B44E0028A2D3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81A1BD3B15D5B44E0028A2D3 /* GreenhouseApplicationTests-Info.plist */,
+				81A1BD3C15D5B44E0028A2D3 /* InfoPlist.strings */,
+				81A1BD4215D5B44E0028A2D3 /* GreenhouseApplicationTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		81E42D5D15ADE82F001FA72D /* Greenhouse */ = {
@@ -716,6 +814,43 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* Greenhouse.app */;
 			productType = "com.apple.product-type.application";
 		};
+		81A1BD1615D5AF9D0028A2D3 /* GreenhouseLogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81A1BD2615D5AF9D0028A2D3 /* Build configuration list for PBXNativeTarget "GreenhouseLogicTests" */;
+			buildPhases = (
+				81A1BD1215D5AF9D0028A2D3 /* Sources */,
+				81A1BD1315D5AF9D0028A2D3 /* Frameworks */,
+				81A1BD1415D5AF9D0028A2D3 /* Resources */,
+				81A1BD1515D5AF9D0028A2D3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GreenhouseLogicTests;
+			productName = GreenhouseLogicTests;
+			productReference = 81A1BD1715D5AF9D0028A2D3 /* GreenhouseLogicTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		81A1BD3415D5B44E0028A2D3 /* GreenhouseApplicationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81A1BD4315D5B44E0028A2D3 /* Build configuration list for PBXNativeTarget "GreenhouseApplicationTests" */;
+			buildPhases = (
+				81A1BD3015D5B44E0028A2D3 /* Sources */,
+				81A1BD3115D5B44E0028A2D3 /* Frameworks */,
+				81A1BD3215D5B44E0028A2D3 /* Resources */,
+				81A1BD3315D5B44E0028A2D3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81A1BD4E15D5B5C00028A2D3 /* PBXTargetDependency */,
+			);
+			name = GreenhouseApplicationTests;
+			productName = GreenhouseApplicationTests;
+			productReference = 81A1BD3515D5B44E0028A2D3 /* GreenhouseApplicationTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -742,6 +877,8 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Greenhouse */,
+				81A1BD1615D5AF9D0028A2D3 /* GreenhouseLogicTests */,
+				81A1BD3415D5B44E0028A2D3 /* GreenhouseApplicationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -800,7 +937,52 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		81A1BD1415D5AF9D0028A2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81A1BD2115D5AF9D0028A2D3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81A1BD3215D5B44E0028A2D3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81A1BD3E15D5B44E0028A2D3 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81A1BD1515D5AF9D0028A2D3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		81A1BD3315D5B44E0028A2D3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -881,9 +1063,49 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		81A1BD1215D5AF9D0028A2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81A1BD2415D5AF9D0028A2D3 /* GreenhouseLogicTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81A1BD3015D5B44E0028A2D3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81A1BD4115D5B44E0028A2D3 /* GreenhouseApplicationTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		81A1BD4E15D5B5C00028A2D3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* Greenhouse */;
+			targetProxy = 81A1BD4D15D5B5C00028A2D3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		81A1BD1F15D5AF9D0028A2D3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81A1BD2015D5AF9D0028A2D3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		81A1BD3C15D5B44E0028A2D3 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81A1BD3D15D5B44E0028A2D3 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		81E42D7915ADE82F001FA72D /* GHAuthorizeViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1378,6 +1600,582 @@
 			};
 			name = "Release [qa]";
 		};
+		81A1BD2715D5AF9D0028A2D3 /* Debug [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [localhost]";
+		};
+		81A1BD2815D5AF9D0028A2D3 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [qa]";
+		};
+		81A1BD2915D5AF9D0028A2D3 /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [production]";
+		};
+		81A1BD2A15D5AF9D0028A2D3 /* Release [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release [localhost]";
+		};
+		81A1BD2B15D5AF9D0028A2D3 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release [qa]";
+		};
+		81A1BD2C15D5AF9D0028A2D3 /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release [production]";
+		};
+		81A1BD2D15D5AF9D0028A2D3 /* Ad Hoc Distribution [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc Distribution [qa]";
+		};
+		81A1BD2E15D5AF9D0028A2D3 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		81A1BD2F15D5AF9D0028A2D3 /* App Store Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseLogicTests/GreenhouseLogicTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseLogicTests/GreenhouseLogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "App Store Distribution";
+		};
+		81A1BD4415D5B44E0028A2D3 /* Debug [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [localhost]";
+		};
+		81A1BD4515D5B44E0028A2D3 /* Debug [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [qa]";
+		};
+		81A1BD4615D5B44E0028A2D3 /* Debug [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Debug [production]";
+		};
+		81A1BD4715D5B44E0028A2D3 /* Release [localhost] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release [localhost]";
+		};
+		81A1BD4815D5B44E0028A2D3 /* Release [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release [qa]";
+		};
+		81A1BD4915D5B44E0028A2D3 /* Release [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Release [production]";
+		};
+		81A1BD4A15D5B44E0028A2D3 /* Ad Hoc Distribution [qa] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc Distribution [qa]";
+		};
+		81A1BD4B15D5B44E0028A2D3 /* Ad Hoc Distribution [production] */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc Distribution [production]";
+		};
+		81A1BD4C15D5B44E0028A2D3 /* App Store Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Greenhouse.app/Greenhouse";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GreenhouseApplicationTests/GreenhouseApplicationTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "GreenhouseApplicationTests/GreenhouseApplicationTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "App Store Distribution";
+		};
 		C01FCF4F08A954540054247B /* Debug [localhost] */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1442,6 +2240,36 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = "Release [localhost]";
+		};
+		81A1BD2615D5AF9D0028A2D3 /* Build configuration list for PBXNativeTarget "GreenhouseLogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81A1BD2715D5AF9D0028A2D3 /* Debug [localhost] */,
+				81A1BD2815D5AF9D0028A2D3 /* Debug [qa] */,
+				81A1BD2915D5AF9D0028A2D3 /* Debug [production] */,
+				81A1BD2A15D5AF9D0028A2D3 /* Release [localhost] */,
+				81A1BD2B15D5AF9D0028A2D3 /* Release [qa] */,
+				81A1BD2C15D5AF9D0028A2D3 /* Release [production] */,
+				81A1BD2D15D5AF9D0028A2D3 /* Ad Hoc Distribution [qa] */,
+				81A1BD2E15D5AF9D0028A2D3 /* Ad Hoc Distribution [production] */,
+				81A1BD2F15D5AF9D0028A2D3 /* App Store Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		81A1BD4315D5B44E0028A2D3 /* Build configuration list for PBXNativeTarget "GreenhouseApplicationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81A1BD4415D5B44E0028A2D3 /* Debug [localhost] */,
+				81A1BD4515D5B44E0028A2D3 /* Debug [qa] */,
+				81A1BD4615D5B44E0028A2D3 /* Debug [production] */,
+				81A1BD4715D5B44E0028A2D3 /* Release [localhost] */,
+				81A1BD4815D5B44E0028A2D3 /* Release [qa] */,
+				81A1BD4915D5B44E0028A2D3 /* Release [production] */,
+				81A1BD4A15D5B44E0028A2D3 /* Ad Hoc Distribution [qa] */,
+				81A1BD4B15D5B44E0028A2D3 /* Ad Hoc Distribution [production] */,
+				81A1BD4C15D5B44E0028A2D3 /* App Store Distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Greenhouse" */ = {
 			isa = XCConfigurationList;
