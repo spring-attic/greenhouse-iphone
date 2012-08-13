@@ -26,7 +26,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in GreenhouseLogicTests");
+//    STFail(@"Unit tests are not implemented yet in GreenhouseLogicTests");
 }
 
 @end

@@ -5,4 +5,7 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    //Debug Logging
+    #import "DLog.h"
 #endif

@@ -27,17 +27,13 @@
 
 - (NSString *)stringForKey:(id)aKey 
 {		
-	NSString *s;
+	NSString *s = nil;
 	
 	@try 
 	{
 		NSObject *o = [self objectForKey:aKey];
 		
-		if (o == nil || o == [NSNull null]) 
-		{
-			s = nil;
-		}
-		else 
+		if (o != nil && o != [NSNull null])
 		{
 			if ([o isKindOfClass:[NSString class]])
 			{
@@ -52,7 +48,6 @@
 	@catch (NSException *e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		s = nil;
 	}
 	@finally 
 	{ 
@@ -62,17 +57,13 @@
 
 - (NSString *)stringByReplacingPercentEscapesForKey:(id)aKey usingEncoding:(NSStringEncoding)encoding
 {		
-	NSString *s;
+	NSString *s = nil;
 	
 	@try 
 	{
 		NSObject *o = [self objectForKey:aKey];
 		
-		if (o == nil || o == [NSNull null]) 
-		{
-			s = nil;
-		}
-		else 
+		if (o != nil && o != [NSNull null])
 		{
 			s = [[NSString stringWithString:(NSString *)o] stringByReplacingPercentEscapesUsingEncoding:encoding];
 		}
@@ -80,7 +71,6 @@
 	@catch (NSException *e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		s = nil;
 	}
 	@finally 
 	{ 
@@ -90,17 +80,13 @@
 
 - (NSInteger)integerForKey:(id)aKey 
 {	
-	NSInteger i;
+	NSInteger i = 0;
 	
 	@try 
 	{
 		NSObject *o = [self objectForKey:aKey];
 		
-		if (o == nil || o == [NSNull null]) 
-		{
-			i = 0;
-		}
-		else 
+		if (o != nil && o != [NSNull null])
 		{
 			i = [(NSNumber *)o integerValue];
 		}
@@ -108,7 +94,6 @@
 	@catch (NSException *e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		i = 0;
 	}
 	@finally 
 	{ 
@@ -118,17 +103,13 @@
 
 - (double)doubleForKey:(id)aKey 
 {	
-	double d;
+	double d = 0.0f;
 	
 	@try 
 	{
 		NSObject *o = [self objectForKey:aKey];
 		
-		if (o == nil || o == [NSNull null]) 
-		{
-			d = 0.0f;
-		}
-		else 
+		if (o != nil && o != [NSNull null])
 		{
 			d = [(NSNumber *)o doubleValue];
 		}
@@ -136,7 +117,6 @@
 	@catch (NSException *e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		d = 0.0f;
 	}
 	@finally 
 	{ 
@@ -144,19 +124,16 @@
 	}
 }
 
+// any nonzero value will be interpreted as YES or true
 - (BOOL)boolForKey:(id)aKey
 {
-	BOOL b;
+	BOOL b = NO;
 	
 	@try 
 	{
 		NSObject *o = [self objectForKey:aKey];
 		
-		if (o == nil || o == [NSNull null])
-		{
-			b = NO;
-		}
-		else 
+		if (o != nil && o != [NSNull null])
 		{
 			b = [(NSNumber *)o boolValue];
 		}
@@ -164,7 +141,6 @@
 	@catch (NSException * e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		b = NO;
 	}
 	@finally 
 	{
@@ -174,7 +150,7 @@
 
 - (NSDate *)dateWithMillisecondsSince1970ForKey:(id)aKey 
 {	
-	NSDate *date;
+	NSDate *date = nil;
 	
 	@try 
 	{
@@ -185,7 +161,6 @@
 	@catch (NSException *e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		date = nil;
 	}
 	@finally 
 	{
@@ -195,7 +170,7 @@
 
 - (NSURL *)urlForKey:(id)aKey
 {
-	NSURL *url;
+	NSURL *url = nil;
 	
 	@try 
 	{
@@ -204,7 +179,6 @@
 	@catch (NSException * e) 
 	{
 		DLog(@"Caught %@%@", [e name], [e reason]);
-		url = nil;
 	}
 	@finally 
 	{

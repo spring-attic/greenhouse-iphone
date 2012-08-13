@@ -11,6 +11,8 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811BA5CF120C58E40045BB34 /* CoreLocation.framework */; };
+		818C666115D95A1700594B97 /* NSDictionary_HelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 818C666015D95A1700594B97 /* NSDictionary_HelpersTests.m */; };
+		818C666215D95C6600594B97 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DE015ADE82F001FA72D /* NSDictionary+Helpers.m */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81A1BD1915D5AF9D0028A2D3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */; };
 		81A1BD1A15D5AF9D0028A2D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -22,6 +24,8 @@
 		81A1BD3815D5B44E0028A2D3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		81A1BD3E15D5B44E0028A2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81A1BD3C15D5B44E0028A2D3 /* InfoPlist.strings */; };
 		81A1BD4115D5B44E0028A2D3 /* GreenhouseApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A1BD4015D5B44E0028A2D3 /* GreenhouseApplicationTests.m */; };
+		81A1BD4F15D5BA760028A2D3 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42E0D15ADE82F001FA72D /* UIColor+CustomColors.m */; };
+		81A1BD5215D5BAE30028A2D3 /* UIColor_CustomColorsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A1BD5115D5BAE30028A2D3 /* UIColor_CustomColorsTests.m */; };
 		81E42E1B15ADE82F001FA72D /* GHActivityAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42D5F15ADE82F001FA72D /* GHActivityAlertView.m */; };
 		81E42E1C15ADE82F001FA72D /* GHActivityIndicatorTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42D6115ADE82F001FA72D /* GHActivityIndicatorTableViewCell.m */; };
 		81E42E1D15ADE82F001FA72D /* GHAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42D6315ADE82F001FA72D /* GHAppSettings.m */; };
@@ -162,6 +166,8 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		811BA5CF120C58E40045BB34 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		811F8CF015D1B4AB00208CA7 /* GHOAuthResponseDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOAuthResponseDelegate.h; sourceTree = "<group>"; };
+		818C665F15D95A1700594B97 /* NSDictionary_HelpersTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_HelpersTests.h; sourceTree = "<group>"; };
+		818C666015D95A1700594B97 /* NSDictionary_HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_HelpersTests.m; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81A1BD1715D5AF9D0028A2D3 /* GreenhouseLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -176,6 +182,8 @@
 		81A1BD3F15D5B44E0028A2D3 /* GreenhouseApplicationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GreenhouseApplicationTests.h; sourceTree = "<group>"; };
 		81A1BD4015D5B44E0028A2D3 /* GreenhouseApplicationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GreenhouseApplicationTests.m; sourceTree = "<group>"; };
 		81A1BD4215D5B44E0028A2D3 /* GreenhouseApplicationTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GreenhouseApplicationTests-Prefix.pch"; sourceTree = "<group>"; };
+		81A1BD5015D5BAE30028A2D3 /* UIColor_CustomColorsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColor_CustomColorsTests.h; sourceTree = "<group>"; };
+		81A1BD5115D5BAE30028A2D3 /* UIColor_CustomColorsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColor_CustomColorsTests.m; sourceTree = "<group>"; };
 		81E42D5E15ADE82F001FA72D /* GHActivityAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHActivityAlertView.h; sourceTree = "<group>"; };
 		81E42D5F15ADE82F001FA72D /* GHActivityAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHActivityAlertView.m; sourceTree = "<group>"; };
 		81E42D6015ADE82F001FA72D /* GHActivityIndicatorTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHActivityIndicatorTableViewCell.h; sourceTree = "<group>"; };
@@ -464,7 +472,11 @@
 			children = (
 				81A1BD2215D5AF9D0028A2D3 /* GreenhouseLogicTests.h */,
 				81A1BD2315D5AF9D0028A2D3 /* GreenhouseLogicTests.m */,
+				818C665F15D95A1700594B97 /* NSDictionary_HelpersTests.h */,
+				818C666015D95A1700594B97 /* NSDictionary_HelpersTests.m */,
 				81A1BD1D15D5AF9D0028A2D3 /* Supporting Files */,
+				81A1BD5015D5BAE30028A2D3 /* UIColor_CustomColorsTests.h */,
+				81A1BD5115D5BAE30028A2D3 /* UIColor_CustomColorsTests.m */,
 			);
 			path = GreenhouseLogicTests;
 			sourceTree = "<group>";
@@ -1068,6 +1080,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81A1BD2415D5AF9D0028A2D3 /* GreenhouseLogicTests.m in Sources */,
+				81A1BD4F15D5BA760028A2D3 /* UIColor+CustomColors.m in Sources */,
+				81A1BD5215D5BAE30028A2D3 /* UIColor_CustomColorsTests.m in Sources */,
+				818C666115D95A1700594B97 /* NSDictionary_HelpersTests.m in Sources */,
+				818C666215D95C6600594B97 /* NSDictionary+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2255,6 +2271,7 @@
 				81A1BD2F15D5AF9D0028A2D3 /* App Store Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release [localhost]";
 		};
 		81A1BD4315D5B44E0028A2D3 /* Build configuration list for PBXNativeTarget "GreenhouseApplicationTests" */ = {
 			isa = XCConfigurationList;
@@ -2270,6 +2287,7 @@
 				81A1BD4C15D5B44E0028A2D3 /* App Store Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "Release [localhost]";
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Greenhouse" */ = {
 			isa = XCConfigurationList;
