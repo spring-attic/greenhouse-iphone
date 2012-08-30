@@ -158,7 +158,6 @@
 		81E42E8115ADE82F001FA72D /* GHVenueDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42E1515ADE82F001FA72D /* GHVenueDetailsViewController.m */; };
 		81E42E8215ADE82F001FA72D /* GHVenueRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42E1715ADE82F001FA72D /* GHVenueRoom.m */; };
 		81E42E8315ADE82F001FA72D /* GHWebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42E1A15ADE82F001FA72D /* GHWebImageView.m */; };
-		81E42EBE15AE13D4001FA72D /* YAJLIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E42EBD15AE13D4001FA72D /* YAJLIOS.framework */; };
 		81E75F3A11BE0D5800E6B283 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
 		81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81F8DEBF1227801000C3E8FD /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
@@ -397,7 +396,6 @@
 		81E42E1815ADE82F001FA72D /* GHInitializingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHInitializingModel.h; sourceTree = "<group>"; };
 		81E42E1915ADE82F001FA72D /* GHWebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHWebImageView.h; sourceTree = "<group>"; };
 		81E42E1A15ADE82F001FA72D /* GHWebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHWebImageView.m; sourceTree = "<group>"; };
-		81E42EBD15AE13D4001FA72D /* YAJLIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJLIOS.framework; path = Frameworks/YAJLIOS.framework; sourceTree = "<group>"; };
 		81E75F3911BE0D5800E6B283 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		81F8DEBF1227801000C3E8FD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -414,7 +412,6 @@
 				819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */,
 				811BA5D0120C58E40045BB34 /* CoreLocation.framework in Frameworks */,
 				81F8DEC01227801000C3E8FD /* QuartzCore.framework in Frameworks */,
-				81E42EBE15AE13D4001FA72D /* YAJLIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +465,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81E42EBD15AE13D4001FA72D /* YAJLIOS.framework */,
 				28860BE40F44EE6400985440 /* CoreData.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				811BA5CF120C58E40045BB34 /* CoreLocation.framework */,

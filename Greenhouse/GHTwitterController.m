@@ -61,22 +61,22 @@
 
 - (void)fetchTweetsDidFinishWithData:(NSData *)data
 {
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
 	NSMutableArray *tweets = [[NSMutableArray alloc] init];
 	BOOL lastPage = NO;
     
-    NSDictionary *dictionary = [responseBody yajl_JSON];    
-    DLog(@"%@", dictionary);
-    
-    lastPage = [dictionary boolForKey:@"lastPage"];
-    
-    NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];
-    
-    [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [tweets addObject:[[GHTweet alloc] initWithDictionary:obj]];
-    }];
+    NSError *error;
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    if (!error)
+    {
+        DLog(@"%@", dictionary);
+        lastPage = [dictionary boolForKey:@"lastPage"];
+        NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];        
+        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [tweets addObject:[[GHTweet alloc] initWithDictionary:obj]];
+        }];
+    }
 
 	if ([delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:lastPage:)])
 	{

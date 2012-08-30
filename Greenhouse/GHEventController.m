@@ -61,16 +61,19 @@
 
 - (void)fetchEventsDidFinishWithData:(NSData *)data
 {
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
-	NSMutableArray *events = [[NSMutableArray alloc] init];
-    NSArray *jsonArray = [responseBody yajl_JSON];
+    NSError *error;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     DLog(@"%@", jsonArray);
     
-    [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [events addObject:[[GHEvent alloc] initWithDictionary:obj]];
-    }];
+	NSMutableArray *events = [[NSMutableArray alloc] init];
+    if (!error)
+    {
+        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [events addObject:[[GHEvent alloc] initWithDictionary:obj]];
+        }];
+    }
 	
 	if ([delegate respondsToSelector:@selector(fetchEventsDidFinishWithResults:)])
 	{

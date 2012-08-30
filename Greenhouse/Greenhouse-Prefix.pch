@@ -13,9 +13,6 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-	// Frameworks
-	#import <YAJLIOS/YAJL.h>
-
 	//Debug Logging
 	#import "DLog.h"
 

@@ -77,42 +77,46 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchCurrentSessionsDidFinishWithData:(NSData *)data
 {
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
 	NSMutableArray *arrayCurrentSessions = [[NSMutableArray alloc] init];
 	NSMutableArray *arrayUpcomingSessions = [[NSMutableArray alloc] init];
     
-    NSArray *jsonArray = [responseBody yajl_JSON];
-    DLog(@"%@", jsonArray);
+    NSError *error;
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
-    NSDate *nextStartTime = nil;
-    NSDate *now = [NSDate date];
-    DLog(@"%@", now.description);
-    
-    for (NSDictionary *d in jsonArray)
+    if (!error)
     {
-        GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
-        DLog(@"%@ - %@", [session.startTime description], [session.endTime description]);
+        DLog(@"%@", jsonArray);
         
-        if ([now compare:session.startTime] == NSOrderedDescending &&
-            [now compare:session.endTime] == NSOrderedAscending)
+        NSDate *nextStartTime = nil;
+        NSDate *now = [NSDate date];
+        DLog(@"%@", now.description);
+        
+        for (NSDictionary *d in jsonArray)
         {
-            // find the sessions that are happening now
-            [arrayCurrentSessions addObject:session];
-        }
-        else if ([now compare:session.startTime] == NSOrderedAscending)
-        {
-            // determine the start time of the next block of sessions
-            if (nextStartTime == nil)
-            {
-                nextStartTime = session.startTime;
-            }
+            GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
+            DLog(@"%@ - %@", [session.startTime description], [session.endTime description]);
             
-            if ([nextStartTime compare:session.startTime] == NSOrderedSame)
+            if ([now compare:session.startTime] == NSOrderedDescending &&
+                [now compare:session.endTime] == NSOrderedAscending)
             {
-                // only show the sessions occurring in the next block
-                [arrayUpcomingSessions addObject:session];
+                // find the sessions that are happening now
+                [arrayCurrentSessions addObject:session];
+            }
+            else if ([now compare:session.startTime] == NSOrderedAscending)
+            {
+                // determine the start time of the next block of sessions
+                if (nextStartTime == nil)
+                {
+                    nextStartTime = session.startTime;
+                }
+                
+                if ([nextStartTime compare:session.startTime] == NSOrderedSame)
+                {
+                    // only show the sessions occurring in the next block
+                    [arrayUpcomingSessions addObject:session];
+                }
             }
         }
     }
@@ -176,32 +180,37 @@ static BOOL sharedShouldRefreshFavorites;
 	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
 	NSMutableArray *arrayTimes = [[NSMutableArray alloc] init];
     
-    NSArray *array = [responseBody yajl_JSON];    
-    DLog(@"%@", array);
+    NSError *error;
+    NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     
-    NSMutableArray *arrayBlock = nil;
-    NSDate *sessionTime = [NSDate distantPast];
-    
-    for (NSDictionary *d in array)
+    if (!error)
     {
-        GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
+        DLog(@"%@", array);
         
-        // for each time block create an array to hold the sessions for that block
-        if ([sessionTime compare:session.startTime] == NSOrderedAscending)
+        NSMutableArray *arrayBlock = nil;
+        NSDate *sessionTime = [NSDate distantPast];
+        
+        for (NSDictionary *d in array)
         {
-            arrayBlock = [[NSMutableArray alloc] init];
-            [arraySessions addObject:arrayBlock];
-            [arrayBlock addObject:session];
+            GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
             
-            NSDate *date = [session.startTime copyWithZone:NULL];
-            [arrayTimes addObject:date];
+            // for each time block create an array to hold the sessions for that block
+            if ([sessionTime compare:session.startTime] == NSOrderedAscending)
+            {
+                arrayBlock = [[NSMutableArray alloc] init];
+                [arraySessions addObject:arrayBlock];
+                [arrayBlock addObject:session];
+                
+                NSDate *date = [session.startTime copyWithZone:NULL];
+                [arrayTimes addObject:date];
+            }
+            else if ([sessionTime compare:session.startTime] == NSOrderedSame)
+            {
+                [arrayBlock addObject:session];
+            }
+            
+            sessionTime = session.startTime;
         }
-        else if ([sessionTime compare:session.startTime] == NSOrderedSame)
-        {
-            [arrayBlock addObject:session];
-        }
-        
-        sessionTime = session.startTime;
     }
 	
 	if ([delegate respondsToSelector:@selector(fetchSessionsByDateDidFinishWithResults:andTimes:)])
@@ -256,16 +265,18 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchFavoriteSessionsDidFinishWithData:(NSData *)data
 {
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
-    NSArray *array = [responseBody yajl_JSON];
-    DLog(@"%@", array);
-
+    NSError *error;
+    NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
-    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [arraySessions addObject:[[GHEventSession alloc] initWithDictionary:obj]];
-    }];
+    if (!error)
+    {
+        DLog(@"%@", array);
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [arraySessions addObject:[[GHEventSession alloc] initWithDictionary:obj]];
+        }];
+    }
     
 	if ([delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFinishWithResults:)])
 	{
@@ -314,16 +325,18 @@ static BOOL sharedShouldRefreshFavorites;
 
 - (void)fetchConferenceFavoriteSessionsDidFinishWithData:(NSData *)data
 {
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 
-    NSArray *array = [responseBody yajl_JSON];
-    DLog(@"%@", array);
-
+    NSError *error;
+    NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
     NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
-    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [arraySessions addObject:[[GHEventSession alloc] initWithDictionary:obj]];
-    }];
+    if (!error)
+    {
+        DLog(@"%@", array);
+        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [arraySessions addObject:[[GHEventSession alloc] initWithDictionary:obj]];
+        }];
+    }
     	
 	if ([delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFinishWithResults:)])
 	{

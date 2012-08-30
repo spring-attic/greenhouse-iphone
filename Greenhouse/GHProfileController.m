@@ -55,14 +55,17 @@
 
 - (void)fetchProfileDidFinishWithData:(NSData *)data
 {
-	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	DLog(@"%@", responseBody);
+	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
-	NSDictionary *dictionary = [responseBody yajl_JSON];
-	DLog(@"%@", dictionary);
-		
-	GHProfile *profile = [GHProfile profileWithDictionary:dictionary];
-	
+    NSError *error;
+	NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+    GHProfile *profile = nil;
+    if (!error)
+    {
+        DLog(@"%@", dictionary);
+        profile = [GHProfile profileWithDictionary:dictionary];
+    }
+    
 	if ([delegate respondsToSelector:@selector(fetchProfileDidFinishWithResults:)])
 	{
 		[delegate fetchProfileDidFinishWithResults:profile];
