@@ -5,4 +5,9 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+
+    #import "DLog.h"
+    #import "NSDictionary+Helpers.h"
+    #import "Constants.h"
+    #import "NSString+Encoding.h"
 #endif

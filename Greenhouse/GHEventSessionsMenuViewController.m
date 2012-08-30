@@ -85,7 +85,7 @@
 		
 		if (vc == nil)
 		{
-			vc = [[GHEventSessionsByDayViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+			vc = [[GHEventSessionsByDayViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 			[dictionaryViewControllers setObject:vc forKey:[date description]];
 		}
 		
@@ -208,9 +208,9 @@
 	self.arrayEventDates = [[NSMutableArray alloc] init];
 	self.dictionaryViewControllers = [[NSMutableDictionary alloc] init];
 	
-	self.sessionsCurrentViewController = [[GHEventSessionsCurrentViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
-	self.sessionsFavoritesViewController = [[GHEventSessionsFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
-	self.conferenceFavoritesViewController = [[GHEventSessionsConferenceFavoritesViewController alloc] initWithNibName:@"EventSessionsViewController" bundle:nil];
+	self.sessionsCurrentViewController = [[GHEventSessionsCurrentViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
+	self.sessionsFavoritesViewController = [[GHEventSessionsFavoritesViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
+	self.conferenceFavoritesViewController = [[GHEventSessionsConferenceFavoritesViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning 

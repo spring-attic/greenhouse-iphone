@@ -8,4 +8,8 @@
 
     //Debug Logging
     #import "DLog.h"
+
+    #import "UIColor+CustomColors.h"
+	#import "NSDictionary+Helpers.h"
+    #import "NSString+Encoding.h"
 #endif

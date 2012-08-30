@@ -13,9 +13,8 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
 
-	// Libraries
+	// Frameworks
 	#import <YAJLIOS/YAJL.h>
-	#import "OauthConsumer.h"
 
 	//Debug Logging
 	#import "DLog.h"
@@ -26,12 +25,13 @@
 	#import "GHUserSettings.h"
 
 	// Categories
-	#import "NSString+XmlEncoding.h"
+	#import "NSString+Encoding.h"
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
 	#import "GHDataViewController.h"
+    #import "GHOauth2Controller.h"
 
 #endif

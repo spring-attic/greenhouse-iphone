@@ -21,9 +21,8 @@
 //
 
 #import "GHTwitterController.h"
-#import "GHOAuthManager.h"
 #import "GHTweet.h"
-
+#import "GHURLRequestParameters.h"
 
 @implementation GHTwitterController
 
@@ -36,59 +35,48 @@
 - (void)fetchTweetsWithURL:(NSURL *)url page:(NSUInteger)page;
 {
 	NSString *urlString = [[NSString alloc] initWithFormat:@"%@?page=%d&pageSize=%d", [url absoluteString], page, TWITTER_PAGE_SIZE];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchTweets:didFinishWithData:)
-													  didFailSelector:@selector(fetchTweets:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self fetchTweetsDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self fetchTweetsDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the list of tweets." response:response];
+         }
+     }];
 }
 
-- (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchTweetsDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	DLog(@"%@", responseBody);
 	
 	NSMutableArray *tweets = [[NSMutableArray alloc] init];
 	BOOL lastPage = NO;
-		
-	if (ticket.didSucceed)
-	{
-		NSDictionary *dictionary = [responseBody yajl_JSON];
-		
-		DLog(@"%@", dictionary);
-		
-		lastPage = [dictionary boolForKey:@"lastPage"];
-		
-		NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];
-		
-		for (NSDictionary *d in jsonArray) 
-		{
-			GHTweet *tweet = [[GHTweet alloc] initWithDictionary:d];
-			[tweets addObject:tweet];
-		}
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the Twitter feed."];
-	}
+    
+    NSDictionary *dictionary = [responseBody yajl_JSON];    
+    DLog(@"%@", dictionary);
+    
+    lastPage = [dictionary boolForKey:@"lastPage"];
+    
+    NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];
+    
+    [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [tweets addObject:[[GHTweet alloc] initWithDictionary:obj]];
+    }];
 
 	if ([delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:lastPage:)])
 	{
@@ -96,9 +84,9 @@
 	}
 }
 
-- (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchTweetsDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchTweetsDidFailWithError:)])
 	{
@@ -117,25 +105,25 @@
 	self.activityAlertView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
 	[_activityAlertView startAnimating];
 
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	NSString *status = [update stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	DLog(@"tweet length: %i", status.length);
+
+//    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:
+//                            status, @"status",
+//                            location.coordinate.latitude, @"latitude",
+//                            location.coordinate.longitude, @"longitude",
+//                            nil];
+//    GHURLRequestParameters *postParams = [[GHURLRequestParameters alloc] initWithDictionary:params];
 	
-	status = [status URLEncodedString];
-	
-	NSString *postParams = [[NSString alloc] initWithFormat:@"status=%@&latitude=%f&longitude=%f", status, 
-							location.coordinate.latitude, location.coordinate.longitude];
+	NSString *postParams = [[NSString alloc] initWithFormat:@"status=%@&latitude=%f&longitude=%f",
+                            [status stringByURLEncoding],
+							location.coordinate.latitude,
+                            location.coordinate.longitude];
 	DLog(@"%@", postParams);
-	
 	NSData *postData = [postParams dataUsingEncoding:NSUTF8StringEncoding];
-	
 	NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-	
+
 	[request setHTTPMethod:@"POST"];
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
@@ -143,64 +131,59 @@
 	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(postUpdate:didFinishWithData:)
-													  didFailSelector:@selector(postUpdate:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         [_activityAlertView stopAnimating];
+         self.activityAlertView = nil;
+         
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self postUpdateDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self postUpdateDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             NSString *msg = nil;
+             switch (statusCode)
+             {
+                 case 412:
+                     msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
+                     break;
+                 case 403:
+                 default:
+                     msg = @"A problem occurred while posting to Twitter.";
+                     break;
+             }
+             
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                 message:msg
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+             [alertView show];
+         }
+     }];
 }
 
-- (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)postUpdateDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
-	[_activityAlertView stopAnimating];
-	self.activityAlertView = nil;
-	
-	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-	
-	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
-	
-	if (ticket.didSucceed)
-	{
-		if ([delegate respondsToSelector:@selector(postUpdateDidFinish)])
-		{
-			[delegate postUpdateDidFinish];
-		}
-	}
-	else 
-	{
-		NSString *msg = nil;
-		
-		switch ([response statusCode]) 
-		{
-			case 412:
-				msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
-				break;
-			case 403:
-			default:
-				msg = @"A problem occurred while posting to Twitter.";
-				break;
-		}
-		
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-															message:msg 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK" 
-												  otherButtonTitles:nil];
-		[alertView show];
-	}
+    DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    
+    if ([delegate respondsToSelector:@selector(postUpdateDidFinish)])
+    {
+        [delegate postUpdateDidFinish];
+    }
 }
 
-- (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)postUpdateDidFailWithError:(NSError *)error
 {
-	[_activityAlertView stopAnimating];
-	self.activityAlertView = nil;
-
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(postUpdateDidFailWithError:)])
 	{
@@ -213,15 +196,8 @@
 	self.activityAlertView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
 	[_activityAlertView startAnimating];
 	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	NSString *postParams =[[NSString alloc] initWithFormat:@"tweetId=%@", tweetId];
-	DLog(@"%@", postParams);
-	
 	NSString *escapedPostParams = [postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 	DLog(@"%@", escapedPostParams);
 	
@@ -232,73 +208,68 @@
 	[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
 	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
 	[request setHTTPBody:postData];
-	DLog(@"%@", request);
-	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(postRetweet:didFinishWithData:)
-													  didFailSelector:@selector(postRetweet:didFailWithError:)];
-	
-	[_dataFetcher start];
+	DLog(@"%@ %@", request, [request allHTTPHeaderFields]);
+
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         [_activityAlertView stopAnimating];
+         self.activityAlertView = nil;
+         
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self postRetweetDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self postRetweetDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             NSString *msg = nil;
+             switch (statusCode)
+             {
+                 case 412:
+                     msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
+                     break;
+                 case 403:
+                 default:
+                     msg = @"A problem occurred while posting to Twitter. Please verify your account is connected to Twitter.";
+                     break;
+             }
+             
+             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                 message:msg
+                                                                delegate:nil
+                                                       cancelButtonTitle:@"OK"
+                                                       otherButtonTitles:nil];
+             [alertView show];
+         }
+     }];
 }
 
-- (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)postRetweetDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
-	[_activityAlertView stopAnimating];
-	self.activityAlertView = nil;
-	
 	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
 	
-	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
-	
-	if (ticket.didSucceed)
-	{
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-															message:@"Retweet successful!" 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK" 
-												  otherButtonTitles:nil];
-		[alertView show];
-		
-		if ([delegate respondsToSelector:@selector(postRetweetDidFinish)])
-		{
-			[delegate postRetweetDidFinish];
-		}
-	}
-	else 
-	{
-		NSString *msg = nil;
-		
-		switch ([response statusCode]) 
-		{
-			case 412:
-				msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
-				break;
-			case 403:
-			default:
-				msg = @"A problem occurred while posting to Twitter.";
-				break;
-		}
-		
-		UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-															message:msg 
-														   delegate:nil 
-												  cancelButtonTitle:@"OK" 
-												  otherButtonTitles:nil];
-		[alertView show];
-	}
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Retweet successful!"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    [alertView show];
+    
+    if ([delegate respondsToSelector:@selector(postRetweetDidFinish)])
+    {
+        [delegate postRetweetDidFinish];
+    }
 }
 
-- (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)postRetweetDidFailWithError:(NSError *)error
 {
-	[_activityAlertView stopAnimating];
-	self.activityAlertView = nil;
-
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(postRetweetDidFailWithError:)])
 	{

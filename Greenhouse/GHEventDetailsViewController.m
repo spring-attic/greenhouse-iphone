@@ -175,7 +175,7 @@
 	
 	self.eventDescriptionViewController = [[GHEventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.eventSessionsMenuViewController = [[GHEventSessionsMenuViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventTweetsViewController = [[GHEventTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	self.eventTweetsViewController = [[GHEventTweetsViewController alloc] initWithNibName:@"GHTweetsViewController" bundle:nil];
 	self.eventMapViewController = [[GHEventMapViewController alloc] initWithNibName:nil bundle:nil];
 }
 

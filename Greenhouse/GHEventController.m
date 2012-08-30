@@ -21,7 +21,6 @@
 //
 
 #import "GHEventController.h"
-#import "GHOAuthManager.h"
 #import "GHEvent.h"
 
 
@@ -36,54 +35,42 @@
 - (void)fetchEvents
 {
 	NSURL *url = [[NSURL alloc] initWithString:EVENTS_URL];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
 	DLog(@"%@", request);
-	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchEvents:didFinishWithData:)
-													  didFailSelector:@selector(fetchEvents:didFailWithError:)];
-	
-	[_dataFetcher start];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self fetchEventsDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self fetchEventsDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the event data." response:response];
+         }
+     }];
 }
 
-- (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchEventsDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	DLog(@"%@", responseBody);
 	
 	NSMutableArray *events = [[NSMutableArray alloc] init];
-	
-	if (ticket.didSucceed)
-	{
-		NSArray *jsonArray = [responseBody yajl_JSON];
-		
-		DLog(@"%@", jsonArray);
-		
-		for (NSDictionary *d in jsonArray)
-		{
-			GHEvent *event = [[GHEvent alloc] initWithDictionary:d];
-			[events addObject:event];
-		}
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the event data."];
-	}
+    NSArray *jsonArray = [responseBody yajl_JSON];
+    DLog(@"%@", jsonArray);
+    
+    [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [events addObject:[[GHEvent alloc] initWithDictionary:obj]];
+    }];
 	
 	if ([delegate respondsToSelector:@selector(fetchEventsDidFinishWithResults:)])
 	{
@@ -91,9 +78,9 @@
 	}
 }
 
-- (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchEventsDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchEventsDidFailWithError:)])
 	{

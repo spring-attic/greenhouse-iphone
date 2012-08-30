@@ -22,9 +22,8 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import "GreenhouseAppDelegate.h"
-#import "GHAuthorizeViewController.h"
-#import "GHOAuthManager.h"
-
+#import "GHAuthorizeNavigationViewController.h"
+#import "GHOAuth2Controller.h"
 
 @interface GreenhouseAppDelegate()
 
@@ -32,22 +31,22 @@
 
 @end
 
-
 @implementation GreenhouseAppDelegate
 
 @synthesize window;
 @synthesize tabBarController;
-@synthesize authorizeViewController;
+@synthesize authorizeNavigationViewController;
 
-- (void)showAuthorizeViewController
+- (void)showAuthorizeNavigationViewController
 {	
 	[tabBarController.view removeFromSuperview];
-	[window addSubview:authorizeViewController.view];
+    [authorizeNavigationViewController.navigationController popToRootViewControllerAnimated:NO];
+	[window addSubview:authorizeNavigationViewController.view];
 }
 
 - (void)showTabBarController
 {
-	[authorizeViewController.view removeFromSuperview];
+	[authorizeNavigationViewController.view removeFromSuperview];
 	[window addSubview:tabBarController.view];
 	tabBarController.selectedIndex = 0;
 }
@@ -58,17 +57,6 @@
 	{
 		[tabBarController.selectedViewController performSelector:@selector(reloadData)];
 	}	
-}
-
-- (void)processOAuthResponseDidFinish
-{
-	[self showTabBarController];
-	[self reloadDataForCurrentView];
-}
-
-- (void)processOAuthResponseDidFail
-{
-	[self showAuthorizeViewController];
 }
 
 - (void)verifyLocationServices
@@ -93,8 +81,8 @@
 	if (buttonIndex == 1)
 	{
 		// sign out
-		[[GHOAuthManager sharedInstance] removeAccessToken];
-		[self showAuthorizeViewController];
+		[[GHOAuth2Controller sharedInstance] deleteAccessGrant];
+		[self showAuthorizeNavigationViewController];
 	}
 }
 
@@ -123,10 +111,10 @@
 	if ([GHUserSettings resetAppOnStart])
 	{
 		DLog(@"reset app");
-		[[GHOAuthManager sharedInstance] removeAccessToken];
+		[[GHOAuth2Controller sharedInstance] deleteAccessGrant];
 		[GHUserSettings reset];
 		[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
-		[self showAuthorizeViewController];
+		[self showAuthorizeNavigationViewController];
 	}
 }
 
@@ -140,48 +128,23 @@
 	DLog(@"");
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-	if (url)
-	{
-		GHOAuthManager *mgr = [GHOAuthManager sharedInstance];
-		[mgr processOauthResponse:url delegate:self ];
-	}
-
-	return YES;
-}
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+- (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	DLog(@"");
 	
 	if ([GHUserSettings resetAppOnStart])
 	{
-		[[GHOAuthManager sharedInstance] removeAccessToken];
+		[[GHOAuth2Controller sharedInstance] deleteAccessGrant];
 		[GHUserSettings reset];
-		[self showAuthorizeViewController];
+		[self showAuthorizeNavigationViewController];
 	}	
-	else if (launchOptions)
-	{
-		NSURL *url = (NSURL *)[launchOptions objectForKey:@"UIApplicationLaunchOptionsURLKey"];
-		
-		if (url)
-		{
-			GHOAuthManager *mgr = [GHOAuthManager sharedInstance];
-			[mgr processOauthResponse:url delegate:self];
-		}
-		else
-		{
-			[self showAuthorizeViewController];
-		}
-	}
-	else if ([[GHOAuthManager sharedInstance] isAuthorized])
+	else if ([[GHOAuth2Controller sharedInstance] isAuthorized])
 	{
 		[self showTabBarController];
 	}
 	else 
 	{
-		[self showAuthorizeViewController];
+		[self showAuthorizeNavigationViewController];
 	}
 	
     [window makeKeyAndVisible];
@@ -189,12 +152,12 @@
 	[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
 	[self verifyLocationServices];
 
-	return YES;
+	return;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 
 {    
-	
+	DLog(@"");
 }
 
 @end

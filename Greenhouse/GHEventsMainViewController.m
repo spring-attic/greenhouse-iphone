@@ -21,9 +21,7 @@
 //
 
 #import "GHEventsMainViewController.h"
-#import "GHOAuthManager.h"
 #import "GHEvent.h"
-
 
 @interface GHEventsMainViewController()
 
@@ -33,7 +31,6 @@
 - (void)completeFetchEvents:(NSArray *)events;
 
 @end
-
 
 @implementation GHEventsMainViewController
 

@@ -260,7 +260,7 @@
 	self.title = @"Session";
 	
 	self.sessionDescriptionViewController = [[GHEventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
-	self.sessionTweetsViewController = [[GHEventSessionTweetsViewController alloc] initWithNibName:@"TweetsViewController" bundle:nil];
+	self.sessionTweetsViewController = [[GHEventSessionTweetsViewController alloc] initWithNibName:@"GHTweetsViewController" bundle:nil];
 	self.sessionRateViewController = [[GHEventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
 }
 

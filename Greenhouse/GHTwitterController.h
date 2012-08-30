@@ -20,25 +20,24 @@
 //  Created by Roy Clarkson on 8/27/10.
 //
 
-#import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "GHOAuthController.h"
+#import "GHBaseController.h"
 #import "GHTwitterControllerDelegate.h"
 
 
-@interface GHTwitterController : GHOAuthController
+@interface GHTwitterController : GHBaseController
 
 @property (nonatomic, unsafe_unretained) id<GHTwitterControllerDelegate> delegate;
 
 - (void)fetchTweetsWithURL:(NSURL *)url page:(NSUInteger)page;
-- (void)fetchTweets:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)fetchTweets:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)fetchTweetsDidFinishWithData:(NSData *)data;
+- (void)fetchTweetsDidFailWithError:(NSError *)error;
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url;
 - (void)postUpdate:(NSString *)update withURL:(NSURL *)url location:(CLLocation *)location;
-- (void)postUpdate:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)postUpdate:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)postUpdateDidFinishWithData:(NSData *)data;
+- (void)postUpdateDidFailWithError:(NSError *)error;
 - (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
-- (void)postRetweet:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)postRetweet:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)postRetweetDidFinishWithData:(NSData *)data;
+- (void)postRetweetDidFailWithError:(NSError *)error;
 
 @end

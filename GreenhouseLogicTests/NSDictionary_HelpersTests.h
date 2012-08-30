@@ -21,7 +21,6 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "NSDictionary+Helpers.h"
 
 @interface NSDictionary_HelpersTests : SenTestCase
 

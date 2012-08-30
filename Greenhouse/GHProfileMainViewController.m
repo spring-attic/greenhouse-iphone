@@ -21,7 +21,6 @@
 //
 
 #import "GHProfileMainViewController.h"
-#import "GHOAuthManager.h"
 #import "GHProfile.h"
 #import "GHWebImageView.h"
 
@@ -47,8 +46,8 @@
 
 - (IBAction)actionSignOut:(id)sender
 {
-	[[GHOAuthManager sharedInstance] removeAccessToken];
-	[appDelegate showAuthorizeViewController];
+    [[GHOAuth2Controller sharedInstance] deleteAccessGrant];
+	[appDelegate showAuthorizeNavigationViewController];
 }
 
 - (IBAction)actionRefresh:(id)sender

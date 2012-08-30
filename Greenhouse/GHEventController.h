@@ -20,17 +20,16 @@
 //  Created by Roy Clarkson on 8/31/10.
 //
 
-#import <Foundation/Foundation.h>
-#import "GHOAuthController.h"
+#import "GHBaseController.h"
 #import "GHEventControllerDelegate.h"
 
 
-@interface GHEventController : GHOAuthController 
+@interface GHEventController : GHBaseController 
 
 @property (nonatomic, unsafe_unretained) id<GHEventControllerDelegate> delegate;
 
 - (void)fetchEvents;
-- (void)fetchEvents:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)fetchEvents:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)fetchEventsDidFinishWithData:(NSData *)data;
+- (void)fetchEventsDidFailWithError:(NSError *)error;
 
 @end

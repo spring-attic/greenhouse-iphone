@@ -21,14 +21,14 @@
 //
 
 #import "GHAuthorizeViewController.h"
-#import "GHOAuthManager.h"
-
 
 @implementation GHAuthorizeViewController
 
-- (IBAction)actionAuthorize:(id)sender
+@synthesize signInViewController;
+
+- (IBAction)actionSignIn:(id)sender
 {
-	[[GHOAuthManager sharedInstance] fetchUnauthorizedRequestToken];
+    [self.navigationController pushViewController:signInViewController animated:YES];
 }
 
 
@@ -38,6 +38,8 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning 
@@ -48,6 +50,8 @@
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+    
+    self.signInViewController = nil;
 }
 
 @end

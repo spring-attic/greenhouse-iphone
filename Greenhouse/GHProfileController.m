@@ -22,8 +22,6 @@
 
 #import "GHProfileController.h"
 #import "GHProfile.h"
-#import "GHOAuthManager.h"
-
 
 @implementation GHProfileController
 
@@ -36,49 +34,34 @@
 - (void)fetchProfile
 {
 	NSURL *url = [[NSURL alloc] initWithString:MEMBER_PROFILE_URL];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchProfile:didFinishWithData:)
-													  didFailSelector:@selector(fetchProfile:didFailWithError:)];
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if (data.length > 0 && error == nil)
+         {
+             [self fetchProfileDidFinishWithData:data];
+         }
+         else
+         {
+             [self fetchProfileDidFailWithError:error];
+         }
+     }];
 }
 
-- (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchProfileDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	DLog(@"%@", responseBody);
 	
-	GHProfile *profile = nil;
-	
-	if (ticket.didSucceed)
-	{
-		NSDictionary *dictionary = [responseBody yajl_JSON];
+	NSDictionary *dictionary = [responseBody yajl_JSON];
+	DLog(@"%@", dictionary);
 		
-		DLog(@"%@", dictionary);
-		
-		profile = [GHProfile profileWithDictionary:dictionary];
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the profile data."];
-	}
+	GHProfile *profile = [GHProfile profileWithDictionary:dictionary];
 	
 	if ([delegate respondsToSelector:@selector(fetchProfileDidFinishWithResults:)])
 	{
@@ -86,9 +69,9 @@
 	}
 }
 
-- (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchProfileDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchProfileDidFailWithError:)])
 	{

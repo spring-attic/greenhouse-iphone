@@ -21,10 +21,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "GHSignInViewController.h"
 
 @interface GHAuthorizeViewController : UIViewController
 
-- (IBAction)actionAuthorize:(id)sender;
+@property (nonatomic, strong) IBOutlet GHSignInViewController *signInViewController;
+
+- (IBAction)actionSignIn:(id)sender;
 
 @end

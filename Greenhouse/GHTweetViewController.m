@@ -20,12 +20,10 @@
 //  Created by Roy Clarkson on 7/23/10.
 //
 
-#import "GHTweetViewController.h"
-#import "GHOAuthManager.h"
-#import "GHTwitterController.h"
-
 #define MAX_TWEET_SIZE 140
 
+#import "GHTweetViewController.h"
+#import "GHTwitterController.h"
 
 @interface GHTweetViewController()
 
@@ -35,7 +33,6 @@
 - (void)setCount:(NSUInteger)newCount;
 
 @end
-
 
 @implementation GHTweetViewController
 

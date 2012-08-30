@@ -103,7 +103,7 @@
 
 - (double)doubleForKey:(id)aKey 
 {	
-	double d = 0.0f;
+	double d = 0.0;
 	
 	@try 
 	{

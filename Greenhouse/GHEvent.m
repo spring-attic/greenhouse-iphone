@@ -83,7 +83,7 @@
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
 			self.location = [dictionary stringByReplacingPercentEscapesForKey:@"location" usingEncoding:NSUTF8StringEncoding];
-			self.description = [[dictionary stringForKey:@"description"] stringBySimpleXmlDecoding];
+			self.description = [[dictionary stringForKey:@"description"] stringByXMLDecoding];
 			self.name = [dictionary stringByReplacingPercentEscapesForKey:@"name" usingEncoding:NSUTF8StringEncoding];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.groupName = [dictionary stringByReplacingPercentEscapesForKey:@"groupName" usingEncoding:NSUTF8StringEncoding];

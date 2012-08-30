@@ -55,6 +55,11 @@
 #define OAUTH_ACCESS_TOKEN_URL					[NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/oauth/access_token"]
 #define OAUTH_CALLBACK_URL						@"x-com-springsource-greenhouse://oauth-response"
 
+#pragma mark -
+#pragma mark OAuth 2
+
+#define OAUTH_TOKEN_URL                         [NSString stringWithFormat:@"%@%@", GREENHOUSE_URL, @"/oauth/token"]
+
 
 #pragma mark -
 #pragma mark Member Profile

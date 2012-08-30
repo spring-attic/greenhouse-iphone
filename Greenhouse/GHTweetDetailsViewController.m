@@ -22,15 +22,12 @@
 
 #import "GHTweetDetailsViewController.h"
 #import "GHTweetViewController.h"
-#import "GHOAuthManager.h"
-
 
 @interface GHTweetDetailsViewController()
 
 @property (nonatomic, strong) GHTwitterController *twitterController;
 
 @end
-
 
 @implementation GHTweetDetailsViewController
 

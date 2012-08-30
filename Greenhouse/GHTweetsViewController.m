@@ -27,10 +27,8 @@
 #import "GHTweetsViewController.h"
 #import "GHTweetTableViewCell.h"
 #import "GHTweet.h"
-#import "GHOAuthManager.h"
 #import "GHTweetDetailsViewController.h"
 #import "GHActivityIndicatorTableViewCell.h"
-
 
 @interface GHTweetsViewController()
 
@@ -44,7 +42,6 @@
 - (BOOL)shouldShowLoadingCell:(NSUInteger)row;
 
 @end
-
 
 @implementation GHTweetsViewController
 

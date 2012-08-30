@@ -108,7 +108,7 @@
 			self.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
 			self.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
 			self.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
-			self.description = [[dictionary stringForKey:@"description"] stringBySimpleXmlDecoding];
+			self.description = [[dictionary stringForKey:@"description"] stringByXMLDecoding];
 			self.leaders = [self processLeaderData:[dictionary objectForKey:@"leaders"]];
 			self.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
 			self.isFavorite = [dictionary boolForKey:@"favorite"];

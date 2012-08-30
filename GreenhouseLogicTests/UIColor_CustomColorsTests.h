@@ -21,7 +21,6 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
-#import "UIColor+CustomColors.h"
 
 @interface UIColor_CustomColorsTests : SenTestCase
 

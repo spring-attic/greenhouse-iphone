@@ -34,7 +34,7 @@
 
 - (IBAction)actionGetDirections:(id)sender
 {
-	NSString *encodedAddress = [venue.postalAddress URLEncodedString];
+	NSString *encodedAddress = [venue.postalAddress stringByURLEncoding];
 	NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?q=%@", encodedAddress];
 	NSURL *url = [NSURL URLWithString:urlString];	
 	[[UIApplication sharedApplication] openURL:url];

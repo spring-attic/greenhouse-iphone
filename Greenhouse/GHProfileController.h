@@ -20,17 +20,16 @@
 //  Created by Roy Clarkson on 9/7/10.
 //
 
-#import <Foundation/Foundation.h>
-#import "GHOAuthController.h"
+#import "GHBaseController.h"
 #import "GHProfileControllerDelegate.h"
 
 
-@interface GHProfileController : GHOAuthController 
+@interface GHProfileController : GHBaseController 
 
 @property (nonatomic, unsafe_unretained) id<GHProfileControllerDelegate> delegate;
 
 - (void)fetchProfile;
-- (void)fetchProfile:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
-- (void)fetchProfile:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
+- (void)fetchProfileDidFinishWithData:(NSData *)data;
+- (void)fetchProfileDidFailWithError:(NSError *)error;
 
 @end

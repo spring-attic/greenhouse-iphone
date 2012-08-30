@@ -22,8 +22,6 @@
 
 #import "GHEventSessionController.h"
 #import "GHEventSession.h"
-#import "GHOAuthManager.h"
-
 
 static BOOL sharedShouldRefreshFavorites;
 
@@ -52,81 +50,72 @@ static BOOL sharedShouldRefreshFavorites;
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, eventId, dateString];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchCurrentSessions:didFinishWithData:)
-													  didFailSelector:@selector(fetchCurrentSessions:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self fetchCurrentSessionsDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self fetchCurrentSessionsDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data." response:response];
+         }
+     }];
 }
 
-- (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchCurrentSessionsDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	DLog(@"%@", responseBody);
 	
 	NSMutableArray *arrayCurrentSessions = [[NSMutableArray alloc] init];
 	NSMutableArray *arrayUpcomingSessions = [[NSMutableArray alloc] init];
-	
-	if (ticket.didSucceed)
-	{		
-		NSArray *jsonArray = [responseBody yajl_JSON];
-		
-		DLog(@"%@", jsonArray);
-		
-		NSDate *nextStartTime = nil;
-		NSDate *now = [NSDate date];
-		
-		DLog(@"%@", now.description);
-		
-		for (NSDictionary *d in jsonArray) 
-		{
-			GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
-			
-			DLog(@"%@ - %@", [session.startTime description], [session.endTime description]);
-						
-			if ([now compare:session.startTime] == NSOrderedDescending &&
-				[now compare:session.endTime] == NSOrderedAscending)
-			{
-				// find the sessions that are happening now
-				[arrayCurrentSessions addObject:session];
-			}
-			else if ([now compare:session.startTime] == NSOrderedAscending)
-			{
-				// determine the start time of the next block of sessions
-				if (nextStartTime == nil)
-				{
-					nextStartTime = session.startTime;
-				}
-				
-				if ([nextStartTime compare:session.startTime] == NSOrderedSame)
-				{
-					// only show the sessions occurring in the next block
-					[arrayUpcomingSessions addObject:session];
-				}
-			}
-		}
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
-	}	
+    
+    NSArray *jsonArray = [responseBody yajl_JSON];
+    DLog(@"%@", jsonArray);
+    
+    NSDate *nextStartTime = nil;
+    NSDate *now = [NSDate date];
+    DLog(@"%@", now.description);
+    
+    for (NSDictionary *d in jsonArray)
+    {
+        GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
+        DLog(@"%@ - %@", [session.startTime description], [session.endTime description]);
+        
+        if ([now compare:session.startTime] == NSOrderedDescending &&
+            [now compare:session.endTime] == NSOrderedAscending)
+        {
+            // find the sessions that are happening now
+            [arrayCurrentSessions addObject:session];
+        }
+        else if ([now compare:session.startTime] == NSOrderedAscending)
+        {
+            // determine the start time of the next block of sessions
+            if (nextStartTime == nil)
+            {
+                nextStartTime = session.startTime;
+            }
+            
+            if ([nextStartTime compare:session.startTime] == NSOrderedSame)
+            {
+                // only show the sessions occurring in the next block
+                [arrayUpcomingSessions addObject:session];
+            }
+        }
+    }
 
 	if ([delegate respondsToSelector:@selector(fetchCurrentSessionsDidFinishWithResults:upcomingSessions:)])
 	{
@@ -137,9 +126,9 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 }
 
-- (void)fetchCurrentSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchCurrentSessionsDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchCurrentSessionsDidFailWithError:)])
 	{
@@ -155,74 +144,65 @@ static BOOL sharedShouldRefreshFavorites;
 	NSString *dateString = [dateFormatter stringFromDate:eventDate];
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_BY_DAY_URL, eventId, dateString];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-		
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchSessions:didFinishWithData:)
-													  didFailSelector:@selector(fetchSessions:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self fetchSessionsDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self fetchSessionsDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data." response:response];
+         }
+     }];
 }
 
-- (void)fetchSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchSessionsDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	DLog(@"%@", responseBody);
 
 	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
 	NSMutableArray *arrayTimes = [[NSMutableArray alloc] init];
-		
-	if (ticket.didSucceed)
-	{
-		NSArray *array = [responseBody yajl_JSON];
-		
-		DLog(@"%@", array);
-		
-		NSMutableArray *arrayBlock = nil;
-		NSDate *sessionTime = [NSDate distantPast];
-		
-		for (NSDictionary *d in array) 
-		{
-			GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
-			
-			// for each time block create an array to hold the sessions for that block
-			if ([sessionTime compare:session.startTime] == NSOrderedAscending)
-			{
-				arrayBlock = [[NSMutableArray alloc] init];
-				[arraySessions addObject:arrayBlock];
-				[arrayBlock addObject:session];
-				
-				NSDate *date = [session.startTime copyWithZone:NULL];
-				[arrayTimes addObject:date];
-			}
-			else if ([sessionTime compare:session.startTime] == NSOrderedSame)
-			{
-				[arrayBlock addObject:session];
-			}
-			
-			sessionTime = session.startTime;
-		}
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
-	}
+    
+    NSArray *array = [responseBody yajl_JSON];    
+    DLog(@"%@", array);
+    
+    NSMutableArray *arrayBlock = nil;
+    NSDate *sessionTime = [NSDate distantPast];
+    
+    for (NSDictionary *d in array)
+    {
+        GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
+        
+        // for each time block create an array to hold the sessions for that block
+        if ([sessionTime compare:session.startTime] == NSOrderedAscending)
+        {
+            arrayBlock = [[NSMutableArray alloc] init];
+            [arraySessions addObject:arrayBlock];
+            [arrayBlock addObject:session];
+            
+            NSDate *date = [session.startTime copyWithZone:NULL];
+            [arrayTimes addObject:date];
+        }
+        else if ([sessionTime compare:session.startTime] == NSOrderedSame)
+        {
+            [arrayBlock addObject:session];
+        }
+        
+        sessionTime = session.startTime;
+    }
 	
 	if ([delegate respondsToSelector:@selector(fetchSessionsByDateDidFinishWithResults:andTimes:)])
 	{
@@ -233,9 +213,9 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 }
 
-- (void)fetchSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchSessionsDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchSessionsByDateDidFailWithError:)])
 	{
@@ -250,53 +230,42 @@ static BOOL sharedShouldRefreshFavorites;
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITES_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchFavoriteSessions:didFinishWithData:)
-													  didFailSelector:@selector(fetchFavoriteSessions:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self fetchFavoriteSessionsDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self fetchFavoriteSessionsDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data." response:response];
+         }
+     }];
 }
 
-- (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchFavoriteSessionsDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
 	DLog(@"%@", responseBody);
 	
-	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
-	
-	if (ticket.didSucceed)
-	{
-		NSArray *array = [responseBody yajl_JSON];
-		
-		DLog(@"%@", array);
-		
-		for (NSDictionary *d in array) 
-		{
-			GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
-			[arraySessions addObject:session];
-		}
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
-	}
+    NSArray *array = [responseBody yajl_JSON];
+    DLog(@"%@", array);
+
+    NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [arraySessions addObject:[[GHEventSession alloc] initWithDictionary:obj]];
+    }];
     
 	if ([delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFinishWithResults:)])
 	{
@@ -304,9 +273,9 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 }
 
-- (void)fetchFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchFavoriteSessionsDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchFavoriteSessionsDidFailWithError:)])
 	{
@@ -319,63 +288,52 @@ static BOOL sharedShouldRefreshFavorites;
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_CONFERENCE_FAVORITES_URL, eventId];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
 	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	[request setHTTPMethod:@"GET"];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(fetchConferenceFavoriteSessions:didFinishWithData:)
-													  didFailSelector:@selector(fetchConferenceFavoriteSessions:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self fetchConferenceFavoriteSessionsDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self fetchConferenceFavoriteSessionsDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data." response:response];
+         }
+     }];
 }
 
-- (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)fetchConferenceFavoriteSessionsDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-	
 	DLog(@"%@", responseBody);
-	
-	NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
-	
-	if (ticket.didSucceed)
-	{	
-		NSArray *array = [responseBody yajl_JSON];
-		
-		DLog(@"%@", array);
-		
-		for (NSDictionary *d in array) 
-		{
-			GHEventSession *session = [[GHEventSession alloc] initWithDictionary:d];
-			[arraySessions addObject:session];
-		}
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the session data."];
-	}
-	
+
+    NSArray *array = [responseBody yajl_JSON];
+    DLog(@"%@", array);
+
+    NSMutableArray *arraySessions = [[NSMutableArray alloc] init];
+    [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [arraySessions addObject:[[GHEventSession alloc] initWithDictionary:obj]];
+    }];
+    	
 	if ([delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFinishWithResults:)])
 	{
 		[delegate fetchConferenceFavoriteSessionsDidFinishWithResults:arraySessions];
 	}
 }
 
-- (void)fetchConferenceFavoriteSessions:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)fetchConferenceFavoriteSessionsDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(fetchConferenceFavoriteSessionsDidFailWithError:)])
 	{
@@ -389,45 +347,36 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSIONS_FAVORITE_URL, eventId, sessionNumber];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-    
-	[request setHTTPMethod:@"PUT"];
-	
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
+	[request setHTTPMethod:@"PUT"];	
 	DLog(@"%@", request);
-	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(updateFavoriteSession:didFinishWithData:)
-													  didFailSelector:@selector(updateFavoriteSession:didFailWithError:)];
-	
-	[_dataFetcher start];
+
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self updateFavoriteSessionDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self updateFavoriteSessionDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while updating the favorite." response:response];
+         }
+     }];
 }
 
-- (void)updateFavoriteSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)updateFavoriteSessionDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
 	DLog(@"%@", responseBody);
 	
-	BOOL isFavorite = NO;
-	
-	if (ticket.didSucceed)
-	{
-		isFavorite = [responseBody boolValue];
-	}
-	else 
-	{
-		[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while updating the favorite."];
-	}
+	BOOL isFavorite = [responseBody boolValue];
 	
 	if ([delegate respondsToSelector:@selector(updateFavoriteSessionDidFinishWithResults:)])
 	{
@@ -435,9 +384,9 @@ static BOOL sharedShouldRefreshFavorites;
 	}
 }
 
-- (void)updateFavoriteSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)updateFavoriteSessionDidFailWithError:(NSError *)error
 {
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(updateFavoriteSessionDidFailWithError:)])
 	{
@@ -452,18 +401,10 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_SESSION_RATING_URL, eventId, sessionNumber];
 	NSURL *url = [[NSURL alloc] initWithString:urlString];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	
-    OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url 
-																   consumer:[GHOAuthManager sharedInstance].consumer
-																	  token:[GHOAuthManager sharedInstance].accessToken
-																	  realm:OAUTH_REALM
-														  signatureProvider:nil]; // use the default method, HMAC-SHA1
-	
-	NSString *s = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	
-	s = [s URLEncodedString];
-	
-	NSString *postParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, s];
+	NSString *trimmedComment = [comment stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	NSString *postParams =[[NSString alloc] initWithFormat:@"value=%i&comment=%@", rating, [trimmedComment stringByURLEncoding]];
 	DLog(@"%@", postParams);
 	NSData *putData = [postParams dataUsingEncoding:NSUTF8StringEncoding];
 	NSString *putLength = [NSString stringWithFormat:@"%d", [putData length]];
@@ -475,61 +416,57 @@ static BOOL sharedShouldRefreshFavorites;
 	
 	DLog(@"%@", request);
 	
-	[self cancelDataFetcherRequest];
-	
-	_dataFetcher = [[OAAsynchronousDataFetcher alloc] initWithRequest:request
-															 delegate:self
-													didFinishSelector:@selector(rateSession:didFinishWithData:)
-													  didFailSelector:@selector(rateSession:didFailWithError:)];
-	
-	[_dataFetcher start];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         [_activityAlertView stopAnimating];
+         self.activityAlertView = nil;
+         
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             [self rateSessionDidFinishWithData:data];
+         }
+         else if (error)
+         {
+             [self rateSessionDidFailWithError:error];
+         }
+         else if (statusCode != 200)
+         {
+             if (statusCode == 412)
+             {
+                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                     message:@"This session has not yet finished. Please wait until the session has completed before submitting your rating."
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil];
+                 [alertView show];
+             }
+             else 
+             {
+                 [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating." response:response];
+             }
+         }
+     }];
 }
 
-- (void)rateSession:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data
+- (void)rateSessionDidFinishWithData:(NSData *)data
 {
-	_dataFetcher = nil;
-	
-	[_activityAlertView stopAnimating];
-	self.activityAlertView = nil;
-	
-	NSHTTPURLResponse *response = (NSHTTPURLResponse *)ticket.response;
 	NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
 	DLog(@"%@", responseBody);
-				
-	if (ticket.didSucceed)
-	{
-		double rating = [responseBody doubleValue];
-		
-		if ([delegate respondsToSelector:@selector(rateSessionDidFinishWithResults:)])
-		{
-			[delegate rateSessionDidFinishWithResults:rating];
-		}		
-	}
-	else
-	{	
-		if ([response statusCode] == 412) 
-		{
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil 
-																message:@"This session has not yet finished. Please wait until the session has completed before submitting your rating." 
-															   delegate:nil 
-													  cancelButtonTitle:@"OK" 
-													  otherButtonTitles:nil];
-			[alertView show];
-		}
-		else 
-		{
-			[self request:ticket didNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating."];
-		}
-	}
+    
+    double rating = [responseBody doubleValue];
+    
+    if ([delegate respondsToSelector:@selector(rateSessionDidFinishWithResults:)])
+    {
+        [delegate rateSessionDidFinishWithResults:rating];
+    }
 }
 
-- (void)rateSession:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
+- (void)rateSessionDidFailWithError:(NSError *)error
 {
-	[_activityAlertView stopAnimating];
-	self.activityAlertView = nil;
-
-	[self request:ticket didFailWithError:error];
+	[self requestDidFailWithError:error];
 	
 	if ([delegate respondsToSelector:@selector(rateSessionDidFailWithError:)])
 	{
