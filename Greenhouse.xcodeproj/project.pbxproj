@@ -12,6 +12,11 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		810FD30715D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */; };
 		810FD30D15D9A0AE00A9B3B3 /* GHSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */; };
+		811D71A1160A66B4007C806C /* gh-header-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A0160A66B4007C806C /* gh-header-logo.png */; };
+		811D71A3160A66BC007C806C /* gh-header-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A2160A66BC007C806C /* gh-header-logo@2x.png */; };
+		811D71A5160A6875007C806C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D719A160A626B007C806C /* Default@2x.png */; };
+		811D71A6160A687B007C806C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D7198160A614A007C806C /* Default.png */; };
+		811D71A8160A69EB007C806C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A7160A69EB007C806C /* Default-568h@2x.png */; };
 		815004E115EEFF5100972ACE /* GHAuthorizedRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 815004E015EEFF5100972ACE /* GHAuthorizedRequest.m */; };
 		815D0A271604248B002786A4 /* GHEventSessionTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815D0A261604248B002786A4 /* GHEventSessionTweetViewController.m */; };
 		815D0A411604F306002786A4 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 815D0A401604F306002786A4 /* Event.m */; };
@@ -125,8 +130,6 @@
 		81E42E4E15ADE82F001FA72D /* GHEventSessionTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DC415ADE82F001FA72D /* GHEventSessionTweetsViewController.m */; };
 		81E42E4F15ADE82F001FA72D /* GHEventsMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DC615ADE82F001FA72D /* GHEventsMainViewController.m */; };
 		81E42E5015ADE82F001FA72D /* GHEventTweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DC815ADE82F001FA72D /* GHEventTweetsViewController.m */; };
-		81E42E5115ADE82F001FA72D /* gh-header-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E42DC915ADE82F001FA72D /* gh-header-logo.png */; };
-		81E42E5215ADE82F001FA72D /* gh-header-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E42DCA15ADE82F001FA72D /* gh-header-logo@2x.png */; };
 		81E42E5415ADE82F001FA72D /* GreenhouseAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DCE15ADE82F001FA72D /* GreenhouseAppDelegate.m */; };
 		81E42E5515ADE82F001FA72D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E42DCF15ADE82F001FA72D /* Icon-72.png */; };
 		81E42E5615ADE82F001FA72D /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E42DD015ADE82F001FA72D /* Icon-Small-50.png */; };
@@ -195,6 +198,11 @@
 		810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAuthorizeNavigationViewController.m; sourceTree = "<group>"; };
 		810FD30A15D9A0AE00A9B3B3 /* GHSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSignInViewController.h; sourceTree = "<group>"; };
 		810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSignInViewController.m; sourceTree = "<group>"; };
+		811D7198160A614A007C806C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		811D719A160A626B007C806C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		811D71A0160A66B4007C806C /* gh-header-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo.png"; sourceTree = "<group>"; };
+		811D71A2160A66BC007C806C /* gh-header-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo@2x.png"; sourceTree = "<group>"; };
+		811D71A7160A69EB007C806C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		815004DF15EEFF5100972ACE /* GHAuthorizedRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAuthorizedRequest.h; sourceTree = "<group>"; };
 		815004E015EEFF5100972ACE /* GHAuthorizedRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAuthorizedRequest.m; sourceTree = "<group>"; };
 		815D0A251604248B002786A4 /* GHEventSessionTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHEventSessionTweetViewController.h; sourceTree = "<group>"; };
@@ -357,8 +365,6 @@
 		81E42DC615ADE82F001FA72D /* GHEventsMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHEventsMainViewController.m; sourceTree = "<group>"; };
 		81E42DC715ADE82F001FA72D /* GHEventTweetsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHEventTweetsViewController.h; sourceTree = "<group>"; };
 		81E42DC815ADE82F001FA72D /* GHEventTweetsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHEventTweetsViewController.m; sourceTree = "<group>"; };
-		81E42DC915ADE82F001FA72D /* gh-header-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo.png"; sourceTree = "<group>"; };
-		81E42DCA15ADE82F001FA72D /* gh-header-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo@2x.png"; sourceTree = "<group>"; };
 		81E42DCB15ADE82F001FA72D /* Greenhouse-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Greenhouse-Info.plist"; sourceTree = "<group>"; };
 		81E42DCC15ADE82F001FA72D /* Greenhouse-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Greenhouse-Prefix.pch"; sourceTree = "<group>"; };
 		81E42DCD15ADE82F001FA72D /* GreenhouseAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GreenhouseAppDelegate.h; sourceTree = "<group>"; };
@@ -767,8 +773,11 @@
 				81E42D6615ADE82F001FA72D /* arrow-white.png */,
 				81E42D6915ADE82F001FA72D /* btn-signin.png */,
 				81E42D6A15ADE82F001FA72D /* btn-signin@2x.png */,
-				81E42DC915ADE82F001FA72D /* gh-header-logo.png */,
-				81E42DCA15ADE82F001FA72D /* gh-header-logo@2x.png */,
+				811D71A7160A69EB007C806C /* Default-568h@2x.png */,
+				811D7198160A614A007C806C /* Default.png */,
+				811D719A160A626B007C806C /* Default@2x.png */,
+				811D71A0160A66B4007C806C /* gh-header-logo.png */,
+				811D71A2160A66BC007C806C /* gh-header-logo@2x.png */,
 				81E42DCF15ADE82F001FA72D /* Icon-72.png */,
 				81E42DD015ADE82F001FA72D /* Icon-Small-50.png */,
 				81E42DD115ADE82F001FA72D /* Icon-Small.png */,
@@ -1079,8 +1088,6 @@
 				81E42E3A15ADE82F001FA72D /* GHTweetsViewController.xib in Resources */,
 				81E42E3B15ADE82F001FA72D /* GHTweetViewController.xib in Resources */,
 				81E42E3C15ADE82F001FA72D /* GHVenueDetailsViewController.xib in Resources */,
-				81E42E5115ADE82F001FA72D /* gh-header-logo.png in Resources */,
-				81E42E5215ADE82F001FA72D /* gh-header-logo@2x.png in Resources */,
 				81E42E5515ADE82F001FA72D /* Icon-72.png in Resources */,
 				81E42E5615ADE82F001FA72D /* Icon-Small-50.png in Resources */,
 				81E42E5715ADE82F001FA72D /* Icon-Small.png in Resources */,
@@ -1106,6 +1113,11 @@
 				81A2B67B1607BA3000F0840A /* twitter-logo.png in Resources */,
 				81A2B67C1607BA3000F0840A /* twitter-logo@2x.png in Resources */,
 				81FF4E771607F0D7001B0ABC /* Settings.bundle in Resources */,
+				811D71A1160A66B4007C806C /* gh-header-logo.png in Resources */,
+				811D71A3160A66BC007C806C /* gh-header-logo@2x.png in Resources */,
+				811D71A5160A6875007C806C /* Default@2x.png in Resources */,
+				811D71A6160A687B007C806C /* Default.png in Resources */,
+				811D71A8160A69EB007C806C /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
