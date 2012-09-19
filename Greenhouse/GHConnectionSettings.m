@@ -27,7 +27,7 @@
 
 #define OAUTH_CLIENT_ID                     @"a08318eb478a1ee31f69a55276f3af64"
 #define OAUTH_CLIENT_SECRET                 @"80e7f8f7ba724aae9103f297e5fb9bdf"
-#define GREENHOUSE_URL						@"http://192.168.0.1:8080/greenhouse"
+#define GREENHOUSE_URL						@"http://localhost:8080/greenhouse"
 
 #pragma mark -
 #pragma mark QA

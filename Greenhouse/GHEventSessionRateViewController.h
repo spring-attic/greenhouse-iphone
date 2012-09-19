@@ -29,8 +29,6 @@
 
 @interface GHEventSessionRateViewController : UIViewController <GHEventSessionRateDelegate, UITextViewDelegate>
 
-@property (nonatomic, strong) Event *event;
-@property (nonatomic, strong) EventSession *session;
 @property (nonatomic, strong) GHEventSessionDetailsViewController *sessionDetailsViewController;
 @property (nonatomic, strong) IBOutlet UIButton *buttonRating1;
 @property (nonatomic, strong) IBOutlet UIButton *buttonRating2;

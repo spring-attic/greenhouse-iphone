@@ -108,7 +108,7 @@
     return session;
 }
 
-- (NSArray *)fetchSessionsWithEventId:(NSString *)eventId
+- (NSArray *)fetchSessionsWithEventId:(NSNumber *)eventId
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event.eventId == %@", eventId];
     return [self fetchSessionsWithPredicate:predicate];
@@ -370,7 +370,7 @@
 #pragma mark -
 #pragma mark Rate Session
 
-- (void)rateSession:(NSString *)sessionNumber withEventId:(NSString *)eventId rating:(NSInteger)rating comment:(NSString *)comment delegate:(id<GHEventSessionRateDelegate>)delegate
+- (void)rateSession:(NSNumber *)sessionNumber withEventId:(NSNumber *)eventId rating:(NSInteger)rating comment:(NSString *)comment delegate:(id<GHEventSessionRateDelegate>)delegate
 {
     NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/sessions/%@/rating", eventId, sessionNumber];
     NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
@@ -399,7 +399,13 @@
          {
              NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
              DLog(@"%@", responseBody);
-             double rating = [responseBody doubleValue];
+             
+             // update the rating value of the session in the database
+             EventSession *session = [self fetchSessionWithNumber:sessionNumber];
+             session.rating = [NSNumber numberWithDouble:[responseBody doubleValue]];
+             NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+             [context save:nil];
+             
              dispatch_sync(dispatch_get_main_queue(), ^{
                  [delegate rateSessionDidFinishWithResults:rating];
              });
@@ -417,7 +423,7 @@
              {
                  dispatch_sync(dispatch_get_main_queue(), ^{
                      UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                         message:@"This session has not yet finished. Please wait until the session has completed before submitting your rating."
+                                                                         message:@"This session has not yet finished. Please wait until the session has completed before submitting."
                                                                         delegate:nil
                                                                cancelButtonTitle:@"OK"
                                                                otherButtonTitles:nil];
@@ -428,6 +434,9 @@
              {
                  [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while submitting the session rating." response:response];
              }
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate rateSessionDidFailWithError:error];
+             });
          }
      }];
 }
@@ -503,7 +512,7 @@
 #pragma mark -
 #pragma mark Conference Favorite Sessions
 
-- (void)fetchConferenceFavoriteSessionsByEventId:(NSString *)eventId delegate:(id<GHEventSessionsConferenceFavoritesDelegate>)delegate
+- (void)fetchConferenceFavoriteSessionsByEventId:(NSNumber *)eventId delegate:(id<GHEventSessionsConferenceFavoritesDelegate>)delegate
 {
     NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/favorites", eventId];
     NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];

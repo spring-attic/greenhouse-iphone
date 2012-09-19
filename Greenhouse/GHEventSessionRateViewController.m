@@ -28,10 +28,14 @@
 #import "GHEventController.h"
 #import "GHEventSessionController.h"
 #import "GHEventSessionDetailsViewController.h"
+#import "GHActivityAlertView.h"
 
 @interface GHEventSessionRateViewController ()
 
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
 @property (nonatomic, assign) NSUInteger rating;
+@property (nonatomic, strong) GHActivityAlertView *activityView;
 
 - (void)updateRatingButtons:(NSInteger)count;
 - (void)updateCharacterCount:(NSInteger)newCount;
@@ -40,9 +44,10 @@
 
 @implementation GHEventSessionRateViewController
 
-@synthesize rating;
 @synthesize event;
 @synthesize session;
+@synthesize rating;
+@synthesize activityView;
 @synthesize sessionDetailsViewController;
 @synthesize barButtonCancel;
 @synthesize barButtonSubmit;
@@ -71,11 +76,25 @@
 
 - (IBAction)actionSubmit:(id)sender
 {
-	[[GHEventSessionController sharedInstance] rateSession:session.number
-                                               withEventId:event.eventId
-                                                    rating:rating
-                                                   comment:textViewComments.text
-                                                  delegate:self];
+    if (self.rating == 0)
+    {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Please select a star rating"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
+    else if (self.rating > 0 && self.rating <= 5)
+    {
+        self.activityView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Submitting rating..."];
+        [activityView startAnimating];
+        [[GHEventSessionController sharedInstance] rateSession:session.number
+                                                   withEventId:event.eventId
+                                                        rating:rating
+                                                       comment:textViewComments.text
+                                                      delegate:self];
+    }
 }
 
 
@@ -90,7 +109,7 @@
 	switch (count)
 	{
 		case 1:
-			rating = 1;
+			self.rating = 1;
 			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating2 setImage:imageEmptyStar forState:UIControlStateNormal];
 			[buttonRating3 setImage:imageEmptyStar forState:UIControlStateNormal];
@@ -98,7 +117,7 @@
 			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 2:
-			rating = 2;
+			self.rating = 2;
 			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating3 setImage:imageEmptyStar forState:UIControlStateNormal];
@@ -106,7 +125,7 @@
 			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 3:
-			rating = 3;
+			self.rating = 3;
 			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating3 setImage:imageStar forState:UIControlStateNormal];
@@ -114,7 +133,7 @@
 			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 4:
-			rating = 4;
+			self.rating = 4;
 			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating3 setImage:imageStar forState:UIControlStateNormal];
@@ -122,7 +141,7 @@
 			[buttonRating5 setImage:imageEmptyStar forState:UIControlStateNormal];
 			break;
 		case 5:
-			rating = 5;
+			self.rating = 5;
 			[buttonRating1 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating2 setImage:imageStar forState:UIControlStateNormal];
 			[buttonRating3 setImage:imageStar forState:UIControlStateNormal];
@@ -131,7 +150,7 @@
 			break;
 		case 0:
 		default:
-			rating = 0;
+			self.rating = 0;
 			[buttonRating1 setImage:imageEmptyStar forState:UIControlStateNormal];
 			[buttonRating2 setImage:imageEmptyStar forState:UIControlStateNormal];
 			[buttonRating3 setImage:imageEmptyStar forState:UIControlStateNormal];
@@ -173,13 +192,15 @@
 - (void)rateSessionDidFinishWithResults:(double)newRating
 {
 	session.rating = [NSNumber numberWithDouble:newRating];
-	[sessionDetailsViewController updateRating:newRating];
+    [activityView stopAnimating];
+    self.activityView = nil;
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)rateSessionDidFailWithError:(NSError *)error
 {
-
+    [activityView stopAnimating];
+    self.activityView = nil;
 }
 
 
@@ -219,9 +240,10 @@
 {
     [super viewDidUnload];
     DLog(@"");
-	
-	self.event = nil;
+
+    self.event = nil;
 	self.session = nil;
+	self.activityView = nil;
 	self.sessionDetailsViewController = nil;
 	self.barButtonCancel = nil;
 	self.barButtonSubmit = nil;
