@@ -21,7 +21,7 @@
 //
 
 #import "GHTweetTableViewCell.h"
-
+#import "Tweet.h"
 
 @interface GHTweetTableViewCell()
 
@@ -32,14 +32,13 @@
 
 @end
 
-
 @implementation GHTweetTableViewCell
 
 @synthesize labelUser;
 @synthesize labelText;
 @synthesize labelTime;
 @synthesize imageViewProfile;
-@synthesize tweet;
+@synthesize tweet = _tweet;
 
 - (UILabel *)textLabel
 {
@@ -56,7 +55,7 @@
 	return imageViewProfile;
 }
 
-- (void)setTweet:(GHTweet *)aTweet
+- (void)setTweet:(Tweet *)aTweet
 {
 	if (aTweet.profileImage)
 	{
@@ -64,7 +63,7 @@
 	}
 	else 
 	{
-		self.imageViewProfile.image = [UIImage imageNamed:@"t_logo-b.png"];
+		self.imageViewProfile.image = [UIImage imageNamed:@"twitter-logo.png"];
 	}
 
 	self.labelUser.text = aTweet.fromUser;

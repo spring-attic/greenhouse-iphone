@@ -26,8 +26,6 @@
 @interface GHUserSettings : NSObject { }
 
 + (void)reset;
-+ (BOOL)includeLocationInTweet;
-+ (void)setIncludeLocationInTweet:(BOOL)boolVal;
 + (NSInteger)dataExpiration;
 + (BOOL)resetAppOnStart;
 + (void)setAppVersion:(NSString *)appVersion;

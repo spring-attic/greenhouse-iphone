@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,17 +14,25 @@
 //  limitations under the License.
 //
 //
-//  GHInitializingModel.h
+//  NSDate+Helpers.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 10/4/10.
+//  Created by Roy Clarkson on 9/2/12.
 //
 
-#import <Foundation/Foundation.h>
+#import "NSDate+Helpers.h"
 
+@implementation NSDate (NSDate_Helpers)
 
-@protocol GHInitializingModel<NSObject>
++ (id)dateWithMillisecondsSince1970:(double)milliseconds
+{
+    return [[NSDate alloc] initWithMillisecondsSince1970:milliseconds];
+}
 
-- (id)initWithDictionary:(NSDictionary *)dictionary;
+- (id)initWithMillisecondsSince1970:(double)milliseconds
+{
+    NSTimeInterval unixDate = (milliseconds * .001);
+    return [[NSDate alloc] initWithTimeIntervalSince1970:unixDate];
+}
 
 @end

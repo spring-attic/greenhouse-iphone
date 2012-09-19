@@ -27,7 +27,7 @@
 
 - (id)initWithURL:(NSURL *)URL
 {
-    OA2AccessGrant *accessGrant = [[GHOAuth2Controller sharedInstance] fetchAccessGrant];
+    OA2AccessGrant *accessGrant = [GHOAuth2Controller fetchAccessGrant];
     return [super initWithURL:URL accessToken:accessGrant.accessToken];
 }
 

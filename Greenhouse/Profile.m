@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,28 +14,19 @@
 //  limitations under the License.
 //
 //
-//  GHDataViewController.m
+//  Profile.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 9/8/10.
+//  Created by Roy Clarkson on 9/5/12.
 //
 
-#import "GHDataViewController.h"
+#import "Profile.h"
 
 
-@implementation GHDataViewController
+@implementation Profile
 
-- (void)refreshView
-{
-}
-
-- (void)reloadData
-{
-}
-
-- (BOOL)shouldReloadData
-{
-	return NO;
-}
+@dynamic accountId;
+@dynamic displayName;
+@dynamic imageUrl;
 
 @end

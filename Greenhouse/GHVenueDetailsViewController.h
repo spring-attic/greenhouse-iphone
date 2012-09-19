@@ -21,15 +21,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHDataViewController.h"
 
+@class Venue;
 
-@class GHVenue;
+@interface GHVenueDetailsViewController : UIViewController
 
-
-@interface GHVenueDetailsViewController : GHDataViewController
-
-@property (nonatomic, strong) GHVenue *venue;
+@property (nonatomic, strong) Venue *venue;
 @property (nonatomic, strong) IBOutlet UILabel *labelName;
 @property (nonatomic, strong) IBOutlet UILabel *labelLocationHint;
 @property (nonatomic, strong) IBOutlet UILabel *labelAddress;

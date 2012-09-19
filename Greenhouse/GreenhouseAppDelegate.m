@@ -20,10 +20,11 @@
 //  Created by Roy Clarkson on 6/7/10.
 //
 
-#import <CoreLocation/CoreLocation.h>
+//#import <CoreLocation/CoreLocation.h>
 #import "GreenhouseAppDelegate.h"
 #import "GHAuthorizeNavigationViewController.h"
 #import "GHOAuth2Controller.h"
+#import "GHCoreDataManager.h"
 
 @interface GreenhouseAppDelegate()
 
@@ -61,15 +62,15 @@
 
 - (void)verifyLocationServices
 {
-	if ([CLLocationManager locationServicesEnabled] == NO) 
-	{
-        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" 
-																		message:@"Greenhouse would like to use your current location but you currently have all location services disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." 
-																	   delegate:nil 
-															  cancelButtonTitle:@"OK" 
-															  otherButtonTitles:nil];
-        [servicesDisabledAlert show];
-    }	
+//	if ([CLLocationManager locationServicesEnabled] == NO) 
+//	{
+//        UIAlertView *servicesDisabledAlert = [[UIAlertView alloc] initWithTitle:@"Location Services Disabled" 
+//																		message:@"Greenhouse would like to use your current location but you currently have all location services disabled. If you proceed, you will be asked to confirm whether location services should be reenabled." 
+//																	   delegate:nil 
+//															  cancelButtonTitle:@"OK" 
+//															  otherButtonTitles:nil];
+//        [servicesDisabledAlert show];
+//    }	
 }
 
 
@@ -78,12 +79,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	if (buttonIndex == 1)
-	{
-		// sign out
-		[[GHOAuth2Controller sharedInstance] deleteAccessGrant];
-		[self showAuthorizeNavigationViewController];
-	}
+    // sign out
+    [GHOAuth2Controller deleteAccessGrant];
+    [[GHCoreDataManager sharedInstance] deletePersistentStore];
+    [self showAuthorizeNavigationViewController];    
 }
 
 
@@ -111,7 +110,8 @@
 	if ([GHUserSettings resetAppOnStart])
 	{
 		DLog(@"reset app");
-		[[GHOAuth2Controller sharedInstance] deleteAccessGrant];
+		[GHOAuth2Controller deleteAccessGrant];
+        [[GHCoreDataManager sharedInstance] deletePersistentStore];
 		[GHUserSettings reset];
 		[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
 		[self showAuthorizeNavigationViewController];
@@ -131,14 +131,14 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	DLog(@"");
-	
 	if ([GHUserSettings resetAppOnStart])
 	{
-		[[GHOAuth2Controller sharedInstance] deleteAccessGrant];
+		[GHOAuth2Controller deleteAccessGrant];
+        [[GHCoreDataManager sharedInstance] deletePersistentStore];
 		[GHUserSettings reset];
 		[self showAuthorizeNavigationViewController];
 	}	
-	else if ([[GHOAuth2Controller sharedInstance] isAuthorized])
+	else if ([GHOAuth2Controller isAuthorized])
 	{
 		[self showTabBarController];
 	}

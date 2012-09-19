@@ -22,36 +22,36 @@
 //
 
 #import "GHEventSessionsCurrentViewController.h"
+#import "Event.h"
+#import "EventSession.h"
+#import "GHEventController.h"
+#import "GHEventSessionController.h"
 
-
-@interface GHEventSessionsCurrentViewController()
+@interface GHEventSessionsCurrentViewController ()
 
 @property (nonatomic, strong) GHEventSessionController *eventSessionController;
-@property (nonatomic, strong) NSArray *arrayCurrentSessions;
-@property (nonatomic, strong) NSArray *arrayUpcomingSessions;
-
-- (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions;
+@property (nonatomic, strong) NSArray *currentSessions;
+@property (nonatomic, strong) NSArray *upcomingSessions;
 
 @end
-
 
 @implementation GHEventSessionsCurrentViewController
 
 @synthesize eventSessionController;
-@synthesize arrayCurrentSessions;
-@synthesize arrayUpcomingSessions;
+@synthesize currentSessions = _currentSessions;
+@synthesize upcomingSessions = _upcomingSessions;
 
-- (GHEventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
+- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
-	GHEventSession *session = nil;
+	EventSession *session = nil;
 	
 	if (indexPath.section == 0)
 	{
-		session = (GHEventSession *)[arrayCurrentSessions objectAtIndex:indexPath.row];
+		session = [_currentSessions objectAtIndex:indexPath.row];
 	}
 	else if (indexPath.section == 1)
 	{
-		session = (GHEventSession *)[arrayUpcomingSessions objectAtIndex:indexPath.row];	
+		session = [_upcomingSessions objectAtIndex:indexPath.row];
 	}
 	
 	return session;
@@ -59,34 +59,60 @@
 
 - (BOOL)displayLoadingCell
 {
-	NSInteger currentCount = [arrayCurrentSessions count];
-	NSInteger upcomingCount = [arrayUpcomingSessions count];
+	NSInteger currentCount = [_currentSessions count];
+	NSInteger upcomingCount = [_upcomingSessions count];
 	
 	return (currentCount == 0 && upcomingCount == 0);
-}
-
-- (void)completeFetchCurrentSessions:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
-{
-	self.eventSessionController = nil;
-	self.arrayCurrentSessions = currentSessions;
-	self.arrayUpcomingSessions = upcomingSessions;
-	[self.tableView reloadData];
-	[self dataSourceDidFinishLoadingNewData];
 }
 
 
 #pragma mark -
 #pragma mark EventSessionControllerDelegate methods
 
-- (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)currentSessions upcomingSessions:(NSArray *)upcomingSessions
+- (void)fetchCurrentSessionsDidFinishWithResults:(NSArray *)sessions
 {
-	[self completeFetchCurrentSessions:currentSessions upcomingSessions:upcomingSessions];
+    NSMutableArray *currentSessions = [[NSMutableArray alloc] init];
+	NSMutableArray *upcomingSessions = [[NSMutableArray alloc] init];
+    
+    NSDate *nextStartTime = nil;
+    NSDate *now = [NSDate date];
+    DLog(@"%@", now.description);
+    
+    for (EventSession *session in sessions)
+    {
+        DLog(@"%@ - %@", [session.startTime description], [session.endTime description]);
+        
+        if ([now compare:session.startTime] == NSOrderedDescending &&
+            [now compare:session.endTime] == NSOrderedAscending)
+        {
+            // find the sessions that are happening now
+            [currentSessions addObject:session];
+        }
+        else if ([now compare:session.startTime] == NSOrderedAscending)
+        {
+            // determine the start time of the next block of sessions
+            if (nextStartTime == nil)
+            {
+                nextStartTime = session.startTime;
+            }
+            
+            if ([nextStartTime compare:session.startTime] == NSOrderedSame)
+            {
+                // only show the sessions occurring in the next block
+                [upcomingSessions addObject:session];
+            }
+        }
+    }
+    
+	self.currentSessions = currentSessions;
+	self.upcomingSessions = upcomingSessions;
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)fetchCurrentSessionsDidFailWithError:(NSError *)error
 {
-	NSArray *array = [[NSArray alloc] init];
-	[self completeFetchCurrentSessions:array upcomingSessions:array];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
@@ -95,7 +121,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	if (arrayCurrentSessions && arrayUpcomingSessions)
+	if (_currentSessions && _upcomingSessions)
 	{
 		return 2;
 	}
@@ -107,13 +133,13 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (arrayCurrentSessions && section == 0)
+	if (_currentSessions && section == 0)
 	{
-		return [arrayCurrentSessions count];
+		return [_currentSessions count];
 	}
-	else if (arrayUpcomingSessions && section == 1)
+	else if (_upcomingSessions && section == 1)
 	{
-		return [arrayUpcomingSessions count];
+		return [_upcomingSessions count];
 	}
 	else 
 	{
@@ -124,11 +150,11 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	
-	if ([arrayCurrentSessions count] > 0 && section == 0)
+	if ([_currentSessions count] > 0 && section == 0)
 	{
 		return @"Happening Now:";
 	}
-	else if ([arrayUpcomingSessions count] > 0 && section == 1)
+	else if ([_upcomingSessions count] > 0 && section == 1)
 	{
 		return @"Up Next:";
 	}
@@ -142,30 +168,14 @@
 #pragma mark -
 #pragma mark PullRefreshTableViewController methods
 
-- (void)refreshView
-{
-	if (![self.currentEvent.eventId isEqualToString:self.event.eventId])
-	{
-		self.arrayCurrentSessions = nil;
-		self.arrayUpcomingSessions = nil;
-	
-		[self.tableView reloadData];
-	}
-	
-	self.currentEvent = self.event;
-}
-
-- (BOOL)shouldReloadData
-{
-	return (arrayCurrentSessions == nil || self.lastRefreshExpired);
-}
+//- (BOOL)shouldReloadData
+//{
+//	return (arrayCurrentSessions == nil || self.lastRefreshExpired);
+//}
 
 - (void)reloadTableViewDataSource
 {
-	self.eventSessionController = [[GHEventSessionController alloc] init];
-	eventSessionController.delegate = self;
-	
-	[eventSessionController fetchCurrentSessionsByEventId:self.event.eventId];
+	[eventSessionController sendRequestForCurrentSessionsWithEventId:self.event.eventId delegate:self];
 }
 
 
@@ -179,11 +189,17 @@
     [super viewDidLoad];
 	
 	self.title = @"Current";
+	self.eventSessionController = [[GHEventSessionController alloc] init];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    self.currentSessions = nil;
+    self.upcomingSessions = nil;
+    
+    [super viewWillAppear:animated];
+    
+    [eventSessionController fetchCurrentSessionsWithEventId:self.event.eventId delegate:self];
 }
 
 - (void)viewDidUnload 
@@ -191,8 +207,8 @@
     [super viewDidUnload];
 	
 	self.eventSessionController = nil;
-	self.arrayCurrentSessions = nil;
-	self.arrayUpcomingSessions = nil;
+	self.currentSessions = nil;
+	self.upcomingSessions = nil;
 }
 
 @end

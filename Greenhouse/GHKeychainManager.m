@@ -48,8 +48,6 @@
 #pragma mark -
 #pragma mark Helper methods
 
-#if __IPHONE_OS_VERSION_MIN_REQUIRED > 40000
-
 - (OSStatus)storePassword:(NSData *)passwordData service:(NSString *)service account:(NSString *)account;
 {
     [self deletePasswordWithService:service account:account];
@@ -79,7 +77,6 @@
 	return SecItemDelete((__bridge CFDictionaryRef)query);
 }
 
-
 - (NSMutableDictionary *)queryKeychainWithService:(NSString *)service account:(NSString *)account
 {
     return [[NSMutableDictionary alloc] initWithObjectsAndKeys:
@@ -88,7 +85,5 @@
             account, (__bridge id)kSecAttrAccount,
             nil];
 }
-
-#endif
 
 @end

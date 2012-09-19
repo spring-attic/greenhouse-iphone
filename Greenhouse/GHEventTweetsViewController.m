@@ -21,43 +21,34 @@
 //
 
 #import "GHEventTweetsViewController.h"
+#import "GHEventTweetViewController.h"
+#import "GHEventTweetDetailsViewController.h"
+#import "GHEventController.h"
+#import "Event.h"
+#import "GHTwitterController.h"
+#import "GHTweetDetailsViewController.h"
 
+@interface GHEventTweetsViewController ()
 
-@interface GHEventTweetsViewController()
-
-@property (nonatomic, strong) GHEvent *currentEvent;
+@property (nonatomic, strong) Event *event;
 
 @end
-
 
 @implementation GHEventTweetsViewController
 
 @synthesize event;
-@synthesize currentEvent;
 
-#pragma mark -
-#pragma mark PullRefreshTableViewController methods
-
-- (void)refreshView
+- (void)showTwitterForm
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:EVENT_TWEETS_URL, event.eventId];
-	NSURL *url = [[NSURL alloc] initWithString:urlString];
-	self.tweetUrl = url;
-	self.tweetViewController.tweetUrl = url;
-	self.tweetViewController.tweetText = event.hashtag;
-    
-	urlString = [[NSString alloc]  initWithFormat:EVENT_RETWEET_URL, event.eventId];
-	url = [[NSURL alloc] initWithString:urlString];
-	self.retweetUrl = url;
-	
-	if (![currentEvent.eventId isEqualToString:event.eventId])
-	{
-		self.isLoading = YES;
-		[self.arrayTweets removeAllObjects];
-		[self.tableView reloadData];
-	}
-	
-	self.currentEvent = event;
+    self.tweetViewController.tweetText = event.hashtag;
+    [super showTwitterForm];
+}
+
+- (void)fetchTweetsWithPage:(NSUInteger)page
+{
+	[[GHTwitterController sharedInstance] sendRequestForTweetsWithEventId:event.eventId
+                                                                     page:page
+                                                                 delegate:self];
 }
 
 
@@ -69,14 +60,49 @@
 	self.lastRefreshKey = @"EventTweetsViewController_LastRefresh";
 	
 	[super viewDidLoad];
+    
+    self.tweetViewController = [[GHEventTweetViewController alloc] initWithNibName:@"GHTweetViewController" bundle:nil];
+	self.tweetDetailsViewController = [[GHEventTweetDetailsViewController alloc] initWithNibName:@"GHTweetDetailsViewController" bundle:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    if (self.event == nil)
+    {
+        DLog(@"selected event not available");
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else
+    {
+        self.tweets = [[GHTwitterController sharedInstance] fetchTweetsWithEventId:event.eventId];
+        if (self.tweets && self.tweets.count > 0)
+        {
+            [self reloadTableDataWithTweets:self.tweets];
+        }
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    DLog(@"");
+    
+    if (self.tweets == nil || self.tweets.count == 0 || self.lastRefreshExpired)
+    {
+        [self fetchTweetsWithPage:1];
+    }
 }
 
 - (void)viewDidUnload
 {
 	[super viewDidUnload];
+    DLog(@"");
 	
 	self.event = nil;
-	self.currentEvent = nil;
 }
 
 @end

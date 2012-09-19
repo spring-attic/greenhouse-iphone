@@ -22,13 +22,13 @@
 
 #import <Foundation/Foundation.h>
 #import "GHTweetsViewController.h"
-#import "GHEvent.h"
-#import "GHEventSession.h"
+#import "Event.h"
+#import "EventSession.h"
 
 
 @interface GHEventSessionTweetsViewController : GHTweetsViewController
 
-@property (nonatomic, strong) GHEvent *event;
-@property (nonatomic, strong) GHEventSession *session;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
 
 @end

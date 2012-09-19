@@ -21,7 +21,14 @@
 //
 
 #import "GHEventSessionDescriptionViewController.h"
+#import "EventSession.h"
+#import "GHEventSessionController.h"
 
+@interface GHEventSessionDescriptionViewController ()
+
+@property (nonatomic, strong) EventSession *session;
+
+@end
 
 @implementation GHEventSessionDescriptionViewController
 
@@ -30,35 +37,39 @@
 
 
 #pragma mark -
-#pragma mark DataViewController methods
-
-- (void)refreshView
-{
-	textViewDescription.text = session.description;
-}
-
-
-#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	self.title = @"Description";
-	
 	textViewDescription.editable = NO;
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    self.session = [[GHEventSessionController sharedInstance] fetchSelectedSession];
+    if (self.session == nil)
+    {
+        DLog(@"selected session not available");
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else
+    {
+        textViewDescription.text = session.information;
+    }
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
-	
+    DLog(@"");
+    
 	self.session = nil;
 	self.textViewDescription = nil;
 }

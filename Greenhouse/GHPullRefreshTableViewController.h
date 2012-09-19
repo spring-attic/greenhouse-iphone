@@ -22,11 +22,7 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface GHPullRefreshTableViewController : UIViewController <UIScrollViewDelegate>
-{
-	BOOL _reloading;
-}
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (assign, getter=isReloading) BOOL reloading;
@@ -34,8 +30,6 @@
 @property (nonatomic, strong) NSDate *lastRefreshDate;
 @property (nonatomic, assign, readonly) BOOL lastRefreshExpired;
 
-- (void)reloadData;
-- (BOOL)shouldReloadData;
 - (void)reloadTableViewDataSource;
 - (void)dataSourceDidFinishLoadingNewData;
 

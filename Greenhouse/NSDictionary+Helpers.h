@@ -22,11 +22,11 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface NSDictionary (NSDictionary_Helpers)
 
 - (NSString *)stringForKey:(id)aKey;
 - (NSString *)stringByReplacingPercentEscapesForKey:(id)aKey usingEncoding:(NSStringEncoding)encoding;
+- (NSNumber *)numberForKey:(id)aKey;
 - (NSInteger)integerForKey:(id)aKey;
 - (double)doubleForKey:(id)aKey;
 - (BOOL)boolForKey:(id)aKey;

@@ -22,7 +22,6 @@
 
 #import "NSDictionary+Helpers.h"
 
-
 @implementation NSDictionary (NSDictionary_Helpers)
 
 - (NSString *)stringForKey:(id)aKey 
@@ -75,6 +74,32 @@
 	@finally 
 	{ 
 		return s;
+	}
+}
+
+- (NSNumber *)numberForKey:(id)aKey
+{
+	NSNumber *n = nil;
+	
+	@try
+	{
+		NSObject *o = [self objectForKey:aKey];
+		
+		if (o != nil && o != [NSNull null])
+		{
+            if ([o isKindOfClass:[NSNumber class]])
+			{
+				n = (NSNumber *)o;
+			}
+		}
+	}
+	@catch (NSException *e)
+	{
+		DLog(@"Caught %@%@", [e name], [e reason]);
+	}
+	@finally
+	{
+		return n;
 	}
 }
 

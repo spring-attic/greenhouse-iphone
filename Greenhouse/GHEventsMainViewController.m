@@ -21,31 +21,19 @@
 //
 
 #import "GHEventsMainViewController.h"
-#import "GHEvent.h"
+#import "Event.h"
 
 @interface GHEventsMainViewController()
 
-@property (nonatomic, strong) NSArray *arrayEvents;
-@property (nonatomic, strong) GHEventController *eventController;
-
-- (void)completeFetchEvents:(NSArray *)events;
+@property (nonatomic, strong) NSArray *events;
 
 @end
 
 @implementation GHEventsMainViewController
 
-@synthesize arrayEvents;
-@synthesize eventController;
+@synthesize events = _events;
 @synthesize barButtonRefresh;
 @synthesize eventDetailsViewController;
-
-- (void)completeFetchEvents:(NSArray *)events
-{
-	self.eventController = nil;
-	self.arrayEvents = events;
-	[self.tableView reloadData];
-	[self dataSourceDidFinishLoadingNewData];
-}
 
 
 #pragma mark -
@@ -53,13 +41,14 @@
 
 - (void)fetchEventsDidFinishWithResults:(NSArray *)events
 {
-	[self completeFetchEvents:events];
+    self.events = events;
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)fetchEventsDidFailWithError:(NSError *)error
 {
-	NSArray *array = [[NSArray alloc] init];
-	[self completeFetchEvents:array];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
@@ -68,11 +57,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (arrayEvents)
+	if (_events)
 	{
-		GHEvent *event = (GHEvent *)[arrayEvents objectAtIndex:indexPath.row];
-		eventDetailsViewController.event = event;
+		Event *event = [_events objectAtIndex:indexPath.row];
+        [[GHEventController sharedInstance] setSelectedEvent:event];
 		[self.navigationController pushViewController:eventDetailsViewController animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
 	}
 }
 
@@ -86,7 +76,7 @@
 	static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
     
     // add a placeholder cell while waiting on table data
-    int count = [self.arrayEvents count];
+    int count = [self.events count];
 	
 	if (count == 0 && indexPath.row == 0)
 	{
@@ -113,7 +103,7 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
 	
-	GHEvent *event = (GHEvent *)[arrayEvents objectAtIndex:indexPath.row];
+	Event *event = [_events objectAtIndex:indexPath.row];
 	
 	[cell.textLabel setText:event.title];
 	[cell.detailTextLabel setText:event.groupName];
@@ -123,9 +113,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (arrayEvents)
+	if (_events)
 	{
-		return [arrayEvents count];
+		return [_events count];
 	}
 	else 
 	{
@@ -137,25 +127,20 @@
 #pragma mark -
 #pragma mark PullRefreshTableViewController methods
 
-- (void)reloadData
+- (BOOL)lastRefreshExpired
 {
-	if ([self shouldReloadData])
-	{
-		[self reloadTableViewDataSource];
-	}
+	// if the last refresh was older than the configured time, then expire the data
+    NSDateComponents *components = [[NSDateComponents alloc] init];
+    [components setWeek:-1];
+    NSDate *expireDate = [[NSCalendar currentCalendar] dateByAddingComponents:components toDate:[NSDate date] options:0];    
+    DLog(@"expireDate: %@", expireDate);
+    DLog(@"lastRefresh: %@", self.lastRefreshDate);
+	return ([self.lastRefreshDate compare:expireDate] == NSOrderedAscending);
 }
 
 - (void)reloadTableViewDataSource
 {
-	self.eventController = [[GHEventController alloc] init];
-	eventController.delegate = self;
-	
-	[eventController fetchEvents];	
-}
-
-- (BOOL)shouldReloadData
-{
-	return (!arrayEvents || self.lastRefreshExpired || [arrayEvents count] == 0);
+    [[GHEventController sharedInstance] sendRequestForEventsWithDelegate:self];
 }
 
 
@@ -165,25 +150,36 @@
 - (void)viewDidLoad 
 {
 	self.lastRefreshKey = @"EventsMainViewController_LastRefresh";
-	
 	[super viewDidLoad];
-	
+    DLog(@"");
+    
 	self.title = @"Upcoming Events";
-	
 	self.eventDetailsViewController = [[GHEventDetailsViewController alloc] initWithNibName:nil bundle:nil];
+    self.navigationItem.backBarButtonItem =
+    [[UIBarButtonItem alloc] initWithTitle:@"Events"
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+	self.events = [[GHEventController sharedInstance] fetchEvents];
+    if (self.events == nil || self.events.count == 0 || self.lastRefreshExpired)
+    {
+        [[GHEventController sharedInstance] sendRequestForEventsWithDelegate:self];
+    }
 }
 
 - (void)viewDidUnload 
 {	
 	[super viewDidUnload];
-	
-	self.arrayEvents = nil;
-	self.eventController = nil;
+    DLog(@"");
+    
+	self.events = nil;
 	self.barButtonRefresh = nil;
 	self.eventDetailsViewController = nil;
 }

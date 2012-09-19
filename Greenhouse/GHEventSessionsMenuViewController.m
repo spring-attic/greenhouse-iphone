@@ -25,18 +25,19 @@
 #import "GHEventSessionsFavoritesViewController.h"
 #import "GHEventSessionsConferenceFavoritesViewController.h"
 #import "GHEventSessionsByDayViewController.h"
+#import "Event.h"
+#import "GHEventController.h"
+#import "GHEventSessionController.h"
 #import "GHDateHelper.h"
 
+@interface GHEventSessionsMenuViewController ()
 
-@interface GHEventSessionsMenuViewController()
-
+@property (nonatomic, strong) Event *currentEvent;
 @property (nonatomic, strong) NSArray *arrayMenuItems;
 @property (nonatomic, strong) NSArray *arrayEventDates;
 @property (nonatomic, strong) NSMutableDictionary *dictionaryViewControllers;
-@property (nonatomic, strong) GHEvent *currentEvent;
 
 @end
-
 
 @implementation GHEventSessionsMenuViewController
 
@@ -44,7 +45,6 @@
 @synthesize arrayEventDates;
 @synthesize dictionaryViewControllers;
 @synthesize currentEvent;
-@synthesize event;
 @synthesize tableViewMenu;
 @synthesize sessionsCurrentViewController;
 @synthesize sessionsFavoritesViewController;
@@ -62,15 +62,12 @@
 		switch (indexPath.row) 
 		{
 			case 0:
-				sessionsCurrentViewController.event = event;
 				[self.navigationController pushViewController:sessionsCurrentViewController animated:YES];
 				break;
 			case 1:
-				sessionsFavoritesViewController.event = event;
 				[self.navigationController pushViewController:sessionsFavoritesViewController animated:YES];
 				break;
 			case 2:
-				conferenceFavoritesViewController.event = event;
 				[self.navigationController pushViewController:conferenceFavoritesViewController animated:YES];
 				break;
 			default:
@@ -79,19 +76,14 @@
 	}
 	else if (indexPath.section == 1)
 	{
-		NSDate *date = (NSDate *)[arrayEventDates objectAtIndex:indexPath.row];
-		
+		NSDate *date = [arrayEventDates objectAtIndex:indexPath.row];
 		GHEventSessionsByDayViewController *vc = (GHEventSessionsByDayViewController *)[dictionaryViewControllers objectForKey:[date description]];
-		
 		if (vc == nil)
 		{
 			vc = [[GHEventSessionsByDayViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 			[dictionaryViewControllers setObject:vc forKey:[date description]];
 		}
-		
-		vc.event = event;
-		vc.eventDate = date;
-		
+        [[GHEventSessionController sharedInstance] setSelectedScheduleDate:date];
 		[self.navigationController pushViewController:vc animated:YES];
 	}
 		
@@ -130,7 +122,7 @@
 		{
 			NSDate *eventDate = (NSDate *)[arrayEventDates objectAtIndex:indexPath.row];
 			NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setDateFormat:@"EEEE"];
+			[dateFormatter setDateFormat:@"EEEE, MMMM d"];
 			s = [dateFormatter stringFromDate:eventDate];
 			break;
 		}
@@ -180,22 +172,6 @@
 
 
 #pragma mark -
-#pragma mark DataViewController methods
-
-- (void)refreshView
-{
-	if (![currentEvent.eventId isEqualToString:event.eventId])
-	{
-		[dictionaryViewControllers removeAllObjects];
-		self.arrayEventDates = [GHDateHelper daysBetweenStartTime:event.startTime endTime:event.endTime];
-		[tableViewMenu reloadData];
-	}
-	
-	self.currentEvent = event;
-}
-
-
-#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
@@ -203,19 +179,28 @@
     [super viewDidLoad];
 	
 	self.title = @"Sessions";
-	
 	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Current", @"My Favorites", @"Conference Favorites", nil];
 	self.arrayEventDates = [[NSMutableArray alloc] init];
 	self.dictionaryViewControllers = [[NSMutableDictionary alloc] init];
-	
 	self.sessionsCurrentViewController = [[GHEventSessionsCurrentViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 	self.sessionsFavoritesViewController = [[GHEventSessionsFavoritesViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 	self.conferenceFavoritesViewController = [[GHEventSessionsConferenceFavoritesViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    Event *event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    if (![currentEvent.eventId isEqualToNumber:event.eventId])
+	{
+		[dictionaryViewControllers removeAllObjects];
+		self.arrayEventDates = [GHDateHelper daysBetweenStartTime:event.startTime endTime:event.endTime];
+		[tableViewMenu reloadData];
+	}
+	
+	self.currentEvent = event;
 }
 
 - (void)viewDidUnload 
@@ -226,7 +211,6 @@
 	self.arrayEventDates = nil;
 	self.dictionaryViewControllers = nil;
 	self.currentEvent = nil;
-	self.event = nil;
 	self.tableViewMenu = nil;
 	self.sessionsCurrentViewController = nil;
 	self.sessionsFavoritesViewController = nil;

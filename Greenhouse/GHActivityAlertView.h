@@ -22,7 +22,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface GHActivityAlertView : UIAlertView 
 
 - (id)initWithActivityMessage:(NSString *)message;

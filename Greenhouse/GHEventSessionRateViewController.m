@@ -20,17 +20,17 @@
 //  Created by Roy Clarkson on 8/2/10.
 //
 
-#import "GHEventSessionRateViewController.h"
-#import "GHEvent.h"
-#import "GHEventSession.h"
-#import "GHEventSessionDetailsViewController.h"
-
 #define MAX_MESSAGE_SIZE	140
 
+#import "GHEventSessionRateViewController.h"
+#import "Event.h"
+#import "EventSession.h"
+#import "GHEventController.h"
+#import "GHEventSessionController.h"
+#import "GHEventSessionDetailsViewController.h"
 
-@interface GHEventSessionRateViewController()
+@interface GHEventSessionRateViewController ()
 
-@property (nonatomic, strong) GHEventSessionController *eventSessionController;
 @property (nonatomic, assign) NSUInteger rating;
 
 - (void)updateRatingButtons:(NSInteger)count;
@@ -38,10 +38,8 @@
 
 @end
 
-
 @implementation GHEventSessionRateViewController
 
-@synthesize eventSessionController;
 @synthesize rating;
 @synthesize event;
 @synthesize session;
@@ -58,7 +56,7 @@
 
 
 #pragma mark -
-#pragma mark Public methods
+#pragma mark Public Instance methods
 
 - (IBAction)actionSelectRating:(id)sender
 {
@@ -73,15 +71,16 @@
 
 - (IBAction)actionSubmit:(id)sender
 {
-	self.eventSessionController = [[GHEventSessionController alloc] init];
-	eventSessionController.delegate = self;
-	
-	[eventSessionController rateSession:session.number withEventId:event.eventId rating:rating comment:textViewComments.text];
+	[[GHEventSessionController sharedInstance] rateSession:session.number
+                                               withEventId:event.eventId
+                                                    rating:rating
+                                                   comment:textViewComments.text
+                                                  delegate:self];
 }
 
 
 #pragma mark -
-#pragma mark Private methods
+#pragma mark Private Instance methods
 
 - (void)updateRatingButtons:(NSInteger)count
 {
@@ -173,17 +172,14 @@
 
 - (void)rateSessionDidFinishWithResults:(double)newRating
 {
-	self.eventSessionController = nil;
-	
-	session.rating = newRating;
+	session.rating = [NSNumber numberWithDouble:newRating];
 	[sessionDetailsViewController updateRating:newRating];
-	
 	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)rateSessionDidFailWithError:(NSError *)error
 {
-	self.eventSessionController = nil;
+
 }
 
 
@@ -192,39 +188,41 @@
 
 - (void)viewDidLoad 
 {
-    [super viewDidLoad];	
+    [super viewDidLoad];
+    DLog(@"");
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	
-	textViewComments.text = @"";
-	[self updateCharacterCount:0];
-	[self updateRatingButtons:0];
-	
-	// display the keyboard
-	[textViewComments becomeFirstResponder];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-	[super viewDidAppear:animated];	
-}
-
-- (void)didReceiveMemoryWarning 
-{
-    [super didReceiveMemoryWarning];
+    DLog(@"");
+    
+    self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    self.session = [[GHEventSessionController sharedInstance] fetchSelectedSession];
+    if (self.event == nil || self.session == nil)
+    {
+        DLog(@"selected event or session not available");
+        [self dismissModalViewControllerAnimated:NO];
+    }
+    else
+    {
+        textViewComments.text = @"";
+        [self updateCharacterCount:0];
+        [self updateRatingButtons:0];
+        
+        // display the keyboard
+        [textViewComments becomeFirstResponder];
+    }
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+    DLog(@"");
 	
-	self.eventSessionController = nil;
 	self.event = nil;
-	self.sessionDetailsViewController = nil;
 	self.session = nil;
+	self.sessionDetailsViewController = nil;
 	self.barButtonCancel = nil;
 	self.barButtonSubmit = nil;
 	self.buttonRating1 = nil;

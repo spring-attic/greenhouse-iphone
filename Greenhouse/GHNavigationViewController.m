@@ -29,10 +29,10 @@
 
 - (void)reloadData
 {
-	if ([navigationController.topViewController respondsToSelector:@selector(reloadData)])
-	{
-		[navigationController.topViewController performSelector:@selector(reloadData)];
-	}	
+//	if ([navigationController.topViewController respondsToSelector:@selector(reloadData)])
+//	{
+//		[navigationController.topViewController performSelector:@selector(reloadData)];
+//	}	
 }
 
 
@@ -43,20 +43,20 @@
 	   didShowViewController:(UIViewController *)viewController 
 					animated:(BOOL)animated
 {
-	if ([viewController respondsToSelector:@selector(reloadData)])
-	{
-		[viewController performSelector:@selector(reloadData)];
-	}
+//	if ([viewController respondsToSelector:@selector(reloadData)])
+//	{
+//		[viewController performSelector:@selector(reloadData)];
+//	}
 }
 
 - (void)navigationController:(UINavigationController *)navigationController 
 	  willShowViewController:(UIViewController *)viewController 
 					animated:(BOOL)animated
 {
-	if ([viewController respondsToSelector:@selector(refreshView)])
-	{
-		[viewController performSelector:@selector(refreshView)];
-	}
+//	if ([viewController respondsToSelector:@selector(refreshView)])
+//	{
+//		[viewController performSelector:@selector(refreshView)];
+//	}
 }
 
 
@@ -66,7 +66,7 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
-	
+    DLog(@"");
 	[self.view addSubview:navigationController.view];
 }
 
@@ -78,7 +78,7 @@
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
-	
+    DLog(@"");
 	self.navigationController = nil;
 }
 

@@ -22,9 +22,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GHEventSessionsViewController.h"
-#import "GHEventSessionController.h"
+#import "GHEventSessionsCurrentDelegate.h"
 
-
-@interface GHEventSessionsCurrentViewController : GHEventSessionsViewController <GHEventSessionControllerDelegate> { }
+@interface GHEventSessionsCurrentViewController : GHEventSessionsViewController <GHEventSessionsCurrentDelegate>
 
 @end

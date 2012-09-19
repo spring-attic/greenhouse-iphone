@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,23 +14,31 @@
 //  limitations under the License.
 //
 //
-//  GHVenue.h
+//  Event.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 10/4/10.
+//  Created by Roy Clarkson on 9/15/12.
 //
 
-#import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
-#import "GHInitializingModel.h"
+#import "Event.h"
+#import "EventSession.h"
+#import "Tweet.h"
+#import "Venue.h"
 
 
-@interface GHVenue : NSObject <GHInitializingModel>
+@implementation Event
 
-@property (nonatomic, copy) NSString *venueId;
-@property (nonatomic, strong) CLLocation *location;
-@property (nonatomic, copy) NSString *locationHint;
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *postalAddress;
+@dynamic endTime;
+@dynamic eventId;
+@dynamic groupName;
+@dynamic hashtag;
+@dynamic information;
+@dynamic location;
+@dynamic startTime;
+@dynamic timeZoneName;
+@dynamic title;
+@dynamic sessions;
+@dynamic tweets;
+@dynamic venues;
 
 @end

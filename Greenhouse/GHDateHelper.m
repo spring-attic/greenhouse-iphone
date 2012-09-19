@@ -27,38 +27,40 @@
 
 + (NSArray *)daysBetweenStartTime:(NSDate *)startTime endTime:(NSDate *)endTime
 {
-	NSMutableArray *arrayDays = [NSMutableArray array];
-	
 	DLog(@"startTime: %@", [startTime description]);
 	DLog(@"endTime: %@", [endTime description]);
-	
-	// create a mask to remove the time component, leaving just the date
-	NSUInteger flags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	
-	// remove the time from the start date
-	NSDateComponents *components = [calendar components:flags fromDate:startTime];
-	NSDate *eventDate = [calendar dateFromComponents:components];
-	
-	// remove the time from the end date
-	components = [calendar components:flags fromDate:endTime];
-	NSDate *endDate = [calendar dateFromComponents:components];
-	
-	DLog(@"first day: %@", [eventDate description]);
-	DLog(@"last day: %@", [endDate description]);
-	
-	// continue adding 24 hrs to the start date until we reach the last day
-	while ([eventDate compare:endDate] != NSOrderedDescending)
-	{
-		// add the next day to the array of days
-		[arrayDays addObject:eventDate];
-		
-		// calculate the next event day by adding 24 hours
-		eventDate = [eventDate dateByAddingTimeInterval:86400];
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    
+    NSDate *fromDate;
+    NSDate *toDate;
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&fromDate interval:NULL forDate:startTime];
+    [calendar rangeOfUnit:NSDayCalendarUnit startDate:&toDate interval:NULL forDate:endTime];
+    NSDateComponents *difference = [calendar components:NSDayCalendarUnit
+                                               fromDate:fromDate
+                                                 toDate:toDate
+                                                options:0];
+    NSUInteger days = [difference day] + 1;
+    
+    DLog(@"fromDate: %@", fromDate);
+    DLog(@"toDate: %@", toDate);
+
+	NSMutableArray *arrayDays = [[NSMutableArray alloc] init];
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    NSDate *eventDate;
+    for (int i = 0; i < days; i++)
+    {
+        [dayComponent setDay:i];
+        
+		// calculate the next event day
+		eventDate = [calendar dateByAddingComponents:dayComponent toDate:fromDate options:0];
 		DLog(@"event day: %@", [eventDate description]);
-	}
-	
-	return arrayDays;	
+        
+        // add the next day to the array of days
+		[arrayDays addObject:eventDate];
+    }
+    
+    return arrayDays;
 }
 
 @end

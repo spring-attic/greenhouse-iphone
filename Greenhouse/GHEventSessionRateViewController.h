@@ -21,18 +21,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHEventSessionController.h"
+#import "GHEventSessionRateDelegate.h"
 
-
-@class GHEvent;
-@class GHEventSession;
+@class Event;
+@class EventSession;
 @class GHEventSessionDetailsViewController;
 
+@interface GHEventSessionRateViewController : UIViewController <GHEventSessionRateDelegate, UITextViewDelegate>
 
-@interface GHEventSessionRateViewController : UIViewController <GHEventSessionControllerDelegate, UITextViewDelegate> { }
-
-@property (nonatomic, strong) GHEvent *event;
-@property (nonatomic, strong) GHEventSession *session;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
 @property (nonatomic, strong) GHEventSessionDetailsViewController *sessionDetailsViewController;
 @property (nonatomic, strong) IBOutlet UIButton *buttonRating1;
 @property (nonatomic, strong) IBOutlet UIButton *buttonRating2;

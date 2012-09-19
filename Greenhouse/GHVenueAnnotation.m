@@ -21,7 +21,7 @@
 //
 
 #import "GHVenueAnnotation.h"
-#import "GHVenue.h"
+#import "Venue.h"
 
 
 @implementation GHVenueAnnotation
@@ -32,7 +32,7 @@
 #pragma mark -
 #pragma mark Instance methods
 
-- (id)initWithVenue:(GHVenue *)aVenue
+- (id)initWithVenue:(Venue *)aVenue
 {
 	if ((self = [super init]))
 	{
@@ -50,7 +50,8 @@
 {
 	if (venue)
 	{
-		coordinate = venue.location.coordinate;
+		coordinate = CLLocationCoordinate2DMake([venue.latitude doubleValue],
+                                                [venue.longitude doubleValue]);
 	}
 	
 	return coordinate;

@@ -21,14 +21,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHTweet.h"
 
+@class Tweet;
 
 @interface GHTweetTableViewCell : UITableViewCell 
-{
 
-}
-
-@property (nonatomic, strong) GHTweet *tweet;
+@property (nonatomic, strong) Tweet *tweet;
 
 @end

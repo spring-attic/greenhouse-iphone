@@ -21,27 +21,25 @@
 //
 
 #import "GHEventMapViewController.h"
-#import "GHEvent.h"
-#import "GHVenue.h"
-#import "GHVenueAnnotation.h"
 #import "GHVenueDetailsViewController.h"
+#import "GHEventController.h"
+#import "Event.h"
+#import "Venue.h"
+#import "GHVenueAnnotation.h"
 
+@interface GHEventMapViewController ()
 
-@interface GHEventMapViewController()
-
+@property (nonatomic, strong) Event *currentEvent;
 @property (nonatomic, strong) NSMutableArray *venueAnnotations;
-@property (nonatomic, strong) GHEvent *currentEvent;
 
 - (void)reloadMapData;
 
 @end
 
-
 @implementation GHEventMapViewController
 
 @synthesize venueAnnotations;
 @synthesize currentEvent;
-@synthesize event;
 @synthesize mapViewLocation;
 @synthesize venueDetailsViewController;
 
@@ -62,14 +60,14 @@
 	CLLocationDegrees maxLng = 0.0f;
 	CLLocationDegrees minLng = 0.0f;	
 	
-	for (GHVenue *venue in currentEvent.venues)
+	for (Venue *venue in currentEvent.venues)
 	{
 		GHVenueAnnotation *annotation = [[GHVenueAnnotation alloc] initWithVenue:venue];
 		[self.venueAnnotations addObject:annotation];
 		
 		// find the max and min lat,lng values to determine the bounds of the map
-		CLLocationDegrees lat = venue.location.coordinate.latitude;
-		CLLocationDegrees lng = venue.location.coordinate.longitude;
+		CLLocationDegrees lat = [venue.latitude doubleValue];
+		CLLocationDegrees lng = [venue.longitude doubleValue];
 		
 		if (lat != 0 && lat > maxLat)
 		{
@@ -144,8 +142,9 @@
 #pragma mark -
 #pragma mark MKMapViewDelegate methods
 
-- (MKAnnotationView *) mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    DLog(@"");
 	static NSString *ident = @"annotation";
 	
     MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:ident];
@@ -164,22 +163,10 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
+    DLog(@"");
 	GHVenueAnnotation *venueAnnotation = (GHVenueAnnotation *)view.annotation;
 	venueDetailsViewController.venue = venueAnnotation.venue;
 	[self.navigationController pushViewController:venueDetailsViewController animated:YES];
-}
-
-
-#pragma mark -
-#pragma mark DataViewController methods
-
-- (void)refreshView
-{
-	if (currentEvent == nil || ![currentEvent.eventId isEqualToString:event.eventId])
-	{
-		self.currentEvent = event;
-		[self reloadMapData];
-	}
 }
 
 
@@ -189,25 +176,38 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	self.title = @"Map";
-	
 	self.venueAnnotations = [[NSMutableArray alloc] init];
 	self.venueDetailsViewController = [[GHVenueDetailsViewController alloc] initWithNibName:nil bundle:nil];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    Event *event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    if (event == nil)
+    {
+        DLog(@"selected event not available");
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else if (currentEvent == nil || ![currentEvent.eventId isEqualToNumber:event.eventId])
+	{
+		self.currentEvent = event;
+		[self reloadMapData];
+	}
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
-	
+	DLog(@"");
+    
 	self.venueAnnotations = nil;
 	self.currentEvent = nil;
-	self.event = nil;
 	self.mapViewLocation = nil;
 	self.venueDetailsViewController = nil;
 }

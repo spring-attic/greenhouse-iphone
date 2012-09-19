@@ -21,57 +21,161 @@
 //
 
 #import "GHEventSessionsFavoritesViewController.h"
+#import "Event.h"
+#import "EventSession.h"
+#import "GHEventSessionController.h"
 
+@interface GHEventSessionsFavoritesViewController ()
 
-@interface GHEventSessionsFavoritesViewController()
+@property (nonatomic, strong) NSArray *times;
 
-@property (nonatomic, strong) GHEventSessionController *eventSessionController;
-
-- (void)completeFetchFavoriteSessions:(NSArray *)sessions;
+- (void)reloadTableDataWithSessions:(NSArray *)sessions;
 
 @end
 
-
 @implementation GHEventSessionsFavoritesViewController
 
-@synthesize eventSessionController;
+@synthesize times = _times;
 
-- (void)completeFetchFavoriteSessions:(NSArray *)sessions
+- (void)reloadTableDataWithSessions:(NSArray *)sessions
 {
-	self.eventSessionController = nil;
-	self.arraySessions = sessions;
-	[self.tableView reloadData];
-	[self dataSourceDidFinishLoadingNewData];
+    NSMutableArray *timeBlocks = [[NSMutableArray alloc] init];
+	NSMutableArray *times = [[NSMutableArray alloc] init];
+    NSMutableArray *timeBlock = nil;
+    NSDate *sessionTime = [NSDate distantPast];
+    
+    for (EventSession *session in sessions)
+    {
+        // for each time block create an array to hold the sessions for that block
+        if ([sessionTime compare:session.startTime] == NSOrderedAscending)
+        {
+            timeBlock = [[NSMutableArray alloc] init];
+            [timeBlocks addObject:timeBlock];
+            [timeBlock addObject:session];
+            
+            NSDate *date = [session.startTime copy];
+            [times addObject:date];
+        }
+        else if ([sessionTime compare:session.startTime] == NSOrderedSame)
+        {
+            [timeBlock addObject:session];
+        }
+        
+        sessionTime = session.startTime;
+    }
+    
+	self.sessions = timeBlocks;
+	self.times = times;
+    [self.tableView reloadData];
+
+    @try
+    {
+        [self.tableView scrollToRowAtIndexPath:self.visibleIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        self.visibleIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
+    @catch (NSException *exception)
+    {
+        // content changed and row is no longer available
+        DLog(@"%@", [exception reason]);
+    }
 }
+
+
+#pragma mark -
+#pragma mark GHEventSessionsViewController methods
+
+- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
+{
+	EventSession *session = nil;
+	
+	@try
+	{
+		NSArray *array = [self.sessions objectAtIndex:indexPath.section];
+		session = [array objectAtIndex:indexPath.row];
+	}
+	@catch (NSException * e)
+	{
+		DLog(@"%@", [e reason]);
+	}
+	@finally
+	{
+		return session;
+	}
+}
+
 
 #pragma mark -
 #pragma mark EventSessionControllerDelegate methods
 
 - (void)fetchFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
 {
-	[self completeFetchFavoriteSessions:sessions];
+    [self reloadTableDataWithSessions:sessions];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)fetchFavoriteSessionsDidFailWithError:(NSError *)error
 {
-	NSArray *array = [[NSArray alloc] init];
-	[self completeFetchFavoriteSessions:array];
+    if (self.sessions == nil && self.times == nil)
+    {
+        NSArray *empty = [NSArray array];
+        self.sessions = empty;
+        self.times = empty;
+        [self.tableView reloadData];
+    }
+	[self dataSourceDidFinishLoadingNewData];
 }
+
+
+#pragma mark -
+#pragma mark UITableViewDataSource methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	if (_times)
+	{
+		return [_times count];
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	if (self.sessions)
+	{
+		NSArray *array = [self.sessions objectAtIndex:section];
+		return [array count];
+	}
+	else
+	{
+		return 1;
+	}
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	NSString *sectionTitle = nil;
+	if (_times)
+	{
+		NSDate *sessionTime = [_times objectAtIndex:section];
+		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setDateFormat:@"EEEE, MMM d, h:mm a"];
+		NSString *dateString = [dateFormatter stringFromDate:sessionTime];
+		sectionTitle = dateString;
+	}
+	
+	return sectionTitle;
+}
+
 
 #pragma mark -
 #pragma mark PullRefreshTableViewController methods
 
-- (BOOL)shouldReloadData
-{
-	return (!self.arraySessions || self.lastRefreshExpired || [GHEventSessionController shouldRefreshFavorites]);
-}
-
 - (void)reloadTableViewDataSource
 {
-	self.eventSessionController = [[GHEventSessionController alloc] init];
-	eventSessionController.delegate = self;
-	
-	[eventSessionController fetchFavoriteSessionsByEventId:self.event.eventId];
+	[[GHEventSessionController sharedInstance] sendRequestForFavoriteSessionsByEventId:self.event.eventId delegate:self];
 }
 
 
@@ -81,22 +185,42 @@
 - (void)viewDidLoad 
 {
 	self.lastRefreshKey = @"EventSessionFavoritesViewController_LastRefresh";
-	
     [super viewDidLoad];
+    DLog(@"");
 	
-	self.title = @"My Favorites";
+	self.title = @"Favorite Sessions";
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    // fetch the favorite sessions data
+   	self.sessions = [[GHEventSessionController sharedInstance] fetchFavoriteSessionsWithEventId:self.event.eventId];
+    if (self.sessions && self.sessions.count > 0)
+    {
+        [self reloadTableDataWithSessions:self.sessions];
+    }
 }
 
-- (void)viewDidUnload 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    DLog(@"");
+    
+    if (self.sessions == nil || self.sessions.count == 0 || self.lastRefreshExpired)
+    {
+        [[GHEventSessionController sharedInstance] sendRequestForFavoriteSessionsByEventId:self.event.eventId delegate:self];
+    }
+}
+
+- (void)viewDidUnload
 {
     [super viewDidUnload];
-	
-	self.eventSessionController = nil;
+    DLog(@"");
+    
+    self.times = nil;
 }
 
 @end

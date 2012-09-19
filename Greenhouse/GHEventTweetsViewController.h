@@ -22,11 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GHTweetsViewController.h"
-#import "GHEvent.h"
-
 
 @interface GHEventTweetsViewController : GHTweetsViewController
-
-@property (nonatomic, strong) GHEvent *event;
 
 @end

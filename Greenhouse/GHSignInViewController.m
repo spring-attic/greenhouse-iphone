@@ -74,11 +74,16 @@
     GHActivityAlertView *activityAlertView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Signing in..."];
 	[activityAlertView startAnimating];
     NSURLRequest *request = [[GHOAuth2Controller sharedInstance] signInRequestWithUsername:usernameValue password:passwordValue];
+    DLog(@"%@", request);
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
+                                       queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         [activityAlertView stopAnimating];
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+         dispatch_sync(dispatch_get_main_queue(), ^{
+             [activityAlertView stopAnimating];
+         });
          
          NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];         
          if (statusCode == 200 && data.length > 0 && error == nil)
@@ -88,8 +93,10 @@
              OA2AccessGrant *accessGrant = [[OA2AccessGrant alloc] initWithData:data error:&errorInternal];
              if (!errorInternal)
              {
-                 [[GHOAuth2Controller sharedInstance] storeAccessGrant:accessGrant];
-                 [appDelegate showTabBarController];
+                 [GHOAuth2Controller storeAccessGrant:accessGrant];
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [(GreenhouseAppDelegate *)[[UIApplication sharedApplication] delegate] showTabBarController];
+                 });
              }
              else
              {
@@ -98,40 +105,45 @@
          }
          else if (error)
          {
-             DLog(@"%@", [error localizedDescription]);
+             DLog(@"%d - %@", [error code], [error localizedDescription]);
              NSString *msg;
              switch ([error code]) {
                  case NSURLErrorUserCancelledAuthentication:
                      msg = @"Your email or password was entered incorrectly.";
                      break;
+                 case NSURLErrorCannotConnectToHost:
+                     msg = @"The server is unavailable. Please try again in a few minutes.";
+                     break;
                  default:
                      msg = @"A problem occurred with the network connection. Please try again in a few minutes.";
                      break;
              }
-             
-             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                             message:msg
-                                                            delegate:nil
-                                                   cancelButtonTitle:@"OK"
-                                                   otherButtonTitles:nil];
-             [alert show];
-
-         }
-         else if (statusCode != 200)
-         {
-             NSString *msg;
-             switch (statusCode) {
-                 default:
-                     msg = @"You can not be signed in at this time.";
-                     break;
-             }
-             
-             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
                                                                  message:msg
                                                                 delegate:nil
                                                        cancelButtonTitle:@"OK"
                                                        otherButtonTitles:nil];
-             [alertView show];
+                 [alert show];
+             });
+         }
+         else if (statusCode != 200)
+         {
+             DLog(@"HTTP Status Code: %d", statusCode);
+             NSString *msg;
+             switch (statusCode) {
+                 default:
+                     msg = @"You cannot be signed in.";
+                     break;
+             }
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                     message:msg
+                                                                    delegate:nil
+                                                           cancelButtonTitle:@"OK"
+                                                           otherButtonTitles:nil];
+                 [alertView show];
+             });
          }
      }];
     

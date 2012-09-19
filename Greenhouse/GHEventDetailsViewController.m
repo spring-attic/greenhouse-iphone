@@ -21,22 +21,26 @@
 //
 
 #import "GHEventDetailsViewController.h"
+#import "Event.h"
+#import "GHEventController.h"
 #import "GHEventDescriptionViewController.h"
-#import "GHEventSessionsMenuViewController.h"
+#import "GHEventSessionsScheduleViewController.h"
+#import "GHEventSessionsFavoritesViewController.h"
 #import "GHEventTweetsViewController.h"
 #import "GHEventMapViewController.h"
 
-
 @interface GHEventDetailsViewController()
 
-@property (nonatomic, strong) NSArray *arrayMenuItems;
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) NSArray *menuItems;
+@property (nonatomic, strong) NSArray *viewControllers;
 
 @end
 
-
 @implementation GHEventDetailsViewController
 
-@synthesize arrayMenuItems;
+@synthesize menuItems;
+@synthesize viewControllers;
 @synthesize event;
 @synthesize labelTitle;
 @synthesize labelDescription;
@@ -44,7 +48,8 @@
 @synthesize labelLocation;
 @synthesize tableViewMenu;
 @synthesize eventDescriptionViewController;
-@synthesize eventSessionsMenuViewController;
+@synthesize sessionsScheduleViewController;
+@synthesize sessionsFavoritesViewController;
 @synthesize eventTweetsViewController;
 @synthesize eventMapViewController;
 
@@ -54,24 +59,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	switch (indexPath.row) 
-	{
-		case 0:
-			[self.navigationController pushViewController:eventDescriptionViewController animated:YES];
-			break;
-		case 1:
-			[self.navigationController pushViewController:eventSessionsMenuViewController animated:YES];
-			break;
-		case 2:
-			[self.navigationController pushViewController:eventTweetsViewController animated:YES];
-			break;
-		case 3:
-			[self.navigationController pushViewController:eventMapViewController animated:YES];
-			break;
-		default:
-			break;
-	}
-	
+    UIViewController *vc = [viewControllers objectAtIndex:indexPath.row];
+    if (vc && ![vc isEqual:[NSNull null]])
+    {
+        [self.navigationController pushViewController:vc animated:YES];
+    }	
 	[tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
@@ -92,7 +84,7 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	}
 	
-	NSString *s = (NSString *)[arrayMenuItems objectAtIndex:indexPath.row];
+	NSString *s = (NSString *)[menuItems objectAtIndex:indexPath.row];
 	
 	[cell.textLabel setText:s];
 	
@@ -101,64 +93,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (arrayMenuItems)
+	if (menuItems)
 	{
-		return [arrayMenuItems count];
+		return [menuItems count];
 	}
 	
 	return 0;
-}
-
-
-#pragma mark -
-#pragma mark DataViewController methods
-
-- (void)refreshView
-{
-	eventDescriptionViewController.event = event;
-	eventSessionsMenuViewController.event = event;
-	eventTweetsViewController.event = event;
-	eventMapViewController.event = event;
-		
-	labelTitle.text = event.title;
-	
-	NSDate *date = [event.startTime dateByAddingTimeInterval:86400];
-	
-	// if start and end time are exactly the same, just display the date
-	if ([event.startTime compare:event.endTime] == NSOrderedSame || 
-		[event.startTime compare:event.endTime] == NSOrderedDescending)
-	{
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
-		labelTime.text = [dateFormatter stringFromDate:event.startTime];
-	}
-	
-	// If start and end time are same day, show the times for the event
-	else if ([event.startTime compare:event.endTime] == NSOrderedAscending &&
-			 [date compare:event.endTime] == NSOrderedDescending)
-	{
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY, h:mm a"];		
-		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
-		[dateFormatter setDateFormat:@"h:mm a"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];		
-		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-	}
-	
-	// if the times are days apart, display the date range for the event
-	else if ([event.startTime compare:event.endTime] == NSOrderedAscending)
-	{
-		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setDateFormat:@"EEE, MMM d"];		
-		NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
-		[dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
-		NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];		
-		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-	}
-	
-	labelLocation.text = event.location;
 }
 
 
@@ -168,27 +108,86 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	self.title = @"Event";
-	
-	self.arrayMenuItems = [[NSArray alloc] initWithObjects:@"Description", @"Sessions", @"Tweets", @"Map", nil];
-	
+	self.menuItems = [[NSArray alloc] initWithObjects:@"Description", @"Schedule", @"Favorites", @"Tweets", @"Map", nil];
 	self.eventDescriptionViewController = [[GHEventDescriptionViewController alloc] initWithNibName:nil bundle:nil];
-	self.eventSessionsMenuViewController = [[GHEventSessionsMenuViewController alloc] initWithNibName:nil bundle:nil];
+	self.sessionsScheduleViewController = [[GHEventSessionsScheduleViewController alloc] initWithNibName:nil bundle:nil];
+    self.sessionsFavoritesViewController = [[GHEventSessionsFavoritesViewController alloc] initWithNibName:@"GHEventSessionsViewController" bundle:nil];
 	self.eventTweetsViewController = [[GHEventTweetsViewController alloc] initWithNibName:@"GHTweetsViewController" bundle:nil];
 	self.eventMapViewController = [[GHEventMapViewController alloc] initWithNibName:nil bundle:nil];
+    self.viewControllers = [[NSArray alloc] initWithObjects:
+                            eventDescriptionViewController,
+                            sessionsScheduleViewController,
+                            sessionsFavoritesViewController,
+                            eventTweetsViewController,
+                            eventMapViewController,
+                            nil];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+
+    self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    if (self.event == nil)
+    {
+        DLog(@"selected event not available");
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else
+    {
+        labelTitle.text = event.title;
+        
+        NSDate *date = [event.startTime dateByAddingTimeInterval:86400];
+        
+        // if start and end time are exactly the same, just display the date
+        if ([event.startTime compare:event.endTime] == NSOrderedSame ||
+            [event.startTime compare:event.endTime] == NSOrderedDescending)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEEE, MMMM d, YYYY"];
+            labelTime.text = [dateFormatter stringFromDate:event.startTime];
+        }
+        
+        // If start and end time are same day, show the times for the event
+        else if ([event.startTime compare:event.endTime] == NSOrderedAscending &&
+                 [date compare:event.endTime] == NSOrderedDescending)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, MMM d, YYYY, h:mm a"];
+            NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
+            [dateFormatter setDateFormat:@"h:mm a"];
+            NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];
+            NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+            labelTime.text = formattedTime;
+        }
+        
+        // if the times are days apart, display the date range for the event
+        else if ([event.startTime compare:event.endTime] == NSOrderedAscending)
+        {
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setDateFormat:@"EEE, MMM d"];
+            NSString *formattedStartTime = [dateFormatter stringFromDate:event.startTime];
+            [dateFormatter setDateFormat:@"EEE, MMM d, YYYY"];
+            NSString *formattedEndTime = [dateFormatter stringFromDate:event.endTime];		
+            NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
+            labelTime.text = formattedTime;
+        }
+        
+        labelLocation.text = event.location;
+    }
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+    DLog(@"");
 	
-	self.arrayMenuItems = nil;
+	self.menuItems = nil;
+    self.viewControllers = nil;
 	self.event = nil;
 	self.labelTitle = nil;
 	self.labelDescription = nil;
@@ -196,7 +195,8 @@
 	self.labelLocation = nil;
 	self.tableViewMenu = nil;
 	self.eventDescriptionViewController = nil;
-	self.eventSessionsMenuViewController = nil;
+	self.sessionsScheduleViewController = nil;
+    self.sessionsFavoritesViewController = nil;
 	self.eventTweetsViewController = nil;
 	self.eventMapViewController = nil;
 }

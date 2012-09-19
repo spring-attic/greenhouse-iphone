@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,20 +14,14 @@
 //  limitations under the License.
 //
 //
-//  GHEventSessionLeader.h
+//  GHEventTweetViewController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 8/11/10.
+//  Created by Roy Clarkson on 9/13/12.
 //
 
-#import <Foundation/Foundation.h>
-#import "GHInitializingModel.h"
+#import "GHTweetViewController.h"
 
-
-@interface GHEventSessionLeader : NSObject <GHInitializingModel> { }
-
-@property (nonatomic, copy) NSString *firstName;
-@property (nonatomic, copy) NSString *lastName;
-@property (nonatomic, copy, readonly) NSString *displayName;
+@interface GHEventTweetViewController : GHTweetViewController
 
 @end

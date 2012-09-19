@@ -21,12 +21,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHEvent.h"
 
+@interface GHEventDescriptionViewController : UIViewController
 
-@interface GHEventDescriptionViewController : GHDataViewController { }
-
-@property (nonatomic, strong) GHEvent *event;
 @property (nonatomic, strong) IBOutlet UITextView *textView;
 
 @end

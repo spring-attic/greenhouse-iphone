@@ -21,53 +21,35 @@
 //
 
 #import "GHEventSessionsConferenceFavoritesViewController.h"
-
-
-@interface GHEventSessionsConferenceFavoritesViewController()
-
-@property (nonatomic, strong) GHEventSessionController *eventSessionController;
-
-- (void)completeFetchConferenceFavoriteSessions:(NSArray *)sessions;
-
-@end
-
+#import "Event.h"
+#import "GHEventSessionController.h"
 
 @implementation GHEventSessionsConferenceFavoritesViewController
 
-@synthesize eventSessionController;
-
-- (void)completeFetchConferenceFavoriteSessions:(NSArray *)sessions
-{
-	self.eventSessionController = nil;
-	self.arraySessions = sessions;
-	[self.tableView reloadData];
-	[self dataSourceDidFinishLoadingNewData];
-}
 
 #pragma mark -
 #pragma mark EventSessionControllerDelegate methods
 
 - (void)fetchConferenceFavoriteSessionsDidFinishWithResults:(NSArray *)sessions
 {
-	[self completeFetchConferenceFavoriteSessions:sessions];
+	self.sessions = sessions;
+	[self.tableView reloadData];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 - (void)fetchConferenceFavoriteSessionsDidFailWithError:(NSError *)error
 {
-	NSArray *array = [[NSArray alloc] init];
-	[self completeFetchConferenceFavoriteSessions:array];
+	[self dataSourceDidFinishLoadingNewData];
 }
 
 
 #pragma mark -
 #pragma mark DataViewController methods
 
-- (void)reloadTableViewDataSource
-{
-	self.eventSessionController = [[GHEventSessionController alloc] init];
-	eventSessionController.delegate = self;	
-	[eventSessionController fetchConferenceFavoriteSessionsByEventId:self.event.eventId];
-}
+//- (void)reloadTableViewDataSource
+//{
+//	[eventSessionController fetchConferenceFavoriteSessionsByEventId:self.event.eventId delegate self];
+//}
 
 
 #pragma mark -
@@ -76,22 +58,24 @@
 - (void)viewDidLoad 
 {
 	self.lastRefreshKey = @"EventSessionFavoritesViewController_LastRefresh";
-	
     [super viewDidLoad];
-	
+    DLog(@"");
+    
 	self.title = @"Conference Favorites";
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+	[[GHEventSessionController sharedInstance] fetchConferenceFavoriteSessionsByEventId:self.event.eventId delegate:self];
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
-	
-	self.eventSessionController = nil;
+    DLog(@"");
 }
 
 @end

@@ -23,17 +23,13 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-
-@class GHEvent;
 @class GHVenueDetailsViewController;
 
-
-@interface GHEventMapViewController : GHDataViewController <MKMapViewDelegate>
+@interface GHEventMapViewController : UIViewController <MKMapViewDelegate>
 {
 	NSMutableData *_receivedData;
 }
 
-@property (nonatomic, strong) GHEvent *event;
 @property (nonatomic, strong) IBOutlet MKMapView *mapViewLocation;
 @property (nonatomic, strong) GHVenueDetailsViewController *venueDetailsViewController;
 

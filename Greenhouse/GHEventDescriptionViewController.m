@@ -21,7 +21,14 @@
 //
 
 #import "GHEventDescriptionViewController.h"
+#import "GHEventController.h"
+#import "Event.h"
 
+@interface GHEventDescriptionViewController ()
+
+@property (nonatomic, strong) Event *event;
+
+@end
 
 @implementation GHEventDescriptionViewController
 
@@ -30,34 +37,39 @@
 
 
 #pragma mark -
-#pragma mark DataViewController methods
-
-- (void)refreshView
-{
-	textView.text = event.description;
-}
-
-
-#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	self.title = @"Description";
-
 	textView.editable = NO;
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    if (event == nil)
+    {
+        DLog(@"selected event not available");
+        textView.text = nil;
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+    else
+    {
+        textView.text = event.information;
+    }
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+    DLog(@"");
 	
 	self.event = nil;
 	self.textView = nil;

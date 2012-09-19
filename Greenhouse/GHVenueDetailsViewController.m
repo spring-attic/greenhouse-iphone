@@ -21,8 +21,7 @@
 //
 
 #import "GHVenueDetailsViewController.h"
-#import "GHVenue.h"
-
+#import "Venue.h"
 
 @implementation GHVenueDetailsViewController
 
@@ -31,6 +30,10 @@
 @synthesize labelLocationHint;
 @synthesize labelAddress;
 @synthesize buttonDirections;
+
+
+#pragma -
+#pragma Instance methods
 
 - (IBAction)actionGetDirections:(id)sender
 {
@@ -42,20 +45,6 @@
 
 
 #pragma mark -
-#pragma mark DataViewController methods
-
-- (void)refreshView
-{
-	if (venue)
-	{
-		labelName.text = venue.name;
-		labelLocationHint.text = venue.locationHint;
-		labelAddress.text = venue.postalAddress;
-	}
-}
-
-
-#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
@@ -63,6 +52,18 @@
     [super viewDidLoad];
 	
 	self.title = @"Venue";
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    if (venue)
+	{
+		labelName.text = venue.name;
+		labelLocationHint.text = venue.locationHint;
+		labelAddress.text = venue.postalAddress;
+	}
 }
 
 - (void)didReceiveMemoryWarning 

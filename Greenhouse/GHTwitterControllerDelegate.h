@@ -22,15 +22,16 @@
 
 #import <Foundation/Foundation.h>
 
-
 @protocol GHTwitterControllerDelegate<NSObject>
 
 @optional
 
-- (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets lastPage:(BOOL)lastPage;
+- (void)fetchTweetsDidFinishWithResults:(NSArray *)tweets resultCount:(NSInteger)count;
 - (void)fetchTweetsDidFailWithError:(NSError *)error;
+
 - (void)postUpdateDidFinish;
 - (void)postUpdateDidFailWithError:(NSError *)error;
+
 - (void)postRetweetDidFinish;
 - (void)postRetweetDidFailWithError:(NSError *)error;
 

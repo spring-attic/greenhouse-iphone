@@ -21,27 +21,35 @@
 //
 
 #import "GHEventSessionsViewController.h"
+#import "GHEventSessionDetailsViewController.h"
+#import "Event.h"
+#import "EventSession.h"
+#import "EventSessionLeader.h"
+#import "GHEventController.h"
+#import "GHEventSessionController.h"
 
+@interface GHEventSessionsViewController ()
+
+@end
 
 @implementation GHEventSessionsViewController
 
-@synthesize arraySessions;
+@synthesize visibleIndexPath;
+@synthesize sessions;
 @synthesize event;
-@synthesize currentEvent;
 @synthesize sessionDetailsViewController;
 
-- (GHEventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
+- (EventSession *)eventSessionForIndexPath:(NSIndexPath *)indexPath
 {
-	GHEventSession *session = nil;
+    EventSession *session = nil;
 	
 	@try 
 	{
-		session = (GHEventSession *)[self.arraySessions objectAtIndex:indexPath.row];
+		session = [self.sessions objectAtIndex:indexPath.row];
 	}
 	@catch (NSException * e) 
 	{
 		DLog(@"%@", [e reason]);
-		session = nil;
 	}
 	@finally 
 	{
@@ -51,7 +59,7 @@
 
 - (BOOL)displayLoadingCell
 {
-	NSInteger count = [self.arraySessions count];
+	NSInteger count = [self.sessions count];
 	return (count == 0);
 }
 
@@ -61,24 +69,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	self.sessionDetailsViewController.event = self.event;
-	self.sessionDetailsViewController.session = [self eventSessionForIndexPath:indexPath];
+    self.visibleIndexPath = indexPath;
+    [[GHEventSessionController sharedInstance] setSelectedSession:[self eventSessionForIndexPath:indexPath]];
 	[self.navigationController pushViewController:self.sessionDetailsViewController animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	CGFloat height = 44.0f;
-	
-	GHEventSession *session = [self eventSessionForIndexPath:indexPath];
-		
+	EventSession *session = [self eventSessionForIndexPath:indexPath];
 	if (session)
 	{
+        // adjust the height of the cell based on the length of the session title
 		CGSize maxSize = CGSizeMake(tableView.frame.size.width - 40.0f, CGFLOAT_MAX);
 		CGSize textSize = [session.title sizeWithFont:[UIFont boldSystemFontOfSize:16.0f] constrainedToSize:maxSize lineBreakMode:UILineBreakModeWordWrap];
 		height = MAX(textSize.height + 26.0f, 44.0f);
-	}
-	
+	}	
 	return height;
 }
 
@@ -120,12 +126,16 @@
 		[cell.textLabel setNumberOfLines:0];		
 	}
 	
-	GHEventSession *session = [self eventSessionForIndexPath:indexPath];
+	EventSession *session = [self eventSessionForIndexPath:indexPath];
 	
 	if (session)
 	{
 		[cell.textLabel setText:session.title];
-		[cell.detailTextLabel setText:session.leaderDisplay];		
+        NSMutableArray *leaders = [[NSMutableArray alloc] initWithCapacity:session.leaders.count];
+        [session.leaders enumerateObjectsUsingBlock:^(EventSessionLeader *leader, BOOL *stop) {
+            [leaders addObject:[NSString stringWithFormat:@"%@ %@", leader.firstName, leader.lastName]];
+        }];
+		[cell.detailTextLabel setText:[leaders componentsJoinedByString:@", "]];
 	}
 	
 	return cell;
@@ -133,9 +143,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	if (self.arraySessions)
+	if (self.sessions)
 	{
-		return [self.arraySessions count];
+		return [self.sessions count];
 	}
 	else 
 	{
@@ -145,56 +155,47 @@
 
 
 #pragma mark -
-#pragma mark PullRefreshTableViewController methods
-
-- (void)refreshView
-{
-	if (![self.currentEvent.eventId isEqualToString:self.event.eventId])
-	{
-		self.arraySessions = nil;
-		
-		[self.tableView reloadData];
-	}
-	
-	self.currentEvent = event;
-}
-
-- (void)reloadData
-{
-	if (self.shouldReloadData)
-	{
-		[self reloadTableViewDataSource];
-	}
-}
-
-- (BOOL)shouldReloadData
-{
-	return (!arraySessions || self.lastRefreshExpired);
-}
-
-
-#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	self.sessionDetailsViewController = [[GHEventSessionDetailsViewController alloc] initWithNibName:nil bundle:nil];
 }
 
-- (void)didReceiveMemoryWarning 
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
+    if (self.event == nil)
+    {
+        DLog(@"selected event not available")
+        [self.navigationController popToRootViewControllerAnimated:NO];
+    }
+
+    // clear table of data
+	self.sessions = nil;
+	[self.tableView reloadData];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    DLog(@"");
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+    DLog(@"");
 	
-	self.arraySessions = nil;
+    self.visibleIndexPath = nil;
+	self.sessions = nil;
 	self.event = nil;
-	self.currentEvent = nil;
 	self.sessionDetailsViewController = nil;
 }
 

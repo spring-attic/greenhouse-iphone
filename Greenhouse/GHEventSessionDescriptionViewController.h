@@ -21,12 +21,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHEventSession.h"
 
+@interface GHEventSessionDescriptionViewController : UIViewController
 
-@interface GHEventSessionDescriptionViewController : GHDataViewController
-
-@property (nonatomic, strong) GHEventSession *session;
 @property (nonatomic, strong) IBOutlet UITextView *textViewDescription;
 
 @end

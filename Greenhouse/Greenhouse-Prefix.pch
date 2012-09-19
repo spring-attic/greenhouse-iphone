@@ -12,12 +12,12 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
 
 	//Debug Logging
 	#import "DLog.h"
 
 	// Application Settings
-	#import "Constants.h"
 	#import "GHAppSettings.h"
 	#import "GHUserSettings.h"
 
@@ -28,7 +28,6 @@
 
 	// Commonly Referenced Classes
 	#import "GreenhouseAppDelegate.h"
-	#import "GHDataViewController.h"
     #import "GHOauth2Controller.h"
 
 #endif

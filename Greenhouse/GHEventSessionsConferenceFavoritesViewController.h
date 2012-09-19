@@ -22,9 +22,8 @@
 
 #import <UIKit/UIKit.h>
 #import "GHEventSessionsViewController.h"
-#import "GHEventSessionController.h"
+#import "GHEventSessionsConferenceFavoritesDelegate.h"
 
-
-@interface GHEventSessionsConferenceFavoritesViewController : GHEventSessionsViewController <GHEventSessionControllerDelegate>
+@interface GHEventSessionsConferenceFavoritesViewController : GHEventSessionsViewController <GHEventSessionsConferenceFavoritesDelegate>
 
 @end

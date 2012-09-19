@@ -20,37 +20,113 @@
 //  Created by Roy Clarkson on 8/31/10.
 //
 
-#import "GHEventController.h"
-#import "GHEvent.h"
+#define KEY_SELECTED_EVENT_ID   @"selectedEventId"
 
+#import "GHEventController.h"
+#import "GHCoreDataManager.h"
+#import "Event.h"
+#import "Venue.h"
+
+@interface GHEventController ()
+
+- (NSArray *)fetchEventsWithPredicate:(NSPredicate *)predicate;
+
+@end
 
 @implementation GHEventController
 
-@synthesize delegate;
+
+#pragma mark -
+#pragma mark Static methods
+
+// Use this class method to obtain the shared instance of the class.
++ (id)sharedInstance
+{
+    static id _sharedInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        _sharedInstance = [[self alloc] init];
+    });
+    return _sharedInstance;
+}
 
 
 #pragma mark -
-#pragma mark Instance methods
+#pragma mark Public Instance methods
 
-- (void)fetchEvents
+- (NSArray *)fetchEvents
 {
-	NSURL *url = [[NSURL alloc] initWithString:EVENTS_URL];
+    return [self fetchEventsWithPredicate:nil];
+}
+
+- (Event *)fetchEventWithId:(NSNumber *)eventId;
+{
+    DLog(@"eventId: %@", eventId);
+    Event *event = nil;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"eventId == %@", eventId];
+    NSArray *fetchedObjects = [self fetchEventsWithPredicate:predicate];
+    if (fetchedObjects && fetchedObjects.count > 0)
+    {
+        event = [fetchedObjects objectAtIndex:0];
+    }
+    return event;
+}
+
+- (Event *)fetchSelectedEvent
+{
+    DLog(@"");
+    NSNumber *eventId = [[NSUserDefaults standardUserDefaults] objectForKey:KEY_SELECTED_EVENT_ID];
+    return [self fetchEventWithId:eventId];
+}
+
+- (void)setSelectedEvent:(Event *)event
+{
+	[[NSUserDefaults standardUserDefaults] setObject:event.eventId forKey:KEY_SELECTED_EVENT_ID];
+	[[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)sendRequestForEventsWithDelegate:(id<GHEventControllerDelegate>)delegate
+{
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/"];
     NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	DLog(@"%@", request);
-    
+
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
+                                       queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
          if (statusCode == 200 && data.length > 0 && error == nil)
          {
-             [self fetchEventsDidFinishWithData:data];
+             DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+             NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+             if (!error)
+             {
+                 DLog(@"%@", jsonArray);
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [self deleteEvents];
+                     [self storeEventsWithJson:jsonArray];
+                     NSArray *events = [self fetchEventsWithPredicate:nil];
+                     [delegate fetchEventsDidFinishWithResults:events];
+                 });
+             }
+             else
+             {
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [delegate fetchEventsDidFailWithError:error];
+                 });
+             }
+             
          }
          else if (error)
          {
-             [self fetchEventsDidFailWithError:error];
+             [self requestDidFailWithError:error];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate fetchEventsDidFailWithError:error];
+             });
          }
          else if (statusCode != 200)
          {
@@ -59,36 +135,87 @@
      }];
 }
 
-- (void)fetchEventsDidFinishWithData:(NSData *)data
+- (void)storeEventsWithJson:(NSArray *)events
 {
-	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-	
-    NSError *error;
-    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    DLog(@"%@", jsonArray);
-    
-	NSMutableArray *events = [[NSMutableArray alloc] init];
-    if (!error)
-    {
-        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [events addObject:[[GHEvent alloc] initWithDictionary:obj]];
+    DLog(@"");
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    [events enumerateObjectsUsingBlock:^(NSDictionary *eventDict, NSUInteger idx, BOOL *stop) {
+        Event *event = [NSEntityDescription
+                        insertNewObjectForEntityForName:@"Event"
+                        inManagedObjectContext:context];
+        event.eventId = [eventDict numberForKey:@"id"];
+        event.title = [eventDict stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
+        event.startTime = [eventDict dateWithMillisecondsSince1970ForKey:@"startTime"];
+        event.endTime = [eventDict dateWithMillisecondsSince1970ForKey:@"endTime"];
+        event.location = [eventDict stringByReplacingPercentEscapesForKey:@"location" usingEncoding:NSUTF8StringEncoding];
+        event.information = [[eventDict stringForKey:@"description"] stringByXMLDecoding];
+        event.hashtag = [eventDict stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
+        event.groupName = [eventDict stringByReplacingPercentEscapesForKey:@"groupName" usingEncoding:NSUTF8StringEncoding];
+        event.timeZoneName = [[eventDict objectForKey:@"timeZone"] objectForKey:@"id"];
+        
+        NSArray *venues = [eventDict objectForKey:@"venues"];
+        [venues enumerateObjectsUsingBlock:^(NSDictionary *venueDict, NSUInteger idx, BOOL *stop) {
+            Venue *venue = [NSEntityDescription
+                            insertNewObjectForEntityForName:@"Venue"
+                            inManagedObjectContext:context];
+            venue.venueId = [venueDict stringForKey:@"id"];
+            venue.name = [venueDict stringForKey:@"name"];
+			venue.locationHint = [venueDict stringForKey:@"locationHint"];
+			venue.postalAddress = [venueDict stringForKey:@"postalAddress"];
+            venue.latitude = [[venueDict objectForKey:@"location"] numberForKey:@"latitude"];
+            venue.longitude = [[venueDict objectForKey:@"location"] numberForKey:@"longitude"];
+            [event addVenuesObject:venue];
         }];
+    }];
+    
+    NSError *error;
+    [context save:&error];
+    if (error)
+    {
+        ProcessError(@"save event", error);
     }
-	
-	if ([delegate respondsToSelector:@selector(fetchEventsDidFinishWithResults:)])
-	{
-		[delegate fetchEventsDidFinishWithResults:events];
-	}
 }
 
-- (void)fetchEventsDidFailWithError:(NSError *)error
+- (void)deleteEvents
 {
-	[self requestDidFailWithError:error];
-	
-	if ([delegate respondsToSelector:@selector(fetchEventsDidFailWithError:)])
-	{
-		[delegate fetchEventsDidFailWithError:error];
-	}
+    DLog(@"");
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    NSArray *events = [self fetchEventsWithPredicate:nil];
+    if (events)
+    {
+        [events enumerateObjectsUsingBlock:^(id event, NSUInteger idx, BOOL *stop) {
+            [context deleteObject:event];
+        }];
+    }
+    
+    NSError *error;
+    [context save:&error];
+    if (error)
+    {
+        DLog(@"%@", [error localizedDescription]);
+    }
 }
+
+
+#pragma mark -
+#pragma mark Private Instance methods
+
+- (NSArray *)fetchEventsWithPredicate:(NSPredicate *)predicate;
+{
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Event" inManagedObjectContext:context];
+    NSSortDescriptor *sortByDate = [NSSortDescriptor sortDescriptorWithKey:@"startTime" ascending:NO];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortByDate]];
+    if (predicate)
+    {
+        [fetchRequest setPredicate:predicate];
+    }
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    return fetchedObjects;
+}
+
 
 @end

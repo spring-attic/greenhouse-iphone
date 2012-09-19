@@ -39,11 +39,6 @@
 	[self.webView loadHTMLString:htmlString baseURL:nil];
 }
 
-- (void)didReceiveMemoryWarning 
-{
-    [super didReceiveMemoryWarning];
-}
-
 - (void)viewDidUnload 
 {
     [super viewDidUnload];

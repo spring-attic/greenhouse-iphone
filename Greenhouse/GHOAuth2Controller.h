@@ -27,10 +27,10 @@
 
 + (GHOAuth2Controller *)sharedInstance;
 
-- (BOOL)isAuthorized;
++ (BOOL)isAuthorized;
 - (NSURLRequest *)signInRequestWithUsername:(NSString *)username password:(NSString *)password;
-- (BOOL)storeAccessGrant:(OA2AccessGrant *)accessGrant;
-- (OA2AccessGrant *)fetchAccessGrant;
-- (BOOL)deleteAccessGrant;
++ (BOOL)storeAccessGrant:(OA2AccessGrant *)accessGrant;
++ (OA2AccessGrant *)fetchAccessGrant;
++ (BOOL)deleteAccessGrant;
 
 @end

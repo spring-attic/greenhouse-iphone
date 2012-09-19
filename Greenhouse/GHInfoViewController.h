@@ -23,7 +23,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface GHInfoViewController : UIViewController <UIWebViewDelegate> { }
+@interface GHInfoViewController : UIViewController <UIWebViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWebView *webView;
 

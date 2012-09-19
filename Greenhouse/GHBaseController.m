@@ -24,55 +24,92 @@
 
 @implementation GHBaseController
 
-@synthesize activityAlertView = _activityAlertView;
+
+#pragma mark -
+#pragma mark Instance methods
+
+void ProcessError(NSString* action, NSError* error)
+{    
+    if (!error)
+    {
+        return;
+    }
+    
+    DLog(@"Failed to %@: %@", action, [error localizedDescription]);
+    NSArray* detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+    if(detailedErrors && [detailedErrors count] > 0)
+    {
+        for(NSError* detailedError in detailedErrors)
+        {
+            DLog(@"DetailedError: %@", [detailedError userInfo]);
+        }
+    }
+    else
+    {
+        DLog(@"%@", [error userInfo]);
+    }
+}
 
 - (void)requestDidNotSucceedWithDefaultMessage:(NSString *)message response:(NSURLResponse *)response
 {
 	NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-	DLog(@"status code: %d", statusCode);
+	DLog(@"HTTP Status Code: %d", statusCode);
 	
-	if (statusCode == 401)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.springsource.com. Please sign out and reauthorize the Greenhouse app." 
-													   delegate:appDelegate 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-	}
-	else
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:message 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-	}
+    NSString *msg = message;
+    id delegate = nil;
+    NSString *otherButtonTitle = nil;
+    switch (statusCode) {
+        case 401:
+            msg = @"Your access token is not valid. Please reauthorize the app.";
+            delegate = [[UIApplication sharedApplication] delegate];
+            break;
+        default:
+            break;
+    }
+
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:msg
+                                                       delegate:delegate
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:otherButtonTitle, nil];
+        [alert show];
+    });
 }
 
 - (void)requestDidFailWithError:(NSError *)error
 {	
-	DLog(@"%@", [error localizedDescription]);
-	
-	if ([error code] == NSURLErrorUserCancelledAuthentication)
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"You are not authorized to view the content from greenhouse.springsource.com. Please sign out and reauthorize the Greenhouse app." 
-													   delegate:appDelegate 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:@"Sign Out", nil];
-		[alert show];
-	}
-	else 
-	{
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil 
-														message:@"The network connection is not available. Please try again in a few minutes." 
-													   delegate:nil 
-											  cancelButtonTitle:@"OK" 
-											  otherButtonTitles:nil];
-		[alert show];
-	}	
+	DLog(@"%d - %@", [error code], [error localizedDescription]);
+    NSString *message = nil;
+    id delegate = nil;
+    NSString *otherButtonTitle = nil;
+    switch ([error code]) {
+        case NSURLErrorUserCancelledAuthentication:
+            message = @"Your access token is not valid. Please reauthorize the app.";
+            delegate = [[UIApplication sharedApplication] delegate];
+            break;
+        case NSURLErrorTimedOut:
+            message = @"The network request timed out. Please try again in a few minutes.";
+            break;
+        case NSURLErrorCannotConnectToHost:
+            message = @"The server is unavailable. Please try again in a few minutes.";
+            break;
+        case kCFURLErrorNotConnectedToInternet:
+            message = @"No internet connection";
+            break;
+        default:
+            message = @"The network connection is not available. Please try again in a few minutes.";
+            break;
+    }
+    
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:message
+                                                       delegate:delegate
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:otherButtonTitle, nil];
+        [alert show];
+    });
 }
 
 @end

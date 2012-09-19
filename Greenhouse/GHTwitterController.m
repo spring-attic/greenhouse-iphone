@@ -20,91 +20,317 @@
 //  Created by Roy Clarkson on 8/27/10.
 //
 
+#define TWITTER_PAGE_SIZE   20
+
+#import <CoreLocation/CoreLocation.h>
 #import "GHTwitterController.h"
-#import "GHTweet.h"
+#import "GHEventController.h"
+#import "GHEventSessionController.h"
 #import "GHURLRequestParameters.h"
+#import "GHCoreDataManager.h"
+#import "Tweet.h"
+#import "Event.h"
+#import "EventSession.h"
+
+@interface GHTwitterController ()
+
+- (void)storeTweetsWithEventId:(NSNumber *)eventId json:(NSArray *)tweets;
+- (void)storeTweetsWithEventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber json:(NSArray *)tweets;
+- (void)postUpdate:(NSString *)update URL:(NSURL *)url delegate:(id<GHTwitterControllerDelegate>)delegate;
+- (void)postRetweetWithTweetId:(NSString *)tweetId URL:(NSURL *)url delegate:(id<GHTwitterControllerDelegate>)delegate;
+
+@end
 
 @implementation GHTwitterController
 
-@synthesize delegate;
+
+#pragma mark -
+#pragma mark Static methods
+
+// Use this class method to obtain the shared instance of the class.
++ (id)sharedInstance
+{
+    static id _sharedInstance = nil;
+    static dispatch_once_t predicate;
+    dispatch_once(&predicate, ^{
+        _sharedInstance = [[self alloc] init];
+    });
+    return _sharedInstance;
+}
+
++ (NSInteger)pageSize
+{
+    return TWITTER_PAGE_SIZE;
+}
 
 
 #pragma mark -
 #pragma mark Instance methods
 
-- (void)fetchTweetsWithURL:(NSURL *)url page:(NSUInteger)page;
+- (Tweet *)fetchTweetWithId:(NSString *)tweetId
 {
-	NSString *urlString = [[NSString alloc] initWithFormat:@"%@?page=%d&pageSize=%d", [url absoluteString], page, TWITTER_PAGE_SIZE];
-    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    DLog(@"tweetId: %@", tweetId);
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"tweetId == %@", tweetId];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    Tweet *tweet = nil;
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    if (!error && fetchedObjects && fetchedObjects.count > 0)
+    {
+        tweet = [fetchedObjects objectAtIndex:0];
+    }
+    return tweet;
+}
+
+- (NSArray *)fetchTweetsWithEventId:(NSNumber *)eventId
+{
+    DLog(@"eventId: %@", eventId);
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"event.eventId == %@", eventId];
+    NSSortDescriptor *sortById = [[NSSortDescriptor alloc] initWithKey:@"tweetId" ascending:NO];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortById]];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    DLog(@"fetched: %u", fetchedObjects.count);
+    return fetchedObjects;
+}
+
+- (NSArray *)fetchTweetsWithEventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber
+{
+    DLog(@"eventId: %@, sessionNumber: %@", eventId, sessionNumber);
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Tweet" inManagedObjectContext:context];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(event.eventId == %@) AND (session.number == %@)", eventId, sessionNumber];
+    NSSortDescriptor *sortById = [[NSSortDescriptor alloc] initWithKey:@"tweetId" ascending:NO];
+    [fetchRequest setEntity:entity];
+    [fetchRequest setPredicate:predicate];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObject:sortById]];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    DLog(@"fetched: %u", fetchedObjects.count);
+    return fetchedObjects;
+}
+
+- (Tweet *)fetchSelectedTweet
+{
+    DLog(@"");
+    NSString *tweetId = [[NSUserDefaults standardUserDefaults] objectForKey:@"selectedTweetId"];
+    return [self fetchTweetWithId:tweetId];
+}
+
+- (void)setSelectedTweet:(Tweet *)tweet
+{
+    DLog(@"");
+    [[NSUserDefaults standardUserDefaults] setObject:tweet.tweetId forKey:@"selectedTweetId"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)sendRequestForTweetsWithEventId:(NSNumber *)eventId page:(NSUInteger)page delegate:(id<GHTwitterControllerDelegate>)delegate
+{
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/tweets?page=%d&pageSize=%d", eventId, page, TWITTER_PAGE_SIZE];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
 	DLog(@"%@", request);
 	
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
+                                       queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
          NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
          if (statusCode == 200 && data.length > 0 && error == nil)
          {
-             [self fetchTweetsDidFinishWithData:data];
+             DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+             NSError *error;
+             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+             if (!error)
+             {
+                 DLog(@"%@", dictionary);
+                 NSArray *jsonArray = [dictionary objectForKey:@"tweets"];
+                 NSInteger resultCount = [jsonArray count];
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [self storeTweetsWithEventId:eventId json:jsonArray];
+                     NSArray *tweets = [self fetchTweetsWithEventId:eventId];
+                     [delegate fetchTweetsDidFinishWithResults:tweets resultCount:resultCount];
+                 });
+             }
+             else
+             {
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [delegate fetchTweetsDidFailWithError:error];
+                 });
+             }
+             
          }
          else if (error)
          {
-             [self fetchTweetsDidFailWithError:error];
+             [self requestDidFailWithError:error];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate fetchTweetsDidFailWithError:error];
+             });
          }
          else if (statusCode != 200)
          {
              [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the list of tweets." response:response];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate fetchTweetsDidFailWithError:nil];
+             });
          }
      }];
 }
 
-- (void)fetchTweetsDidFinishWithData:(NSData *)data
+- (void)sendRequestForTweetsWithEventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber page:(NSUInteger)page delegate:(id<GHTwitterControllerDelegate>)delegate
 {
-	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/sessions/%@/tweets?page=%d&pageSize=%d", eventId, sessionNumber, page, TWITTER_PAGE_SIZE];
+    NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
+	[request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+	DLog(@"%@", request);
 	
-	NSMutableArray *tweets = [[NSMutableArray alloc] init];
-	BOOL lastPage = NO;
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[[NSOperationQueue alloc] init]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
+         if (statusCode == 200 && data.length > 0 && error == nil)
+         {
+             DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+             NSError *error;
+             NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+             if (!error)
+             {
+                 DLog(@"%@", dictionary);
+                 NSArray *jsonArray = [dictionary objectForKey:@"tweets"];
+                 NSInteger resultCount = [jsonArray count];
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [self storeTweetsWithEventId:eventId sessionNumber:sessionNumber json:jsonArray];
+                     NSArray *tweets = [self fetchTweetsWithEventId:eventId sessionNumber:sessionNumber];
+                     [delegate fetchTweetsDidFinishWithResults:tweets resultCount:resultCount];
+                 });
+             }
+             else
+             {
+                 dispatch_sync(dispatch_get_main_queue(), ^{
+                     [delegate fetchTweetsDidFailWithError:error];
+                 });
+             }
+         }
+         else if (error)
+         {
+             [self requestDidFailWithError:error];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate fetchTweetsDidFailWithError:error];
+             });
+         }
+         else if (statusCode != 200)
+         {
+             [self requestDidNotSucceedWithDefaultMessage:@"A problem occurred while retrieving the list of tweets." response:response];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate fetchTweetsDidFailWithError:nil];
+             });
+         }
+     }];
+}
+
+
+- (void)storeTweetsWithEventId:(NSNumber *)eventId json:(NSArray *)tweets
+{
+    DLog(@"");
+    Event *event = [[GHEventController sharedInstance] fetchEventWithId:eventId];
+    [tweets enumerateObjectsUsingBlock:^(NSDictionary *tweetDict, NSUInteger idx, BOOL *stop) {
+        
+        NSString *tweetId = [tweetDict stringForKey:@"id"];
+        Tweet *tweet = [self fetchTweetWithId:tweetId];
+        
+        // only store a tweet if it doesn't already exist
+        if (tweet == nil)
+        {
+            tweet = [self tweetWithJson:tweetDict];
+            [event addTweetsObject:tweet];
+        }
+    }];
     
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
     NSError *error;
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-    if (!error)
+    [context save:&error];
+    if (error)
     {
-        DLog(@"%@", dictionary);
-        lastPage = [dictionary boolForKey:@"lastPage"];
-        NSArray *jsonArray = (NSArray *)[dictionary objectForKey:@"tweets"];        
-        [jsonArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            [tweets addObject:[[GHTweet alloc] initWithDictionary:obj]];
-        }];
+        DLog(@"%@", [error localizedDescription]);
     }
-
-	if ([delegate respondsToSelector:@selector(fetchTweetsDidFinishWithResults:lastPage:)])
-	{
-		[delegate fetchTweetsDidFinishWithResults:tweets lastPage:lastPage];
-	}
 }
 
-- (void)fetchTweetsDidFailWithError:(NSError *)error
+- (void)storeTweetsWithEventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber json:(NSArray *)tweets
 {
-	[self requestDidFailWithError:error];
-	
-	if ([delegate respondsToSelector:@selector(fetchTweetsDidFailWithError:)])
-	{
-		[delegate fetchTweetsDidFailWithError:error];
-	}
+    DLog(@"");
+    Event *event = [[GHEventController sharedInstance] fetchEventWithId:eventId];
+    EventSession *session = [[GHEventSessionController sharedInstance] fetchSessionWithNumber:sessionNumber];
+    [tweets enumerateObjectsUsingBlock:^(NSDictionary *tweetDict, NSUInteger idx, BOOL *stop) {
+        NSString *tweetId = [tweetDict stringForKey:@"id"];
+        Tweet *tweet = [self fetchTweetWithId:tweetId];
+        
+        // only store a tweet if it doesn't already exist
+        if (tweet == nil)
+        {
+            tweet = [self tweetWithJson:tweetDict];
+        }
+        if (tweet.event == nil)
+        {
+            [event addTweetsObject:tweet];
+        }
+        [session addTweetsObject:tweet];
+    }];
+    
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    NSError *error;
+    [context save:&error];
+    if (error)
+    {
+        DLog(@"%@", [error localizedDescription]);
+    }
 }
 
-- (void)postUpdate:(NSString *)update withURL:(NSURL *)url
+- (Tweet *)tweetWithJson:(NSDictionary *)json
 {
-	CLLocation *location = [[CLLocation alloc] init];
-	[self postUpdate:update withURL:url location:location];
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    Tweet *tweet = [NSEntityDescription
+                    insertNewObjectForEntityForName:@"Tweet"
+                    inManagedObjectContext:context];
+    tweet.tweetId = [json stringForKey:@"id"];
+    tweet.text = [[json stringForKey:@"text"] stringByXMLDecoding];
+    tweet.createdAt = [json dateWithMillisecondsSince1970ForKey:@"createdAt"];
+    tweet.fromUser = [json stringByReplacingPercentEscapesForKey:@"fromUser" usingEncoding:NSUTF8StringEncoding];
+    tweet.profileImageUrl = [[json stringForKey:@"profileImageUrl"] stringByURLDecoding];
+    tweet.userId = [json stringForKey:@"userId"];
+    tweet.languageCode = [json stringForKey:@"languageCode"];
+    tweet.source = [[json stringForKey:@"source"] stringByURLDecoding];
+    return tweet;
 }
 
-- (void)postUpdate:(NSString *)update withURL:(NSURL *)url location:(CLLocation *)location
+- (void)postUpdate:(NSString *)update eventId:(NSNumber *)eventId delegate:(id<GHTwitterControllerDelegate>)delegate
 {
-	self.activityAlertView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
-	[_activityAlertView startAnimating];
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/tweets", eventId];
+    [self postUpdate:update URL:url delegate:delegate];
+}
 
+- (void)postUpdate:(NSString *)update eventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber delegate:(id<GHTwitterControllerDelegate>)delegate
+{
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/sessions/%@/tweets", eventId, sessionNumber];
+    [self postUpdate:update URL:url delegate:delegate];
+}
+
+- (void)postUpdate:(NSString *)update URL:(NSURL *)url delegate:(id<GHTwitterControllerDelegate>)delegate
+{
     NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	NSString *status = [update stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	DLog(@"tweet length: %i", status.length);
@@ -116,6 +342,7 @@
 //                            nil];
 //    GHURLRequestParameters *postParams = [[GHURLRequestParameters alloc] initWithDictionary:params];
 	
+    CLLocation *location = [[CLLocation alloc] init];
 	NSString *postParams = [[NSString alloc] initWithFormat:@"status=%@&latitude=%f&longitude=%f",
                             [status stringByURLEncoding],
 							location.coordinate.latitude,
@@ -131,71 +358,50 @@
 	
 	DLog(@"%@", request);
 	
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
+                                       queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         [_activityAlertView stopAnimating];
-         self.activityAlertView = nil;
-         
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];         
          NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-         if (statusCode == 200 && data.length > 0 && error == nil)
+         if (statusCode == 200 && error == nil)
          {
-             [self postUpdateDidFinishWithData:data];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate postUpdateDidFinish];
+             });
          }
          else if (error)
          {
-             [self postUpdateDidFailWithError:error];
+             [self requestDidFailWithError:error];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate postUpdateDidFailWithError:error];
+             });
          }
          else if (statusCode != 200)
          {
-             NSString *msg = nil;
-             switch (statusCode)
-             {
-                 case 412:
-                     msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
-                     break;
-                 case 403:
-                 default:
-                     msg = @"A problem occurred while posting to Twitter.";
-                     break;
-             }
-             
-             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                 message:msg
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil];
-             [alertView show];
+             [self processStatusCode:statusCode];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate postUpdateDidFailWithError:error];
+             });
          }
      }];
 }
 
-- (void)postUpdateDidFinishWithData:(NSData *)data
+- (void)postRetweetWithTweetId:(NSString *)tweetId eventId:(NSNumber *)eventId delegate:(id<GHTwitterControllerDelegate>)delegate
 {
-    DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-    
-    if ([delegate respondsToSelector:@selector(postUpdateDidFinish)])
-    {
-        [delegate postUpdateDidFinish];
-    }
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/retweet", eventId];
+    [self postRetweetWithTweetId:tweetId URL:url delegate:delegate];
 }
 
-- (void)postUpdateDidFailWithError:(NSError *)error
+- (void)postRetweetWithTweetId:(NSString *)tweetId eventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber delegate:(id<GHTwitterControllerDelegate>)delegate
 {
-	[self requestDidFailWithError:error];
-	
-	if ([delegate respondsToSelector:@selector(postUpdateDidFailWithError:)])
-	{
-		[delegate postUpdateDidFailWithError:error];
-	}
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/events/%@/sessions/%@/retweet", eventId, sessionNumber];
+    [self postRetweetWithTweetId:tweetId URL:url delegate:delegate];
 }
 
-- (void)postRetweet:(NSString *)tweetId withURL:(NSURL *)url;
+- (void)postRetweetWithTweetId:(NSString *)tweetId URL:(NSURL *)url delegate:(id<GHTwitterControllerDelegate>)delegate
 {
-	self.activityAlertView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Posting tweet..."];
-	[_activityAlertView startAnimating];
-	
     NSMutableURLRequest *request = [[GHAuthorizedRequest alloc] initWithURL:url];
 	NSString *postParams =[[NSString alloc] initWithFormat:@"tweetId=%@", tweetId];
 	NSString *escapedPostParams = [postParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -210,71 +416,62 @@
 	[request setHTTPBody:postData];
 	DLog(@"%@ %@", request, [request allHTTPHeaderFields]);
 
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[NSOperationQueue mainQueue]
+                                       queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
      {
-         [_activityAlertView stopAnimating];
-         self.activityAlertView = nil;
-         
+         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];         
          NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];
-         if (statusCode == 200 && data.length > 0 && error == nil)
+         if (statusCode == 200 && error == nil)
          {
-             [self postRetweetDidFinishWithData:data];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate postRetweetDidFinish];
+             });
          }
          else if (error)
          {
-             [self postRetweetDidFailWithError:error];
+             [self requestDidFailWithError:error];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate postRetweetDidFailWithError:error];
+             });
          }
          else if (statusCode != 200)
          {
-             NSString *msg = nil;
-             switch (statusCode)
-             {
-                 case 412:
-                     msg = @"Your account is not connected to Twitter. Please sign in to greenhouse.springsource.org to connect.";
-                     break;
-                 case 403:
-                 default:
-                     msg = @"A problem occurred while posting to Twitter. Please verify your account is connected to Twitter.";
-                     break;
-             }
-             
-             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                 message:msg
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil];
-             [alertView show];
+             [self processStatusCode:statusCode];
+             dispatch_sync(dispatch_get_main_queue(), ^{
+                 [delegate postRetweetDidFailWithError:error];
+             });
          }
      }];
 }
 
-- (void)postRetweetDidFinishWithData:(NSData *)data
+
+#pragma mark -
+#pragma mark Private Instance methods
+
+- (void)processStatusCode:(NSInteger)statusCode
 {
-	DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-	
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Retweet successful!"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-    [alertView show];
-    
-    if ([delegate respondsToSelector:@selector(postRetweetDidFinish)])
+    NSString *msg = nil;
+    switch (statusCode)
     {
-        [delegate postRetweetDidFinish];
+        case 412:
+            msg = @"Your account is not connected to Twitter. Please sign in to Greenhouse to connect.";
+            break;
+        case 403:
+        default:
+            msg = @"A problem occurred while posting to Twitter. Please verify your account is connected to Twitter.";
+            break;
     }
+    dispatch_sync(dispatch_get_main_queue(), ^{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:msg
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    });
 }
 
-- (void)postRetweetDidFailWithError:(NSError *)error
-{
-	[self requestDidFailWithError:error];
-	
-	if ([delegate respondsToSelector:@selector(postRetweetDidFailWithError:)])
-	{
-		[delegate postRetweetDidFailWithError:error];
-	}	
-}
 
 @end

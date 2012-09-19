@@ -22,13 +22,11 @@
 
 #import <Foundation/Foundation.h>
 
-
-@class GHProfile;
-
+@class Profile;
 
 @protocol GHProfileControllerDelegate<NSObject>
 
-- (void)fetchProfileDidFinishWithResults:(GHProfile *)profile;
+- (void)fetchProfileDidFinishWithResults:(Profile *)profile;
 - (void)fetchProfileDidFailWithError:(NSError *)error;
 
 @end

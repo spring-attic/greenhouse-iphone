@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,22 +14,29 @@
 //  limitations under the License.
 //
 //
-//  GHProfile.h
+//  Tweet.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/11/10.
+//  Created by Roy Clarkson on 9/15/12.
 //
 
-#import <Foundation/Foundation.h>
-#import "GHInitializingModel.h"
+#import "Tweet.h"
+#import "Event.h"
+#import "EventSession.h"
 
 
-@interface GHProfile : NSObject <GHInitializingModel>
+@implementation Tweet
 
-@property (nonatomic, assign) NSUInteger accountId;
-@property (nonatomic, copy) NSString *displayName;
-@property (nonatomic, strong) NSURL *imageUrl;
-
-+ (GHProfile *)profileWithDictionary:(NSDictionary *)dictionary;
+@dynamic createdAt;
+@dynamic fromUser;
+@dynamic languageCode;
+@dynamic profileImageUrl;
+@dynamic source;
+@dynamic text;
+@dynamic tweetId;
+@dynamic userId;
+@dynamic event;
+@dynamic session;
+@synthesize profileImage;
 
 @end

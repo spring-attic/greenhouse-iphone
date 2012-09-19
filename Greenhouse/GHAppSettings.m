@@ -28,15 +28,18 @@
 /**
  Returns the path to the application's Documents directory.
  */
-+ (NSString *)documentsDirectory 
++ (NSURL *)documentsDirectory
 {
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+//    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
+/**
+ Returns the application's version.
+ */
 + (NSString *)appVersion
 {
 	return [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
 }
-
 
 @end

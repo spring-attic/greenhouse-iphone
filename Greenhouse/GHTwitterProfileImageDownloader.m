@@ -21,7 +21,7 @@
 //
 
 #import "GHTwitterProfileImageDownloader.h"
-#import "GHTweet.h"
+#import "Tweet.h"
 
 #define kImageHeight 48
 
@@ -55,13 +55,9 @@
 	if (_urlConnection)
 	{
 		[_urlConnection cancel];
-		_urlConnection = nil;
 	}
-	
-	if (_receivedData)
-	{
-		_receivedData = nil;
-	}
+    _urlConnection = nil;
+    _receivedData = nil;
 }
 
 

@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,38 +14,33 @@
 //  limitations under the License.
 //
 //
-//  GHVenueRoom.m
+//  EventSession.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 10/5/10.
+//  Created by Roy Clarkson on 9/15/12.
 //
 
-#import "GHVenueRoom.h"
+#import "EventSession.h"
+#import "Event.h"
+#import "EventSessionLeader.h"
+#import "Tweet.h"
+#import "VenueRoom.h"
 
 
-@implementation GHVenueRoom
+@implementation EventSession
 
-@synthesize roomId;
-@synthesize label;
-@synthesize venueId;
-
-
-#pragma mark -
-#pragma mark WebDataModel methods
-
-- (id)initWithDictionary:(NSDictionary *)dictionary
-{
-	if ((self = [super init]))
-	{
-		if (dictionary)
-		{
-			self.roomId = [dictionary stringForKey:@"id"];
-			self.label = [dictionary stringForKey:@"label"];
-			self.venueId = [dictionary stringForKey:@"parentId"];
-		}
-	}
-	
-	return self;
-}
+@dynamic endTime;
+@dynamic hashtag;
+@dynamic information;
+@dynamic isFavorite;
+@dynamic number;
+@dynamic rating;
+@dynamic sessionId;
+@dynamic startTime;
+@dynamic title;
+@dynamic event;
+@dynamic leaders;
+@dynamic room;
+@dynamic tweets;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,19 +14,17 @@
 //  limitations under the License.
 //
 //
-//  GHDataViewController.h
+//  GHEventSessionRateDelegate.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 9/8/10.
+//  Created by Roy Clarkson on 9/9/12.
 //
 
 #import <Foundation/Foundation.h>
 
+@protocol GHEventSessionRateDelegate <NSObject>
 
-@interface GHDataViewController : UIViewController { }
-
-- (void)refreshView;
-- (void)reloadData;
-- (BOOL)shouldReloadData;
+- (void)rateSessionDidFinishWithResults:(double)newRating;
+- (void)rateSessionDidFailWithError:(NSError *)error;
 
 @end

@@ -21,31 +21,24 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GHTwitterController.h"
 #import "GHTwitterProfileImageDownloader.h"
 #import "GHPullRefreshTableViewController.h"
 #import "GHTweetViewController.h"
 
-
 @class GHTweetDetailsViewController;
 
-
 @interface GHTweetsViewController : GHPullRefreshTableViewController <UITableViewDelegate, UITableViewDataSource, GHTwitterControllerDelegate, GHTwitterProfileImageDownloaderDelegate>
-{ 
-	
-@private
-	BOOL _isLoading;
-	NSUInteger _currentPage;
-	BOOL _isLastPage;
-}
 
-@property (nonatomic, strong) NSMutableArray *arrayTweets;
-@property (nonatomic, strong) NSURL *tweetUrl;
-@property (nonatomic, strong) NSURL *retweetUrl;
+@property (nonatomic, strong) NSArray *tweets;
+@property (nonatomic, strong) NSIndexPath *visibleIndexPath;
 @property (nonatomic, strong) GHTweetViewController *tweetViewController;
 @property (nonatomic, strong) GHTweetDetailsViewController *tweetDetailsViewController;
+@property (nonatomic, assign) BOOL isLastPage;
 @property (nonatomic, assign) BOOL isLoading;
+@property (nonatomic, assign) NSUInteger currentPage;
 
-- (void)profileImageDidLoad:(NSIndexPath *)indexPath;
+- (void)showTwitterForm;
+- (void)fetchTweetsWithPage:(NSUInteger)page;
+- (void)reloadTableDataWithTweets:(NSArray *)tweets;
 
 @end

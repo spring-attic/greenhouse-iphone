@@ -27,6 +27,7 @@
 #import "OA2SignInRequestParameters.h"
 #import "GHURLPostRequest.h"
 #import "GHKeychainManager.h"
+#import "GHConnectionSettings.h"
 
 @implementation GHOAuth2Controller
 
@@ -49,7 +50,7 @@
 #pragma mark -
 #pragma mark Instance methods
 
-- (BOOL)isAuthorized
++ (BOOL)isAuthorized
 {
     OA2AccessGrant *accessGrant = [self fetchAccessGrant];
     return (accessGrant != nil);
@@ -58,17 +59,17 @@
 - (NSURLRequest *)signInRequestWithUsername:(NSString *)username password:(NSString *)password
 {
     OA2SignInRequestParameters *parameters = [[OA2SignInRequestParameters alloc] initWithUsername:username password:password];
-    NSURL *url = [NSURL URLWithString:OAUTH_TOKEN_URL];
+    NSURL *url = [GHConnectionSettings urlWithFormat:@"/oauth/token"];
     return [[GHURLPostRequest alloc] initWithURL:url parameters:parameters];
 }
 
-- (BOOL)storeAccessGrant:(OA2AccessGrant *)accessGrant
++ (BOOL)storeAccessGrant:(OA2AccessGrant *)accessGrant
 {
 	OSStatus status = [[GHKeychainManager sharedInstance] storePassword:[accessGrant dataValue] service:KEYCHAIN_SERVICE_NAME account:KEYCHAIN_ACCOUNT_NAME];
 	return (status == errSecSuccess);
 }
 
-- (OA2AccessGrant *)fetchAccessGrant
++ (OA2AccessGrant *)fetchAccessGrant
 {
     NSData *passwordData;
     OSStatus status = [[GHKeychainManager sharedInstance] fetchPassword:&passwordData service:KEYCHAIN_SERVICE_NAME account:KEYCHAIN_ACCOUNT_NAME];
@@ -81,7 +82,7 @@
     return nil;
 }
 
-- (BOOL)deleteAccessGrant
++ (BOOL)deleteAccessGrant
 {
 	OSStatus status = [[GHKeychainManager sharedInstance] deletePasswordWithService:KEYCHAIN_SERVICE_NAME account:KEYCHAIN_ACCOUNT_NAME];
 	return (status == errSecSuccess);

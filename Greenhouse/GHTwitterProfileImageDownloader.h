@@ -22,9 +22,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-@class GHTweet;
-
+@class Tweet;
 
 @protocol GHTwitterProfileImageDownloaderDelegate 
 
@@ -39,7 +37,7 @@
 	NSMutableData *_receivedData;
 }
 
-@property (nonatomic, strong) GHTweet *tweet;
+@property (nonatomic, strong) Tweet *tweet;
 @property (nonatomic, strong) NSIndexPath *indexPathInTableView;
 @property (nonatomic, unsafe_unretained) id <GHTwitterProfileImageDownloaderDelegate> delegate;
 

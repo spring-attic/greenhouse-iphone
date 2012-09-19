@@ -30,6 +30,7 @@
 #define VALUE_SCOPE         @"read,write"
 
 #import "OA2SignInRequestParameters.h"
+#import "GHConnectionSettings.h"
 
 @implementation OA2SignInRequestParameters
 
@@ -44,8 +45,8 @@
                                       VALUE_GRANT_TYPE, KEY_GRANT_TYPE,
                                       username, KEY_USERNAME,
                                       password, KEY_PASSWORD,
-                                      @"testclient", KEY_CLIENT_ID,
-                                      @"testsecret", KEY_CLIENT_SECRET,
+                                      [GHConnectionSettings clientId], KEY_CLIENT_ID,
+                                      [GHConnectionSettings clientSecret], KEY_CLIENT_SECRET,
                                       VALUE_SCOPE, KEY_SCOPE,
                                       nil]];
     return self;

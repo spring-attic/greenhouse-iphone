@@ -23,9 +23,7 @@
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
 
-
-@class GHVenue;
-
+@class Venue;
 
 @interface GHVenueAnnotation : NSObject <MKAnnotation> 
 {
@@ -34,8 +32,8 @@
 	CLLocationCoordinate2D coordinate;
 }
 
-@property (nonatomic, strong) GHVenue *venue;
+@property (nonatomic, strong) Venue *venue;
 
-- (id)initWithVenue:(GHVenue *)aVenue;
+- (id)initWithVenue:(Venue *)aVenue;
 
 @end
