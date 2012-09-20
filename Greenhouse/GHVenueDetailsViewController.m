@@ -69,9 +69,12 @@
     if (venue)
 	{
         NSString *contentHtml = [self.html copy];
-        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{NAME}}" withString:venue.name];
-        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{ADDRESS}}" withString:venue.postalAddress];
-        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{DESCRIPTION}}" withString:venue.locationHint];
+        NSString *nameValue = venue.name != nil ? venue.name : @"";
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{NAME}}" withString:nameValue];
+        NSString *addressValue = venue.postalAddress != nil ? venue.postalAddress : @"";
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{ADDRESS}}" withString:addressValue];
+        NSString *descriptionValue = venue.locationHint != nil ? venue.locationHint : @"";
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{DESCRIPTION}}" withString:descriptionValue];
         [self.webView loadHTMLString:contentHtml baseURL:nil];
 	}
 }

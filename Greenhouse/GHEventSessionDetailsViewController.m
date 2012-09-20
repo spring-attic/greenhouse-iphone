@@ -249,15 +249,21 @@
         [session.leaders enumerateObjectsUsingBlock:^(EventSessionLeader *leader, BOOL *stop) {
             [leaders addObject:[NSString stringWithFormat:@"%@ %@", leader.firstName, leader.lastName]];
         }];
-        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{LEADERS}}" withString:[leaders componentsJoinedByString:@", "]];
+        NSString *leadersValue = [leaders componentsJoinedByString:@", "];
+        leadersValue = leadersValue != nil ? leadersValue : @"";
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{LEADERS}}" withString:leadersValue];
         
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"h:mm a"];
 		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
 		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{TIME}}" withString:formattedTime];
-		contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{ROOM}}" withString:session.room.label];
+        
+        NSString *timeValue = formattedTime != nil ? formattedTime : @"";
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{TIME}}" withString:timeValue];
+
+        NSString *roomValue = session.room.label != nil ? session.room.label : @"";
+		contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{ROOM}}" withString:roomValue];
         
         [self.webView loadHTMLString:contentHtml baseURL:nil];
         
