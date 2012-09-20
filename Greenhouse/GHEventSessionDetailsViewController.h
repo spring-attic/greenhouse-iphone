@@ -23,21 +23,13 @@
 #import <UIKit/UIKit.h>
 #import "GHEventSessionUpdateFavoriteDelegate.h"
 
-@class Event;
-@class EventSession;
 @class GHEventSessionDescriptionViewController;
 @class GHEventSessionTweetsViewController;
 @class GHEventSessionRateViewController;
 
 @interface GHEventSessionDetailsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, GHEventSessionUpdateFavoriteDelegate>
 
-@property (nonatomic, strong) Event *event;
-@property (nonatomic, strong) EventSession *session;
-@property (nonatomic, strong) NSArray *menuItems;
-@property (nonatomic, strong) IBOutlet UILabel *labelTitle;
-@property (nonatomic, strong) IBOutlet UILabel *labelLeader;
-@property (nonatomic, strong) IBOutlet UILabel *labelTime;
-@property (nonatomic, strong) IBOutlet UILabel *labelLocation;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UIImageView *imageViewRating1;
 @property (nonatomic, strong) IBOutlet UIImageView *imageViewRating2;
 @property (nonatomic, strong) IBOutlet UIImageView *imageViewRating3;

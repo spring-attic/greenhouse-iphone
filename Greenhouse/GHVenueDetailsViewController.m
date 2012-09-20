@@ -23,12 +23,17 @@
 #import "GHVenueDetailsViewController.h"
 #import "Venue.h"
 
+@interface GHVenueDetailsViewController ()
+
+@property (nonatomic, copy) NSString *html;
+
+@end
+
 @implementation GHVenueDetailsViewController
 
+@synthesize html;
 @synthesize venue;
-@synthesize labelName;
-@synthesize labelLocationHint;
-@synthesize labelAddress;
+@synthesize webView;
 @synthesize buttonDirections;
 
 
@@ -52,6 +57,9 @@
     [super viewDidLoad];
 	
 	self.title = @"Venue";
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"GHVenueDetailsContent" ofType:@"html"];
+	self.html = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -60,25 +68,21 @@
 
     if (venue)
 	{
-		labelName.text = venue.name;
-		labelLocationHint.text = venue.locationHint;
-		labelAddress.text = venue.postalAddress;
+        NSString *contentHtml = [self.html copy];
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{NAME}}" withString:venue.name];
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{ADDRESS}}" withString:venue.postalAddress];
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{DESCRIPTION}}" withString:venue.locationHint];
+        [self.webView loadHTMLString:contentHtml baseURL:nil];
 	}
-}
-
-- (void)didReceiveMemoryWarning 
-{
-    [super didReceiveMemoryWarning];
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
-	
+
+	self.html = nil;
+    self.webView = nil;
 	self.venue = nil;
-	self.labelName = nil;
-	self.labelLocationHint = nil;
-	self.labelAddress = nil;
 	self.buttonDirections = nil;
 }
 

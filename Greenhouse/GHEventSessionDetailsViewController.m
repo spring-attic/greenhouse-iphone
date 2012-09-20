@@ -34,6 +34,10 @@
 
 @interface GHEventSessionDetailsViewController ()
 
+@property (nonatomic, strong) Event *event;
+@property (nonatomic, strong) EventSession *session;
+@property (nonatomic, strong) NSArray *menuItems;
+@property (nonatomic, copy) NSString *html;
 @property (nonatomic, strong) GHActivityIndicatorTableViewCell *favoriteTableViewCell;
 
 - (void)setRating:(double)rating imageView:(UIImageView *)imageView;
@@ -47,10 +51,8 @@
 @synthesize event;
 @synthesize session;
 @synthesize menuItems;
-@synthesize labelTitle;
-@synthesize labelLeader;
-@synthesize labelTime;
-@synthesize labelLocation;
+@synthesize html;
+@synthesize webView;
 @synthesize imageViewRating1;
 @synthesize imageViewRating2;
 @synthesize imageViewRating3;
@@ -220,6 +222,9 @@
 	self.sessionDescriptionViewController = [[GHEventSessionDescriptionViewController alloc] initWithNibName:nil bundle:nil];
 	self.sessionTweetsViewController = [[GHEventSessionTweetsViewController alloc] initWithNibName:@"GHTweetsViewController" bundle:nil];
 	self.sessionRateViewController = [[GHEventSessionRateViewController alloc] initWithNibName:nil bundle:nil];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"GHEventSessionDetailsContent" ofType:@"html"];
+	self.html = [[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -235,33 +240,37 @@
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
     else
-	{
-		labelTitle.text = session.title;
+	{        
+        NSString *contentHtml = [self.html copy];
+        
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{TITLE}}" withString:session.title];
         
         NSMutableArray *leaders = [[NSMutableArray alloc] initWithCapacity:session.leaders.count];
         [session.leaders enumerateObjectsUsingBlock:^(EventSessionLeader *leader, BOOL *stop) {
             [leaders addObject:[NSString stringWithFormat:@"%@ %@", leader.firstName, leader.lastName]];
         }];
-		labelLeader.text = [leaders componentsJoinedByString:@", "];
-		
-		sessionRateViewController.sessionDetailsViewController = self;
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{LEADERS}}" withString:[leaders componentsJoinedByString:@", "]];
         
 		NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setDateFormat:@"h:mm a"];
 		NSString *formattedStartTime = [dateFormatter stringFromDate:session.startTime];
 		NSString *formattedEndTime = [dateFormatter stringFromDate:session.endTime];
 		NSString *formattedTime = [[NSString alloc] initWithFormat:@"%@ - %@", formattedStartTime, formattedEndTime];
-		labelTime.text = formattedTime;
-		labelLocation.text = session.room.label;
-		
+        contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{TIME}}" withString:formattedTime];
+		contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{ROOM}}" withString:session.room.label];
+        
+        [self.webView loadHTMLString:contentHtml baseURL:nil];
+        
 		self.menuItems = [[NSArray alloc] initWithObjects:@"Description", @"Tweets", @"Favorite", @"Rate", nil];
 		[tableViewMenu reloadData];
 		
 		[self updateRating:[session.rating doubleValue]];
+        
+        sessionRateViewController.sessionDetailsViewController = self;
 	}
 }
 
-- (void)viewDidUnload 
+- (void)viewDidUnload
 {
     [super viewDidUnload];
     DLog(@"");
@@ -270,10 +279,8 @@
 	self.event = nil;
 	self.session = nil;
 	self.menuItems = nil;
-	self.labelTitle = nil;
-	self.labelLeader = nil;
-	self.labelTime = nil;
-	self.labelLocation = nil;
+    self.html = nil;
+    self.webView = nil;
 	self.imageViewRating1 = nil;
 	self.imageViewRating2 = nil;
 	self.imageViewRating3 = nil;

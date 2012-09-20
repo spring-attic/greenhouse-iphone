@@ -27,9 +27,7 @@
 @interface GHVenueDetailsViewController : UIViewController
 
 @property (nonatomic, strong) Venue *venue;
-@property (nonatomic, strong) IBOutlet UILabel *labelName;
-@property (nonatomic, strong) IBOutlet UILabel *labelLocationHint;
-@property (nonatomic, strong) IBOutlet UILabel *labelAddress;
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 @property (nonatomic, strong) IBOutlet UIButton *buttonDirections;
 
 - (IBAction)actionGetDirections:(id)sender;

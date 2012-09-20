@@ -46,6 +46,8 @@
 		8196752615DD7B820056A806 /* OA2AccessGrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752515DD7B820056A806 /* OA2AccessGrant.m */; };
 		8196752715DE7A290056A806 /* OA2AccessGrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752515DD7B820056A806 /* OA2AccessGrant.m */; };
 		8196752E15DE7C850056A806 /* OA2AccessGrantTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752D15DE7C850056A806 /* OA2AccessGrantTests.m */; };
+		819DBEBE160AD574002A6081 /* GHEventSessionDetailsContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 819DBEBD160AD574002A6081 /* GHEventSessionDetailsContent.html */; };
+		819DBEC1160AE378002A6081 /* GHVenueDetailsContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 819DBEC0160AE378002A6081 /* GHVenueDetailsContent.html */; };
 		819E443C11FF1FA600DBC0BB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 819E443B11FF1FA600DBC0BB /* MapKit.framework */; };
 		81A1BD1915D5AF9D0028A2D3 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */; };
 		81A1BD1A15D5AF9D0028A2D3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -244,6 +246,8 @@
 		8196752515DD7B820056A806 /* OA2AccessGrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OA2AccessGrant.m; sourceTree = "<group>"; };
 		8196752C15DE7C850056A806 /* OA2AccessGrantTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OA2AccessGrantTests.h; sourceTree = "<group>"; };
 		8196752D15DE7C850056A806 /* OA2AccessGrantTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OA2AccessGrantTests.m; sourceTree = "<group>"; };
+		819DBEBD160AD574002A6081 /* GHEventSessionDetailsContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHEventSessionDetailsContent.html; sourceTree = "<group>"; };
+		819DBEC0160AE378002A6081 /* GHVenueDetailsContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = GHVenueDetailsContent.html; sourceTree = "<group>"; };
 		819E443B11FF1FA600DBC0BB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81A1BD1715D5AF9D0028A2D3 /* GreenhouseLogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GreenhouseLogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81A1BD1815D5AF9D0028A2D3 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -659,6 +663,7 @@
 				81E42DC615ADE82F001FA72D /* GHEventsMainViewController.m */,
 				81E42D8B15ADE82F001FA72D /* GHEventsMainViewController.xib */,
 				81E42D8D15ADE82F001FA72D /* GHEventsNavigationViewController.xib */,
+				819DBEC0160AE378002A6081 /* GHVenueDetailsContent.html */,
 				81E42E1415ADE82F001FA72D /* GHVenueDetailsViewController.h */,
 				81E42E1515ADE82F001FA72D /* GHVenueDetailsViewController.m */,
 				81E42D9D15ADE82F001FA72D /* GHVenueDetailsViewController.xib */,
@@ -672,6 +677,7 @@
 				81E42DAF15ADE82F001FA72D /* GHEventSessionDescriptionViewController.h */,
 				81E42DB015ADE82F001FA72D /* GHEventSessionDescriptionViewController.m */,
 				81E42D8115ADE82F001FA72D /* GHEventSessionDescriptionViewController.xib */,
+				819DBEBD160AD574002A6081 /* GHEventSessionDetailsContent.html */,
 				81E42DB115ADE82F001FA72D /* GHEventSessionDetailsViewController.h */,
 				81E42DB215ADE82F001FA72D /* GHEventSessionDetailsViewController.m */,
 				81E42D8315ADE82F001FA72D /* GHEventSessionDetailsViewController.xib */,
@@ -1118,6 +1124,8 @@
 				811D71A5160A6875007C806C /* Default@2x.png in Resources */,
 				811D71A6160A687B007C806C /* Default.png in Resources */,
 				811D71A8160A69EB007C806C /* Default-568h@2x.png in Resources */,
+				819DBEBE160AD574002A6081 /* GHEventSessionDetailsContent.html in Resources */,
+				819DBEC1160AE378002A6081 /* GHVenueDetailsContent.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
