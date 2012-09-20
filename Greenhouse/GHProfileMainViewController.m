@@ -21,6 +21,7 @@
 //
 
 #import "GHProfileMainViewController.h"
+#import "GHTwitterConnectViewController.h"
 #import "GHProfileController.h"
 #import "Profile.h"
 #import "GHCoreDataManager.h"
@@ -37,6 +38,7 @@
 
 @synthesize profile = _profile;
 @synthesize labelDisplayName;
+@synthesize twitterConnectViewController;
 
 
 #pragma mark -
@@ -50,6 +52,12 @@
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
     [alertView show];
+}
+
+- (IBAction)actionConnectTwitter:(id)sender
+{
+//    [[UIApplication sharedApplication] openURL:[GHConnectionSettings urlWithFormat:@"/connect/twitter"]];
+    [self presentModalViewController:twitterConnectViewController animated:YES];
 }
 
 - (IBAction)actionRefresh:(id)sender
@@ -130,6 +138,7 @@
     
     self.profile = nil;
 	self.labelDisplayName = nil;
+    self.twitterConnectViewController = nil;
 }
 
 @end

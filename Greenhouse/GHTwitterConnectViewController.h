@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,24 +14,18 @@
 //  limitations under the License.
 //
 //
-//  GHProfileMainViewController.h
+//  GHTwitterConnectViewController.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 9/20/12.
 //
 
 #import <UIKit/UIKit.h>
-#import "GHProfileControllerDelegate.h"
 
-@class GHTwitterConnectViewController;
+@interface GHTwitterConnectViewController : UIViewController
 
-@interface GHProfileMainViewController : UIViewController <GHProfileControllerDelegate, UIAlertViewDelegate>
+@property (nonatomic, strong) IBOutlet UIWebView *webView;
 
-@property (nonatomic, strong) IBOutlet UILabel *labelDisplayName;
-@property (nonatomic, strong) IBOutlet GHTwitterConnectViewController *twitterConnectViewController;
-
-- (IBAction)actionSignOut:(id)sender;
-- (IBAction)actionConnectTwitter:(id)sender;
-- (IBAction)actionRefresh:(id)sender;
+- (IBAction)actionDone:(id)sender;
 
 @end

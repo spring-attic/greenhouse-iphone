@@ -17,6 +17,7 @@
 			<string>IBUILabel</string>
 			<string>IBUIToolbar</string>
 			<string>IBUIView</string>
+			<string>IBUIViewController</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -107,16 +108,17 @@
 					<object class="IBUIButton" id="349739317">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">266</int>
-						<string key="NSFrame">{{40, 297}, {240, 37}}</string>
+						<string key="NSFrame">{{40, 263}, {240, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="464431937"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Sign out</string>
+						<string key="IBUINormalTitle">Sign Out</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="444737327">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -125,19 +127,41 @@
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
-						<object class="NSColor" key="IBUINormalTitleShadowColor">
+						<object class="NSColor" key="IBUINormalTitleShadowColor" id="861329809">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="742194632">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="959693695">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
 						</object>
+					</object>
+					<object class="IBUIButton" id="464431937">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">266</int>
+						<string key="NSFrame">{{40, 322}, {240, 44}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUINormalTitle">Connect with Twitter</string>
+						<reference key="IBUIHighlightedTitleColor" ref="444737327"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+						</object>
+						<reference key="IBUINormalTitleShadowColor" ref="861329809"/>
+						<reference key="IBUIFontDescription" ref="742194632"/>
+						<reference key="IBUIFont" ref="959693695"/>
 					</object>
 				</array>
 				<string key="NSFrame">{{0, 20}, {320, 411}}</string>
@@ -148,6 +172,15 @@
 				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
 				<object class="IBUISimulatedTabBarMetrics" key="IBUISimulatedBottomBarMetrics"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+			</object>
+			<object class="IBUIViewController" id="780558054">
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedOrientationMetrics" key="IBUISimulatedOrientationMetrics">
+					<int key="IBUIInterfaceOrientation">1</int>
+					<int key="interfaceOrientation">1</int>
+				</object>
+				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<bool key="IBUIHorizontal">NO</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -169,6 +202,14 @@
 					<int key="connectionID">30</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">twitterConnectViewController</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="780558054"/>
+					</object>
+					<int key="connectionID">55</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">actionRefresh:</string>
 						<reference key="source" ref="710533861"/>
@@ -184,6 +225,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">49</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">actionConnectTwitter:</string>
+						<reference key="source" ref="464431937"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">53</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -201,6 +251,7 @@
 							<reference ref="937595474"/>
 							<reference ref="783632806"/>
 							<reference ref="349739317"/>
+							<reference ref="464431937"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -256,6 +307,16 @@
 						<reference key="object" ref="349739317"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">51</int>
+						<reference key="object" ref="464431937"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">54</int>
+						<reference key="object" ref="780558054"/>
+						<reference key="parent" ref="0"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -272,12 +333,15 @@
 				<string key="42.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="48.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="51.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="54.CustomClassName">GHTwitterConnectViewController</string>
+				<string key="54.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">49</int>
+			<int key="maxID">55</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -293,10 +357,15 @@
 					<string key="className">GHProfileMainViewController</string>
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="actionConnectTwitter:">id</string>
 						<string key="actionRefresh:">id</string>
 						<string key="actionSignOut:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="actionConnectTwitter:">
+							<string key="name">actionConnectTwitter:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="actionRefresh:">
 							<string key="name">actionRefresh:</string>
 							<string key="candidateClassName">id</string>
@@ -306,20 +375,53 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">labelDisplayName</string>
-						<string key="NS.object.0">UILabel</string>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<string key="NS.key.0">labelDisplayName</string>
-						<object class="IBToOneOutletInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="labelDisplayName">UILabel</string>
+						<string key="twitterConnectViewController">GHTwitterConnectViewController</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="labelDisplayName">
 							<string key="name">labelDisplayName</string>
 							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="twitterConnectViewController">
+							<string key="name">twitterConnectViewController</string>
+							<string key="candidateClassName">GHTwitterConnectViewController</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/GHProfileMainViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">GHTwitterConnectViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">actionDone:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">actionDone:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">actionDone:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">webView</string>
+						<string key="NS.object.0">UIWebView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">webView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">webView</string>
+							<string key="candidateClassName">UIWebView</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/GHProfileMainViewController.h</string>
+						<string key="minorKey">./Classes/GHTwitterConnectViewController.h</string>
 					</object>
 				</object>
 			</array>

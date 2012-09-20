@@ -12,6 +12,8 @@
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		810FD30715D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */; };
 		810FD30D15D9A0AE00A9B3B3 /* GHSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */; };
+		81147184160BA97700878ACD /* GHTwitterConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81147182160BA97700878ACD /* GHTwitterConnectViewController.m */; };
+		81147186160BB45F00878ACD /* GHTwitterConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81147188160BB45F00878ACD /* GHTwitterConnectViewController.xib */; };
 		811D71A1160A66B4007C806C /* gh-header-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A0160A66B4007C806C /* gh-header-logo.png */; };
 		811D71A3160A66BC007C806C /* gh-header-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A2160A66BC007C806C /* gh-header-logo@2x.png */; };
 		811D71A5160A6875007C806C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D719A160A626B007C806C /* Default@2x.png */; };
@@ -198,6 +200,9 @@
 		810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAuthorizeNavigationViewController.m; sourceTree = "<group>"; };
 		810FD30A15D9A0AE00A9B3B3 /* GHSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSignInViewController.h; sourceTree = "<group>"; };
 		810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSignInViewController.m; sourceTree = "<group>"; };
+		81147181160BA97700878ACD /* GHTwitterConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTwitterConnectViewController.h; sourceTree = "<group>"; };
+		81147182160BA97700878ACD /* GHTwitterConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTwitterConnectViewController.m; sourceTree = "<group>"; };
+		81147187160BB45F00878ACD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHTwitterConnectViewController.xib; sourceTree = "<group>"; };
 		811D7198160A614A007C806C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		811D719A160A626B007C806C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		811D71A0160A66B4007C806C /* gh-header-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo.png"; sourceTree = "<group>"; };
@@ -717,6 +722,9 @@
 				81E42DEC15ADE82F001FA72D /* GHProfileMainViewController.h */,
 				81E42DED15ADE82F001FA72D /* GHProfileMainViewController.m */,
 				81E42D9515ADE82F001FA72D /* GHProfileMainViewController.xib */,
+				81147181160BA97700878ACD /* GHTwitterConnectViewController.h */,
+				81147182160BA97700878ACD /* GHTwitterConnectViewController.m */,
+				81147188160BB45F00878ACD /* GHTwitterConnectViewController.xib */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -1117,6 +1125,7 @@
 				811D71A8160A69EB007C806C /* Default-568h@2x.png in Resources */,
 				819DBEBE160AD574002A6081 /* GHEventSessionDetailsContent.html in Resources */,
 				819DBEC1160AE378002A6081 /* GHVenueDetailsContent.html in Resources */,
+				81147186160BB45F00878ACD /* GHTwitterConnectViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,6 +1257,7 @@
 				815D0A501604F4C7002786A4 /* Venue.m in Sources */,
 				81A2B6781607B1F800F0840A /* GHEventSessionTweetDetailsViewController.m in Sources */,
 				81FF4E7C1608D05F001B0ABC /* GHConnectionSettings.m in Sources */,
+				81147184160BA97700878ACD /* GHTwitterConnectViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1296,6 +1306,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		81147188160BB45F00878ACD /* GHTwitterConnectViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81147187160BB45F00878ACD /* en */,
+			);
+			name = GHTwitterConnectViewController.xib;
+			sourceTree = "<group>";
+		};
 		817D817215FE831900C7A351 /* GHEventSessionsScheduleViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
