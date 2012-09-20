@@ -26,12 +26,14 @@
 @interface GHVenueDetailsViewController ()
 
 @property (nonatomic, copy) NSString *html;
+@property (nonatomic, strong) UIAlertView *alertView;
 
 @end
 
 @implementation GHVenueDetailsViewController
 
 @synthesize html;
+@synthesize alertView;
 @synthesize venue;
 @synthesize webView;
 @synthesize buttonDirections;
@@ -42,10 +44,35 @@
 
 - (IBAction)actionGetDirections:(id)sender
 {
-	NSString *encodedAddress = [venue.postalAddress stringByURLEncoding];
-	NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?q=%@", encodedAddress];
-	NSURL *url = [NSURL URLWithString:urlString];	
-	[[UIApplication sharedApplication] openURL:url];
+    self.alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                message:@"Exit and view in Google Maps?"
+                                               delegate:self
+                                      cancelButtonTitle:@"Cancel"
+                                      otherButtonTitles:@"OK", nil];
+    [alertView show];
+}
+
+- (void)showMap
+{
+    if (venue)
+    {
+        NSString *encodedAddress = [venue.postalAddress stringByURLEncoding];
+        NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?q=%@", encodedAddress];
+        NSURL *url = [NSURL URLWithString:urlString];
+        [[UIApplication sharedApplication] openURL:url];
+    }
+}
+
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self showMap];
+    }
 }
 
 
@@ -55,6 +82,7 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	self.title = @"Venue";
     
@@ -65,6 +93,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    DLog(@"");
 
     if (venue)
 	{
@@ -76,14 +105,21 @@
         NSString *descriptionValue = venue.locationHint != nil ? venue.locationHint : @"";
         contentHtml = [contentHtml stringByReplacingOccurrencesOfString:@"{{DESCRIPTION}}" withString:descriptionValue];
         [self.webView loadHTMLString:contentHtml baseURL:nil];
+        self.buttonDirections.enabled = YES;
 	}
+    else
+    {
+        self.buttonDirections.enabled = NO;
+    }
 }
 
 - (void)viewDidUnload 
 {
     [super viewDidUnload];
+    DLog(@"");
 
 	self.html = nil;
+    self.alertView = nil;
     self.webView = nil;
 	self.venue = nil;
 	self.buttonDirections = nil;

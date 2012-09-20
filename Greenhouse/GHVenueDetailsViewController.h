@@ -24,7 +24,7 @@
 
 @class Venue;
 
-@interface GHVenueDetailsViewController : UIViewController
+@interface GHVenueDetailsViewController : UIViewController <UIAlertViewDelegate>
 
 @property (nonatomic, strong) Venue *venue;
 @property (nonatomic, strong) IBOutlet UIWebView *webView;

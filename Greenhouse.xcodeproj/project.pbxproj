@@ -106,7 +106,6 @@
 		81E42E3115ADE82F001FA72D /* GHEventSessionsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D8715ADE82F001FA72D /* GHEventSessionsMenuViewController.xib */; };
 		81E42E3215ADE82F001FA72D /* GHEventSessionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D8915ADE82F001FA72D /* GHEventSessionsViewController.xib */; };
 		81E42E3315ADE82F001FA72D /* GHEventsMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D8B15ADE82F001FA72D /* GHEventsMainViewController.xib */; };
-		81E42E3415ADE82F001FA72D /* GHEventsNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D8D15ADE82F001FA72D /* GHEventsNavigationViewController.xib */; };
 		81E42E3515ADE82F001FA72D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D8F15ADE82F001FA72D /* InfoPlist.strings */; };
 		81E42E3615ADE82F001FA72D /* GHInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D9115ADE82F001FA72D /* GHInfoViewController.xib */; };
 		81E42E3715ADE82F001FA72D /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81E42D9315ADE82F001FA72D /* MainWindow.xib */; };
@@ -144,7 +143,6 @@
 		81E42E5D15ADE82F001FA72D /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E42DD815ADE82F001FA72D /* iTunesArtwork.png */; };
 		81E42E5E15ADE82F001FA72D /* GHLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DDA15ADE82F001FA72D /* GHLocationManager.m */; };
 		81E42E5F15ADE82F001FA72D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DDC15ADE82F001FA72D /* main.m */; };
-		81E42E6015ADE82F001FA72D /* GHNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DDE15ADE82F001FA72D /* GHNavigationViewController.m */; };
 		81E42E6115ADE82F001FA72D /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DE015ADE82F001FA72D /* NSDictionary+Helpers.m */; };
 		81E42E6215ADE82F001FA72D /* NSString+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DE215ADE82F001FA72D /* NSString+Encoding.m */; };
 		81E42E6315ADE82F001FA72D /* GHBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DE415ADE82F001FA72D /* GHBaseController.m */; };
@@ -325,7 +323,6 @@
 		81E42D8815ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHEventSessionsMenuViewController.xib; sourceTree = "<group>"; };
 		81E42D8A15ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHEventSessionsViewController.xib; sourceTree = "<group>"; };
 		81E42D8C15ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHEventsMainViewController.xib; sourceTree = "<group>"; };
-		81E42D8E15ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHEventsNavigationViewController.xib; sourceTree = "<group>"; };
 		81E42D9015ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		81E42D9215ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHInfoViewController.xib; sourceTree = "<group>"; };
 		81E42D9415ADE82F001FA72D /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
@@ -387,8 +384,6 @@
 		81E42DDA15ADE82F001FA72D /* GHLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHLocationManager.m; sourceTree = "<group>"; };
 		81E42DDB15ADE82F001FA72D /* GHLocationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHLocationManagerDelegate.h; sourceTree = "<group>"; };
 		81E42DDC15ADE82F001FA72D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		81E42DDD15ADE82F001FA72D /* GHNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHNavigationViewController.h; sourceTree = "<group>"; };
-		81E42DDE15ADE82F001FA72D /* GHNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHNavigationViewController.m; sourceTree = "<group>"; };
 		81E42DDF15ADE82F001FA72D /* NSDictionary+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Helpers.h"; sourceTree = "<group>"; };
 		81E42DE015ADE82F001FA72D /* NSDictionary+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Helpers.m"; sourceTree = "<group>"; };
 		81E42DE115ADE82F001FA72D /* NSString+Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Encoding.h"; sourceTree = "<group>"; };
@@ -662,7 +657,6 @@
 				81E42DC515ADE82F001FA72D /* GHEventsMainViewController.h */,
 				81E42DC615ADE82F001FA72D /* GHEventsMainViewController.m */,
 				81E42D8B15ADE82F001FA72D /* GHEventsMainViewController.xib */,
-				81E42D8D15ADE82F001FA72D /* GHEventsNavigationViewController.xib */,
 				819DBEC0160AE378002A6081 /* GHVenueDetailsContent.html */,
 				81E42E1415ADE82F001FA72D /* GHVenueDetailsViewController.h */,
 				81E42E1515ADE82F001FA72D /* GHVenueDetailsViewController.m */,
@@ -817,8 +811,6 @@
 				81CD36FD1602426E00FFFCEA /* Info */,
 				81CD36FA16023F2100FFFCEA /* Sessions */,
 				81CD36FB16023F2C00FFFCEA /* Tweets */,
-				81E42DDD15ADE82F001FA72D /* GHNavigationViewController.h */,
-				81E42DDE15ADE82F001FA72D /* GHNavigationViewController.m */,
 				81E42DEE15ADE82F001FA72D /* GHPullRefreshTableViewController.h */,
 				81E42DEF15ADE82F001FA72D /* GHPullRefreshTableViewController.m */,
 			);
@@ -1085,7 +1077,6 @@
 				81E42E3115ADE82F001FA72D /* GHEventSessionsMenuViewController.xib in Resources */,
 				81E42E3215ADE82F001FA72D /* GHEventSessionsViewController.xib in Resources */,
 				81E42E3315ADE82F001FA72D /* GHEventsMainViewController.xib in Resources */,
-				81E42E3415ADE82F001FA72D /* GHEventsNavigationViewController.xib in Resources */,
 				81E42E3515ADE82F001FA72D /* InfoPlist.strings in Resources */,
 				81E42E3615ADE82F001FA72D /* GHInfoViewController.xib in Resources */,
 				81E42E3715ADE82F001FA72D /* MainWindow.xib in Resources */,
@@ -1211,7 +1202,6 @@
 				81E42E5C15ADE82F001FA72D /* GHInfoViewController.m in Sources */,
 				81E42E5E15ADE82F001FA72D /* GHLocationManager.m in Sources */,
 				81E42E5F15ADE82F001FA72D /* main.m in Sources */,
-				81E42E6015ADE82F001FA72D /* GHNavigationViewController.m in Sources */,
 				81E42E6115ADE82F001FA72D /* NSDictionary+Helpers.m in Sources */,
 				81E42E6215ADE82F001FA72D /* NSString+Encoding.m in Sources */,
 				81E42E6315ADE82F001FA72D /* GHBaseController.m in Sources */,
@@ -1424,14 +1414,6 @@
 				81E42D8C15ADE82F001FA72D /* en */,
 			);
 			name = GHEventsMainViewController.xib;
-			sourceTree = "<group>";
-		};
-		81E42D8D15ADE82F001FA72D /* GHEventsNavigationViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				81E42D8E15ADE82F001FA72D /* en */,
-			);
-			name = GHEventsNavigationViewController.xib;
 			sourceTree = "<group>";
 		};
 		81E42D8F15ADE82F001FA72D /* InfoPlist.strings */ = {
