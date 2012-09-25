@@ -155,11 +155,10 @@
     
 	self.title = @"Upcoming Events";
 	self.eventDetailsViewController = [[GHEventDetailsViewController alloc] initWithNibName:nil bundle:nil];
-    self.navigationItem.backBarButtonItem =
-    [[UIBarButtonItem alloc] initWithTitle:@"Events"
-                                     style:UIBarButtonItemStyleBordered
-                                    target:nil
-                                    action:nil];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Events"
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:nil
+                                                                            action:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

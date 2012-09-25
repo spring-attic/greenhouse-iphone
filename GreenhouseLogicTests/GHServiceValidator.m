@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GHServiceValidator.h"
-#import "GHOAuth2Controller.h"
+#import "GHAuthController.h"
 #import "OA2AccessGrant.h"
 #import "OA2SignInRequest.h"
 #import "OA2AuthorizedRequest.h"
@@ -116,7 +116,7 @@
     if (data.length > 0 && error == nil)
     {
         NSArray *array = [NSJSONSerialization JSONObjectWithData:data options:0 error:NULL];
-        DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+        NSLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
         NSString *title = [[array objectAtIndex:0] objectForKey:@"title"];
         STAssertNotNil(title, @"should have a title");
     }

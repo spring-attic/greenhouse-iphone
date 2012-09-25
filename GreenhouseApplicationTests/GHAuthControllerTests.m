@@ -14,17 +14,17 @@
 //  limitations under the License.
 //
 //
-//  GHOauth2ControllerTests.m
+//  GHAuthControllerTests.m
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 8/21/12.
 //
 
-#import "GHOauth2ControllerTests.h"
-#import "GHOAuth2Controller.h"
+#import "GHAuthControllerTests.h"
+#import "GHAuthController.h"
 #import "OA2AccessGrant.h"
 
-@implementation GHOauth2ControllerTests
+@implementation GHAuthControllerTests
 
 - (void)setUp
 {
@@ -51,20 +51,20 @@
                                                                  refreshToken:@"89d264f4-2481-4d9b-a81f-128e964d9cd8"
                                                                     expireTime:1777785364.514293];
     
-    BOOL result = [[GHOAuth2Controller sharedInstance] storeAccessGrant:accessGrant];
+    BOOL result = [GHAuthController storeAccessGrant:accessGrant];
     STAssertTrue(result, @"failed to store access grant in keychain");
     
-    OA2AccessGrant *accessGrant2 = [[GHOAuth2Controller sharedInstance] fetchAccessGrant];
+    OA2AccessGrant *accessGrant2 = [GHAuthController fetchAccessGrant];
     STAssertNotNil(accessGrant2.accessToken, @"token is nil");
     STAssertTrue([accessGrant.accessToken isEqualToString:accessGrant2.accessToken], @"access tokens do not match");
     STAssertTrue([accessGrant.scope isEqualToString:accessGrant2.scope], @"access tokens do not match");
     STAssertTrue([accessGrant.refreshToken isEqualToString:accessGrant2.refreshToken], @"access tokens do not match");
     STAssertEqualsWithAccuracy(accessGrant.expireTime, accessGrant2.expireTime, 0.000001, @"expire times are not equal");
 
-    result = [[GHOAuth2Controller sharedInstance] deleteAccessGrant];
+    result = [GHAuthController deleteAccessGrant];
     STAssertTrue(result, @"failed to delete access grant");
     
-    OA2AccessGrant *accessGrant3 = [[GHOAuth2Controller sharedInstance] fetchAccessGrant];
+    OA2AccessGrant *accessGrant3 = [GHAuthController fetchAccessGrant];
     STAssertNil(accessGrant3, @"access should be nil");
 }
 

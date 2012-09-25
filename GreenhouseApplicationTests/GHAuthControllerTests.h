@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,23 +14,14 @@
 //  limitations under the License.
 //
 //
-//  GHAuthorizeViewController.h
+//  GHAuthControllerTests.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 8/21/12.
 //
 
-#import <UIKit/UIKit.h>
+#import <SenTestingKit/SenTestingKit.h>
 
-@class GHSignInViewController;
-@class GHJoinNowViewController;
-
-@interface GHAuthorizeViewController : UIViewController
-
-@property (nonatomic, strong) IBOutlet GHSignInViewController *signInViewController;
-@property (nonatomic, strong) IBOutlet GHJoinNowViewController *joinNowViewController;
-
-- (IBAction)actionSignIn:(id)sender;
-- (IBAction)actionJoinNow:(id)sender;
+@interface GHAuthControllerTests : SenTestCase
 
 @end

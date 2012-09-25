@@ -21,13 +21,14 @@
 //
 
 #import "GHAuthorizedRequest.h"
-#import "GHOAuth2Controller.h"
+#import "GHAuthController.h"
+#import "OA2AccessGrant.h"
 
 @implementation GHAuthorizedRequest
 
 - (id)initWithURL:(NSURL *)URL
 {
-    OA2AccessGrant *accessGrant = [GHOAuth2Controller fetchAccessGrant];
+    OA2AccessGrant *accessGrant = [GHAuthController fetchAccessGrant];
     return [super initWithURL:URL accessToken:accessGrant.accessToken];
 }
 

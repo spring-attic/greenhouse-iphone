@@ -22,17 +22,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class GHAuthorizeNavigationViewController;
-
 @interface GreenhouseAppDelegate : NSObject <UIApplicationDelegate, UITabBarControllerDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
 @property (nonatomic, strong) IBOutlet UITabBarController *tabBarController;
-@property (nonatomic, strong) IBOutlet GHAuthorizeNavigationViewController *authorizeNavigationViewController;
 
 - (void)showAuthorizeNavigationViewController;
 - (void)showTabBarController;
-- (void)reloadDataForCurrentView;
 
 @end
 

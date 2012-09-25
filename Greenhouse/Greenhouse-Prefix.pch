@@ -4,30 +4,28 @@
 
 #import <Availability.h>
 
-#ifndef __IPHONE_4_0
-#warning "This project uses features only available in iPhone SDK 4.0 and later."
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iPhone SDK 5.0 and later."
 #endif
-
 
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
 
-	//Debug Logging
+	// Debug Logging
 	#import "DLog.h"
-
-	// Application Settings
-	#import "GHAppSettings.h"
-	#import "GHUserSettings.h"
 
 	// Categories
 	#import "NSString+Encoding.h"
 	#import "NSDictionary+Helpers.h"
 	#import "UIColor+CustomColors.h"
 
-	// Commonly Referenced Classes
-	#import "GreenhouseAppDelegate.h"
-    #import "GHOauth2Controller.h"
+    // App Delegate
+    #import "GreenhouseAppDelegate.h"
 
+    // Application Settings
+    #import "GHAppSettings.h"
+    #import "GHUserSettings.h"
+    #import "GHConnectionSettings.h"
 #endif

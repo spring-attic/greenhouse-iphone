@@ -14,14 +14,14 @@
 //  limitations under the License.
 //
 //
-//  GHOauth2ControllerTests.h
+//  GHSignUpFormTests.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 8/21/12.
+//  Created by Roy Clarkson on 9/24/12.
 //
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface GHOauth2ControllerTests : SenTestCase
+@interface GHSignUpFormTests : SenTestCase
 
 @end

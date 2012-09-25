@@ -25,6 +25,7 @@
 #import "GHProfileController.h"
 #import "Profile.h"
 #import "GHCoreDataManager.h"
+#import "GHAuthController.h"
 
 @interface GHProfileMainViewController()
 
@@ -47,7 +48,7 @@
 - (IBAction)actionSignOut:(id)sender
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Would like to sign out?"
+                                                        message:@"Would you like to sign out?"
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
@@ -71,7 +72,7 @@
 
 - (void)signOut
 {
-    [GHOAuth2Controller deleteAccessGrant];
+    [GHAuthController deleteAccessGrant];
     [[GHCoreDataManager sharedInstance] deletePersistentStore];
 	[(GreenhouseAppDelegate *)[[UIApplication sharedApplication] delegate] showAuthorizeNavigationViewController];
 }

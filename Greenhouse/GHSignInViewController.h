@@ -21,9 +21,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GHAuthControllerDelegate.h"
 
-
-@interface GHSignInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
+@interface GHSignInViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, GHAuthControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UIImageView *logoImage;
 @property (nonatomic, strong) IBOutlet UITableView *signInForm;

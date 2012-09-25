@@ -14,23 +14,27 @@
 //  limitations under the License.
 //
 //
-//  GHOAuth2Controller.h
+//  GHAuthController.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 8/14/12.
 //
 
 #import <Foundation/Foundation.h>
-#import "OA2AccessGrant.h"
+#import "GHAuthControllerDelegate.h"
 
-@interface GHOAuth2Controller : NSObject
+@class OA2AccessGrant;
+@class GHSignUpForm;
 
-+ (GHOAuth2Controller *)sharedInstance;
+@interface GHAuthController : NSObject
 
++ (GHAuthController *)sharedInstance;
 + (BOOL)isAuthorized;
-- (NSURLRequest *)signInRequestWithUsername:(NSString *)username password:(NSString *)password;
 + (BOOL)storeAccessGrant:(OA2AccessGrant *)accessGrant;
 + (OA2AccessGrant *)fetchAccessGrant;
 + (BOOL)deleteAccessGrant;
+
+- (void)sendRequestToSignIn:(NSString *)username password:(NSString *)password delegate:(id<GHAuthControllerDelegate>)delegate;
+- (void)sendRequestToSignUp:(GHSignUpForm *)signUpForm delegate:(id<GHAuthControllerDelegate>)delegate;
 
 @end

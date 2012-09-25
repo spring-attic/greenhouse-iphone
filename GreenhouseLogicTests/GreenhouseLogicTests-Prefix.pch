@@ -5,10 +5,12 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
 
-    //Debug Logging
+    // Debug Logging
     #import "DLog.h"
 
+    // Categories
     #import "UIColor+CustomColors.h"
 	#import "NSDictionary+Helpers.h"
     #import "NSString+Encoding.h"

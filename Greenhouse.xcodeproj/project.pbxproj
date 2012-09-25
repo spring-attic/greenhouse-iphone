@@ -10,10 +10,13 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		810FD30715D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */; };
+		8106BD6E160FA65C003968DB /* GHSignUpForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8106BD6D160FA65C003968DB /* GHSignUpForm.m */; };
 		810FD30D15D9A0AE00A9B3B3 /* GHSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */; };
 		81147184160BA97700878ACD /* GHTwitterConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81147182160BA97700878ACD /* GHTwitterConnectViewController.m */; };
 		81147186160BB45F00878ACD /* GHTwitterConnectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81147188160BB45F00878ACD /* GHTwitterConnectViewController.xib */; };
+		811471AB160CA8F300878ACD /* GHJoinNowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 811471AA160CA8F300878ACD /* GHJoinNowViewController.m */; };
+		811471AF160CA92600878ACD /* GHJoinNowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 811471B1160CA92600878ACD /* GHJoinNowViewController.xib */; };
+		811471B4160CB1C500878ACD /* GHFormTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 811471B3160CB1C400878ACD /* GHFormTextFieldCell.m */; };
 		811D71A1160A66B4007C806C /* gh-header-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A0160A66B4007C806C /* gh-header-logo.png */; };
 		811D71A3160A66BC007C806C /* gh-header-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D71A2160A66BC007C806C /* gh-header-logo@2x.png */; };
 		811D71A5160A6875007C806C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 811D719A160A626B007C806C /* Default@2x.png */; };
@@ -37,13 +40,13 @@
 		81963AE515E3E59E002C1BC6 /* GHServiceValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 81963AE315E3D95F002C1BC6 /* GHServiceValidator.m */; };
 		81963AE615E3EBF4002C1BC6 /* OA2AccessGrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752515DD7B820056A806 /* OA2AccessGrant.m */; };
 		81963AE715E3EC29002C1BC6 /* NSDictionary+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42DE015ADE82F001FA72D /* NSDictionary+Helpers.m */; };
-		81963AE815E3F0B7002C1BC6 /* GHOAuth2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2492715DA948600C84332 /* GHOAuth2Controller.m */; };
+		81963AE815E3F0B7002C1BC6 /* GHAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2492715DA948600C84332 /* GHAuthController.m */; };
 		81963AE915E3F15B002C1BC6 /* GHURLPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752115DD388F0056A806 /* GHURLPostRequest.m */; };
 		81963AEA15E3F162002C1BC6 /* GHURLRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BD9D315DCBF0C00BD7842 /* GHURLRequestParameters.m */; };
 		81963AEB15E3F16C002C1BC6 /* OA2SignInRequestParameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BD9CC15DC949A00BD7842 /* OA2SignInRequestParameters.m */; };
 		81963AED15E3F1CA002C1BC6 /* GHKeychainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 81963ADF15E2B88B002C1BC6 /* GHKeychainManager.m */; };
 		81963AEE15E3F1EE002C1BC6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E75F3911BE0D5800E6B283 /* Security.framework */; };
-		81963AF115E3F5DA002C1BC6 /* GHOauth2ControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81963AF015E3F5DA002C1BC6 /* GHOauth2ControllerTests.m */; };
+		81963AF115E3F5DA002C1BC6 /* GHAuthControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81963AF015E3F5DA002C1BC6 /* GHAuthControllerTests.m */; };
 		8196752215DD388F0056A806 /* GHURLPostRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752115DD388F0056A806 /* GHURLPostRequest.m */; };
 		8196752615DD7B820056A806 /* OA2AccessGrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752515DD7B820056A806 /* OA2AccessGrant.m */; };
 		8196752715DE7A290056A806 /* OA2AccessGrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8196752515DD7B820056A806 /* OA2AccessGrant.m */; };
@@ -61,12 +64,14 @@
 		81A1BD3E15D5B44E0028A2D3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81A1BD3C15D5B44E0028A2D3 /* InfoPlist.strings */; };
 		81A1BD4F15D5BA760028A2D3 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E42E0D15ADE82F001FA72D /* UIColor+CustomColors.m */; };
 		81A1BD5215D5BAE30028A2D3 /* UIColor_CustomColorsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A1BD5115D5BAE30028A2D3 /* UIColor_CustomColorsTests.m */; };
-		81A2491F15D9A6B400C84332 /* GHAuthorizeNavigationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A2492115D9A6B400C84332 /* GHAuthorizeNavigationViewController.xib */; };
 		81A2492315D9A6BF00C84332 /* GHSignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81A2492515D9A6BF00C84332 /* GHSignInViewController.xib */; };
-		81A2492815DA948600C84332 /* GHOAuth2Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2492715DA948600C84332 /* GHOAuth2Controller.m */; };
+		81A2492815DA948600C84332 /* GHAuthController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2492715DA948600C84332 /* GHAuthController.m */; };
 		81A2B6781607B1F800F0840A /* GHEventSessionTweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6771607B1F800F0840A /* GHEventSessionTweetDetailsViewController.m */; };
 		81A2B67B1607BA3000F0840A /* twitter-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A2B6791607BA2D00F0840A /* twitter-logo.png */; };
 		81A2B67C1607BA3000F0840A /* twitter-logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81A2B67A1607BA2E00F0840A /* twitter-logo@2x.png */; };
+		81B5CBF1161029330032369C /* GHConnectionSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 81FF4E7B1608D05F001B0ABC /* GHConnectionSettings.m */; };
+		81B5CBF21610B1D90032369C /* GHSignUpForm.m in Sources */ = {isa = PBXBuildFile; fileRef = 8106BD6D160FA65C003968DB /* GHSignUpForm.m */; };
+		81B5CBF51610B2E20032369C /* GHSignUpFormTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B5CBF41610B2E20032369C /* GHSignUpFormTests.m */; };
 		81C3139815E7DEF1004ADD53 /* GHKeychainManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C3139715E7DEF1004ADD53 /* GHKeychainManagerTests.m */; };
 		81C3139C15E82372004ADD53 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C3139B15E82371004ADD53 /* NSData+Base64.m */; };
 		81C3139D15E82372004ADD53 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C3139B15E82371004ADD53 /* NSData+Base64.m */; };
@@ -196,13 +201,19 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		28860BE40F44EE6400985440 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		810FD30415D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAuthorizeNavigationViewController.h; sourceTree = "<group>"; };
-		810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAuthorizeNavigationViewController.m; sourceTree = "<group>"; };
+		8106BD6C160FA65C003968DB /* GHSignUpForm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSignUpForm.h; sourceTree = "<group>"; };
+		8106BD6D160FA65C003968DB /* GHSignUpForm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSignUpForm.m; sourceTree = "<group>"; };
+		8106BD6F160FB3FC003968DB /* GHAuthControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAuthControllerDelegate.h; sourceTree = "<group>"; };
 		810FD30A15D9A0AE00A9B3B3 /* GHSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSignInViewController.h; sourceTree = "<group>"; };
 		810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSignInViewController.m; sourceTree = "<group>"; };
 		81147181160BA97700878ACD /* GHTwitterConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHTwitterConnectViewController.h; sourceTree = "<group>"; };
 		81147182160BA97700878ACD /* GHTwitterConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHTwitterConnectViewController.m; sourceTree = "<group>"; };
 		81147187160BB45F00878ACD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHTwitterConnectViewController.xib; sourceTree = "<group>"; };
+		811471A9160CA8F300878ACD /* GHJoinNowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHJoinNowViewController.h; sourceTree = "<group>"; };
+		811471AA160CA8F300878ACD /* GHJoinNowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHJoinNowViewController.m; sourceTree = "<group>"; };
+		811471B0160CA92600878ACD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHJoinNowViewController.xib; sourceTree = "<group>"; };
+		811471B2160CB1C400878ACD /* GHFormTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHFormTextFieldCell.h; sourceTree = "<group>"; };
+		811471B3160CB1C400878ACD /* GHFormTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHFormTextFieldCell.m; sourceTree = "<group>"; };
 		811D7198160A614A007C806C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		811D719A160A626B007C806C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		811D71A0160A66B4007C806C /* gh-header-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gh-header-logo.png"; sourceTree = "<group>"; };
@@ -241,8 +252,8 @@
 		81963ADF15E2B88B002C1BC6 /* GHKeychainManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHKeychainManager.m; sourceTree = "<group>"; };
 		81963AE215E3D95F002C1BC6 /* GHServiceValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHServiceValidator.h; path = ../GreenhouseLogicTests/GHServiceValidator.h; sourceTree = "<group>"; };
 		81963AE315E3D95F002C1BC6 /* GHServiceValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHServiceValidator.m; path = ../GreenhouseLogicTests/GHServiceValidator.m; sourceTree = "<group>"; };
-		81963AEF15E3F5DA002C1BC6 /* GHOauth2ControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOauth2ControllerTests.h; sourceTree = "<group>"; };
-		81963AF015E3F5DA002C1BC6 /* GHOauth2ControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHOauth2ControllerTests.m; sourceTree = "<group>"; };
+		81963AEF15E3F5DA002C1BC6 /* GHAuthControllerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAuthControllerTests.h; sourceTree = "<group>"; };
+		81963AF015E3F5DA002C1BC6 /* GHAuthControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAuthControllerTests.m; sourceTree = "<group>"; };
 		8196752015DD388F0056A806 /* GHURLPostRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHURLPostRequest.h; sourceTree = "<group>"; };
 		8196752115DD388F0056A806 /* GHURLPostRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHURLPostRequest.m; sourceTree = "<group>"; };
 		8196752415DD7B820056A806 /* OA2AccessGrant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OA2AccessGrant.h; sourceTree = "<group>"; };
@@ -263,14 +274,15 @@
 		81A1BD4215D5B44E0028A2D3 /* GreenhouseApplicationTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GreenhouseApplicationTests-Prefix.pch"; sourceTree = "<group>"; };
 		81A1BD5015D5BAE30028A2D3 /* UIColor_CustomColorsTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIColor_CustomColorsTests.h; sourceTree = "<group>"; };
 		81A1BD5115D5BAE30028A2D3 /* UIColor_CustomColorsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIColor_CustomColorsTests.m; sourceTree = "<group>"; };
-		81A2492015D9A6B400C84332 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHAuthorizeNavigationViewController.xib; sourceTree = "<group>"; };
 		81A2492415D9A6BF00C84332 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/GHSignInViewController.xib; sourceTree = "<group>"; };
-		81A2492615DA948600C84332 /* GHOAuth2Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHOAuth2Controller.h; sourceTree = "<group>"; };
-		81A2492715DA948600C84332 /* GHOAuth2Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHOAuth2Controller.m; sourceTree = "<group>"; };
+		81A2492615DA948600C84332 /* GHAuthController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHAuthController.h; sourceTree = "<group>"; };
+		81A2492715DA948600C84332 /* GHAuthController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHAuthController.m; sourceTree = "<group>"; };
 		81A2B6761607B1F800F0840A /* GHEventSessionTweetDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHEventSessionTweetDetailsViewController.h; sourceTree = "<group>"; };
 		81A2B6771607B1F800F0840A /* GHEventSessionTweetDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHEventSessionTweetDetailsViewController.m; sourceTree = "<group>"; };
 		81A2B6791607BA2D00F0840A /* twitter-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-logo.png"; sourceTree = "<group>"; };
 		81A2B67A1607BA2E00F0840A /* twitter-logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "twitter-logo@2x.png"; sourceTree = "<group>"; };
+		81B5CBF31610B2E20032369C /* GHSignUpFormTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHSignUpFormTests.h; sourceTree = "<group>"; };
+		81B5CBF41610B2E20032369C /* GHSignUpFormTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHSignUpFormTests.m; sourceTree = "<group>"; };
 		81C3139615E7DEF1004ADD53 /* GHKeychainManagerTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHKeychainManagerTests.h; sourceTree = "<group>"; };
 		81C3139715E7DEF1004ADD53 /* GHKeychainManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHKeychainManagerTests.m; sourceTree = "<group>"; };
 		81C3139A15E82371004ADD53 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
@@ -527,12 +539,12 @@
 		8124CE6C16078C55000D3D6E /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
-				810FD30415D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.h */,
-				810FD30515D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m */,
-				81A2492115D9A6B400C84332 /* GHAuthorizeNavigationViewController.xib */,
 				81E42D6715ADE82F001FA72D /* GHAuthorizeViewController.h */,
 				81E42D6815ADE82F001FA72D /* GHAuthorizeViewController.m */,
 				81E42D7915ADE82F001FA72D /* GHAuthorizeViewController.xib */,
+				811471A9160CA8F300878ACD /* GHJoinNowViewController.h */,
+				811471AA160CA8F300878ACD /* GHJoinNowViewController.m */,
+				811471B1160CA92600878ACD /* GHJoinNowViewController.xib */,
 				810FD30A15D9A0AE00A9B3B3 /* GHSignInViewController.h */,
 				810FD30B15D9A0AE00A9B3B3 /* GHSignInViewController.m */,
 				81A2492515D9A6BF00C84332 /* GHSignInViewController.xib */,
@@ -549,6 +561,8 @@
 				815D0A431604F31F002786A4 /* EventSession.m */,
 				81CFAA5E15F9077500661D68 /* EventSessionLeader.h */,
 				81CFAA5F15F9077800661D68 /* EventSessionLeader.m */,
+				8106BD6C160FA65C003968DB /* GHSignUpForm.h */,
+				8106BD6D160FA65C003968DB /* GHSignUpForm.m */,
 				81CFAA5515F7F31500661D68 /* Profile.h */,
 				81CFAA5615F7F31600661D68 /* Profile.m */,
 				815D0A481604F372002786A4 /* Tweet.h */,
@@ -608,6 +622,7 @@
 			children = (
 				8196752915DE7C320056A806 /* Categories */,
 				8196752A15DE7C4A0056A806 /* Controllers */,
+				81B5CBF61610BACC0032369C /* Models */,
 				81A1BD1D15D5AF9D0028A2D3 /* Supporting Files */,
 			);
 			path = GreenhouseLogicTests;
@@ -628,8 +643,8 @@
 			children = (
 				81C3139615E7DEF1004ADD53 /* GHKeychainManagerTests.h */,
 				81C3139715E7DEF1004ADD53 /* GHKeychainManagerTests.m */,
-				81963AEF15E3F5DA002C1BC6 /* GHOauth2ControllerTests.h */,
-				81963AF015E3F5DA002C1BC6 /* GHOauth2ControllerTests.m */,
+				81963AEF15E3F5DA002C1BC6 /* GHAuthControllerTests.h */,
+				81963AF015E3F5DA002C1BC6 /* GHAuthControllerTests.m */,
 				81963AE215E3D95F002C1BC6 /* GHServiceValidator.h */,
 				81963AE315E3D95F002C1BC6 /* GHServiceValidator.m */,
 				81A1BD3A15D5B44E0028A2D3 /* Supporting Files */,
@@ -645,6 +660,15 @@
 				81A1BD4215D5B44E0028A2D3 /* GreenhouseApplicationTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		81B5CBF61610BACC0032369C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81B5CBF31610B2E20032369C /* GHSignUpFormTests.h */,
+				81B5CBF41610B2E20032369C /* GHSignUpFormTests.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		81CD36F816023F1900FFFCEA /* Events */ = {
@@ -840,6 +864,8 @@
 				81E42D6F15ADE82F001FA72D /* GHCustomTabBar.m */,
 				81E42D7015ADE82F001FA72D /* GHCustomToolbar.h */,
 				81E42D7115ADE82F001FA72D /* GHCustomToolbar.m */,
+				811471B2160CB1C400878ACD /* GHFormTextFieldCell.h */,
+				811471B3160CB1C400878ACD /* GHFormTextFieldCell.m */,
 				81E42E0215ADE82F001FA72D /* GHTweetTableViewCell.h */,
 				81E42E0315ADE82F001FA72D /* GHTweetTableViewCell.m */,
 				81E42E1215ADE82F001FA72D /* GHVenueAnnotation.h */,
@@ -878,6 +904,9 @@
 		81E42ED515AF4160001FA72D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				81A2492615DA948600C84332 /* GHAuthController.h */,
+				81A2492715DA948600C84332 /* GHAuthController.m */,
+				8106BD6F160FB3FC003968DB /* GHAuthControllerDelegate.h */,
 				81E42DE315ADE82F001FA72D /* GHBaseController.h */,
 				81E42DE415ADE82F001FA72D /* GHBaseController.m */,
 				81E42DA115ADE82F001FA72D /* GHEventController.h */,
@@ -892,8 +921,6 @@
 				818F217015FD9A8F0003B72C /* GHEventSessionsFavoritesDelegate.h */,
 				818F216D15FD960A0003B72C /* GHEventSessionUpdateFavoriteDelegate.h */,
 				81E42DDB15ADE82F001FA72D /* GHLocationManagerDelegate.h */,
-				81A2492615DA948600C84332 /* GHOAuth2Controller.h */,
-				81A2492715DA948600C84332 /* GHOAuth2Controller.m */,
 				81E42DE915ADE82F001FA72D /* GHProfileController.h */,
 				81E42DEA15ADE82F001FA72D /* GHProfileController.m */,
 				81E42DEB15ADE82F001FA72D /* GHProfileControllerDelegate.h */,
@@ -1112,7 +1139,6 @@
 				81E42E7215ADE82F001FA72D /* tab-events@2x.png in Resources */,
 				81E42E7315ADE82F001FA72D /* tab-info.png in Resources */,
 				81E42E7415ADE82F001FA72D /* tab-info@2x.png in Resources */,
-				81A2491F15D9A6B400C84332 /* GHAuthorizeNavigationViewController.xib in Resources */,
 				81A2492315D9A6BF00C84332 /* GHSignInViewController.xib in Resources */,
 				817D817015FE831900C7A351 /* GHEventSessionsScheduleViewController.xib in Resources */,
 				81A2B67B1607BA3000F0840A /* twitter-logo.png in Resources */,
@@ -1126,6 +1152,7 @@
 				819DBEBE160AD574002A6081 /* GHEventSessionDetailsContent.html in Resources */,
 				819DBEC1160AE378002A6081 /* GHVenueDetailsContent.html in Resources */,
 				81147186160BB45F00878ACD /* GHTwitterConnectViewController.xib in Resources */,
+				811471AF160CA92600878ACD /* GHJoinNowViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1228,9 +1255,8 @@
 				81E42E8015ADE82F001FA72D /* GHVenueAnnotation.m in Sources */,
 				81E42E8115ADE82F001FA72D /* GHVenueDetailsViewController.m in Sources */,
 				81E42E8315ADE82F001FA72D /* GHWebImageView.m in Sources */,
-				810FD30715D99E9200A9B3B3 /* GHAuthorizeNavigationViewController.m in Sources */,
 				810FD30D15D9A0AE00A9B3B3 /* GHSignInViewController.m in Sources */,
-				81A2492815DA948600C84332 /* GHOAuth2Controller.m in Sources */,
+				81A2492815DA948600C84332 /* GHAuthController.m in Sources */,
 				818BD9CD15DC949A00BD7842 /* OA2SignInRequestParameters.m in Sources */,
 				818BD9D415DCBF0C00BD7842 /* GHURLRequestParameters.m in Sources */,
 				8196752215DD388F0056A806 /* GHURLPostRequest.m in Sources */,
@@ -1258,6 +1284,9 @@
 				81A2B6781607B1F800F0840A /* GHEventSessionTweetDetailsViewController.m in Sources */,
 				81FF4E7C1608D05F001B0ABC /* GHConnectionSettings.m in Sources */,
 				81147184160BA97700878ACD /* GHTwitterConnectViewController.m in Sources */,
+				811471AB160CA8F300878ACD /* GHJoinNowViewController.m in Sources */,
+				811471B4160CB1C500878ACD /* GHFormTextFieldCell.m in Sources */,
+				8106BD6E160FA65C003968DB /* GHSignUpForm.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1271,6 +1300,8 @@
 				818C666215D95C6600594B97 /* NSDictionary+Helpers.m in Sources */,
 				8196752715DE7A290056A806 /* OA2AccessGrant.m in Sources */,
 				8196752E15DE7C850056A806 /* OA2AccessGrantTests.m in Sources */,
+				81B5CBF21610B1D90032369C /* GHSignUpForm.m in Sources */,
+				81B5CBF51610B2E20032369C /* GHSignUpFormTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1281,17 +1312,18 @@
 				81963AE515E3E59E002C1BC6 /* GHServiceValidator.m in Sources */,
 				81963AE615E3EBF4002C1BC6 /* OA2AccessGrant.m in Sources */,
 				81963AE715E3EC29002C1BC6 /* NSDictionary+Helpers.m in Sources */,
-				81963AE815E3F0B7002C1BC6 /* GHOAuth2Controller.m in Sources */,
+				81963AE815E3F0B7002C1BC6 /* GHAuthController.m in Sources */,
 				81963AE915E3F15B002C1BC6 /* GHURLPostRequest.m in Sources */,
 				81963AEA15E3F162002C1BC6 /* GHURLRequestParameters.m in Sources */,
 				81963AEB15E3F16C002C1BC6 /* OA2SignInRequestParameters.m in Sources */,
 				81963AED15E3F1CA002C1BC6 /* GHKeychainManager.m in Sources */,
-				81963AF115E3F5DA002C1BC6 /* GHOauth2ControllerTests.m in Sources */,
+				81963AF115E3F5DA002C1BC6 /* GHAuthControllerTests.m in Sources */,
 				81C3139815E7DEF1004ADD53 /* GHKeychainManagerTests.m in Sources */,
 				81C3139D15E82372004ADD53 /* NSData+Base64.m in Sources */,
 				81C313A415EBE824004ADD53 /* OA2AuthorizedRequest.m in Sources */,
 				81C313A515EBE8B2004ADD53 /* GHURLRequest.m in Sources */,
 				81C313A915EBEA1A004ADD53 /* OA2SignInRequest.m in Sources */,
+				81B5CBF1161029330032369C /* GHConnectionSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1312,6 +1344,14 @@
 				81147187160BB45F00878ACD /* en */,
 			);
 			name = GHTwitterConnectViewController.xib;
+			sourceTree = "<group>";
+		};
+		811471B1160CA92600878ACD /* GHJoinNowViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				811471B0160CA92600878ACD /* en */,
+			);
+			name = GHJoinNowViewController.xib;
 			sourceTree = "<group>";
 		};
 		817D817215FE831900C7A351 /* GHEventSessionsScheduleViewController.xib */ = {
@@ -1336,14 +1376,6 @@
 				81A1BD3D15D5B44E0028A2D3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		81A2492115D9A6B400C84332 /* GHAuthorizeNavigationViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				81A2492015D9A6B400C84332 /* en */,
-			);
-			name = GHAuthorizeNavigationViewController.xib;
 			sourceTree = "<group>";
 		};
 		81A2492515D9A6BF00C84332 /* GHSignInViewController.xib */ = {

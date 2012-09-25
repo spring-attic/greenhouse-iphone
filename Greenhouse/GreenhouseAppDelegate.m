@@ -22,8 +22,7 @@
 
 //#import <CoreLocation/CoreLocation.h>
 #import "GreenhouseAppDelegate.h"
-#import "GHAuthorizeNavigationViewController.h"
-#import "GHOAuth2Controller.h"
+#import "GHAuthController.h"
 #import "GHCoreDataManager.h"
 
 @interface GreenhouseAppDelegate()
@@ -35,29 +34,21 @@
 @implementation GreenhouseAppDelegate
 
 @synthesize window;
+@synthesize navigationController;
 @synthesize tabBarController;
-@synthesize authorizeNavigationViewController;
 
 - (void)showAuthorizeNavigationViewController
 {	
 	[tabBarController.view removeFromSuperview];
-    [authorizeNavigationViewController.navigationController popToRootViewControllerAnimated:NO];
-	[window addSubview:authorizeNavigationViewController.view];
+    [navigationController popToRootViewControllerAnimated:NO];
+    [window addSubview:navigationController.view];
 }
 
 - (void)showTabBarController
 {
-	[authorizeNavigationViewController.view removeFromSuperview];
+    [navigationController.view removeFromSuperview];
 	[window addSubview:tabBarController.view];
 	tabBarController.selectedIndex = 0;
-}
-
-- (void)reloadDataForCurrentView
-{
-	if ([tabBarController isViewLoaded] && [tabBarController.selectedViewController respondsToSelector:@selector(reloadData)])
-	{
-		[tabBarController.selectedViewController performSelector:@selector(reloadData)];
-	}	
 }
 
 - (void)verifyLocationServices
@@ -80,7 +71,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     // sign out
-    [GHOAuth2Controller deleteAccessGrant];
+    [GHAuthController deleteAccessGrant];
     [[GHCoreDataManager sharedInstance] deletePersistentStore];
     [self showAuthorizeNavigationViewController];    
 }
@@ -110,7 +101,7 @@
 	if ([GHUserSettings resetAppOnStart])
 	{
 		DLog(@"reset app");
-		[GHOAuth2Controller deleteAccessGrant];
+		[GHAuthController deleteAccessGrant];
         [[GHCoreDataManager sharedInstance] deletePersistentStore];
 		[GHUserSettings reset];
 		[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
@@ -133,12 +124,12 @@
 	DLog(@"");
 	if ([GHUserSettings resetAppOnStart])
 	{
-		[GHOAuth2Controller deleteAccessGrant];
+		[GHAuthController deleteAccessGrant];
         [[GHCoreDataManager sharedInstance] deletePersistentStore];
 		[GHUserSettings reset];
 		[self showAuthorizeNavigationViewController];
 	}	
-	else if ([GHOAuth2Controller isAuthorized])
+	else if ([GHAuthController isAuthorized])
 	{
 		[self showTabBarController];
 	}

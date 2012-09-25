@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,23 +14,17 @@
 //  limitations under the License.
 //
 //
-//  GHAuthorizeViewController.h
+//  GHFormTextFieldCell.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 6/7/10.
+//  Created by Roy Clarkson on 8/2/12.
 //
 
-#import <UIKit/UIKit.h>
+#import "GHFormTextFieldCell.h"
 
-@class GHSignInViewController;
-@class GHJoinNowViewController;
+@implementation GHFormTextFieldCell
 
-@interface GHAuthorizeViewController : UIViewController
-
-@property (nonatomic, strong) IBOutlet GHSignInViewController *signInViewController;
-@property (nonatomic, strong) IBOutlet GHJoinNowViewController *joinNowViewController;
-
-- (IBAction)actionSignIn:(id)sender;
-- (IBAction)actionJoinNow:(id)sender;
+@synthesize formLabel;
+@synthesize formTextField;
 
 @end

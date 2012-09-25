@@ -25,16 +25,20 @@
 #import "GHURLPostRequest.h"
 #import "OA2AccessGrant.h"
 #import "GHActivityAlertView.h"
+#import "GHAuthController.h"
 
 @interface GHSignInViewController ()
 {
     BOOL keyboardIsDisplaying;
 }
 
+@property (nonatomic, strong) GHActivityAlertView *activityView;
+
 @end
 
 @implementation GHSignInViewController
 
+@synthesize activityView;
 @synthesize logoImage;
 @synthesize signInForm;
 @synthesize emailCell;
@@ -71,83 +75,9 @@
         return;
     }
     
-    GHActivityAlertView *activityAlertView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Signing in..."];
-	[activityAlertView startAnimating];
-    NSURLRequest *request = [[GHOAuth2Controller sharedInstance] signInRequestWithUsername:usernameValue password:passwordValue];
-    DLog(@"%@", request);
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
-    [NSURLConnection sendAsynchronousRequest:request
-                                       queue:[[NSOperationQueue alloc] init]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-     {
-         [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-         dispatch_sync(dispatch_get_main_queue(), ^{
-             [activityAlertView stopAnimating];
-         });
-         
-         NSInteger statusCode = [(NSHTTPURLResponse *)response statusCode];         
-         if (statusCode == 200 && data.length > 0 && error == nil)
-         {
-             DLog(@"%@", [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
-             NSError *errorInternal;
-             OA2AccessGrant *accessGrant = [[OA2AccessGrant alloc] initWithData:data error:&errorInternal];
-             if (!errorInternal)
-             {
-                 [GHOAuth2Controller storeAccessGrant:accessGrant];
-                 dispatch_sync(dispatch_get_main_queue(), ^{
-                     [(GreenhouseAppDelegate *)[[UIApplication sharedApplication] delegate] showTabBarController];
-                 });
-             }
-             else
-             {
-                 DLog(@"error parsing access grant: %@", [errorInternal localizedDescription]);
-             }
-         }
-         else if (error)
-         {
-             DLog(@"%d - %@", [error code], [error localizedDescription]);
-             NSString *msg;
-             switch ([error code]) {
-                 case NSURLErrorUserCancelledAuthentication:
-                     msg = @"Your email or password was entered incorrectly.";
-                     break;
-                 case NSURLErrorCannotConnectToHost:
-                     msg = @"The server is unavailable. Please try again in a few minutes.";
-                     break;
-                 default:
-                     msg = @"A problem occurred with the network connection. Please try again in a few minutes.";
-                     break;
-             }
-             dispatch_sync(dispatch_get_main_queue(), ^{
-                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                                 message:msg
-                                                                delegate:nil
-                                                       cancelButtonTitle:@"OK"
-                                                       otherButtonTitles:nil];
-                 [alert show];
-             });
-         }
-         else if (statusCode != 200)
-         {
-             DLog(@"HTTP Status Code: %d", statusCode);
-             NSString *msg;
-             switch (statusCode) {
-                 default:
-                     msg = @"You cannot be signed in.";
-                     break;
-             }
-             dispatch_sync(dispatch_get_main_queue(), ^{
-                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                     message:msg
-                                                                    delegate:nil
-                                                           cancelButtonTitle:@"OK"
-                                                           otherButtonTitles:nil];
-                 [alertView show];
-             });
-         }
-     }];
-    
-    activityAlertView = nil;
+    activityView = [[GHActivityAlertView alloc] initWithActivityMessage:@"Signing in..."];
+	[activityView startAnimating];
+    [[GHAuthController sharedInstance] sendRequestToSignIn:usernameValue password:passwordValue delegate:self];
 }
 
 - (void)hideKeyboard
@@ -164,6 +94,15 @@
     keyboardIsDisplaying = NO;
 }
 
+- (NSTimeInterval)keyboardAnimationDurationForNotification:(NSNotification*)notification
+{
+    NSDictionary* info = [notification userInfo];
+    NSValue* value = [info objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+    NSTimeInterval duration = 0;
+    [value getValue:&duration];
+    return duration;
+}
+
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     DLog(@"");
@@ -173,11 +112,11 @@
     }
 
     CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y -= logoImage.frame.size.height;
+    viewFrame.origin.y -= logoImage.frame.size.height + 20;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:[self keyboardAnimationDurationForNotification:notification]];
     [self.view setFrame:viewFrame];
     [UIView commitAnimations];
     
@@ -189,16 +128,34 @@
     DLog(@"");
 
     CGRect viewFrame = self.view.frame;
-    viewFrame.origin.y += logoImage.frame.size.height;
+    viewFrame.origin.y += logoImage.frame.size.height + 20;
     
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationDuration:0.2];
+    [UIView setAnimationDuration:[self keyboardAnimationDurationForNotification:notification]];
     [self.view setFrame:viewFrame];
     [UIView commitAnimations];
     
     keyboardIsDisplaying = NO;
 }
+
+
+#pragma mark -
+#pragma mark GHAuthControllerDelegate methods
+
+- (void)authRequestDidSucceed
+{
+    [activityView stopAnimating];
+    self.activityView = nil;
+    [(GreenhouseAppDelegate *)[[UIApplication sharedApplication] delegate] showTabBarController];
+}
+
+- (void)authRequestDidFailWithError:(NSError *)error
+{
+    [activityView stopAnimating];
+    self.activityView = nil;
+}
+
 
 #pragma mark -
 #pragma mark UITextFieldDelegate methods
@@ -297,6 +254,7 @@
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
 
+    self.activityView = nil;
     self.logoImage = nil;
     self.signInForm = nil;
     self.emailCell = nil;

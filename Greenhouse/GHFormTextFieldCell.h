@@ -14,16 +14,17 @@
 //  limitations under the License.
 //
 //
-//  GHAuthorizeNavigationViewController.h
+//  GHFormTextFieldCell.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 7/30/12.
+//  Created by Roy Clarkson on 8/2/12.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface GHAuthorizeNavigationViewController : UIViewController <UINavigationControllerDelegate>
+@interface GHFormTextFieldCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UINavigationController *navigationController;
+@property (nonatomic, retain) IBOutlet UILabel *formLabel;
+@property (nonatomic, retain) IBOutlet UITextField *formTextField;
 
 @end
