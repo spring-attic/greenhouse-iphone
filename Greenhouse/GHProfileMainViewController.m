@@ -45,6 +45,17 @@
 #pragma mark -
 #pragma mark Public Instance methods
 
+- (IBAction)actionViewGreenhouse:(id)sender
+{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Exit and view web site?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Cancel"
+                                              otherButtonTitles:@"OK", nil];
+    alertView.tag = 1;
+    [alertView show];
+}
+
 - (IBAction)actionSignOut:(id)sender
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
@@ -52,6 +63,7 @@
                                                        delegate:self
                                               cancelButtonTitle:@"Cancel"
                                               otherButtonTitles:@"OK", nil];
+    alertView.tag = 2;
     [alertView show];
 }
 
@@ -69,6 +81,11 @@
 
 #pragma mark -
 #pragma mark Private Instance methods
+
+- (void)openGreenhouse
+{
+    [[UIApplication sharedApplication] openURL:[GHConnectionSettings urlWithFormat:@"/settings"]];
+}
 
 - (void)signOut
 {
@@ -98,7 +115,12 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1)
+    if (alertView.tag == 1 && buttonIndex == 1)
+    {
+        [self openGreenhouse];
+    }
+    
+    if (alertView.tag == 2 && buttonIndex == 1)
     {
         [self signOut];
     }

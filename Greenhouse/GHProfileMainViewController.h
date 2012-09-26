@@ -30,6 +30,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *labelDisplayName;
 @property (nonatomic, strong) IBOutlet GHTwitterConnectViewController *twitterConnectViewController;
 
+- (IBAction)actionViewGreenhouse:(id)sender;
 - (IBAction)actionSignOut:(id)sender;
 - (IBAction)actionConnectTwitter:(id)sender;
 - (IBAction)actionRefresh:(id)sender;

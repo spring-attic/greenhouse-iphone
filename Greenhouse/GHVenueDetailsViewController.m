@@ -45,7 +45,7 @@
 - (IBAction)actionGetDirections:(id)sender
 {
     self.alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                message:@"Exit and view in Google Maps?"
+                                                message:@"Exit and view maps?"
                                                delegate:self
                                       cancelButtonTitle:@"Cancel"
                                       otherButtonTitles:@"OK", nil];
