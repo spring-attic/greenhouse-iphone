@@ -1,5 +1,5 @@
 //
-//  Copyright 2010-2012 the original author or authors.
+//  Copyright 2012 the original author or authors.
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -14,17 +14,20 @@
 //  limitations under the License.
 //
 //
-//  GHDateHelper.h
+//  EventDate.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 12/21/10.
+//  Created by Roy Clarkson on 9/25/12.
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
+@class Event;
 
-@interface GHDateHelper : NSObject
+@interface EventDate : NSManagedObject
 
-+ (NSArray *)daysBetweenStartTime:(NSDate *)startTime endTime:(NSDate *)endTime;
+@property (nonatomic, retain) NSDate * date;
+@property (nonatomic, retain) Event *event;
 
 @end

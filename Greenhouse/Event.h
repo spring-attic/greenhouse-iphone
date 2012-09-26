@@ -17,13 +17,13 @@
 //  Event.h
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 9/15/12.
+//  Created by Roy Clarkson on 9/25/12.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class EventSession, Tweet, Venue;
+@class DataRefresh, EventDate, EventSession, Tweet, Venue;
 
 @interface Event : NSManagedObject
 
@@ -39,6 +39,8 @@
 @property (nonatomic, retain) NSSet *sessions;
 @property (nonatomic, retain) NSSet *tweets;
 @property (nonatomic, retain) NSSet *venues;
+@property (nonatomic, retain) NSSet *days;
+@property (nonatomic, retain) NSSet *dataRefreshes;
 @end
 
 @interface Event (CoreDataGeneratedAccessors)
@@ -57,5 +59,15 @@
 - (void)removeVenuesObject:(Venue *)value;
 - (void)addVenues:(NSSet *)values;
 - (void)removeVenues:(NSSet *)values;
+
+- (void)addDaysObject:(EventDate *)value;
+- (void)removeDaysObject:(EventDate *)value;
+- (void)addDays:(NSSet *)values;
+- (void)removeDays:(NSSet *)values;
+
+- (void)addDataRefreshesObject:(DataRefresh *)value;
+- (void)removeDataRefreshesObject:(DataRefresh *)value;
+- (void)addDataRefreshes:(NSSet *)values;
+- (void)removeDataRefreshes:(NSSet *)values;
 
 @end

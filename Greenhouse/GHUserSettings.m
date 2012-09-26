@@ -38,7 +38,6 @@
 
 + (NSInteger)dataExpiration
 {
-	[[NSUserDefaults standardUserDefaults] synchronize];
 	NSString *s = [[NSUserDefaults standardUserDefaults] stringForKey:dataExpirationPreference];
 	DLog(@"%@", s);
 	
@@ -55,7 +54,6 @@
 
 + (BOOL)resetAppOnStart
 {
-	[[NSUserDefaults standardUserDefaults] synchronize];
 	return [[NSUserDefaults standardUserDefaults] boolForKey:resetAppOnStartPreference];
 }
 

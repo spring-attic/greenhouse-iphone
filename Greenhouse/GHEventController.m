@@ -26,6 +26,8 @@
 #import "GHCoreDataManager.h"
 #import "Event.h"
 #import "Venue.h"
+#import "EventDate.h"
+#import "GHDateHelper.h"
 
 @interface GHEventController ()
 
@@ -82,7 +84,6 @@
 - (void)setSelectedEvent:(Event *)event
 {
 	[[NSUserDefaults standardUserDefaults] setObject:event.eventId forKey:KEY_SELECTED_EVENT_ID];
-	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)sendRequestForEventsWithDelegate:(id<GHEventControllerDelegate>)delegate
@@ -165,6 +166,15 @@
             venue.latitude = [[venueDict objectForKey:@"location"] numberForKey:@"latitude"];
             venue.longitude = [[venueDict objectForKey:@"location"] numberForKey:@"longitude"];
             [event addVenuesObject:venue];
+        }];
+        
+        NSArray *days = [GHDateHelper daysBetweenStartTime:event.startTime endTime:event.endTime];
+        [days enumerateObjectsUsingBlock:^(NSDate *day, NSUInteger idx, BOOL *stop) {
+            EventDate *eventDate = [NSEntityDescription
+                                    insertNewObjectForEntityForName:@"EventDate"
+                                    inManagedObjectContext:context];
+            eventDate.date = day;
+            [event addDaysObject:eventDate];
         }];
     }];
     

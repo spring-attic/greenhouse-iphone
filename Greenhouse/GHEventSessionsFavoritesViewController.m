@@ -24,6 +24,7 @@
 #import "Event.h"
 #import "EventSession.h"
 #import "GHEventSessionController.h"
+#import "GHDataRefreshController.h"
 
 @interface GHEventSessionsFavoritesViewController ()
 
@@ -173,9 +174,27 @@
 #pragma mark -
 #pragma mark PullRefreshTableViewController methods
 
+- (NSString *)lastRefreshKey
+{
+    return @"EventSessionsFavorites";
+}
+
+- (NSDate *)lastRefreshDate
+{
+    return [[GHDataRefreshController sharedInstance] fetchLastRefreshDateWithEventId:self.event.eventId
+                                                                          descriptor:self.lastRefreshKey];
+}
+
+- (void)setLastRefreshDate:(NSDate *)date
+{
+    [[GHDataRefreshController sharedInstance] setLastRefreshDateWithEventId:self.event.eventId
+                                                                 descriptor:self.lastRefreshKey];
+}
+
 - (void)reloadTableViewDataSource
 {
-	[[GHEventSessionController sharedInstance] sendRequestForFavoriteSessionsByEventId:self.event.eventId delegate:self];
+	[[GHEventSessionController sharedInstance] sendRequestForFavoriteSessionsByEventId:self.event.eventId
+                                                                              delegate:self];
 }
 
 
@@ -184,7 +203,6 @@
 
 - (void)viewDidLoad 
 {
-	self.lastRefreshKey = @"EventSessionFavoritesViewController_LastRefresh";
     [super viewDidLoad];
     DLog(@"");
 	
@@ -193,6 +211,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    self.times = nil;
+    
     [super viewWillAppear:animated];
     DLog(@"");
     
@@ -211,7 +231,8 @@
     
     if (self.sessions == nil || self.sessions.count == 0 || self.lastRefreshExpired)
     {
-        [[GHEventSessionController sharedInstance] sendRequestForFavoriteSessionsByEventId:self.event.eventId delegate:self];
+        [[GHEventSessionController sharedInstance] sendRequestForFavoriteSessionsByEventId:self.event.eventId
+                                                                                  delegate:self];
     }
 }
 

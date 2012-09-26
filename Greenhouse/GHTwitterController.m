@@ -131,7 +131,6 @@
 {
     DLog(@"");
     [[NSUserDefaults standardUserDefaults] setObject:tweet.tweetId forKey:@"selectedTweetId"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)sendRequestForTweetsWithEventId:(NSNumber *)eventId page:(NSUInteger)page delegate:(id<GHTwitterControllerDelegate>)delegate

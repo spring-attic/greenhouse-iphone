@@ -167,15 +167,15 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    DLog(@"");
-    
     self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
     if (self.event == nil)
     {
         DLog(@"selected event not available")
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
+    
+    [super viewWillAppear:animated];
+    DLog(@"");
 
     // clear table of data
 	self.sessions = nil;

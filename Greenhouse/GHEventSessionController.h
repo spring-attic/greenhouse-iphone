@@ -43,7 +43,8 @@
 - (void)setSelectedScheduleDate:(NSDate *)date;
 
 - (void)sendRequestForSessionsWithEventId:(NSNumber *)eventId date:(NSDate *)eventDate delegate:(id<GHEventSessionsByDateDelegate>)delegate;
-- (void)storeSessionsWithEventId:(NSNumber *)eventId json:(NSArray *)sessions;
+- (void)storeSessionsWithEventId:(NSNumber *)eventId json:(NSArray *)array;
+- (EventSession *)createSessionWithEventId:(NSNumber *)eventId json:(NSDictionary *)dictionary;
 - (void)deleteSessionsWithEventId:(NSNumber *)eventId date:(NSDate *)date;
 
 - (NSArray *)fetchFavoriteSessionsWithEventId:(NSNumber *)eventId;

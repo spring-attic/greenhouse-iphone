@@ -26,6 +26,7 @@
 #import "GHEventController.h"
 #import "GHEventSessionController.h"
 #import "GHTwitterController.h"
+#import "GHDataRefreshController.h"
 
 @interface GHEventSessionTweetsViewController()
 
@@ -54,12 +55,33 @@
 
 
 #pragma mark -
+#pragma mark GHPullRefreshTableViewController
+
+- (NSString *)lastRefreshKey
+{
+    return @"EventSessionTweets";
+}
+
+- (NSDate *)lastRefreshDate
+{
+    return [[GHDataRefreshController sharedInstance] fetchLastRefreshDateWithEventId:self.event.eventId
+                                                                       sessionNumber:self.session.number
+                                                                          descriptor:self.lastRefreshKey];
+}
+
+- (void)setLastRefreshDate:(NSDate *)date
+{
+    [[GHDataRefreshController sharedInstance] setLastRefreshDateWithEventId:self.event.eventId
+                                                              sessionNumber:self.session.number
+                                                                 descriptor:self.lastRefreshKey];
+}
+
+
+#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad
 {
-	self.lastRefreshKey = @"EventSessionTweetsViewController_LastRefresh";
-	
 	[super viewDidLoad];
     DLog(@"");
     
@@ -69,9 +91,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    DLog(@"");
-    
     self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
     self.session = [[GHEventSessionController sharedInstance] fetchSelectedSession];
     if (self.event == nil || self.session == nil)
@@ -79,7 +98,11 @@
         DLog(@"selected event or session not available");
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
-    else
+    
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    if (self.event && self.session)
     {
         self.tweets = [[GHTwitterController sharedInstance] fetchTweetsWithEventId:event.eventId sessionNumber:session.number];
         if (self.tweets && self.tweets.count > 0)

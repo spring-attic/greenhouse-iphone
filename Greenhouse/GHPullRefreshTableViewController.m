@@ -22,6 +22,7 @@
 
 #import "GHPullRefreshTableViewController.h"
 #import "EGORefreshTableHeaderView.h"
+#import "GHDataRefreshController.h"
 
 @interface GHPullRefreshTableViewController()
 
@@ -40,19 +41,27 @@
 
 - (NSDate *)lastRefreshDate
 {
-	return [[NSUserDefaults standardUserDefaults] objectForKey:self.lastRefreshKey];
+	NSDate *date = [[NSUserDefaults standardUserDefaults] objectForKey:self.lastRefreshKey];
+    if (date == nil)
+    {
+        date = [GHDataRefreshController defaultDate];
+    }
+    DLog(@"%@", date);
+    return date;
 }
 
 - (void)setLastRefreshDate:(NSDate *)date
 {
 	[[NSUserDefaults standardUserDefaults] setObject:date forKey:self.lastRefreshKey];
-	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (BOOL)lastRefreshExpired
 {
 	// if the last refresh was older than the configured time, then expire the data
-	return ([self.lastRefreshDate compare:[NSDate dateWithTimeIntervalSinceNow:-[GHUserSettings dataExpiration]]] == NSOrderedAscending);
+    NSDate *expireDate = [NSDate dateWithTimeIntervalSinceNow:-[GHUserSettings dataExpiration]];
+    DLog(@"last refresh: %@", self.lastRefreshDate);
+    DLog(@"expire: %@", expireDate);
+	return ([self.lastRefreshDate compare:expireDate] == NSOrderedAscending);
 }
 
 - (void)reloadTableViewDataSource
@@ -114,21 +123,30 @@
 - (void)viewDidLoad 
 {
     [super viewDidLoad];
+    DLog(@"");
 	
 	if (refreshHeaderView == nil) 
 	{
 		CGRect frame = CGRectMake(0.0f, 0.0f - self.tableView.bounds.size.height, 320.0f, self.tableView.bounds.size.height);
 		self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:frame];
 		refreshHeaderView.backgroundColor = [UIColor colorWithRed:226.0/255.0 green:231.0/255.0 blue:237.0/255.0 alpha:1.0];
-		[refreshHeaderView setLastUpdateLabel:self.lastRefreshDate];
 		[self.tableView addSubview:refreshHeaderView];
 		self.tableView.showsVerticalScrollIndicator = YES;
 	}
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    [refreshHeaderView setLastUpdateLabel:self.lastRefreshDate];
+}
+
 - (void)viewDidUnload 
 {
 	[super viewDidUnload];
+    DLog(@"");
 	
 	self.refreshHeaderView = nil;
     self.tableView = nil;

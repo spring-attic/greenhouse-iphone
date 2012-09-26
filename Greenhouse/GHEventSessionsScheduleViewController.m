@@ -22,6 +22,7 @@
 
 #import "GHEventSessionsScheduleViewController.h"
 #import "Event.h"
+#import "EventDate.h"
 #import "GHEventController.h"
 #import "GHEventSessionController.h"
 #import "GHDateHelper.h"
@@ -30,7 +31,7 @@
 @interface GHEventSessionsScheduleViewController ()
 
 @property (nonatomic, strong) Event *event;
-@property (nonatomic, strong) NSArray *eventDates;
+@property (nonatomic, strong) NSMutableArray *eventDates;
 @property (nonatomic, strong) NSMutableDictionary *viewControllers;
 
 @end
@@ -123,7 +124,13 @@
     else
     {
         [viewControllers removeAllObjects];
-        self.eventDates = [GHDateHelper daysBetweenStartTime:event.startTime endTime:event.endTime];
+        [eventDates removeAllObjects];
+        [event.days enumerateObjectsUsingBlock:^(EventDate *day, BOOL *stop) {
+            [eventDates addObject:day.date];
+        }];
+        [eventDates sortUsingComparator:^NSComparisonResult(NSDate *date1, NSDate *date2) {
+            return [date1 compare:date2];
+        }];
         [tableViewMenu reloadData];
     }
 }

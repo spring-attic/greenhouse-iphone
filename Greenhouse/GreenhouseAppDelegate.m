@@ -89,15 +89,43 @@
 #pragma mark -
 #pragma mark UIApplicationDelegate methods
 
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+	DLog(@"");
+	[[NSUserDefaults standardUserDefaults] synchronize];
+	if ([GHUserSettings resetAppOnStart])
+	{
+		[GHAuthController deleteAccessGrant];
+        [[GHCoreDataManager sharedInstance] deletePersistentStore];
+		[GHUserSettings reset];
+		[self showAuthorizeNavigationViewController];
+	}
+	else if ([GHAuthController isAuthorized])
+	{
+		[self showTabBarController];
+	}
+	else
+	{
+		[self showAuthorizeNavigationViewController];
+	}
+	
+    [window makeKeyAndVisible];
+	
+	[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
+	[self verifyLocationServices];
+    
+	return;
+}
+
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-	DLog(@"");	
+	DLog(@"");
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
 	DLog(@"");
-		
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	if ([GHUserSettings resetAppOnStart])
 	{
 		DLog(@"reset app");
@@ -117,33 +145,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application
 {
 	DLog(@"");
-}
-
-- (void)applicationDidFinishLaunching:(UIApplication *)application
-{
-	DLog(@"");
-	if ([GHUserSettings resetAppOnStart])
-	{
-		[GHAuthController deleteAccessGrant];
-        [[GHCoreDataManager sharedInstance] deletePersistentStore];
-		[GHUserSettings reset];
-		[self showAuthorizeNavigationViewController];
-	}	
-	else if ([GHAuthController isAuthorized])
-	{
-		[self showTabBarController];
-	}
-	else 
-	{
-		[self showAuthorizeNavigationViewController];
-	}
-	
-    [window makeKeyAndVisible];
-	
-	[GHUserSettings setAppVersion:[GHAppSettings appVersion]];
-	[self verifyLocationServices];
-
-	return;
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application 

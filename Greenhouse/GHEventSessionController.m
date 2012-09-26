@@ -68,7 +68,6 @@
 - (void)setSelectedSession:(EventSession *)session
 {
 	[[NSUserDefaults standardUserDefaults] setObject:session.number forKey:KEY_SELECTED_SESSION_NUMBER];
-	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -83,7 +82,6 @@
 - (void)setSelectedScheduleDate:(NSDate *)date
 {
     [[NSUserDefaults standardUserDefaults] setObject:date forKey:KEY_SELECTED_SCHEDULE_DATE];
-	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 
@@ -174,43 +172,13 @@
      }];
 }
 
-- (void)storeSessionsWithEventId:(NSNumber *)eventId json:(NSArray *)sessions
+- (void)storeSessionsWithEventId:(NSNumber *)eventId json:(NSArray *)array
 {
     DLog(@"");
     NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
     Event *event = [[GHEventController sharedInstance] fetchEventWithId:eventId];
-    [sessions enumerateObjectsUsingBlock:^(NSDictionary *sessionDict, NSUInteger idx, BOOL *stop) {
-        EventSession *session = [NSEntityDescription
-                        insertNewObjectForEntityForName:@"EventSession"
-                        inManagedObjectContext:context];
-        session.sessionId = [sessionDict numberForKey:@"id"];
-        session.number = [sessionDict numberForKey:@"number"];
-        session.title = [sessionDict stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
-        session.startTime = [sessionDict dateWithMillisecondsSince1970ForKey:@"startTime"];
-        session.endTime = [sessionDict dateWithMillisecondsSince1970ForKey:@"endTime"];
-        session.information = [[sessionDict stringForKey:@"description"] stringByXMLDecoding];
-        session.hashtag = [sessionDict stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
-        session.isFavorite = [NSNumber numberWithBool:[sessionDict boolForKey:@"favorite"]];
-        session.rating = [NSNumber numberWithDouble:[sessionDict doubleForKey:@"rating"]];
-        
-        NSArray *leaders = [sessionDict objectForKey:@"leaders"];
-        [leaders enumerateObjectsUsingBlock:^(NSDictionary *leaderDict, NSUInteger idx, BOOL *stop) {
-            EventSessionLeader *leader = [NSEntityDescription
-                                          insertNewObjectForEntityForName:@"EventSessionLeader"
-                                          inManagedObjectContext:context];
-            leader.firstName = [leaderDict stringForKey:@"firstName"];
-            leader.lastName = [leaderDict stringForKey:@"lastName"];
-            [session addLeadersObject:leader];
-        }];
-        
-        NSDictionary *roomDict = [sessionDict objectForKey:@"room"];
-        VenueRoom *room = [NSEntityDescription
-                           insertNewObjectForEntityForName:@"VenueRoom"
-                           inManagedObjectContext:context];
-        room.roomId = [roomDict numberForKey:@"id"];
-        room.label = [roomDict stringForKey:@"label"];
-        session.room = room;
-        
+    [array enumerateObjectsUsingBlock:^(NSDictionary *dictionary, NSUInteger idx, BOOL *stop) {
+        EventSession *session = [self createSessionWithEventId:eventId json:dictionary];
         [event addSessionsObject:session];
     }];
     
@@ -220,6 +188,43 @@
     {
         DLog(@"%@", [error localizedDescription]);
     }
+}
+
+- (EventSession *)createSessionWithEventId:(NSNumber *)eventId json:(NSDictionary *)dictionary
+{
+    NSManagedObjectContext *context = [[GHCoreDataManager sharedInstance] managedObjectContext];
+    EventSession *session = [NSEntityDescription
+                             insertNewObjectForEntityForName:@"EventSession"
+                             inManagedObjectContext:context];
+    session.sessionId = [dictionary numberForKey:@"id"];
+    session.number = [dictionary numberForKey:@"number"];
+    session.title = [dictionary stringByReplacingPercentEscapesForKey:@"title" usingEncoding:NSUTF8StringEncoding];
+    session.startTime = [dictionary dateWithMillisecondsSince1970ForKey:@"startTime"];
+    session.endTime = [dictionary dateWithMillisecondsSince1970ForKey:@"endTime"];
+    session.information = [[dictionary stringForKey:@"description"] stringByXMLDecoding];
+    session.hashtag = [dictionary stringByReplacingPercentEscapesForKey:@"hashtag" usingEncoding:NSUTF8StringEncoding];
+    session.isFavorite = [NSNumber numberWithBool:[dictionary boolForKey:@"favorite"]];
+    session.rating = [NSNumber numberWithDouble:[dictionary doubleForKey:@"rating"]];
+    
+    NSArray *leaders = [dictionary objectForKey:@"leaders"];
+    [leaders enumerateObjectsUsingBlock:^(NSDictionary *leaderDict, NSUInteger idx, BOOL *stop) {
+        EventSessionLeader *leader = [NSEntityDescription
+                                      insertNewObjectForEntityForName:@"EventSessionLeader"
+                                      inManagedObjectContext:context];
+        leader.firstName = [leaderDict stringForKey:@"firstName"];
+        leader.lastName = [leaderDict stringForKey:@"lastName"];
+        [session addLeadersObject:leader];
+    }];
+    
+    NSDictionary *roomDict = [dictionary objectForKey:@"room"];
+    VenueRoom *room = [NSEntityDescription
+                       insertNewObjectForEntityForName:@"VenueRoom"
+                       inManagedObjectContext:context];
+    room.roomId = [roomDict numberForKey:@"id"];
+    room.label = [roomDict stringForKey:@"label"];
+    session.room = room;
+    
+    return session;
 }
 
 - (void)deleteSessionsWithEventId:(NSNumber *)eventId date:(NSDate *)date
@@ -249,7 +254,7 @@
 
 - (NSArray *)fetchFavoriteSessionsWithEventId:(NSNumber *)eventId
 {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite == YES"];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(event.eventId == %@) AND (isFavorite == YES)", eventId];
     return [self fetchSessionsWithPredicate:predicate];
 }
 
@@ -274,12 +279,18 @@
              NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
              if (!error)
              {
+                 Event *event = [[GHEventController sharedInstance] fetchEventWithId:eventId];
                  [jsonArray enumerateObjectsUsingBlock:^(NSDictionary *jsonDict, NSUInteger idx, BOOL *stop) {
                      NSNumber *sessionNumber = [jsonDict objectForKey:@"number"];
                      EventSession *session = [self fetchSessionWithNumber:sessionNumber];
                      if (session)
                      {
                          session.isFavorite = [NSNumber numberWithBool:YES];
+                     }
+                     else
+                     {
+                         session = [self createSessionWithEventId:eventId json:jsonDict];
+                         [event addSessionsObject:session];
                      }
                  }];
                  dispatch_sync(dispatch_get_main_queue(), ^{
@@ -288,10 +299,10 @@
                      [context save:&error];
                      if (error)
                      {
-                         DLog(@"%@", [error localizedDescription]);
+                         DLog(@"%@ - %@", [error domain], [error localizedDescription]);
                      }
-                     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"isFavorite == YES"];
-                     NSArray *sessions = [self fetchSessionsWithPredicate:predicate];
+                     
+                     NSArray *sessions = [self fetchFavoriteSessionsWithEventId:eventId];
                      [delegate fetchFavoriteSessionsDidFinishWithResults:sessions];
                  });
              }

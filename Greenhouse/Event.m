@@ -17,10 +17,12 @@
 //  Event.m
 //  Greenhouse
 //
-//  Created by Roy Clarkson on 9/15/12.
+//  Created by Roy Clarkson on 9/25/12.
 //
 
 #import "Event.h"
+#import "DataRefresh.h"
+#import "EventDate.h"
 #import "EventSession.h"
 #import "Tweet.h"
 #import "Venue.h"
@@ -40,5 +42,7 @@
 @dynamic sessions;
 @dynamic tweets;
 @dynamic venues;
+@dynamic days;
+@dynamic dataRefreshes;
 
 @end

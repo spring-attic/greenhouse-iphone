@@ -21,6 +21,7 @@
 //
 
 #import "GHCoreDataManager.h"
+#import "GHAppSettings.h"
 
 @implementation GHCoreDataManager
 

@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12B19" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1810" systemVersion="12C54" minimumToolsVersion="Xcode 4.5" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DataRefresh" representedClassName="DataRefresh" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="descriptor" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="dataRefreshes" inverseEntity="Event" syncable="YES"/>
+        <relationship name="session" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="EventSession" inverseName="dataRefreshes" inverseEntity="EventSession" syncable="YES"/>
+    </entity>
     <entity name="Event" representedClassName="Event" syncable="YES">
         <attribute name="endTime" attributeType="Date" syncable="YES"/>
         <attribute name="eventId" attributeType="Integer 32" defaultValueString="0" indexed="YES" syncable="YES"/>
@@ -10,9 +16,15 @@
         <attribute name="startTime" attributeType="Date" syncable="YES"/>
         <attribute name="timeZoneName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dataRefreshes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DataRefresh" inverseName="event" inverseEntity="DataRefresh" syncable="YES"/>
+        <relationship name="days" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventDate" inverseName="event" inverseEntity="EventDate" syncable="YES"/>
         <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EventSession" inverseName="event" inverseEntity="EventSession" syncable="YES"/>
         <relationship name="tweets" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Tweet" inverseName="event" inverseEntity="Tweet" syncable="YES"/>
         <relationship name="venues" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Venue" inverseName="events" inverseEntity="Venue" syncable="YES"/>
+    </entity>
+    <entity name="EventDate" representedClassName="EventDate" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" indexed="YES" syncable="YES"/>
+        <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="days" inverseEntity="Event" syncable="YES"/>
     </entity>
     <entity name="EventSession" representedClassName="EventSession" syncable="YES">
         <attribute name="endTime" optional="YES" attributeType="Date" syncable="YES"/>
@@ -24,6 +36,7 @@
         <attribute name="sessionId" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="startTime" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dataRefreshes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="DataRefresh" inverseName="session" inverseEntity="DataRefresh" syncable="YES"/>
         <relationship name="event" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="sessions" inverseEntity="Event" syncable="YES"/>
         <relationship name="leaders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="EventSessionLeader" inverseName="sessions" inverseEntity="EventSessionLeader" syncable="YES"/>
         <relationship name="room" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VenueRoom" inverseName="sessions" inverseEntity="VenueRoom" syncable="YES"/>
@@ -68,12 +81,14 @@
         <relationship name="venue" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="rooms" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="-1406" positionY="-922" width="128" height="223"/>
-        <element name="EventSession" positionX="-2250" positionY="-1035" width="128" height="240"/>
+        <element name="Event" positionX="-1406" positionY="-922" width="128" height="255"/>
+        <element name="EventDate" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="EventSession" positionX="-2250" positionY="-1035" width="128" height="255"/>
         <element name="EventSessionLeader" positionX="-2007" positionY="-1026" width="128" height="88"/>
         <element name="Profile" positionX="-1395" positionY="-630" width="128" height="90"/>
         <element name="Tweet" positionX="-1080" positionY="-666" width="128" height="180"/>
         <element name="Venue" positionX="-1208" positionY="-919" width="128" height="163"/>
         <element name="VenueRoom" positionX="-1037" positionY="-918" width="128" height="105"/>
+        <element name="DataRefresh" positionX="160" positionY="192" width="128" height="105"/>
     </elements>
 </model>

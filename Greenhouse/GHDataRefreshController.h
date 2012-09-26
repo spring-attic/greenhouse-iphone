@@ -14,35 +14,22 @@
 //  limitations under the License.
 //
 //
-//  EventSession.m
+//  GHDataRefreshController.h
 //  Greenhouse
 //
 //  Created by Roy Clarkson on 9/25/12.
 //
 
-#import "EventSession.h"
-#import "DataRefresh.h"
-#import "Event.h"
-#import "EventSessionLeader.h"
-#import "Tweet.h"
-#import "VenueRoom.h"
+#import <Foundation/Foundation.h>
 
+@interface GHDataRefreshController : NSObject
 
-@implementation EventSession
++ (GHDataRefreshController *)sharedInstance;
++ (NSDate *)defaultDate;
 
-@dynamic endTime;
-@dynamic hashtag;
-@dynamic information;
-@dynamic isFavorite;
-@dynamic number;
-@dynamic rating;
-@dynamic sessionId;
-@dynamic startTime;
-@dynamic title;
-@dynamic event;
-@dynamic leaders;
-@dynamic room;
-@dynamic tweets;
-@dynamic dataRefreshes;
+- (NSDate *)fetchLastRefreshDateWithEventId:(NSNumber *)eventId descriptor:(NSString *)descriptor;
+- (NSDate *)fetchLastRefreshDateWithEventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber descriptor:(NSString *)descriptor;
+- (void)setLastRefreshDateWithEventId:(NSNumber *)eventId descriptor:(NSString *)descriptor;
+- (void)setLastRefreshDateWithEventId:(NSNumber *)eventId sessionNumber:(NSNumber *)sessionNumber descriptor:(NSString *)descriptor;
 
 @end

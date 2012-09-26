@@ -25,6 +25,7 @@
 #import "EventSession.h"
 #import "GHEventSessionController.h"
 #import "GHActivityAlertView.h"
+#import "GHDataRefreshController.h"
 
 @interface GHEventSessionsByDayViewController ()
 
@@ -177,9 +178,35 @@
 #pragma mark -
 #pragma mark PullRefreshTableViewController methods
 
+- (NSString *)lastRefreshKey
+{
+    if (self.eventDate)
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *formattedDate = [dateFormatter stringFromDate:eventDate];
+        return [NSString stringWithFormat:@"EventSessionsByDay-%@", formattedDate];
+    }
+    return @"";
+}
+
+- (NSDate *)lastRefreshDate
+{
+    return [[GHDataRefreshController sharedInstance] fetchLastRefreshDateWithEventId:self.event.eventId
+                                                                          descriptor:self.lastRefreshKey];
+}
+
+- (void)setLastRefreshDate:(NSDate *)date
+{
+    [[GHDataRefreshController sharedInstance] setLastRefreshDateWithEventId:self.event.eventId
+                                                                 descriptor:self.lastRefreshKey];
+}
+
 - (void)reloadTableViewDataSource
 {
-    [[GHEventSessionController sharedInstance] sendRequestForSessionsWithEventId:self.event.eventId date:eventDate delegate:self];
+    [[GHEventSessionController sharedInstance] sendRequestForSessionsWithEventId:self.event.eventId
+                                                                            date:eventDate
+                                                                        delegate:self];
 }
 
 
@@ -188,7 +215,6 @@
 
 - (void)viewDidLoad 
 {
-	self.lastRefreshKey = @"EventSessionsByDayViewController_LastRefresh";
     [super viewDidLoad];
     DLog(@"");
 	
@@ -198,17 +224,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     self.times = nil;
-    
-    [super viewWillAppear:animated];
-    DLog(@"");
-    
     self.eventDate = [[GHEventSessionController sharedInstance] fetchSelectedScheduleDate];
     if (self.eventDate == nil)
     {
         DLog(@"selected event date not available");
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
-    else
+    
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    if (self.eventDate)
     {
         // set the title of the view to the schedule day
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

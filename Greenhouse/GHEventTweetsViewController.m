@@ -27,6 +27,7 @@
 #import "Event.h"
 #import "GHTwitterController.h"
 #import "GHTweetDetailsViewController.h"
+#import "GHDataRefreshController.h"
 
 @interface GHEventTweetsViewController ()
 
@@ -53,12 +54,31 @@
 
 
 #pragma mark -
+#pragma mark GHPullRefreshTableViewController
+
+- (NSString *)lastRefreshKey
+{
+    return @"EventTweets";
+}
+
+- (NSDate *)lastRefreshDate
+{
+    return [[GHDataRefreshController sharedInstance] fetchLastRefreshDateWithEventId:self.event.eventId
+                                                                          descriptor:self.lastRefreshKey];
+}
+
+- (void)setLastRefreshDate:(NSDate *)date
+{
+    [[GHDataRefreshController sharedInstance] setLastRefreshDateWithEventId:self.event.eventId
+                                                                 descriptor:self.lastRefreshKey];
+}
+
+
+#pragma mark -
 #pragma mark UIViewController methods
 
 - (void)viewDidLoad
 {
-	self.lastRefreshKey = @"EventTweetsViewController_LastRefresh";
-	
 	[super viewDidLoad];
     
     self.tweetViewController = [[GHEventTweetViewController alloc] initWithNibName:@"GHTweetViewController" bundle:nil];
@@ -67,16 +87,17 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    DLog(@"");
-    
     self.event = [[GHEventController sharedInstance] fetchSelectedEvent];
     if (self.event == nil)
     {
         DLog(@"selected event not available");
         [self.navigationController popToRootViewControllerAnimated:NO];
     }
-    else
+    
+    [super viewWillAppear:animated];
+    DLog(@"");
+    
+    if (self.event)
     {
         self.tweets = [[GHTwitterController sharedInstance] fetchTweetsWithEventId:event.eventId];
         if (self.tweets && self.tweets.count > 0)
