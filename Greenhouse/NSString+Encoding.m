@@ -19,7 +19,7 @@
 //
 //  Created by Roy Clarkson on 9/23/10.
 //
-//  Code and solution discussed at http://stackoverflow.com/questions/803676/encode-nsstring-for-xml-html/1933237
+//  Code and solution discussed at https://stackoverflow.com/questions/803676/encode-nsstring-for-xml-html/1933237
 //
 
 #import "NSString+Encoding.h"

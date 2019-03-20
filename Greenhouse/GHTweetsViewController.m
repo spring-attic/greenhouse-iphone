@@ -21,7 +21,7 @@
 //
 //
 //  Based on Apple's LazyTableImages
-//  http://developer.apple.com/iphone/library/samplecode/LazyTableImages/Introduction/Intro.html
+//  https://developer.apple.com/iphone/library/samplecode/LazyTableImages/Introduction/Intro.html
 //
 
 #import "GHTweetsViewController.h"
