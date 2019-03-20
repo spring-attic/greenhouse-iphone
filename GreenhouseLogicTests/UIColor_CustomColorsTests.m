@@ -49,7 +49,7 @@
 #pragma mark Helpers
 
 // As answered by Dave DeLong in the following StackOverflow question
-// http://stackoverflow.com/questions/3805177/how-to-convert-hex-rgb-color-codes-to-uicolor
+// https://stackoverflow.com/questions/3805177/how-to-convert-hex-rgb-color-codes-to-uicolor
 - (UIColor *)colorFromHexString:(NSString *)hexString
 {
     NSString *cleanString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];

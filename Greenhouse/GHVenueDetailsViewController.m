@@ -57,7 +57,7 @@
     if (venue)
     {
         NSString *encodedAddress = [venue.postalAddress stringByURLEncoding];
-        NSString *urlString = [[NSString alloc] initWithFormat:@"http://maps.google.com/maps?q=%@", encodedAddress];
+        NSString *urlString = [[NSString alloc] initWithFormat:@"https://maps.google.com/maps?q=%@", encodedAddress];
         NSURL *url = [NSURL URLWithString:urlString];
         [[UIApplication sharedApplication] openURL:url];
     }
